@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indica Labs â ãã¼ã¿ã«</title>
+  <style>
+    :root {
+      --teal: #1a7f7a;
+      --teal-dark: #145f5c;
+      --teal-light: #e6f4f4;
+      --teal-mid: #2aa198;
+      --accent: #e8a838;
+      --text: #1a2332;
+      --subtext: #4a5568;
+      --border: #d0e4e3;
+      --bg: #f4f9f9;
+      --card: #ffffff;
+      --red: #e05252;
+      --green: #27ae60;
+      --badge-bg: #e6f4f4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ââ Header ââ */
+    header {
+      background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal-mid) 100%);
+      color: white;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      position: sticky; top: 0; z-index: 100;
+    }
+    header .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.03em; }
+    header .logo span { color: var(--accent); }
+    header nav { display: flex; gap: 1.5rem; }
+    header nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    header nav a:hover { color: white; }
+    .date-badge {
+      background: rgba(255,255,255,0.15);
+      padding: 4px 12px; border-radius: 20px;
+      font-size: 0.78rem; color: white;
+    }
+
+    /* ââ Layout ââ */
+    .container { max-width: 1280px; margin: 0 auto; padding: 1.5rem 1.5rem 3rem; }
+
+    /* ââ Section titles ââ */
+    .section-title {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 1rem; font-weight: 700; color: var(--teal-dark);
+      border-left: 4px solid var(--teal-mid);
+      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .section-title .tag {
+      font-size: 0.7rem; font-weight: 600;
+      background: var(--teal-mid); color: white;
+      padding: 2px 8px; border-radius: 10px;
+    }
+
+    /* ââ Grid layouts ââ */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .section-row { margin-bottom: 2rem; }
+
+    /* ââ Cards ââ */
+    .card {
+      background: var(--card);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover { box-shadow: 0 4px 16px rgba(26,127,122,0.12); transform: translateY(-1px); }
+
+    /* ââ Quick Links ââ */
+    .quick-link-card {
+      background: var(--teal);
+      color: white;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.75rem;
+      font-weight: 600; font-size: 0.9rem;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 2px 6px rgba(26,127,122,0.25);
+    }
+    .quick-link-card:hover { background: var(--teal-dark); transform: translateY(-2px); }
+    .quick-link-card .icon { font-size: 1.3rem; }
+    .quick-link-card small { font-size: 0.72rem; opacity: 0.8; font-weight: 400; }
+
+    /* ââ Log Table ââ */
+    .log-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .log-table th {
+      background: var(--teal-light);
+      color: var(--teal-dark);
+      font-weight: 700;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    .log-table td { padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .log-table tr:last-child td { border-bottom: none; }
+    .log-table tr:hover td { background: var(--teal-light); }
+    .log-table a { color: var(--teal); text-decoration: none; font-weight: 600; }
+    .log-table a:hover { text-decoration: underline; }
+    .risk-badge {
+      display: inline-block; padding: 2px 8px; border-radius: 10px;
+      font-size: 0.72rem; font-weight: 600;
+    }
+    .risk-mid { background: #fff3cd; color: #856404; }
+    .risk-low { background: #d1e7dd; color: #0a3622; }
+    .risk-high { background: #f8d7da; color: #58151c; }
+
+    /* ââ Macro Dashboard ââ */
+    .macro-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+    .macro-card {
+      background: white; border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 0.9rem; text-align: center;
+    }
+    .macro-card .label { font-size: 0.72rem; color: var(--subtext); margin-bottom: 0.3rem; }
+    .macro-card .value { font-size: 1.4rem; font-weight: 800; color: var(--teal-dark); }
+    .macro-card .sub { font-size: 0.72rem; color: var(--subtext); margin-top: 0.2rem; }
+    .macro-card .up { color: var(--green); }
+    .macro-card .down { color: var(--red); }
+
+    /* ââ Watchlist ââ */
+    .stock-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.65rem 0.75rem;
+      border-radius: 6px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.84rem;
+    }
+    .stock-row:last-child { border-bottom: none; }
+    .stock-row:hover { background: var(--teal-light); }
+    .stock-name { font-weight: 600; color: var(--text); }
+    .stock-code { font-size: 0.72rem; color: var(--subtext); }
+    .stock-sector { font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; background: var(--badge-bg); color: var(--teal-dark); }
+    .stock-status { font-size: 0.72rem; color: var(--subtext); font-style: italic; }
+
+    /* ââ Arbitrage Cards ââ */
+    .arb-card {
+      border-left: 4px solid var(--teal-mid);
+      padding: 0.9rem 1rem;
+      background: white;
+      border-radius: 0 8px 8px 0;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--teal-mid);
+    }
+    .arb-card .arb-title { font-weight: 700; font-size: 0.88rem; color: var(--teal-dark); margin-bottom: 0.3rem; }
+    .arb-card .arb-logic { font-size: 0.8rem; color: var(--subtext); line-height: 1.5; }
+    .arb-card .arb-horizon { margin-top: 0.5rem; font-size: 0.72rem; color: var(--teal-mid); font-weight: 600; }
+    .arb-letter {
+      display: inline-block; width: 22px; height: 22px;
+      background: var(--teal-mid); color: white;
+      border-radius: 50%; text-align: center; line-height: 22px;
+      font-size: 0.75rem; font-weight: 700; margin-right: 0.4rem;
+    }
+
+    /* ââ News Links ââ */
+    .news-link {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: white;
+      text-decoration: none; color: inherit;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .news-link:hover { box-shadow: 0 3px 12px rgba(26,127,122,0.15); transform: translateY(-1px); }
+    .news-link .nl-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--teal-light); display: flex; align-items: center;
+      justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+    }
+    .news-link .nl-body .nl-title { font-weight: 700; font-size: 0.88rem; color: var(--teal-dark); }
+    .news-link .nl-body .nl-sub { font-size: 0.76rem; color: var(--subtext); margin-top: 0.15rem; }
+    .news-links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+    /* ââ Screening criteria ââ */
+    .criteria-list { list-style: none; }
+    .criteria-list li {
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      padding: 0.4rem 0;
+      font-size: 0.83rem;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.4;
+    }
+    .criteria-list li:last-child { border-bottom: none; }
+    .criteria-list .mark {
+      flex-shrink: 0; width: 20px; height: 20px;
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 0.65rem;
+      font-weight: 700; margin-top: 0.1rem;
+    }
+    .mark-ok { background: #d1e7dd; color: #0a3622; }
+    .mark-star { background: #fff3cd; color: #664d03; }
+    .mark-no { background: #f8d7da; color: #58151c; }
+
+    /* ââ Footer ââ */
+    footer {
+      background: var(--teal-dark);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 1.25rem;
+      font-size: 0.78rem;
+    }
+    footer span { color: var(--accent); }
+
+    /* ââ Responsive ââ */
+    @media (max-width: 900px) {
+      .macro-grid { grid-template-columns: repeat(2, 1fr); }
+      .grid-2 { grid-template-columns: 1fr; }
+      .news-links-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .macro-grid { grid-template-columns: 1fr 1fr; }
+      header nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ââ HEADER ââ -->
+<header>
+  <div class="logo">Indica Labs <span>ãã¼ã¿ã«</span></div>
+  <nav>
+    <a href="#news">ãã¥ã¼ã¹</a>
+    <a href="#stock">æ ªå¼å­¦ç¿</a>
+    <a href="#macro">ãã¯ã­</a>
+    <a href="#watchlist">éæ</a>
+    <a href="#arb">æ©ä¼</a>
+  </nav>
+  <div class="date-badge" id="todayDate"></div>
+</header>
+
+<div class="container">
+
+  <!-- ââ QUICK LINKS ââ -->
+  <div class="section-row">
+    <div class="section-title">ð ã¯ã¤ãã¯ãªã³ã¯</div>
+    <div class="grid-4">
+      <a class="quick-link-card" href="https://indicalabs.sharepoint.com/sites/JapanTeam/SitePages/CollabHome.aspx" target="_blank">
+        <span class="icon">ð </span>
+        <div><div>Japan Team</div><small>SharePoint ãã¼ã </small></div>
+      </a>
+      <a class="quick-link-card" href="https://indicalab.bamboohr.com/employees/pto/?id=126" target="_blank">
+        <span class="icon">ð¥</span>
+        <div><div>HR</div><small>BambooHR</small></div>
+      </a>
+      <a class="quick-link-card" href="https://www.chatwork.com/#%21rid378330219" target="_blank">
+        <span class="icon">ð¬</span>
+        <div><div>Chatwork</div><small>ãã¼ã ãã£ãã</small></div>
+      </a>
+      <a class="quick-link-card" href="https://learning.shift-ai.co.jp/members/mjTPK2PDxwQZ/home" target="_blank">
+        <span class="icon">ð¤</span>
+        <div><div>Shift AI</div><small>AIå­¦ç¿ãã©ãßããã©ã¼ã </small></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ââ DAILY NEWS ââ -->
+  <div class="section-row" id="news">
+    <div class="section-title">ð° ãã¤ãªã¼ãã¥ã¼ã¹ <span class="tag">æ¯æ¥æ´æ°</span></div>
+    <div class="news-links-grid">
+      <a class="news-link" href="https://www.mag2.com/m/0001323030" target="_blank">
+        <div class="nl-icon">ð§</div>
+        <div class="nl-body">
+          <div class="nl-title">ä¸­å³¶è¡ ã¶ãã¯ãã©ã³</div>
+          <div class="nl-sub">é±å Life is beautiful Â· ã¾ãã¾ãï¼æ¯é±æ°´æï¼</div>
+        </div>
+      </a>
+      <a class="news-link" href="https://indicalabs.sharepoint.com/sites/JapanTeam/Shared%20Documents/DailyReports/" target="_blank">
+        <div class="nl-icon">ð</div>
+        <div class="nl-body">
+          <div class="nl-title">ãã¤ãªã¼ã¬ãã¼ã</div>
+          <div class="nl-sub">SharePoint Â· DailyReports ãã©ã«ã</div>
+        </div>
+      </a>
+      <a class="news-link" href="https://indicalabs-my.sharepoint.com/" target="_blank">
+        <div class="nl-icon">âï¸</div>
+        <div class="nl-body">
+          <div class="nl-title">OneDrive / ã¯ã©ã¦ãæ´æ°</div>
+          <div class="nl-sub">ãã­ã¥ã¡ã³ãã»ãã¡ã¤ã«ææ°æå ±</div>
+        </div>
+      </a>
+      <a class="news-link" href="https://indicalabs.sharepoint.com/sites/JapanTeam" target="_blank">
+        <div class="nl-icon">ðï¸</div>
+        <div class="nl-body">
+          <div class="nl-title">SharePoint ãã­ã¥ã¡ã³ã</div>
+          <div class="nl-sub">å¨å±æãã­ã¥ã¡ã³ãä¸è¦§</div>
+        </div>
+      </a>
+      <a class="news-link" href="https://www.imf.org/en/Publications/WEO" target="_blank">
+        <div class="nl-icon">ð</div>
+        <div class="nl-body">
+          <div class="nl-title">IMF World Economic Outlook</div>
+          <div class="nl-sub">ã°ã­ã¼ãã«ãã¯ã­ Â· ææ°ã¬ãã¼ã</div>
+        </div>
+      </a>
+      <a class="news-link" href="https://www.nikkei.com/" target="_blank">
+        <div class="nl-icon">ð</div>
+        <div class="nl-body">
+          <div class="nl-title">æ¥çµæ°è</div>
+          <div class="nl-sub">å½åçµæ¸ Â· ä¼æ¥­ãã¥ã¼ã¹</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ââ STOCK LEARNING LOG ââ -->
+  <div class="section-row" id="stock">
+    <div class="section-title">ð æ ªå¼å­¦ç¿ã­ã°ä¸è¦§ <span class="tag">æ¯æ¥æ´æ°</span></div>
+    <div class="card">
+      <table class="log-table">
+        <thead>
+          <tr>
+            <th>æ¥ä»</th>
+            <th>ä¸»è¦ãã¼ã</th>
+            <th>å¸å ´ç°å¢</th>
+            <th>ã­ã¼ã¤ã³ãµã¤ã</th>
+            <th>ã­ã°</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>2026-05-08</strong></td>
+            <td>ã°ã¬ã¼ãã­ã¼ãã¼ã·ã§ã³ Â· IMFæ¦äºãªã¹ã¯ Â· æ¥æ¬AIå¨è¾ºæ ª</td>
+            <td><span class="risk-badge risk-mid">â ï¸ ä¸­ãªã¹ã¯</span></td>
+            <td>AIè£ç½®æ ªå²å® Â· éå©ããä¸ç Â· é²è¡ããã¸</td>
+            <td><a href="stock_learning_loop_2026-05-08.html" target="_blank">â éã</a></td>
+          </tr>
+          <!-- æ°ããã­ã°ã¯ããã«è¿½å  -->
+          <tr>
+            <td colspan="5" style="text-align:center; color:var(--subtext); font-size:0.8rem; padding:1rem;">
+              â ç¿æ¥ä»¥éã®ã­ã°ãèªåè¿½å ããã¾ã
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ââ MACRO DASHBOARD ââ -->
+  <div class="section-row" id="macro">
+    <div class="section-title">ð ãã¯ã­çµæ¸ããã·ã¥ãã¼ã <span class="tag">2026å¹´5ç</span></div>
+    <div class="macro-grid" style="margin-bottom:0.75rem;">
+      <div class="macro-card">
+        <div class="label">ä¸çæé·ç (IMF)</div>
+        <div class="value">3.1<span style="font-size:0.9rem">%</span></div>
+        <div class="sub down">â¼ ä¸æ¹ä¿®æ­£</div>
+      </div>
+      <div class="macro-card">
+        <div class="label">S&P500 ç®æ¨ (MS)</div>
+        <div class="value">7,500</div>
+        <div class="sub up">â² æ¿æ²»ãªã¹ã¯æ³¨æ</div>
+      </div>
+      <div class="macro-card">
+        <div class="label">æ¥çµå¹³å ç®æ¨ (éæ)</div>
+        <div class="value">55,000</div>
+        <div class="sub up">â² ä¸æ¯ã59,000</div>
+      </div>
+      <div class="macro-card">
+        <div class="label">ç±³ã³ã¢PCE</div>
+        <div class="value">3.1<span style="font-size:0.9rem">%</span></div>
+        <div class="sub down">ç®æ¨2%è¶éä¸­</div>
+      </div>
+      <div class="macro-card">
+        <div class="label">ãã«/å ç®æ¨ (éæ)</div>
+        <div class="value">152.5</div>
+        <div class="sub">åé«æ¹åã¸</div>
+      </div>
+      <div class="macro-card">
+        <div class="label">æ¥éæ¿ç­éå©</div>
+        <div class="value">1.0<span style="font-size:0.9rem">%+</span></div>
+        <div class="sub up">å©ä¸ãç¶ç¶è¢£æ¸¬</div>
+      </div>
+      <div class="macro-card">
+        <div class="label">GS ç±³å½æé·ç</div>
+        <div class="value">2.6<span style="font-size:0.9rem">%</span></div>
+        <div class="sub up">ã³ã³ã»ã³ãµã¹è¶ã</div>
+      </div>
+      <div class="macro-card">
+        <div class="label">æå¤§ãªã¹ã¯</div>
+        <div class="value" style="font-size:0.95rem; color:var(--red);">ä¸­æ±ç´äº</div>
+        <div class="sub down">ã¨ãã«ã®ã¼æ¥é¨°ã·ããªãª</div>
+      </div>
+    </div>
+    <div class="card" style="background:var(--teal-light); border-color:var(--teal-mid);">
+      <p style="font-size:0.83rem; color:var(--teal-dark); line-height:1.7;">
+        â ï¸ <strong>IMFæéè¦ãªã¹ã¯</strong>: ãæ¦äºã®å½±ã®ä¸ã®ä¸ççµæ¸ã(WEO Apr 2026) â ä¸­æ±ç´äºé·æåã·ããªãªã§ã¯ä¸çæé·ç2.0%ãã¤ã³ãã¬6%è¶ãã¨ãã«ã®ã¼ä¾¡æ ¼æ¥é¨°ãæå¤§ã®éç·å½¢ãªã¹ã¯ã
+        ã&nbsp;|&nbsp;ãð <strong>ã°ã¬ã¼ãã­ã¼ãã¼ã·ã§ã³</strong>: ããã¯ç¬èµ°âé²è¡ã»éèã»ã¤ã³ãã©ã»æ¥æ¬AIå¨è¾ºæ ªã¸è³éã·ããç¶ç¶ä¸­ã
+      </p>
+    </div>
+  </div>
+
+  <!-- ââ WATCHLIST ââ -->
+  <div class="section-row" id="watchlist">
+    <div class="section-title">ð¯ é·æä¿æåè£ ã¦ã©ãããªã¹ã</div>
+    <div class="grid-2">
+      <div class="card">
+        <div style="font-size:0.8rem; font-weight:700; color:var(--subtext); margin-bottom:0.75rem;">ð¯ðµ æ¥æ¬æ ª</div>
+        <div class="stock-row">
+          <div><div class="stock-name">æ±äº¬ã¨ã¬ã¯ãã­ã³</div><div class="stock-code">8035</div></div>
+          <span class="stock-sector">AIåå°ä½è£ç½®</span>
+          <span class="stock-status">è¦æ±ºç®ç¢ºèª</span>
+        </div>
+        <div class="stock-row">
+          <div><div class="stock-name">ã¢ããã³ãã¹ã</div><div class="stock-code">6857</div></div>
+          <span class="stock-sector">AIãã¹ãè£ç½®</span>
+          <span class="stock-status">è¦æ±ºç®ç¢ºèª</span>
+        </div>
+        <div class="stock-row">
+          <div><div class="stock-name">ä¸è±éå·¥</div><div class="stock-code">7011</div></div>
+          <span class="stock-sector">é²è¡ã»ã¤ã³ãã©</span>
+          <span class="stock-status">åæ³¨æ®ç¢ºèªè¦</span>
+        </div>
+        <div class="stock-row">
+          <div><div class="stock-name">æ±äº¬æµ·ä¸HD</div><div class="stock-code">8766</div></div>
+          <span class="stock-sector">éèã»ä¿éº</span>
+          <span class="stock-status">å©ä¸ãæ©æµ âBRK</span>
+        </div>
+        <div class="stock-row">
+          <div><div class="stock-name">ä¸è±åäº</div><div class="stock-code">8058</div></div>
+          <span class="stock-sector">ç·ååç¤¾</span>
+          <span class="stock-status">ã³ã¢ãã£ãã£åå âBRK</span>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:0.8rem; font-weight:700; color:var(--subtext); margin-bottom:0.75rem;">ðºð¸ ç±³å½æ ª</div>
+        <div class="stock-row">
+          <div><div class="stock-name">NVIDIA</div><div class="stock-code">NVDA</div></div>
+          <span class="stock-sector">AIç´ç²ãã¬ã¤</span>
+          <span class="stock-status">é«PERè¦æ³¨æ</span>
+        </div>
+        <div class="stock-row">
+          <div><div class="stock-name">Lockheed Martin</div><div class="stock-code">LMT</div></div>
+          <span class="stock-sector">é²è¡ã»å®å®</span>
+          <span class="stock-status">å°æ¿å­¦ãã¬ãã¢ã </span>
+        </div>
+        <div class="stock-row">
+          <div><div class="stock-name">JPMorgan Chase</div><div class="stock-code">JPM</div></div>
+          <span class="stock-sector">éèã»M&A</span>
+          <span class="stock-status">é«éå©ç°å¢æ©æµ</span>
+        </div>
+        <div class="stock-row">
+          <div><div class="stock-name">ExxonMobil</div><div class="stock-code">XOM</div></div>
+          <span class="stock-sector">ã¨ãã«ã®ã¼</span>
+          <span class="stock-status">ä¸­æ±ç·å¼µããã¸</span>
+        </div>
+        <div class="stock-row">
+          <div><div class="stock-name">Berkshire Hathaway</div><div class="stock-code">BRK.B</div></div>
+          <span class="stock-sector">ã³ã³ã°ã­ããªãã</span>
+          <span class="stock-status">æ¥æ¬åç¤¾ä¿æ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ââ ARBITRAGE ââ -->
+  <div class="section-row" id="arb">
+    <div class="section-title">ð ã¢ã¼ããã©ã¼ã¸æ©ä¼ã¡ã¢</div>
+    <div class="grid-2" style="gap:0.75rem;">
+      <div class="arb-card">
+        <div class="arb-title"><span class="arb-letter">A</span>æ¥æ¬AIå¨è¾º vs ç±³å½AIç´ç²ãã¬ã¤</div>
+        <div class="arb-logic">æ±ã¨ã¬ã¯ã»ã¢ããã³ãã¹ãã¯NVIDIAç­ã®ãä¸æµåçèãã§PERå²å®ãAIãµã¤ã¯ã«æçæã¾ã§ç¸å¯¾åªä½ç¶ç¶ã®å¯è½æ§ã</div>
+        <div class="arb-horizon">â± ãã©ã¤ã¾ã³: 2ã3å¹´</div>
+      </div>
+      <div class="arb-card">
+        <div class="arb-title"><span class="arb-letter">B</span>åéæ ª Ã åé«ã¡ãªãã</div>
+        <div class="arb-logic">æ¥éå©ä¸ãâåé«âè¼¸å¥ã³ã¹ã$½ä¸âé£åã»å°å£²ã»éä¿¡ã®å®è³ªå©ççæ¹åãè³éä¸ææç¶æ§ã¨æ¶è²»ã»ã³ãã¡ã³ãã®ç¢ºèªãå¿è¦ã</div>
+        <div class="arb-horizon">â± ãã©ã¤ã¾ã³: 1|2å¹´</div>
+      </div>
+      <div class="arb-card">
+        <div class="arb-title"><span class="arb-letter">C</span>å°æ¿æ¶ããã¸ Ã é²è¡æ ªã­ã³ã¸</div>
+        <div class="arb-logic">ä¸­å¾ææ«ã¸ã ãªë¦ç°ï¼IMFï¼ã®ã ã¼ããã£ãªãªããã¸ãæ²è¡è²·ã¯æ¯æ°å¾éæãããã£ã¦åæ³¨ê® ã¾ã¨ãã«ã®ã¼ãã¼ãEBITDAæé·ç#ã¹ã¯ãªã¼ãã³ã°ã </div>
+        <div class="arb-horizon">â± ãã©ã¤ã¾ã³: é·æï¼æå¸¸çããã¸ï¼</div>
+      </div>
+      <div class="arb-card">
+        <div class="arb-title"><span class="arb-letter">D</span>ã¨ãã«ã®ã¼ä¾¡æ ¼ã¹ãã¤ã¯ Ã ã¤ã³ãã¬é£å</div>
+        <div class="arb-logic">ãã«ã ãºæµ·å³¡ãªã¹ã¯âåæ²¹æ¥é¨°âã¤ã³ãã¬åçã·ã¤ãªãªã¸ã®ããã¸ãæ²¹ETFã»ã¨ãã«ã®ã¼ã¡ã¸ã£ã¼ã»TIPSæ´»ç¨ãç¾ç¶ã¯ããà¸ç®çã</div>
+        <div class="arb-horizon">â± ãã©ã¤ã¾ã³: ç­æï¼ããã¸ï¼</div>
+      </div>
+    </div>
+
+    <!-- Screening Criteria -->
+    <div style="margin-top:1.25rem;">
+      <div class="section-title" style="margin-top:0;">ð è²¡åã¹ã¯ãªã¼ãã³ã°åºæºï¼é·æä¿æç¨ï¼</div>
+      <div class="grid-2">
+        <div class="card">
+          <div style="font-size:0.8rem; font-weight:700; color:var(--green); margin-bottom:0.6rem;">â å¿é æ¡ä»¶</div>
+          <ul class="criteria-list">
+            <li><span class="mark mark-ok">â</span>ROE &gt; 15%ï¼ã¾ãã¯æ¹åãã¬ã³ãï¼</li>
+            <li><span class="mark mark-ok">â</span>èªå·´h³æ¬æ¯ç &gt; 40%</li>
+            <li><span class="mark mark-ok">â</span>å¶æ¥­CF / ç´å©ç &gt; 1.0</li>
+            <li><span class="mark mark-ok">â</span>éå½æé·ç &gt; 5% / å¹´ï¼éå»5å¹´ï¼</li>
+          </ul>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--accent); margin:0.75rem 0 0.5rem;">â å ç¹æ¡ä»¶</div>
+          <ul class="criteria-list">
+            <li><span class="mark mark-star">â</span>EV/EBITDA &lt; æ¥­çå¹³å</li>
+            <li><span class="mark mark-star">â</span>æ ªä¸»éåçï¼éå½ï¼èªç¤¾æ ªè²·ãï¼ &gt; 50%</li>
+            <li><span class="mark mark-star">â</span>æ¿ç­ãã¼ãï¼AIã»é²è¡ã»å½ç­ï¼é£å</li>
+            <li><span class="mark mark-star">â</span>ããã§ããã»å¤§ææ©é¢ã®ä¿æç¢ºèª</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div style="font-size:0.8rem; font-weight:700; color:var(--red); margin-bottom:0.6rem;">â é¤å¤æ¡ä»¶</div>
+          <ul class="criteria-list">
+            <li><span class="mark mark-no">â</span>æå©å­è² åµ / EBITDA &gt; 5å</li>
+            <li><span class="mark mark-no">â</span>ä¸­å½å£²ä¸ä¾å­åº¦ &gt; 30%</li>
+            <li><span class="mark mark-no">â</span>PER &gt; 50åï¼æé·çã§æ­£å½åä¸å¯ã®å ´åï¼</li>
+          </ul>
+          <div style="background:var(--teal-light); border-radius:6px; padding:0.75rem; margin-top:0.75rem; font-size:0.8rem; color:var(--teal-dark); line-height:1.6;">
+            ð¡ ãéå©ããä¸çãã§ã¯ãã¼ã­éå©æä»£ã®é«PERè¨±å®¹æ¦ç¥ã¯ä¿®æ­£ãå¿è¦ãROEã»FCFãéè¦ããå²å®æ ªã·ãããå¿é ã
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <p>Indica Labs ãã¼ã¿ã« &nbsp;|&nbsp; æ ªå¼å­¦ç¿ã«ã¼ã &nbsp;|&nbsp; çæ: <span>Claude Sonnet 4.6</span> &nbsp;|&nbsp; <span id="footerDate"></span></p>
+</footer>
+
+<script>
+  // Today's date display
+  const d = new Date();
+  const opts = {year:'numeric', month:'long', day:'numeric', weekday:'short'};
+  document.getElementById('todayDate').textContent = d.toLocaleDateString('ja-JP', opts);
+  document.getElementById('footerDate').textContent = d.toLocaleDateString('ja-JP');
+</script>
+</body>
+</html>
