@@ -1,0 +1,77 @@
+# ════════════════════════════════════════════════════════════════
+# nakajima — 中嶋聡「ざっくばらん」メルマガ要約
+# GitHub Actions クラウドワークフロー
+# ════════════════════════════════════════════════════════════════
+#
+# 📌 セットアップ手順:
+#   GitHub リポジトリ → Settings → Secrets → Actions に登録:
+#   - ANTHROPIC_API_KEY  : Anthropic Console から取得
+#   - GMAIL_ADDRESS      : Gmailアドレス (例: makino@indicalab.jp)
+#   - GMAIL_APP_PASSWORD : Googleアカウント → セキュリティ → アプリパスワード で生成
+#                          (2段階認証が有効になっていること)
+#   - NOTION_TOKEN       : Notion Integration トークン（任意：Notionに保存する場合）
+#   - NOTION_NAKAJIMA_PAGE_ID : 保存先NotionページID（任意）
+#
+# 📌 Gmail アプリパスワードの作成:
+#   https://myaccount.google.com/apppasswords
+#   → アプリ名「GitHub Actions」などで生成 → 16文字のパスワードをコピー
+#
+# ════════════════════════════════════════════════════════════════
+
+name: "📧 nakajima — ざっくばらん メルマガ要約"
+
+on:
+  schedule:
+    # 毎週水曜日 午前8:36 JST (= UTC 火曜23:36) に実行
+    - cron: "36 23 * * 2"
+
+  workflow_dispatch:
+    inputs:
+      note:
+        description: "手動実行メモ（任意）"
+        required: false
+        default: "手動トリガー"
+
+jobs:
+  summarize-newsletter:
+    name: "ざっくばらん要約・PDF生成"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "📥 リポジトリ取得"
+        uses: actions/checkout@v4
+
+      - name: "🐍 Python セットアップ"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: "📦 ライブラリインストール"
+        run: |
+          pip install anthropic notion-client requests reportlab
+          # PDF日本語フォント
+          sudo apt-get install -y fonts-noto-cjk
+
+      - name: "📧 メルマガ取得・要約・PDF生成"
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_NAKAJIMA_PAGE_ID: ${{ secrets.NOTION_NAKAJIMA_PAGE_ID }}
+        run: python scripts/nakajima.py
+
+      - name: "📎 PDF を成果物としてアップロード"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nakajima-summary-${{ github.run_id }}
+          path: output/nakajima_*.pdf
+          retention-days: 30
+
+      - name: "📋 実行サマリー"
+        if: always()
+        run: |
+          echo "## 📧 nakajima ざっくばらん要約完了" >> $GITHUB_STEP_SUMMARY
+          echo "- 実行時刻 (JST): $(TZ='Asia/Tokyo' date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
+          echo "- PDF は Actions タブの Artifacts からダウンロードできます" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,58 @@
+# ════════════════════════════════════════════════════════════════
+# daily-loop-stock — 自己学習型成長株価予想
+# GitHub Actions クラウドワークフロー
+# ════════════════════════════════════════════════════════════════
+#
+# 📌 セットアップ手順:
+#   GitHub リポジトリ → Settings → Secrets → Actions に登録:
+#   - ANTHROPIC_API_KEY : Anthropic Console から取得
+#   - NOTION_TOKEN      : Notion Integration トークン
+#   - NOTION_PAGE_ID    : 「株価予測AIシステム」ページのID
+#                         (URLの末尾の32文字: 35680324ec93812ab3c1fe4eb4eac3f5)
+#
+# ════════════════════════════════════════════════════════════════
+
+name: "📈 daily-loop-stock — 自己学習型成長株価予想"
+
+on:
+  schedule:
+    # 毎日 午前3:03 JST (= UTC 18:03 前日) に実行
+    - cron: "3 18 * * *"
+
+  workflow_dispatch:
+    inputs:
+      note:
+        description: "手動実行メモ（任意）"
+        required: false
+        default: "手動トリガー"
+
+jobs:
+  run-stock-analysis:
+    name: "株価予想ループ実行"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "📥 リポジトリ取得"
+        uses: actions/checkout@v4
+
+      - name: "🐍 Python セットアップ"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: "📦 ライブラリインストール"
+        run: pip install anthropic notion-client requests
+
+      - name: "📈 株価予想ループ実行"
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_PAGE_ID: ${{ secrets.NOTION_PAGE_ID }}
+        run: python scripts/daily_loop_stock.py
+
+      - name: "📋 実行サマリー"
+        if: always()
+        run: |
+          echo "## 📈 daily-loop-stock 実行完了" >> $GITHUB_STEP_SUMMARY
+          echo "- 実行時刻 (JST): $(TZ='Asia/Tokyo' date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
+          echo "- トリガー: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
