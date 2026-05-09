@@ -124,10 +124,13 @@ body::after {
 }
 .hero > * { position: relative; z-index: 1; }
 .hero-inner {
-  padding: 3.5rem 2rem 2.5rem;
+  padding: 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  /* 背景の魚画像中心（viewport中央）にコンテンツを揃えるため
+     上下の余白を均等にして垂直中央に収める */
 }
 
 /* Shield Logo — uses actual VALIENTE transparent PNG */
@@ -209,6 +212,14 @@ body::after {
   filter: drop-shadow(0 0 50px rgba(0,240,255,0.6)) drop-shadow(0 0 100px rgba(191,95,255,0.3));
   margin-bottom: 0.4rem;
   mix-blend-mode: screen; /* ← 魚の色と融合して重なる */
+  /* ── letter-spacing ずれ補正 ──
+     CSS の letter-spacing は各文字の右側にスペースを追加するため
+     最後の文字にも余白が付き、視覚的に左へオフセットして見える。
+     padding-right に同値を入れることでブロック全体の視覚的中心を揃える。 */
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding-right: 0.08em;
 }
 
 .tagline {
@@ -691,6 +702,174 @@ footer p { font-size: 0.75rem; color: var(--subtext); }
 footer span { color: var(--cyan); }
 
 /* ═══════════════════════════════════════════
+   SKILL CARDS — スキル集
+═══════════════════════════════════════════ */
+.skill-card {
+  background: var(--glass);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  padding: 1.4rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  backdrop-filter: blur(10px);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
+  opacity: 0.7;
+}
+.skill-card:hover {
+  border-color: rgba(191,95,255,0.45);
+  box-shadow: 0 0 30px rgba(191,95,255,0.12), 0 4px 20px rgba(0,0,0,0.3);
+  transform: translateY(-3px);
+}
+.skill-card--empty {
+  border-style: dashed;
+  opacity: 0.45;
+  pointer-events: none;
+}
+.skill-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+  margin-bottom: 0.1rem;
+}
+.skill-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.skill-trigger {
+  font-size: 0.73rem;
+  color: var(--subtext);
+  line-height: 1.55;
+  flex: 1;
+}
+.skill-trigger code {
+  display: inline-block;
+  background: rgba(0,240,255,0.08);
+  border: 1px solid rgba(0,240,255,0.2);
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-family: monospace;
+  color: var(--cyan);
+  font-size: 0.72rem;
+  margin: 1px 1px;
+  white-space: nowrap;
+}
+.skill-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(191,95,255,0.2), rgba(0,240,255,0.15));
+  border: 1px solid rgba(191,95,255,0.35);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: all 0.25s;
+}
+.skill-dl-btn:hover {
+  background: linear-gradient(135deg, rgba(191,95,255,0.35), rgba(0,240,255,0.25));
+  border-color: var(--cyan);
+  box-shadow: 0 0 16px rgba(0,240,255,0.2);
+  transform: translateY(-1px);
+}
+.skill-version {
+  font-size: 0.65rem;
+  color: var(--subtext);
+  margin-left: auto;
+  align-self: flex-end;
+  font-family: monospace;
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════
+   CLAUDE WORKSPACE
+═══════════════════════════════════════════ */
+.claude-sub-label {
+  font-size: 0.68rem;
+  color: var(--subtext);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 1.2rem 0 0.6rem 2px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.claude-sub-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border), transparent);
+}
+
+/* 生成物ファイルリストカード */
+.output-file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.output-file-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.8rem;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.8rem;
+  transition: all 0.2s;
+  backdrop-filter: blur(6px);
+}
+.output-file-item:hover {
+  border-color: var(--cyan);
+  background: var(--glass2);
+  box-shadow: 0 0 12px rgba(0,240,255,0.1);
+  transform: translateX(3px);
+}
+.output-file-item .fi-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+.output-file-item .fi-name { font-weight: 600; flex: 1; }
+.output-file-item .fi-type {
+  font-size: 0.65rem;
+  font-family: monospace;
+  color: var(--cyan);
+  background: rgba(0,240,255,0.08);
+  border: 1px solid rgba(0,240,255,0.2);
+  border-radius: 4px;
+  padding: 1px 6px;
+  flex-shrink: 0;
+}
+.output-file-item .fi-date {
+  font-size: 0.65rem;
+  color: var(--subtext);
+  font-family: monospace;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════ */
 @media (max-width: 960px) {
@@ -773,6 +952,8 @@ footer span { color: var(--cyan); }
   <div class="nav-logo">VALIENTE</div>
   <ul class="nav-links">
     <li><a href="#links">リンク</a></li>
+    <li><a href="#skills">スキル</a></li>
+    <li><a href="#claude">Claude</a></li>
     <li><a href="#news">ニュース</a></li>
     <li><a href="#log">学習ログ</a></li>
     <li><a href="#macro">マクロ</a></li>
@@ -809,6 +990,148 @@ footer span { color: var(--cyan); }
       <div class="ql-icon">🤖</div>
       <div><div>Shift AI</div><small>AI学習プラットフォーム</small></div>
     </a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SKILL COLLECTION — スキル集
+══════════════════════════════════════════ -->
+<div class="section-row" id="skills">
+  <div class="section-title">
+    <span class="icon">⚡</span> スキル集
+    <span class="tag">Cowork Plugin</span>
+    <span class="line"></span>
+  </div>
+  <p style="font-size:0.78rem; color:var(--subtext); margin-bottom:1rem; line-height:1.7;">
+    Cowork モードで使えるカスタムスキルのコレクション。<code style="background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.2);border-radius:4px;padding:1px 6px;color:var(--cyan);font-size:0.72rem;">.skill</code> ファイルをダブルクリックまたは Cowork の設定からインストールできます。
+  </p>
+  <div class="grid-4">
+
+    <!-- #1 VALIENTEスキル -->
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">VALIENTEスキル</div>
+      <div class="skill-trigger">
+        このポータルのデザインシステムをベースにウェブページ・HTMLを自動生成。<br>
+        <code>ポータルページ作って</code>
+        <code>ウェブページ作って</code>
+        <code>セクション追加して</code>
+        <code>GitHub にコミットして</code>
+      </div>
+      <a class="skill-dl-btn" href="skills/valiente-web.skill" download="valiente-web.skill">
+        ⬇&nbsp; ダウンロード
+      </a>
+      <span class="skill-version">v1.0 · 2026-05</span>
+    </div>
+
+    <!-- 準備中スロット × 3 -->
+    <div class="skill-card skill-card--empty">
+      <div class="skill-icon">＋</div>
+      <div class="skill-name">準備中</div>
+      <div class="skill-trigger">新しいスキルが追加されます</div>
+    </div>
+    <div class="skill-card skill-card--empty">
+      <div class="skill-icon">＋</div>
+      <div class="skill-name">準備中</div>
+      <div class="skill-trigger">新しいスキルが追加されます</div>
+    </div>
+    <div class="skill-card skill-card--empty">
+      <div class="skill-icon">＋</div>
+      <div class="skill-name">準備中</div>
+      <div class="skill-trigger">新しいスキルが追加されます</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CLAUDE WORKSPACE — 外部脳 & 生成物
+══════════════════════════════════════════ -->
+<div class="section-row" id="claude">
+  <div class="section-title">
+    <span class="icon">🧠</span> Claude ワークスペース
+    <span class="tag">外部脳 & 生成物</span>
+    <span class="line"></span>
+  </div>
+  <p style="font-size:0.78rem; color:var(--subtext); margin-bottom:0.3rem; line-height:1.7;">
+    Claude / Cowork で作成した生成物・外部ナレッジベース・関連ツールへのワンクリックアクセス。
+  </p>
+
+  <!-- ── AI ツール & 外部脳 ── -->
+  <div class="claude-sub-label">✦ AI ツール & 外部脳</div>
+  <div class="grid-4" style="margin-bottom:0.5rem;">
+    <a class="quick-link-card" href="https://claude.ai" target="_blank">
+      <div class="ql-icon" style="background:linear-gradient(135deg,rgba(191,95,255,0.2),rgba(0,240,255,0.15));">✦</div>
+      <div><div>Claude.ai</div><small>Web チャット</small></div>
+    </a>
+    <a class="quick-link-card" href="https://www.notion.so/" target="_blank">
+      <div class="ql-icon">📓</div>
+      <div><div>Notion 外部脳</div><small>ナレッジベース</small></div>
+    </a>
+    <a class="quick-link-card" href="obsidian://open" target="_blank">
+      <div class="ql-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.25),rgba(191,95,255,0.15));">💎</div>
+      <div><div>Obsidian Vault</div><small>ローカル第二の脳</small></div>
+    </a>
+    <a class="quick-link-card" href="https://console.anthropic.com" target="_blank">
+      <div class="ql-icon">⚙️</div>
+      <div><div>Anthropic Console</div><small>API キー管理</small></div>
+    </a>
+  </div>
+
+  <!-- ── ポータル & リポジトリ ── -->
+  <div class="claude-sub-label">🐙 リポジトリ & ポータル</div>
+  <div class="grid-4" style="margin-bottom:0.5rem;">
+    <a class="quick-link-card" href="https://portal.indicalab.jp" target="_blank">
+      <div class="ql-icon" style="background:linear-gradient(135deg,rgba(0,240,255,0.15),rgba(0,188,212,0.1));">🌐</div>
+      <div><div>Portal</div><small>portal.indicalab.jp</small></div>
+    </a>
+    <a class="quick-link-card" href="https://github.com/cr0sswarp/indica-portal" target="_blank">
+      <div class="ql-icon">🐙</div>
+      <div><div>indica-portal</div><small>GitHub リポジトリ</small></div>
+    </a>
+    <a class="quick-link-card" href="https://github.com/cr0sswarp/indica-portal/tree/main/skills" target="_blank">
+      <div class="ql-icon">⚡</div>
+      <div><div>skills フォルダ</div><small>スキルファイル一覧</small></div>
+    </a>
+    <a class="quick-link-card" href="https://docs.anthropic.com" target="_blank">
+      <div class="ql-icon">📖</div>
+      <div><div>Anthropic Docs</div><small>API リファレンス</small></div>
+    </a>
+  </div>
+
+  <!-- ── 生成物ファイルリスト ── -->
+  <div class="claude-sub-label">📁 Cowork 生成物ファイル</div>
+  <div class="grid-2">
+    <div class="output-file-list">
+      <a class="output-file-item" href="skills/valiente-web.skill" download>
+        <span class="fi-icon">⚡</span>
+        <span class="fi-name">valiente-web.skill</span>
+        <span class="fi-type">.skill</span>
+        <span class="fi-date">2026-05</span>
+      </a>
+      <a class="output-file-item" href="stock_learning_loop_2026-05-08.html" target="_blank">
+        <span class="fi-icon">📊</span>
+        <span class="fi-name">投資学習ループ 2026-05-08</span>
+        <span class="fi-type">.html</span>
+        <span class="fi-date">2026-05-08</span>
+      </a>
+      <div class="output-file-item" style="opacity:0.4;pointer-events:none;border-style:dashed;">
+        <span class="fi-icon">＋</span>
+        <span class="fi-name">次の生成物がここに追加されます</span>
+        <span class="fi-type">---</span>
+      </div>
+    </div>
+    <div class="output-file-list">
+      <div class="card" style="background:rgba(0,240,255,0.03);border-color:rgba(0,240,255,0.12);padding:1rem;">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--cyan);margin-bottom:0.6rem;letter-spacing:0.06em;">💡 ファイルを追加するには</div>
+        <p style="font-size:0.73rem;color:var(--subtext);line-height:1.8;margin:0;">
+          Cowork で生成したファイルを<br>
+          <code style="color:var(--cyan);background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.2);border-radius:4px;padding:1px 5px;font-size:0.68rem;">portal.indicalab.jp</code> に追加したいときは<br>
+          「<strong style="color:var(--text);">ポータルにリンクを追加して</strong>」と伝えると<br>
+          VALIENTEスキルが自動でここに反映します。
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1046,18 +1369,18 @@ footer span { color: var(--cyan); }
     <div class="arb-card">
       <div class="arb-title"><span class="arb-letter">C</span>地政学ヘッジ × 防衛株ロング</div>
       <div class="arb-logic">中東最悪シナリオ（IMF）のポートフォリオヘッジ。防衛株は景気後退時にも受注が安定。エネルギー連動EBITDA成長率でスクリーニング。</div>
-      <div class="arb-horizon">⏱ ホライゾン: 長期（恒常的ヘッジ）</div>
+      <div class="arb-horizon">⏱ ホライゾン: 長期（恒常的ヘッ���）</div>
     </div>
     <div class="arb-card">
       <div class="arb-title"><span class="arb-letter">D</span>エネルギー価格スパイク × インフレ連動</div>
-      <div class="arb-logic">ホルムズ海峡リスク→原油急騰→インフレ再燃シナリオへのヘッジ。原油ETF・エネルギーメジャー・TIPS活用。現状はヘッジ目的。</div>
-      <div class="arb-horizon">⏱ ホライゾン: 短期（ヘッジ）</div>
+      <div class="arb-logic">ホルムズ海峡リスク→原油急騰→インフレ再燃シナリオへのヘッ���。原油ETF・エネルギーメジャヾ・TIPS活用。現状はヘッジ目的。</div>
+      <div class="arb-horizon">⏱ ホライゾン: 短期（ヘッ���）</div>
     </div>
   </div>
 
   <!-- Screening Criteria -->
   <div class="section-title" style="margin-top:0;">
-    <span class="icon">📐</span> 財務スクリーニング基準（長期保有用）
+    <span class="icon">📐</span> 財務スクリードング基準（長期保有用）
     <span class="line"></span>
   </div>
   <div class="grid-2">
