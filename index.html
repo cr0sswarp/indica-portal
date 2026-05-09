@@ -955,6 +955,7 @@ footer span { color: var(--cyan); }
   <ul class="nav-links">
     <li><a href="#links">リンク</a></li>
     <li><a href="#skills">スキル</a></li>
+    <li><a href="#cloud">クラウド</a></li>
     <li><a href="#claude">Claude</a></li>
     <li><a href="#news">ニュース</a></li>
     <li><a href="#log">学習ログ</a></li>
@@ -1052,6 +1053,71 @@ footer span { color: var(--cyan); }
       <div class="skill-icon">＋</div>
       <div class="skill-name">準備中</div>
       <div class="skill-trigger">新しいスキルが追加されます</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CLOUD AUTOMATION — クラウド自動化
+══════════════════════════════════════════ -->
+<div class="section-row" id="cloud">
+  <div class="section-title">
+    <span class="icon">☁️</span> クラウド自動化
+    <span class="tag">GitHub Actions</span>
+    <span class="line"></span>
+  </div>
+  <p style="font-size:0.78rem; color:var(--subtext); margin-bottom:1rem; line-height:1.7;">
+    スケジュールタスクをローカル端末から切り離し、<strong style="color:var(--cyan);">GitHub のクラウドサーバー</strong>で自動実行する仕組み。
+    端末を起動していなくても毎日・毎週・毎時など好きなタイミングで動かせます。
+  </p>
+
+  <div class="grid-4">
+
+    <!-- GitHub Actions テンプレート -->
+    <div class="skill-card">
+      <div class="skill-icon">⚙️</div>
+      <div class="skill-name">クラウドスケジュール</div>
+      <div class="skill-trigger">
+        GitHub Actions で定期タスクをクラウド実行するワークフローテンプレート。<br>
+        <code>.github/workflows/</code> に置くだけで有効になる。<br>
+        <code>cron スケジュール</code>
+        <code>手動トリガー</code>
+        <code>Claude API 連携</code>
+      </div>
+      <a class="skill-dl-btn" href="schedules/cloud-schedule.yml" download="cloud-schedule.yml">
+        ⬇&nbsp; ダウンロード
+      </a>
+      <span class="skill-version">v1.0 · 2026-05 · .yml</span>
+    </div>
+
+    <!-- 使い方ガイドカード -->
+    <div class="skill-card" style="cursor:default;">
+      <div class="skill-icon">📋</div>
+      <div class="skill-name">セットアップ手順</div>
+      <div class="skill-trigger" style="font-size:0.72rem; line-height:1.8;">
+        <strong style="color:var(--cyan);">① ダウンロード</strong> → <code>cloud-schedule.yml</code> を取得<br>
+        <strong style="color:var(--cyan);">② 配置</strong> → リポジトリの <code>.github/workflows/</code> に置く<br>
+        <strong style="color:var(--cyan);">③ Secrets 登録</strong> → GitHub Settings で <code>ANTHROPIC_API_KEY</code> 等を登録<br>
+        <strong style="color:var(--cyan);">④ コミット</strong> → プッシュするだけで自動有効化<br>
+        <strong style="color:var(--cyan);">⑤ 確認</strong> → Actions タブでログをチェック
+      </div>
+      <a class="skill-dl-btn" href="https://github.com/cr0sswarp/indica-portal/tree/main/schedules" target="_blank" style="background:rgba(0,188,100,0.12); border-color:rgba(0,188,100,0.3); color:#00c87a;">
+        🐙&nbsp; GitHub で見る
+      </a>
+      <span class="skill-version">無料 · 月2,000分まで</span>
+    </div>
+
+    <!-- 準備中スロット × 2 -->
+    <div class="skill-card skill-card--empty">
+      <div class="skill-icon">＋</div>
+      <div class="skill-name">準備中</div>
+      <div class="skill-trigger">レポート自動生成など追加予定</div>
+    </div>
+    <div class="skill-card skill-card--empty">
+      <div class="skill-icon">＋</div>
+      <div class="skill-name">準備中</div>
+      <div class="skill-trigger">Notion / Gmail 連携テンプレート</div>
     </div>
 
   </div>
