@@ -7,6 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════
+   VALIENTE — DESIGN SYSTEM
+   desorganizacióna organizada
+   Deep Learning × Football
+═══════════════════════════════════════════ */
 :root {
   --cyan:    #00f0ff;
   --cyan2:   #00bcd4;
@@ -26,7 +31,9 @@
   --green:   #00e676;
   --amber:   #ffab40;
 }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
   font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
   background: var(--bg);
@@ -34,243 +41,1019 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-.bokeh-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-.bokeh-blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.18; animation: floatBlob linear infinite; }
-.b1 { width:500px;height:500px;background:var(--cyan);top:-100px;left:-100px;animation-duration:25s; }
-.b2 { width:600px;height:600px;background:var(--purple);top:30%;right:-150px;animation-duration:32s;animation-delay:-8s; }
-.b3 { width:400px;height:400px;background:var(--gold);bottom:-80px;left:30%;animation-duration:28s;animation-delay:-15s; }
-.b4 { width:350px;height:350px;background:var(--cyan2);top:60%;left:-80px;animation-duration:20s;animation-delay:-5s; }
-.b5 { width:280px;height:280px;background:var(--purple2);top:20%;left:40%;animation-duration:35s;animation-delay:-20s; }
-@keyframes floatBlob { 0%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-60px) scale(1.1);}66%{transform:translate(-30px,40px) scale(0.95);}100%{transform:translate(0,0) scale(1);} }
-body::after { content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:1; }
-.page-wrap { position:relative;z-index:2; }
-.hero { text-align:center;padding:3.5rem 2rem 2.5rem;position:relative; }
-.shield-logo { width:140px;height:auto;margin:0 auto 1.2rem;display:block;filter:drop-shadow(0 0 20px rgba(0,240,255,0.5)) drop-shadow(0 0 40px rgba(0,240,255,0.25));animation:shieldPulse 3s ease-in-out infinite; }
-@keyframes shieldPulse { 0%,100%{filter:drop-shadow(0 0 20px rgba(0,240,255,0.5)) drop-shadow(0 0 40px rgba(0,240,255,0.25));}50%{filter:drop-shadow(0 0 30px rgba(191,95,255,0.6)) drop-shadow(0 0 60px rgba(191,95,255,0.3));} }
-.motto { font-size:0.8rem;letter-spacing:0.2em;color:var(--cyan);text-transform:lowercase;margin-bottom:0.5rem;font-weight:300;text-shadow:0 0 10px rgba(0,240,255,0.6); }
-.valiente-title { font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,9rem);letter-spacing:0.05em;line-height:0.9;background:linear-gradient(135deg,var(--gold) 0%,var(--cyan) 50%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 30px rgba(0,240,255,0.4));margin-bottom:0.4rem; }
-.tagline { font-size:0.85rem;letter-spacing:0.3em;color:var(--subtext);text-transform:uppercase;margin-bottom:2rem; }
-.tagline span { color:var(--gold); }
-.sticky-nav { position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(7,7,15,0.85);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px; }
-.nav-logo { font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.1em;background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-.nav-links { display:flex;gap:1.5rem;list-style:none; }
-.nav-links a { color:var(--subtext);text-decoration:none;font-size:0.8rem;letter-spacing:0.08em;transition:color 0.2s; }
-.nav-links a:hover { color:var(--cyan);text-shadow:0 0 8px var(--cyan); }
-.date-chip { font-size:0.72rem;color:var(--subtext);background:var(--glass2);border:1px solid var(--border);padding:4px 12px;border-radius:20px; }
-.container { max-width:1320px;margin:0 auto;padding:2rem 1.5rem 4rem; }
-.section-row { margin-bottom:2.5rem; }
-.section-title { display:flex;align-items:center;gap:0.7rem;font-size:0.9rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border); }
-.section-title .icon { font-size:1rem; }
-.section-title .tag { font-size:0.65rem;padding:2px 8px;border-radius:20px;background:linear-gradient(90deg,var(--cyan2),var(--purple2));color:white;font-weight:600;letter-spacing:0.05em; }
-.section-title .line { flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent); }
-.grid-2 { display:grid;grid-template-columns:1fr 1fr;gap:1rem; }
-.grid-3 { display:grid;grid-template-columns:repeat(3,1fr);gap:1rem; }
-.grid-4 { display:grid;grid-template-columns:repeat(4,1fr);gap:0.85rem; }
-.card { background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:1.25rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:border-color 0.3s,box-shadow 0.3s,transform 0.2s; }
-.card:hover { border-color:rgba(0,240,255,0.4);box-shadow:0 0 30px rgba(0,240,255,0.08),0 4px 20px rgba(0,0,0,0.3);transform:translateY(-2px); }
-.quick-link-card { background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:0.8rem;font-weight:600;font-size:0.88rem;transition:all 0.25s;backdrop-filter:blur(10px);position:relative;overflow:hidden; }
-.quick-link-card::before { content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,240,255,0.06),transparent);opacity:0;transition:opacity 0.25s; }
-.quick-link-card:hover::before { opacity:1; }
-.quick-link-card:hover { border-color:var(--cyan);box-shadow:0 0 20px rgba(0,240,255,0.15),0 4px 15px rgba(0,0,0,0.3);transform:translateY(-3px); }
-.quick-link-card .ql-icon { width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,rgba(0,240,255,0.15),rgba(191,95,255,0.15));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0; }
-.quick-link-card small { font-size:0.7rem;color:var(--subtext);font-weight:400;display:block;margin-top:2px; }
-.news-grid { display:grid;grid-template-columns:1fr 1fr;gap:0.75rem; }
-.news-link { display:flex;align-items:flex-start;gap:0.75rem;padding:0.85rem;border-radius:10px;border:1px solid var(--border);background:var(--glass);text-decoration:none;color:var(--text);transition:all 0.25s;backdrop-filter:blur(10px); }
-.news-link:hover { border-color:rgba(191,95,255,0.4);box-shadow:0 0 20px rgba(191,95,255,0.1);transform:translateY(-1px); }
-.nl-icon { width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,rgba(191,95,255,0.15),rgba(0,240,255,0.1));border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0; }
-.nl-title { font-weight:700;font-size:0.85rem;color:var(--text); }
-.nl-sub { font-size:0.72rem;color:var(--subtext);margin-top:0.15rem; }
-.log-table { width:100%;border-collapse:collapse;font-size:0.84rem; }
-.log-table th { padding:0.65rem 0.9rem;text-align:left;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--border);background:rgba(0,240,255,0.04); }
-.log-table td { padding:0.65rem 0.9rem;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:middle; }
-.log-table tr:last-child td { border-bottom:none; }
-.log-table tr:hover td { background:rgba(0,240,255,0.04); }
-.log-table a { color:var(--cyan);text-decoration:none;font-weight:600;transition:text-shadow 0.2s; }
-.log-table a:hover { text-shadow:0 0 8px var(--cyan); }
-.risk-badge { display:inline-block;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600; }
-.risk-mid { background:rgba(255,171,64,0.15);color:var(--amber);border:1px solid rgba(255,171,64,0.3); }
-.risk-low { background:rgba(0,230,118,0.12);color:var(--green);border:1px solid rgba(0,230,118,0.3); }
-.risk-high { background:rgba(255,77,109,0.15);color:var(--red);border:1px solid rgba(255,77,109,0.3); }
-.macro-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem; }
-.macro-card { background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center;backdrop-filter:blur(10px);transition:border-color 0.3s; }
-.macro-card:hover { border-color:rgba(0,240,255,0.35); }
-.macro-card .m-label { font-size:0.68rem;color:var(--subtext);margin-bottom:0.4rem;letter-spacing:0.05em; }
-.macro-card .m-value { font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.03em;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1; }
-.macro-card .m-sub { font-size:0.68rem;margin-top:0.3rem;color:var(--subtext); }
-.up { color:var(--green)!important;-webkit-text-fill-color:var(--green)!important; }
-.down { color:var(--red)!important;-webkit-text-fill-color:var(--red)!important; }
-.macro-alert { background:rgba(0,240,255,0.05);border:1px solid rgba(0,240,255,0.2);border-left:3px solid var(--cyan);border-radius:0 10px 10px 0;padding:0.85rem 1rem;font-size:0.8rem;color:var(--subtext);line-height:1.7;margin-top:0.75rem; }
-.macro-alert strong { color:var(--cyan); }
-.watchlist-header { font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--subtext);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.4rem; }
-.stock-row { display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.5rem;border-radius:6px;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.83rem;transition:background 0.2s; }
-.stock-row:last-child { border-bottom:none; }
-.stock-row:hover { background:rgba(0,240,255,0.04); }
-.stock-name { font-weight:600;color:var(--text); }
-.stock-code { font-size:0.68rem;color:var(--subtext);font-family:monospace; }
-.stock-sector { font-size:0.68rem;padding:2px 8px;border-radius:10px;background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.15);color:var(--cyan); }
-.stock-status { font-size:0.7rem;color:var(--subtext);font-style:italic; }
-.arb-card { background:var(--glass);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:0 10px 10px 0;padding:1rem;backdrop-filter:blur(10px);transition:border-color 0.3s,transform 0.2s; }
-.arb-card:hover { border-color:var(--purple);border-left-color:var(--cyan);transform:translateX(3px); }
-.arb-title { font-weight:700;font-size:0.85rem;color:var(--text);margin-bottom:0.4rem;display:flex;align-items:center;gap:0.5rem; }
-.arb-letter { display:inline-flex;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--purple2),var(--cyan2));color:white;font-size:0.7rem;font-weight:800;align-items:center;justify-content:center;flex-shrink:0; }
-.arb-logic { font-size:0.79rem;color:var(--subtext);line-height:1.6; }
-.arb-horizon { margin-top:0.5rem;font-size:0.7rem;color:var(--cyan);font-weight:600;letter-spacing:0.05em; }
-.criteria-label { font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.6rem; }
-.criteria-label.ok { color:var(--green); }
-.criteria-label.star { color:var(--gold); }
-.criteria-label.no { color:var(--red); }
-.criteria-list { list-style:none; }
-.criteria-list li { display:flex;align-items:flex-start;gap:0.5rem;padding:0.45rem 0;font-size:0.82rem;color:var(--subtext);border-bottom:1px solid rgba(255,255,255,0.05);line-height:1.4; }
-.criteria-list li:last-child { border-bottom:none; }
-.mark { flex-shrink:0;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:800;margin-top:0.1rem; }
-.mark-ok { background:rgba(0,230,118,0.15);color:var(--green);border:1px solid rgba(0,230,118,0.3); }
-.mark-star { background:rgba(255,208,96,0.15);color:var(--gold);border:1px solid rgba(255,208,96,0.3); }
-.mark-no { background:rgba(255,77,109,0.15);color:var(--red);border:1px solid rgba(255,77,109,0.3); }
-.criteria-tip { background:rgba(0,240,255,0.05);border:1px solid rgba(0,240,255,0.15);border-radius:8px;padding:0.75rem;font-size:0.78rem;color:var(--subtext);line-height:1.6;margin-top:0.75rem; }
-.criteria-tip strong { color:var(--cyan); }
-.neon-divider { height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),transparent);margin:0.5rem 0 2rem;opacity:0.4; }
-footer { position:relative;z-index:2;text-align:center;padding:2rem 1rem 1.5rem;border-top:1px solid var(--border);background:rgba(7,7,15,0.8);backdrop-filter:blur(20px); }
-.footer-logo { font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.15em;background:linear-gradient(90deg,var(--gold),var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.3rem; }
-.footer-motto { font-size:0.72rem;letter-spacing:0.2em;color:var(--subtext);margin-bottom:0.8rem; }
-footer p { font-size:0.75rem;color:var(--subtext); }
-footer span { color:var(--cyan); }
-@media(max-width:960px){ .grid-4{grid-template-columns:repeat(2,1fr);} .macro-grid{grid-template-columns:repeat(2,1fr);} .news-grid{grid-template-columns:1fr;} }
-@media(max-width:640px){ .grid-2{grid-template-columns:1fr;} .grid-3{grid-template-columns:1fr;} .grid-4{grid-template-columns:1fr 1fr;} .macro-grid{grid-template-columns:1fr 1fr;} .nav-links{display:none;} .valiente-title{font-size:5rem;} }
+
+/* ─── ANIMATED BOKEH BACKGROUND ─── */
+.bokeh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.bokeh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+  animation: floatBlob linear infinite;
+}
+.b1 { width: 500px; height: 500px; background: var(--cyan);   top: -100px; left: -100px; animation-duration: 25s; }
+.b2 { width: 600px; height: 600px; background: var(--purple); top: 30%;   right: -150px; animation-duration: 32s; animation-delay: -8s; }
+.b3 { width: 400px; height: 400px; background: var(--gold);   bottom: -80px; left: 30%; animation-duration: 28s; animation-delay: -15s; }
+.b4 { width: 350px; height: 350px; background: var(--cyan2);  top: 60%;  left: -80px; animation-duration: 20s; animation-delay: -5s; }
+.b5 { width: 280px; height: 280px; background: var(--purple2); top: 20%; left: 40%; animation-duration: 35s; animation-delay: -20s; }
+
+@keyframes floatBlob {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(40px, -60px) scale(1.1); }
+  66%  { transform: translate(-30px, 40px) scale(0.95); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* ─── SCANLINE OVERLAY (subtle) ─── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── MAIN WRAPPER ─── */
+.page-wrap { position: relative; z-index: 2; }
+
+/* ═══════════════════════════════════════════
+   HERO / HEADER — Full-screen VALIENTE photo
+═══════════════════════════════════════════ */
+.hero {
+  text-align: center;
+  padding: 0;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('images/valiente-hero.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* ← 魚固定、文字だけスクロール */
+}
+/* Dark gradient overlay so text stays readable */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(7,7,15,0.1) 0%,
+    rgba(7,7,15,0.35) 60%,
+    rgba(7,7,15,0.85) 100%
+  );
+  z-index: 0;
+}
+.hero > * { position: relative; z-index: 1; }
+.hero-inner {
+  padding: 3.5rem 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Shield Logo — uses actual VALIENTE transparent PNG */
+.shield-logo {
+  width: 150px;
+  height: auto;
+  margin: 0 auto 1.2rem;
+  display: block;
+  filter: drop-shadow(0 0 20px rgba(0,240,255,0.5)) drop-shadow(0 0 40px rgba(0,240,255,0.25));
+  animation: shieldPulse 3s ease-in-out infinite;
+  /* SVG fallback dimensions */
+}
+@keyframes shieldPulse {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(0,240,255,0.5)) drop-shadow(0 0 40px rgba(0,240,255,0.25)); }
+  50%       { filter: drop-shadow(0 0 30px rgba(191,95,255,0.6)) drop-shadow(0 0 60px rgba(191,95,255,0.3)); }
+}
+
+/* ─── VALIENTE IMAGE BANNER ─── */
+.valiente-banner {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+.valiente-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.valiente-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    var(--bg) 0%,
+    rgba(7,7,15,0.2) 25%,
+    rgba(7,7,15,0.2) 75%,
+    var(--bg) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+.valiente-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--bg) 0%,
+    transparent 20%,
+    transparent 80%,
+    var(--bg) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.motto {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  text-transform: lowercase;
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+  text-shadow: 0 0 10px rgba(0,240,255,0.6);
+}
+
+.valiente-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 12vw, 9rem);
+  letter-spacing: 0.05em;
+  line-height: 0.9;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--cyan) 50%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(0,240,255,0.4));
+  margin-bottom: 0.4rem;
+}
+
+.tagline {
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: var(--subtext);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.tagline span { color: var(--gold); }
+
+/* Sticky Nav */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(7,7,15,0.85);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--subtext);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+
+.date-chip {
+  font-size: 0.72rem;
+  color: var(--subtext);
+  background: var(--glass2);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════ */
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.section-row { margin-bottom: 2.5rem; }
+
+/* Section Title */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-title .icon { font-size: 1rem; }
+.section-title .tag {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--cyan2), var(--purple2));
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.section-title .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border), transparent);
+}
+
+/* Grids */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; }
+
+/* ═══════════════════════════════════════════
+   GLASS CARDS
+═══════════════════════════════════════════ */
+.card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+.card:hover {
+  border-color: rgba(0,240,255,0.4);
+  box-shadow: 0 0 30px rgba(0,240,255,0.08), 0 4px 20px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════
+   QUICK LINKS
+═══════════════════════════════════════════ */
+.quick-link-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: all 0.25s;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+.quick-link-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,240,255,0.06), transparent);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.quick-link-card:hover::before { opacity: 1; }
+.quick-link-card:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px rgba(0,240,255,0.15), 0 4px 15px rgba(0,0,0,0.3);
+  transform: translateY(-3px);
+}
+.quick-link-card .ql-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(0,240,255,0.15), rgba(191,95,255,0.15));
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.quick-link-card small { font-size: 0.7rem; color: var(--subtext); font-weight: 400; display: block; margin-top: 2px; }
+
+/* ═══════════════════════════════════════════
+   NEWS LINKS
+═══════════════════════════════════════════ */
+.news-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+.news-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.25s;
+  backdrop-filter: blur(10px);
+}
+.news-link:hover {
+  border-color: rgba(191,95,255,0.4);
+  box-shadow: 0 0 20px rgba(191,95,255,0.1);
+  transform: translateY(-1px);
+}
+.nl-icon {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(191,95,255,0.15), rgba(0,240,255,0.1));
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.nl-title { font-weight: 700; font-size: 0.85rem; color: var(--text); }
+.nl-sub { font-size: 0.72rem; color: var(--subtext); margin-top: 0.15rem; }
+
+/* ═══════════════════════════════════════════
+   LOG TABLE
+═══════════════════════════════════════════ */
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+.log-table th {
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,240,255,0.04);
+}
+.log-table td {
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  vertical-align: middle;
+}
+.log-table tr:last-child td { border-bottom: none; }
+.log-table tr:hover td { background: rgba(0,240,255,0.04); }
+.log-table a {
+  color: var(--cyan);
+  text-decoration: none;
+  font-weight: 600;
+  transition: text-shadow 0.2s;
+}
+.log-table a:hover { text-shadow: 0 0 8px var(--cyan); }
+
+.risk-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.risk-mid  { background: rgba(255,171,64,0.15);  color: var(--amber); border: 1px solid rgba(255,171,64,0.3); }
+.risk-low  { background: rgba(0,230,118,0.12);   color: var(--green); border: 1px solid rgba(0,230,118,0.3); }
+.risk-high { background: rgba(255,77,109,0.15);  color: var(--red);   border: 1px solid rgba(255,77,109,0.3); }
+
+/* ═══════════════════════════════════════════
+   MACRO DASHBOARD
+═══════════════════════════════════════════ */
+.macro-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+
+.macro-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: border-color 0.3s;
+}
+.macro-card:hover { border-color: rgba(0,240,255,0.35); }
+.macro-card .m-label { font-size: 0.68rem; color: var(--subtext); margin-bottom: 0.4rem; letter-spacing: 0.05em; }
+.macro-card .m-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.03em;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.macro-card .m-sub { font-size: 0.68rem; margin-top: 0.3rem; color: var(--subtext); }
+.up   { color: var(--green) !important; -webkit-text-fill-color: var(--green) !important; }
+.down { color: var(--red)   !important; -webkit-text-fill-color: var(--red)   !important; }
+
+.macro-alert {
+  background: rgba(0,240,255,0.05);
+  border: 1px solid rgba(0,240,255,0.2);
+  border-left: 3px solid var(--cyan);
+  border-radius: 0 10px 10px 0;
+  padding: 0.85rem 1rem;
+  font-size: 0.8rem;
+  color: var(--subtext);
+  line-height: 1.7;
+  margin-top: 0.75rem;
+}
+.macro-alert strong { color: var(--cyan); }
+
+/* ═══════════════════════════════════════════
+   WATCHLIST
+═══════════════════════════════════════════ */
+.watchlist-header {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--subtext);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.stock-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.5rem;
+  border-radius: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.83rem;
+  transition: background 0.2s;
+}
+.stock-row:last-child { border-bottom: none; }
+.stock-row:hover { background: rgba(0,240,255,0.04); }
+.stock-name { font-weight: 600; color: var(--text); }
+.stock-code { font-size: 0.68rem; color: var(--subtext); font-family: monospace; }
+.stock-sector {
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(0,240,255,0.08);
+  border: 1px solid rgba(0,240,255,0.15);
+  color: var(--cyan);
+}
+.stock-status { font-size: 0.7rem; color: var(--subtext); font-style: italic; }
+
+/* ═══════════════════════════════════════════
+   ARBITRAGE
+═══════════════════════════════════════════ */
+.arb-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--purple);
+  border-radius: 0 10px 10px 0;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+  transition: border-color 0.3s, transform 0.2s;
+}
+.arb-card:hover {
+  border-color: var(--purple);
+  border-left-color: var(--cyan);
+  transform: translateX(3px);
+}
+.arb-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.arb-letter {
+  display: inline-flex;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple2), var(--cyan2));
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 800;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.arb-logic { font-size: 0.79rem; color: var(--subtext); line-height: 1.6; }
+.arb-horizon {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--cyan);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════
+   SCREENING
+═══════════════════════════════════════════ */
+.criteria-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.criteria-label.ok     { color: var(--green); }
+.criteria-label.star   { color: var(--gold); }
+.criteria-label.no     { color: var(--red); }
+
+.criteria-list { list-style: none; }
+.criteria-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.45rem 0;
+  font-size: 0.82rem;
+  color: var(--subtext);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  line-height: 1.4;
+}
+.criteria-list li:last-child { border-bottom: none; }
+.mark {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 800;
+  margin-top: 0.1rem;
+}
+.mark-ok   { background: rgba(0,230,118,0.15);  color: var(--green); border: 1px solid rgba(0,230,118,0.3); }
+.mark-star { background: rgba(255,208,96,0.15); color: var(--gold);  border: 1px solid rgba(255,208,96,0.3); }
+.mark-no   { background: rgba(255,77,109,0.15); color: var(--red);   border: 1px solid rgba(255,77,109,0.3); }
+
+.criteria-tip {
+  background: rgba(0,240,255,0.05);
+  border: 1px solid rgba(0,240,255,0.15);
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--subtext);
+  line-height: 1.6;
+  margin-top: 0.75rem;
+}
+.criteria-tip strong { color: var(--cyan); }
+
+/* ═══════════════════════════════════════════
+   DIVIDER
+═══════════════════════════════════════════ */
+.neon-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--purple), transparent);
+  margin: 0.5rem 0 2rem;
+  opacity: 0.4;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  background: rgba(7,7,15,0.8);
+  backdrop-filter: blur(20px);
+}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  background: linear-gradient(90deg, var(--gold), var(--cyan), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.3rem;
+}
+.footer-motto {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--subtext);
+  margin-bottom: 0.8rem;
+}
+footer p { font-size: 0.75rem; color: var(--subtext); }
+footer span { color: var(--cyan); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .macro-grid { grid-template-columns: repeat(2, 1fr); }
+  .news-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+  .macro-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .valiente-title { font-size: 5rem; }
+}
 </style>
 </head>
 <body>
+
+<!-- Animated Bokeh Background -->
 <div class="bokeh-bg">
-  <div class="bokeh-blob b1"></div><div class="bokeh-blob b2"></div>
-  <div class="bokeh-blob b3"></div><div class="bokeh-blob b4"></div><div class="bokeh-blob b5"></div>
+  <div class="bokeh-blob b1"></div>
+  <div class="bokeh-blob b2"></div>
+  <div class="bokeh-blob b3"></div>
+  <div class="bokeh-blob b4"></div>
+  <div class="bokeh-blob b5"></div>
 </div>
+
 <div class="page-wrap">
+
+<!-- ══════════════════════════════════════════
+     HERO — Full-screen VALIENTE photo
+══════════════════════════════════════════ -->
 <div class="hero">
-  <svg class="shield-logo" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#00f0ff"/><stop offset="50%" stop-color="#bf5fff"/><stop offset="100%" stop-color="#ffd060"/>
-      </linearGradient>
-      <linearGradient id="shieldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#ffd060"/><stop offset="100%" stop-color="#00f0ff"/>
-      </linearGradient>
-      <filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    </defs>
-    <path d="M100 8 L185 38 L185 135 Q185 195 100 228 Q15 195 15 135 L15 38 Z" stroke="url(#shieldGrad)" stroke-width="2.5" fill="rgba(0,240,255,0.04)" filter="url(#glow)"/>
-    <line x1="15" y1="78" x2="185" y2="78" stroke="url(#shieldGrad)" stroke-width="1.5" opacity="0.7"/>
-    <path d="M100 15 L178 42 L178 135 Q178 188 100 218 Q22 188 22 135 L22 42 Z" stroke="url(#shieldGrad2)" stroke-width="1" fill="none" opacity="0.3"/>
-    <text x="58" y="66" text-anchor="middle" font-size="28" filter="url(#glow)">🦁</text>
-    <text x="142" y="66" text-anchor="middle" font-size="24" filter="url(#glow)">👑</text>
-    <text x="100" y="115" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="11" font-weight="300" fill="url(#shieldGrad)" letter-spacing="0.5">desorganizacióna</text>
-    <text x="100" y="140" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-style="italic" fill="url(#shieldGrad2)" letter-spacing="1">organizada</text>
-    <circle cx="82" cy="165" r="2" fill="url(#shieldGrad)" opacity="0.6"/>
-    <circle cx="92" cy="168" r="1.5" fill="url(#shieldGrad)" opacity="0.5"/>
-    <circle cx="100" cy="170" r="2" fill="url(#shieldGrad)" opacity="0.7"/>
-    <circle cx="108" cy="168" r="1.5" fill="url(#shieldGrad)" opacity="0.5"/>
-    <circle cx="118" cy="165" r="2" fill="url(#shieldGrad)" opacity="0.6"/>
-    <line x1="45" y1="165" x2="78" y2="165" stroke="url(#shieldGrad)" stroke-width="1" opacity="0.4"/>
-    <line x1="122" y1="165" x2="155" y2="165" stroke="url(#shieldGrad)" stroke-width="1" opacity="0.4"/>
-  </svg>
-  <p class="motto">desorganizacióna organizada</p>
-  <h1 class="valiente-title">VALIENTE</h1>
-  <p class="tagline">Deep Learning <span>×</span> Football &nbsp;|&nbsp; Indica Labs Portal</p>
+  <div class="hero-inner">
+    <!-- VALIENTE Transparent Shield Logo (actual PNG) -->
+    <img class="shield-logo"
+         src="images/valiente-logo.png"
+         alt="VALIENTE Shield"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+    <!-- SVG fallback (hidden unless image fails to load) -->
+    <svg class="shield-logo" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+      <defs>
+        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#00f0ff"/>
+          <stop offset="50%"  stop-color="#bf5fff"/>
+          <stop offset="100%" stop-color="#ffd060"/>
+        </linearGradient>
+        <linearGradient id="shieldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#ffd060"/>
+          <stop offset="100%" stop-color="#00f0ff"/>
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+          <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <path d="M100 8 L185 38 L185 135 Q185 195 100 228 Q15 195 15 135 L15 38 Z"
+            stroke="url(#shieldGrad)" stroke-width="2.5" fill="rgba(0,240,255,0.04)" filter="url(#glow)"/>
+      <line x1="15" y1="78" x2="185" y2="78" stroke="url(#shieldGrad)" stroke-width="1.5" opacity="0.7"/>
+      <path d="M100 15 L178 42 L178 135 Q178 188 100 218 Q22 188 22 135 L22 42 Z"
+            stroke="url(#shieldGrad2)" stroke-width="1" fill="none" opacity="0.3"/>
+      <text x="58" y="66" text-anchor="middle" font-size="28" filter="url(#glow)">🦁</text>
+      <text x="142" y="66" text-anchor="middle" font-size="24" filter="url(#glow)">👑</text>
+      <text x="100" y="115" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="11" font-weight="300" fill="url(#shieldGrad)" letter-spacing="0.5">desorganizacióna</text>
+      <text x="100" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-style="italic" fill="url(#shieldGrad2)" letter-spacing="1">organizada</text>
+      <circle cx="100" cy="170" r="2" fill="url(#shieldGrad)" opacity="0.7"/>
+    </svg>
+
+    <p class="motto">desorganizacióna organizada</p>
+    <h1 class="valiente-title">VALIENTE</h1>
+    <p class="tagline">Deep Learning <span>×</span> Football &nbsp;|&nbsp; Indica Labs Portal</p>
+  </div>
 </div>
+
+<!-- ══════════════════════════════════════════
+     STICKY NAV
+══════════════════════════════════════════ -->
 <nav class="sticky-nav">
   <div class="nav-logo">VALIENTE</div>
   <ul class="nav-links">
-    <li><a href="#links">リンク</a></li><li><a href="#news">ニュース</a></li>
-    <li><a href="#log">学習ログ</a></li><li><a href="#macro">マクロ</a></li>
-    <li><a href="#watchlist">銘柄</a></li><li><a href="#arb">機会</a></li>
+    <li><a href="#links">リンク</a></li>
+    <li><a href="#news">ニュース</a></li>
+    <li><a href="#log">学習ログ</a></li>
+    <li><a href="#macro">マクロ</a></li>
+    <li><a href="#watchlist">銘柄</a></li>
+    <li><a href="#arb">機会</a></li>
   </ul>
   <div class="date-chip" id="todayDate"></div>
 </nav>
+
 <div class="container">
+
+<!-- ══════════════════════════════════════════
+     QUICK LINKS
+══════════════════════════════════════════ -->
 <div class="section-row" id="links">
-  <div class="section-title"><span class="icon">🔗</span> クイックリンク<span class="line"></span></div>
+  <div class="section-title">
+    <span class="icon">🔗</span> クイックリンク
+    <span class="line"></span>
+  </div>
   <div class="grid-4">
-    <a class="quick-link-card" href="https://indicalabs.sharepoint.com/sites/JapanTeam/SitePages/CollabHome.aspx" target="_blank"><div class="ql-icon">🏠</div><div><div>Japan Team</div><small>SharePoint ホーム</small></div></a>
-    <a class="quick-link-card" href="https://indicalab.bamboohr.com/employees/pto/?id=126" target="_blank"><div class="ql-icon">👥</div><div><div>HR</div><small>BambooHR</small></div></a>
-    <a class="quick-link-card" href="https://www.chatwork.com/#%21rid378330219" target="_blank"><div class="ql-icon">💬</div><div><div>Chatwork</div><small>チームチャット</small></div></a>
-    <a class="quick-link-card" href="https://learning.shift-ai.co.jp/members/mjTPK2PDxwQZ/home" target="_blank"><div class="ql-icon">🤖</div><div><div>Shift AI</div><small>AI学習プラットフォーム</small></div></a>
+    <a class="quick-link-card" href="https://indicalabs.sharepoint.com/sites/JapanTeam/SitePages/CollabHome.aspx" target="_blank">
+      <div class="ql-icon">🏠</div>
+      <div><div>Japan Team</div><small>SharePoint ホーム</small></div>
+    </a>
+    <a class="quick-link-card" href="https://indicalab.bamboohr.com/employees/pto/?id=126" target="_blank">
+      <div class="ql-icon">👥</div>
+      <div><div>HR</div><small>BambooHR</small></div>
+    </a>
+    <a class="quick-link-card" href="https://www.chatwork.com/#%21rid378330219" target="_blank">
+      <div class="ql-icon">💬</div>
+      <div><div>Chatwork</div><small>チームチャット</small></div>
+    </a>
+    <a class="quick-link-card" href="https://learning.shift-ai.co.jp/members/mjTPK2PDxwQZ/home" target="_blank">
+      <div class="ql-icon">🤖</div>
+      <div><div>Shift AI</div><small>AI学習プラットフォーム</small></div>
+    </a>
   </div>
 </div>
-<div class="neon-divider"></div>
+
+<!-- VALIENTE Purple Bokeh Banner -->
+<div class="valiente-banner">
+  <img src="images/valiente-purple.jpg" alt="VALIENTE">
+</div>
+
+<!-- ══════════════════════════════════════════
+     DAILY NEWS
+══════════════════════════════════════════ -->
 <div class="section-row" id="news">
-  <div class="section-title"><span class="icon">📰</span> デイリーニュース<span class="tag">毎日更新</span><span class="line"></span></div>
+  <div class="section-title">
+    <span class="icon">📰</span> デイリーニュース
+    <span class="tag">毎日更新</span>
+    <span class="line"></span>
+  </div>
   <div class="news-grid">
-    <a class="news-link" href="https://www.mag2.com/m/0001323030" target="_blank"><div class="nl-icon">📧</div><div><div class="nl-title">中島聡 ザックバラン</div><div class="nl-sub">週刊 Life is beautiful · まぐまぐ（毎週水曜）</div></div></a>
-    <a class="news-link" href="https://indicalabs.sharepoint.com/sites/JapanTeam/Shared%20Documents/DailyReports/" target="_blank"><div class="nl-icon">📋</div><div><div class="nl-title">デイリーレポート</div><div class="nl-sub">SharePoint · DailyReports フォルダ</div></div></a>
-    <a class="news-link" href="https://indicalabs-my.sharepoint.com/" target="_blank"><div class="nl-icon">☁️</div><div><div class="nl-title">OneDrive / クラウド更新</div><div class="nl-sub">ドキュメント・ファイル最新情報</div></div></a>
-    <a class="news-link" href="https://indicalabs.sharepoint.com/sites/JapanTeam" target="_blank"><div class="nl-icon">🗂️</div><div><div class="nl-title">SharePoint ドキュメント</div><div class="nl-sub">全共有ドキュメント一覧</div></div></a>
-    <a class="news-link" href="https://www.imf.org/en/Publications/WEO" target="_blank"><div class="nl-icon">🌐</div><div><div class="nl-title">IMF World Economic Outlook</div><div class="nl-sub">グローバルマクロ · 最新レポート</div></div></a>
-    <a class="news-link" href="https://www.nikkei.com/" target="_blank"><div class="nl-icon">📊</div><div><div class="nl-title">日経新聞</div><div class="nl-sub">国内経済 · 企業ニュース</div></div></a>
+    <a class="news-link" href="https://www.mag2.com/m/0001323030" target="_blank">
+      <div class="nl-icon">📧</div>
+      <div><div class="nl-title">中島聡 ザックバラン</div><div class="nl-sub">週刊 Life is beautiful · まぐまぐ（毎週水曜）</div></div>
+    </a>
+    <a class="news-link" href="https://indicalabs.sharepoint.com/sites/JapanTeam/Shared%20Documents/DailyReports/" target="_blank">
+      <div class="nl-icon">📋</div>
+      <div><div class="nl-title">デイリーレポート</div><div class="nl-sub">SharePoint · DailyReports フォルダ</div></div>
+    </a>
+    <a class="news-link" href="https://indicalabs-my.sharepoint.com/" target="_blank">
+      <div class="nl-icon">☁️</div>
+      <div><div class="nl-title">OneDrive / クラウド更新</div><div class="nl-sub">ドキュメント・ファイル最新情報</div></div>
+    </a>
+    <a class="news-link" href="https://indicalabs.sharepoint.com/sites/JapanTeam" target="_blank">
+      <div class="nl-icon">🗂️</div>
+      <div><div class="nl-title">SharePoint ドキュメント</div><div class="nl-sub">全共有ドキュメント一覧</div></div>
+    </a>
+    <a class="news-link" href="https://www.imf.org/en/Publications/WEO" target="_blank">
+      <div class="nl-icon">🌐</div>
+      <div><div class="nl-title">IMF World Economic Outlook</div><div class="nl-sub">グローバルマクロ · 最新レポート</div></div>
+    </a>
+    <a class="news-link" href="https://www.nikkei.com/" target="_blank">
+      <div class="nl-icon">📊</div>
+      <div><div class="nl-title">日経新聞</div><div class="nl-sub">国内経済 · 企業ニュース</div></div>
+    </a>
   </div>
 </div>
+
 <div class="neon-divider"></div>
+
+<!-- ══════════════════════════════════════════
+     LEARNING LOG
+══════════════════════════════════════════ -->
 <div class="section-row" id="log">
-  <div class="section-title"><span class="icon">📈</span> 投資学習ログ<span class="tag">毎日更新</span><span class="line"></span></div>
-  <div class="card" style="padding:0;overflow:hidden;">
+  <div class="section-title">
+    <span class="icon">📈</span> 投資学習ログ
+    <span class="tag">毎日更新</span>
+    <span class="line"></span>
+  </div>
+  <div class="card" style="padding: 0; overflow: hidden;">
     <table class="log-table">
-      <thead><tr><th>日付</th><th>主要テーマ</th><th>市場環境</th><th>キーインサイト</th><th>ログ</th></tr></thead>
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>主要テーマ</th>
+          <th>市場環境</th>
+          <th>キーインサイト</th>
+          <th>ログ</th>
+        </tr>
+      </thead>
       <tbody>
         <tr>
-          <td><strong style="color:var(--cyan);font-family:monospace;">2026-05-08</strong></td>
+          <td><strong style="color:var(--cyan); font-family:monospace;">2026-05-08</strong></td>
           <td>グレートローテーション · IMF戦争リスク · 日本AI周辺株</td>
           <td><span class="risk-badge risk-mid">⚠️ 中リスク</span></td>
           <td>AI装置株割安 · 金利ある世界 · 防衛ヘッジ</td>
           <td><a href="stock_learning_loop_2026-05-08.html" target="_blank">→ 開く</a></td>
         </tr>
-        <tr><td colspan="5" style="text-align:center;color:var(--subtext);font-size:0.78rem;padding:1.2rem;">↓ 翌日以降のログが自動追加されます</td></tr>
+        <tr>
+          <td colspan="5" style="text-align:center; color:var(--subtext); font-size:0.78rem; padding:1.2rem;">
+            ↓ 翌日以降のログが自動追加されます
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
 </div>
+
 <div class="neon-divider"></div>
+
+<!-- ══════════════════════════════════════════
+     MACRO DASHBOARD
+══════════════════════════════════════════ -->
 <div class="section-row" id="macro">
-  <div class="section-title"><span class="icon">🌐</span> マクロ経済ダッシュボード<span class="tag">2026年5月</span><span class="line"></span></div>
-  <div class="macro-grid" style="margin-bottom:0.75rem;">
-    <div class="macro-card"><div class="m-label">世界成長率 (IMF)</div><div class="m-value down">3.1<span style="font-size:1.1rem">%</span></div><div class="m-sub down">▼ 下方修正</div></div>
-    <div class="macro-card"><div class="m-label">S&amp;P500 目標 (MS)</div><div class="m-value">7,500</div><div class="m-sub up">▲ 政治リスク注意</div></div>
-    <div class="macro-card"><div class="m-label">日経平均 目標 (野村)</div><div class="m-value">55,000</div><div class="m-sub up">▲ 上振れ59,000</div></div>
-    <div class="macro-card"><div class="m-label">米コアPCE</div><div class="m-value down">3.1<span style="font-size:1.1rem">%</span></div><div class="m-sub down">目標2%超過中</div></div>
-    <div class="macro-card"><div class="m-label">ドル/円 目標 (野村)</div><div class="m-value">152.5</div><div class="m-sub">円高方向へ</div></div>
-    <div class="macro-card"><div class="m-label">日銀政策金利</div><div class="m-value up">1.0<span style="font-size:1.1rem">%+</span></div><div class="m-sub up">利上げ継続観測</div></div>
-    <div class="macro-card"><div class="m-label">GS 米国成長率</div><div class="m-value up">2.6<span style="font-size:1.1rem">%</span></div><div class="m-sub up">コンセンサス超え</div></div>
-    <div class="macro-card"><div class="m-label">最大リスク</div><div class="m-value" style="font-size:1.1rem;-webkit-text-fill-color:var(--red);color:var(--red);">中東紛争</div><div class="m-sub down">エネルギー急騰シナリオ</div></div>
+  <div class="section-title">
+    <span class="icon">🌐</span> マクロ経済ダッシュボード
+    <span class="tag">2026年5月</span>
+    <span class="line"></span>
   </div>
-  <div class="macro-alert">⚠️ <strong>IMF最重要リスク</strong>: 「戦争の影の下の世界経済」(WEO Apr 2026) — 中東紛争長期化シナリオでは世界成長率2.0%、インフレ6%超。エネルギー価格急騰が最大の非線形リスク。&nbsp;|&nbsp; 📊 <strong>グレートローテーション</strong>: テック独走→防衛・金融・インフラ・日本AI周辺株へ資金シフト継続中。</div>
+  <div class="macro-grid" style="margin-bottom:0.75rem;">
+    <div class="macro-card">
+      <div class="m-label">世界成長率 (IMF)</div>
+      <div class="m-value down">3.1<span style="font-size:1.1rem">%</span></div>
+      <div class="m-sub down">▼ 下方修正</div>
+    </div>
+    <div class="macro-card">
+      <div class="m-label">S&P500 目標 (MS)</div>
+      <div class="m-value">7,500</div>
+      <div class="m-sub up">▲ 政治リスク注意</div>
+    </div>
+    <div class="macro-card">
+      <div class="m-label">日経平均 目標 (野村)</div>
+      <div class="m-value">55,000</div>
+      <div class="m-sub up">▲ 上振れ59,000</div>
+    </div>
+    <div class="macro-card">
+      <div class="m-label">米コアPCE</div>
+      <div class="m-value down">3.1<span style="font-size:1.1rem">%</span></div>
+      <div class="m-sub down">目標2%超過中</div>
+    </div>
+    <div class="macro-card">
+      <div class="m-label">ドル/円 目標 (野村)</div>
+      <div class="m-value">152.5</div>
+      <div class="m-sub">円高方向へ</div>
+    </div>
+    <div class="macro-card">
+      <div class="m-label">日銀政策金利</div>
+      <div class="m-value up">1.0<span style="font-size:1.1rem">%+</span></div>
+      <div class="m-sub up">利上げ継続観測</div>
+    </div>
+    <div class="macro-card">
+      <div class="m-label">GS 米国成長率</div>
+      <div class="m-value up">2.6<span style="font-size:1.1rem">%</span></div>
+      <div class="m-sub up">コンセンサス超え</div>
+    </div>
+    <div class="macro-card">
+      <div class="m-label">最大リスク</div>
+      <div class="m-value" style="font-size:1.1rem; -webkit-text-fill-color:var(--red); color:var(--red);">中東紛争</div>
+      <div class="m-sub down">エネルギー急騰シナリオ</div>
+    </div>
+  </div>
+  <div class="macro-alert">
+    ⚠️ <strong>IMF最重要リスク</strong>: 「戦争の影の下の世界経済」(WEO Apr 2026) — 中東紛争長期化シナリオでは世界成長率2.0%、インフレ6%超。エネルギー価格急騰が最大の非線形リスク。
+    &nbsp;|&nbsp; 📊 <strong>グレートローテーション</strong>: テック独走→防衛・金融・インフラ・日本AI周辺株へ資金シフト継続中。
+  </div>
 </div>
+
 <div class="neon-divider"></div>
+
+<!-- ══════════════════════════════════════════
+     WATCHLIST
+══════════════════════════════════════════ -->
 <div class="section-row" id="watchlist">
-  <div class="section-title"><span class="icon">🎯</span> 長期保有候補 ウォッチリスト<span class="line"></span></div>
+  <div class="section-title">
+    <span class="icon">🎯</span> 長期保有候補 ウォッチリスト
+    <span class="line"></span>
+  </div>
   <div class="grid-2">
     <div class="card">
       <div class="watchlist-header">🇯🇵 日本株</div>
-      <div class="stock-row"><div><div class="stock-name">東京エレクトロン</div><div class="stock-code">8035</div></div><span class="stock-sector">AI半導体装置</span><span class="stock-status">要決算確認</span></div>
-      <div class="stock-row"><div><div class="stock-name">アドバンテスト</div><div class="stock-code">6857</div></div><span class="stock-sector">AIテスト装置</span><span class="stock-status">要決算確認</span></div>
-      <div class="stock-row"><div><div class="stock-name">三菱重工</div><div class="stock-code">7011</div></div><span class="stock-sector">防衛・インフラ</span><span class="stock-status">受注残確認要</span></div>
-      <div class="stock-row"><div><div class="stock-name">東京海上HD</div><div class="stock-code">8766</div></div><span class="stock-sector">金融・保険</span><span class="stock-status">利上げ恩恵 ★BRK</span></div>
-      <div class="stock-row"><div><div class="stock-name">三菱商事</div><div class="stock-code">8058</div></div><span class="stock-sector">総合商社</span><span class="stock-status">コモディティ動向 ★BRK</span></div>
+      <div class="stock-row">
+        <div><div class="stock-name">東京エレクトロン</div><div class="stock-code">8035</div></div>
+        <span class="stock-sector">AI半導体装置</span>
+        <span class="stock-status">要決算確認</span>
+      </div>
+      <div class="stock-row">
+        <div><div class="stock-name">アドバンテスト</div><div class="stock-code">6857</div></div>
+        <span class="stock-sector">AIテスト装置</span>
+        <span class="stock-status">要決算確認</span>
+      </div>
+      <div class="stock-row">
+        <div><div class="stock-name">三菱重工</div><div class="stock-code">7011</div></div>
+        <span class="stock-sector">防衛・インフラ</span>
+        <span class="stock-status">受注残確認要</span>
+      </div>
+      <div class="stock-row">
+        <div><div class="stock-name">東京海上HD</div><div class="stock-code">8766</div></div>
+        <span class="stock-sector">金融・保険</span>
+        <span class="stock-status">利上げ恩恵 ★BRK</span>
+      </div>
+      <div class="stock-row">
+        <div><div class="stock-name">三菱商事</div><div class="stock-code">8058</div></div>
+        <span class="stock-sector">総合商社</span>
+        <span class="stock-status">コモディティ動向 ★BRK</span>
+      </div>
     </div>
     <div class="card">
       <div class="watchlist-header">🇺🇸 米国株</div>
-      <div class="stock-row"><div><div class="stock-name">NVIDIA</div><div class="stock-code">NVDA</div></div><span class="stock-sector">AI純粋プレイ</span><span class="stock-status">高PER要注意</span></div>
-      <div class="stock-row"><div><div class="stock-name">Lockheed Martin</div><div class="stock-code">LMT</div></div><span class="stock-sector">防衛・宇宙</span><span class="stock-status">地政学プレミアム</span></div>
-      <div class="stock-row"><div><div class="stock-name">JPMorgan Chase</div><div class="stock-code">JPM</div></div><span class="stock-sector">金融・M&amp;A</span><span class="stock-status">高金利環境恩恵</span></div>
-      <div class="stock-row"><div><div class="stock-name">ExxonMobil</div><div class="stock-code">XOM</div></div><span class="stock-sector">エネルギー</span><span class="stock-status">中東緊張ヘッジ</span></div>
-      <div class="stock-row"><div><div class="stock-name">Berkshire Hathaway</div><div class="stock-code">BRK.B</div></div><span class="stock-sector">コングロマリット</span><span class="stock-status">日本商社保有</span></div>
+      <div class="stock-row">
+        <div><div class="stock-name">NVIDIA</div><div class="stock-code">NVDA</div></div>
+        <span class="stock-sector">AI純粋プレイ</span>
+        <span class="stock-status">高PER要注意</span>
+      </div>
+      <div class="stock-row">
+        <div><div class="stock-name">Lockheed Martin</div><div class="stock-code">LMT</div></div>
+        <span class="stock-sector">防衛・宇宙</span>
+        <span class="stock-status">地政学プレミアム</span>
+      </div>
+      <div class="stock-row">
+        <div><div class="stock-name">JPMorgan Chase</div><div class="stock-code">JPM</div></div>
+        <span class="stock-sector">金融・M&A</span>
+        <span class="stock-status">高金利環境恩恵</span>
+      </div>
+      <div class="stock-row">
+        <div><div class="stock-name">ExxonMobil</div><div class="stock-code">XOM</div></div>
+        <span class="stock-sector">エネルギー</span>
+        <span class="stock-status">中東緊張ヘッジ</span>
+      </div>
+      <div class="stock-row">
+        <div><div class="stock-name">Berkshire Hathaway</div><div class="stock-code">BRK.B</div></div>
+        <span class="stock-sector">コングロマリット</span>
+        <span class="stock-status">日本商社保有</span>
+      </div>
     </div>
   </div>
 </div>
-<div class="neon-divider"></div>
+
+<!-- VALIENTE Gold Glitter Banner -->
+<div class="valiente-banner">
+  <img src="images/valiente-gold.jpg" alt="VALIENTE">
+</div>
+
+<!-- ══════════════════════════════════════════
+     ARBITRAGE
+══════════════════════════════════════════ -->
 <div class="section-row" id="arb">
-  <div class="section-title"><span class="icon">🔄</span> アービトラージ機会メモ<span class="line"></span></div>
-  <div class="grid-2" style="margin-bottom:1.5rem;">
-    <div class="arb-card"><div class="arb-title"><span class="arb-letter">A</span>日本AI周辺 vs 米国AI純粋プレイ</div><div class="arb-logic">東エレク・アドバンテストはNVIDIA等の「下流受益者」でPER割安。AIサイクル成熟期まで相対優位継続の可能性。</div><div class="arb-horizon">⏱ ホライゾン: 2〜3年</div></div>
-    <div class="arb-card"><div class="arb-title"><span class="arb-letter">B</span>内需株 × 円高メリット</div><div class="arb-logic">日銀利上げ→円高→輸入コスト低下→食品・小売・通信の実質利益率改善。賃金上昇持続性と消費センチメントの確認が必要。</div><div class="arb-horizon">⏱ ホライゾン: 1〜2年</div></div>
-    <div class="arb-card"><div class="arb-title"><span class="arb-letter">C</span>地政学ヘッジ × 防衛株ロング</div><div class="arb-logic">中東最悪シナリオ（IMF）のポートフォリオヘッジ。防衛株は景気後退時にも受注が安定。エネルギー連動EBITDA成長率でスクリーニング。</div><div class="arb-horizon">⏱ ホライゾン: 長期（恒常的ヘッジ）</div></div>
-    <div class="arb-card"><div class="arb-title"><span class="arb-letter">D</span>エネルギー価格スパイク × インフレ連動</div><div class="arb-logic">ホルムズ海峡リスク→原油急騰→インフレ再燃シナリオへのヘッジ。原油ETF・エネルギーメジャー・TIPS活用。現状はヘッジ目的。</div><div class="arb-horizon">⏱ ホライゾン: 短期（ヘッジ）</div></div>
+  <div class="section-title">
+    <span class="icon">🔄</span> アービトラージ機会メモ
+    <span class="line"></span>
   </div>
-  <div class="section-title" style="margin-top:0;"><span class="icon">📐</span> 財務スクリーニング基準（長期保有用）<span class="line"></span></div>
+  <div class="grid-2" style="margin-bottom:1.5rem;">
+    <div class="arb-card">
+      <div class="arb-title"><span class="arb-letter">A</span>日本AI周辺 vs 米国AI純粋プレイ</div>
+      <div class="arb-logic">東エレク・アドバンテストはNVIDIA等の「下流受益者」でPER割安。AIサイクル成熟期まで相対優位継続の可能性。</div>
+      <div class="arb-horizon">⏱ ホライゾン: 2〜3年</div>
+    </div>
+    <div class="arb-card">
+      <div class="arb-title"><span class="arb-letter">B</span>内需株 × 円高メリット</div>
+      <div class="arb-logic">日銀利上げ→円高→輸入コスト低下→食品・小売・通信の実質利益率改善。賃金上昇持続性と消費センチメントの確認が必要。</div>
+      <div class="arb-horizon">⏱ ホライゾン: 1〜2年</div>
+    </div>
+    <div class="arb-card">
+      <div class="arb-title"><span class="arb-letter">C</span>地政学ヘッジ × 防衛株ロング</div>
+      <div class="arb-logic">中東最悪シナリオ（IMF）のポートフォリオヘッジ。防衛株は景気後退時にも受注が安定。エネルギー連動EBITDA成長率でスクリーニング。</div>
+      <div class="arb-horizon">⏱ ホライゾン: 長期（恒常的ヘッジ）</div>
+    </div>
+    <div class="arb-card">
+      <div class="arb-title"><span class="arb-letter">D</span>エネルギー価格スパイク × インフレ連動</div>
+      <div class="arb-logic">ホルムズ海峡リスク→原油急騰→インフレ再燃シナリオへのヘッジ。原油ETF・エネルギーメジャー・TIPS活用。現状はヘッジ目的。</div>
+      <div class="arb-horizon">⏱ ホライゾン: 短期（ヘッジ）</div>
+    </div>
+  </div>
+
+  <!-- Screening Criteria -->
+  <div class="section-title" style="margin-top:0;">
+    <span class="icon">📐</span> 財務スクリーニング基準（長期保有用）
+    <span class="line"></span>
+  </div>
   <div class="grid-2">
     <div class="card">
       <div class="criteria-label ok">✅ 必須条件</div>
@@ -295,22 +1078,37 @@ footer span { color:var(--cyan); }
         <li><span class="mark mark-no">✗</span>中国売上依存度 &gt; 30%</li>
         <li><span class="mark mark-no">✗</span>PER &gt; 50倍（成長率で正当化不可の場合）</li>
       </ul>
-      <div class="criteria-tip">💡 「<strong>金利ある世界</strong>」では、ゼロ金利時代の高PER許容戦略は修正が必要。ROE・FCFを重視した割安株シフトが必須。</div>
+      <div class="criteria-tip">
+        💡 「<strong>金利ある世界</strong>」では、ゼロ金利時代の高PER許容戦略は修正が必要。ROE・FCFを重視した割安株シフトが必須。
+      </div>
     </div>
   </div>
 </div>
+
+</div><!-- /container -->
+
+<!-- VALIENTE Gold Glitter Banner (pre-footer) -->
+<div class="valiente-banner" style="height:160px; margin-bottom:0;">
+  <img src="images/valiente-gold.jpg" alt="VALIENTE" style="object-position: center 30%;">
 </div>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
 <footer>
   <div class="footer-logo">VALIENTE</div>
   <div class="footer-motto">desorganizacióna organizada &nbsp;·&nbsp; Deep Learning × Football</div>
   <p>Indica Labs Portal &nbsp;|&nbsp; <span>Claude Sonnet 4.6</span> &nbsp;|&nbsp; <span id="footerDate"></span></p>
 </footer>
-</div>
+
+</div><!-- /page-wrap -->
+
 <script>
 const d = new Date();
-const opts = {year:'numeric',month:'long',day:'numeric',weekday:'short'};
-document.getElementById('todayDate').textContent = d.toLocaleDateString('ja-JP',opts);
+const opts = {year:'numeric', month:'long', day:'numeric', weekday:'short'};
+document.getElementById('todayDate').textContent = d.toLocaleDateString('ja-JP', opts);
 document.getElementById('footerDate').textContent = d.toLocaleDateString('ja-JP');
 </script>
+
 </body>
 </html>
