@@ -136,26 +136,25 @@ body::after {
   display: block;
   filter: drop-shadow(0 0 20px rgba(0,240,255,0.5)) drop-shadow(0 0 40px rgba(0,240,255,0.25));
   animation: shieldPulse 3s ease-in-out infinite;
+  /* SVG fallback dimensions */
 }
 @keyframes shieldPulse {
   0%, 100% { filter: drop-shadow(0 0 20px rgba(0,240,255,0.5)) drop-shadow(0 0 40px rgba(0,240,255,0.25)); }
   50%       { filter: drop-shadow(0 0 30px rgba(191,95,255,0.6)) drop-shadow(0 0 60px rgba(191,95,255,0.3)); }
 }
 
-/* ─── VALIENTE IMAGE BANNER ─── */
+/* ─── VALIENTE IMAGE BANNER (parallax — same as hero) ─── */
 .valiente-banner {
   width: 100%;
-  height: 220px;
+  height: 280px;
   position: relative;
   overflow: hidden;
   margin: 0.5rem 0;
-}
-.valiente-banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
+  /* CSS background-image set inline on each div */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* ← 画像固定パラックス */
 }
 .valiente-banner::before {
   content: '';
@@ -164,8 +163,8 @@ body::after {
   background: linear-gradient(
     to right,
     var(--bg) 0%,
-    rgba(7,7,15,0.2) 25%,
-    rgba(7,7,15,0.2) 75%,
+    rgba(7,7,15,0.1) 20%,
+    rgba(7,7,15,0.1) 80%,
     var(--bg) 100%
   );
   z-index: 1;
@@ -178,8 +177,8 @@ body::after {
   background: linear-gradient(
     to bottom,
     var(--bg) 0%,
-    transparent 20%,
-    transparent 80%,
+    transparent 18%,
+    transparent 82%,
     var(--bg) 100%
   );
   z-index: 1;
@@ -742,8 +741,8 @@ footer span { color: var(--cyan); }
       <line x1="15" y1="78" x2="185" y2="78" stroke="url(#shieldGrad)" stroke-width="1.5" opacity="0.7"/>
       <path d="M100 15 L178 42 L178 135 Q178 188 100 218 Q22 188 22 135 L22 42 Z"
             stroke="url(#shieldGrad2)" stroke-width="1" fill="none" opacity="0.3"/>
-      <text x="58" y="66" text-anchor="middle" font-size="28" filter="url(#glow)">🦁</text>
-      <text x="142" y="66" text-anchor="middle" font-size="24" filter="url(#glow)">👑</text>
+      <text x="58" y="66" text-anchor="middle" font-size="28" filter="url(#glow)">&#129409;</text>
+      <text x="142" y="66" text-anchor="middle" font-size="24" filter="url(#glow)">&#128081;</text>
       <text x="100" y="115" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="11" font-weight="300" fill="url(#shieldGrad)" letter-spacing="0.5">desorganizacióna</text>
       <text x="100" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-style="italic" fill="url(#shieldGrad2)" letter-spacing="1">organizada</text>
       <circle cx="100" cy="170" r="2" fill="url(#shieldGrad)" opacity="0.7"/>
@@ -801,10 +800,8 @@ footer span { color: var(--cyan); }
   </div>
 </div>
 
-<!-- VALIENTE Purple Bokeh Banner -->
-<div class="valiente-banner">
-  <img src="images/IMG_3143.jpg" alt="VALIENTE">
-</div>
+<!-- VALIENTE Purple Bokeh Banner — IMG_3143 parallax -->
+<div class="valiente-banner" style="background-image: url('images/IMG_3143.jpg');"></div>
 
 <!-- ══════════════════════════════════════════
      DAILY NEWS
@@ -1012,10 +1009,8 @@ footer span { color: var(--cyan); }
   </div>
 </div>
 
-<!-- VALIENTE Gold Glitter Banner -->
-<div class="valiente-banner">
-  <img src="images/IMG_0169.jpg" alt="VALIENTE">
-</div>
+<!-- VALIENTE Gold Glitter Banner — IMG_0169 parallax -->
+<div class="valiente-banner" style="background-image: url('images/IMG_0169.jpg');"></div>
 
 <!-- ══════════════════════════════════════════
      ARBITRAGE
@@ -1086,10 +1081,8 @@ footer span { color: var(--cyan); }
 
 </div><!-- /container -->
 
-<!-- VALIENTE Gold Glitter Banner (pre-footer) -->
-<div class="valiente-banner" style="height:160px; margin-bottom:0;">
-  <img src="images/IMG_0169.jpg" alt="VALIENTE" style="object-position: center 30%;">
-</div>
+<!-- VALIENTE Shield Banner (pre-footer) — IMG_3144 parallax -->
+<div class="valiente-banner" style="height:220px; margin-bottom:0; background-image: url('images/IMG_3144.jpg'); background-position: center 40%;"></div>
 
 <!-- ══════════════════════════════════════════
      FOOTER
