@@ -1,0 +1,118 @@
+# ════════════════════════════════════════════════════════════════
+# VALIENTE Cloud Schedule — GitHub Actions ワークフローテンプレート
+# ════════════════════════════════════════════════════════════════
+#
+# 📌 使い方:
+#   1. このファイルを GitHub リポジトリの .github/workflows/ フォルダに置く
+#   2. リポジトリの Settings → Secrets → Actions に必要な API キーを登録
+#   3. コミットするだけで自動的にクラウド上で実行される
+#
+# ✅ このファイルで実現できること:
+#   - ローカル端末を起動していなくてもスケジュール実行
+#   - GitHub 無料プランで月 2,000 分まで無料
+#   - 実行ログは GitHub Actions タブで確認可能
+#   - 手動トリガーでいつでも即時実行可能
+#
+# ════════════════════════════════════════════════════════════════
+
+name: "☁️ VALIENTE クラウドスケジュール"
+
+on:
+  # ── スケジュール実行 (cron) ──────────────────────────────────
+  # 書き方: 分 時 日 月 曜日  (UTC時間 = 日本時間 − 9時間)
+  schedule:
+    # 例①: 毎日 朝9時 (JST) に実行 → UTC 00:00
+    - cron: "0 0 * * *"
+
+    # 例②: 平日 朝8時 (JST) に実行 → UTC 23:00 (前日)
+    # - cron: "0 23 * * 0-4"
+
+    # 例③: 毎週月曜 朝9時 (JST) に実行
+    # - cron: "0 0 * * 1"
+
+    # 例④: 毎時間実行
+    # - cron: "0 * * * *"
+
+  # ── 手動実行 (GitHub Actions タブから「Run workflow」ボタンで即時起動) ──
+  workflow_dispatch:
+    inputs:
+      task_description:
+        description: "実行するタスクの説明（例: 週次レポート作成）"
+        required: false
+        default: "手動トリガーによるスケジュールタスク"
+
+# ════════════════════════════════════════════════════════════════
+# ジョブ定義
+# ════════════════════════════════════════════════════════════════
+jobs:
+  run-scheduled-task:
+    name: "スケジュールタスク実行"
+    runs-on: ubuntu-latest   # GitHub が管理するクラウドサーバーで動く
+
+    steps:
+      # ── ① リポジトリをチェックアウト ─────────────────────────
+      - name: "📥 コードを取得"
+        uses: actions/checkout@v4
+
+      # ── ② Python環境セットアップ (Pythonスクリプトを使う場合) ──
+      - name: "🐍 Python セットアップ"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # ── ③ 依存ライブラリのインストール ───────────────────────
+      - name: "📦 ライブラリをインストール"
+        run: |
+          pip install anthropic requests python-dotenv
+
+      # ── ④ メインタスクを実行 ──────────────────────────────────
+      # ここにやりたい処理を書く。以下はサンプル。
+      - name: "🤖 Claude API でタスク実行"
+        env:
+          # GitHub Secrets に登録した API キーを環境変数として渡す
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}       # Notion 連携する場合
+          GMAIL_TOKEN: ${{ secrets.GMAIL_TOKEN }}         # Gmail 連携する場合
+          TASK_DESCRIPTION: ${{ inputs.task_description || '定期スケジュールタスク' }}
+        run: |
+          python scripts/run_task.py
+          # または直接コマンドを書くこともできる:
+          # python -c "
+          # import anthropic, os
+          # client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
+          # message = client.messages.create(
+          #     model='claude-sonnet-4-6',
+          #     max_tokens=1024,
+          #     messages=[{'role': 'user', 'content': '今週のタスクをまとめて'}]
+          # )
+          # print(message.content[0].text)
+          # "
+
+      # ── ⑤ 結果を Notion/メール等に保存 (オプション) ──────────
+      # - name: "📤 結果を Notion に保存"
+      #   env:
+      #     NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      #     NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+      #   run: python scripts/save_to_notion.py
+
+      # ── ⑥ 実行サマリーをログに残す ───────────────────────────
+      - name: "📋 実行サマリー"
+        if: always()   # エラーが起きても必ず実行
+        run: |
+          echo "## ☁️ クラウドスケジュール実行完了" >> $GITHUB_STEP_SUMMARY
+          echo "- 実行時刻 (UTC): $(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
+          echo "- 実行時刻 (JST): $(TZ='Asia/Tokyo' date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
+          echo "- トリガー: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+
+# ════════════════════════════════════════════════════════════════
+# 📖 Secrets の登録方法:
+#   GitHub リポジトリ → Settings → Secrets and variables → Actions
+#   → New repository secret で以下を登録:
+#
+#   ANTHROPIC_API_KEY  : Anthropic Console から取得した API キー
+#   NOTION_TOKEN       : Notion の Integration トークン (使う場合)
+#   GMAIL_TOKEN        : Gmail OAuth トークン (使う場合)
+#
+# 📖 実行ログの確認:
+#   GitHub リポジトリ → Actions タブ → ワークフロー名をクリック
+# ════════════════════════════════════════════════════════════════
