@@ -129,8 +129,11 @@ body::after {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  /* 背景の魚画像中心（viewport中央）にコンテンツを揃えるため
-     上下の余白を均等にして垂直中央に収める */
+  /* 背景画像の VALIENTE 文字と前景 h1 を一体化させる垂直補正:
+     シールドロゴ(150px+1.2rem) + モット(0.8rem+0.5rem) = 約196px が
+     h1 より上にあるため、フレックス中央基準で h1 が約9vh 下にずれる。
+     全体を上にシフトして背景テキストと重ねる。 */
+  transform: translateY(-9vh);
 }
 
 /* Shield Logo — uses actual VALIENTE transparent PNG */
