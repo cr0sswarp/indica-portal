@@ -41,857 +41,166 @@ body {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* ← 魚を全ページ固定壁紙に */
+  background-attachment: fixed;
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* ─── ANIMATED BOKEH BACKGROUND ─── */
-.bokeh-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-.bokeh-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.07; /* 魚背景を引き立てるため控えめに */
-  animation: floatBlob linear infinite;
-}
+.bokeh-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.bokeh-blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.07; animation: floatBlob linear infinite; }
 .b1 { width: 500px; height: 500px; background: var(--cyan);   top: -100px; left: -100px; animation-duration: 25s; }
 .b2 { width: 600px; height: 600px; background: var(--purple); top: 30%;   right: -150px; animation-duration: 32s; animation-delay: -8s; }
 .b3 { width: 400px; height: 400px; background: var(--gold);   bottom: -80px; left: 30%; animation-duration: 28s; animation-delay: -15s; }
 .b4 { width: 350px; height: 350px; background: var(--cyan2);  top: 60%;  left: -80px; animation-duration: 20s; animation-delay: -5s; }
 .b5 { width: 280px; height: 280px; background: var(--purple2); top: 20%; left: 40%; animation-duration: 35s; animation-delay: -20s; }
+@keyframes floatBlob { 0% { transform: translate(0,0) scale(1); } 33% { transform: translate(40px,-60px) scale(1.1); } 66% { transform: translate(-30px,40px) scale(0.95); } 100% { transform: translate(0,0) scale(1); } }
 
-@keyframes floatBlob {
-  0%   { transform: translate(0, 0) scale(1); }
-  33%  { transform: translate(40px, -60px) scale(1.1); }
-  66%  { transform: translate(-30px, 40px) scale(0.95); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-
-/* ─── SCANLINE OVERLAY (subtle) ─── */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0,0,0,0.03) 2px,
-    rgba(0,0,0,0.03) 4px
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* ─── MAIN WRAPPER ─── */
+body::after { content:''; position:fixed; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px); pointer-events:none; z-index:1; }
 .page-wrap { position: relative; z-index: 2; }
 
-/* ═══════════════════════════════════════════
-   HERO / HEADER — Full-screen VALIENTE photo
-═══════════════════════════════════════════ */
-.hero {
-  text-align: center;
-  padding: 0;
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* 背景はbodyの魚画像を透過表示 — ここでは設定不要 */
-  background: transparent;
-}
-/* 薄いグラデーションオーバーレイ（文字読みやすさ確保） */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(7,7,15,0.0)  0%,
-    rgba(7,7,15,0.1)  50%,
-    rgba(7,7,15,0.6)  100%
-  );
-  z-index: 0;
-}
-.hero > * { position: relative; z-index: 1; }
-.hero-inner {
-  padding: 2rem 2rem 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  /* 背景画像の VALIENTE 文字と前景 h1 を一体化させる調整:
-     垂直: -4.5vh（下ずれ9vh の中間値）
-     水平: +2% 右シフト（背景テキストと横位置を揃える） */
-  transform: translate(1.2%, -4.5vh);
-}
+.hero { text-align:center; padding:0; position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; background:transparent; }
+.hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(7,7,15,0.0) 0%,rgba(7,7,15,0.1) 50%,rgba(7,7,15,0.6) 100%); z-index:0; }
+.hero > * { position:relative; z-index:1; }
+.hero-inner { padding:2rem; display:flex; flex-direction:column; align-items:center; width:100%; transform:translate(1.2%,-4.5vh); }
 
-/* Shield Logo — uses actual VALIENTE transparent PNG */
-.shield-logo {
-  width: 150px;
-  height: auto;
-  margin: 0 auto 1.2rem;
-  display: block;
-  filter: drop-shadow(0 0 20px rgba(0,240,255,0.5)) drop-shadow(0 0 40px rgba(0,240,255,0.25));
-  animation: shieldPulse 3s ease-in-out infinite;
-  /* SVG fallback dimensions */
-}
-@keyframes shieldPulse {
-  0%, 100% { filter: drop-shadow(0 0 20px rgba(0,240,255,0.5)) drop-shadow(0 0 40px rgba(0,240,255,0.25)); }
-  50%       { filter: drop-shadow(0 0 30px rgba(191,95,255,0.6)) drop-shadow(0 0 60px rgba(191,95,255,0.3)); }
-}
+.shield-logo { width:150px; height:auto; margin:0 auto 1.2rem; display:block; filter:drop-shadow(0 0 20px rgba(0,240,255,0.5)) drop-shadow(0 0 40px rgba(0,240,255,0.25)); animation:shieldPulse 3s ease-in-out infinite; }
+@keyframes shieldPulse { 0%,100% { filter:drop-shadow(0 0 20px rgba(0,240,255,0.5)) drop-shadow(0 0 40px rgba(0,240,255,0.25)); } 50% { filter:drop-shadow(0 0 30px rgba(191,95,255,0.6)) drop-shadow(0 0 60px rgba(191,95,255,0.3)); } }
 
-/* ─── VALIENTE IMAGE BANNER (parallax — same as hero) ─── */
-.valiente-banner {
-  width: 100%;
-  height: 280px;
-  position: relative;
-  overflow: hidden;
-  margin: 0.5rem 0;
-  /* CSS background-image set inline on each div */
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* ← 画像固定パラックス */
-}
-.valiente-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    var(--bg) 0%,
-    rgba(7,7,15,0.1) 20%,
-    rgba(7,7,15,0.1) 80%,
-    var(--bg) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-.valiente-banner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    var(--bg) 0%,
-    transparent 18%,
-    transparent 82%,
-    var(--bg) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
+.valiente-banner { width:100%; height:280px; position:relative; overflow:hidden; margin:0.5rem 0; background-size:cover; background-position:center center; background-repeat:no-repeat; background-attachment:fixed; }
+.valiente-banner::before { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--bg) 0%,rgba(7,7,15,0.1) 20%,rgba(7,7,15,0.1) 80%,var(--bg) 100%); z-index:1; pointer-events:none; }
+.valiente-banner::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,var(--bg) 0%,transparent 18%,transparent 82%,var(--bg) 100%); z-index:1; pointer-events:none; }
 
-.motto {
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  color: var(--cyan);
-  text-transform: lowercase;
-  margin-bottom: 0.5rem;
-  font-weight: 300;
-  text-shadow: 0 0 10px rgba(0,240,255,0.6);
-}
+.motto { font-size:0.8rem; letter-spacing:0.2em; color:var(--cyan); text-transform:lowercase; margin-bottom:0.5rem; font-weight:300; text-shadow:0 0 10px rgba(0,240,255,0.6); }
+.valiente-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(7rem,22vw,18rem); letter-spacing:0.08em; line-height:0.85; background:linear-gradient(90deg,var(--cyan) 0%,var(--purple) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; filter:drop-shadow(0 0 50px rgba(0,240,255,0.6)) drop-shadow(0 0 100px rgba(191,95,255,0.3)); margin-bottom:0.4rem; mix-blend-mode:screen; display:block; width:100%; text-align:center; padding-right:0.08em; }
+.tagline { font-size:0.85rem; letter-spacing:0.3em; color:var(--subtext); text-transform:uppercase; margin-bottom:2rem; }
+.tagline span { color:var(--gold); }
 
-.valiente-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(7rem, 22vw, 18rem); /* ← 背景シールドと重なるサイズ */
-  letter-spacing: 0.08em;
-  line-height: 0.85;
-  background: linear-gradient(90deg, var(--cyan) 0%, var(--purple) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 0 50px rgba(0,240,255,0.6)) drop-shadow(0 0 100px rgba(191,95,255,0.3));
-  margin-bottom: 0.4rem;
-  mix-blend-mode: screen; /* ← 魚の色と融合して重なる */
-  /* ── letter-spacing ずれ補正 ──
-     CSS の letter-spacing は各文字の右側にスペースを追加するため
-     最後の文字にも余白が付き、視覚的に左へオフセットして見える。
-     padding-right に同値を入れることでブロック全体の視覚的中心を揃える。 */
-  display: block;
-  width: 100%;
-  text-align: center;
-  padding-right: 0.08em;
-}
+.sticky-nav { position:sticky; top:0; z-index:100; backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); background:rgba(7,7,15,0.85); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:52px; }
+.nav-logo { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:0.1em; background:linear-gradient(90deg,var(--cyan),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.nav-links { display:flex; gap:1.5rem; list-style:none; }
+.nav-links a { color:var(--subtext); text-decoration:none; font-size:0.8rem; letter-spacing:0.08em; transition:color 0.2s; }
+.nav-links a:hover { color:var(--cyan); text-shadow:0 0 8px var(--cyan); }
+.date-chip { font-size:0.72rem; color:var(--subtext); background:var(--glass2); border:1px solid var(--border); padding:4px 12px; border-radius:20px; }
 
-.tagline {
-  font-size: 0.85rem;
-  letter-spacing: 0.3em;
-  color: var(--subtext);
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-}
-.tagline span { color: var(--gold); }
+.container { max-width:1320px; margin:0 auto; padding:2rem 1.5rem 4rem; }
+.section-row { margin-bottom:2.5rem; background:rgba(7,7,15,0.45); border-radius:16px; padding:1.5rem; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+.section-title { display:flex; align-items:center; gap:0.7rem; font-size:0.9rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--text); margin-bottom:1rem; padding-bottom:0.6rem; border-bottom:1px solid var(--border); }
+.section-title .icon { font-size:1rem; }
+.section-title .tag { font-size:0.65rem; padding:2px 8px; border-radius:20px; background:linear-gradient(90deg,var(--cyan2),var(--purple2)); color:white; font-weight:600; letter-spacing:0.05em; }
+.section-title .line { flex:1; height:1px; background:linear-gradient(90deg,var(--border),transparent); }
 
-/* Sticky Nav */
-.sticky-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  background: rgba(7,7,15,0.85);
-  border-bottom: 1px solid var(--border);
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 52px;
-}
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:0.85rem; }
 
-.nav-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.3rem;
-  letter-spacing: 0.1em;
-  background: linear-gradient(90deg, var(--cyan), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+.card { background:var(--glass); border:1px solid var(--border); border-radius:12px; padding:1.25rem; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); transition:border-color 0.3s,box-shadow 0.3s,transform 0.2s; }
+.card:hover { border-color:rgba(0,240,255,0.4); box-shadow:0 0 30px rgba(0,240,255,0.08),0 4px 20px rgba(0,0,0,0.3); transform:translateY(-2px); }
 
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-}
-.nav-links a {
-  color: var(--subtext);
-  text-decoration: none;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+.quick-link-card { background:var(--glass); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem; text-decoration:none; color:var(--text); display:flex; align-items:center; gap:0.8rem; font-weight:600; font-size:0.88rem; transition:all 0.25s; backdrop-filter:blur(10px); position:relative; overflow:hidden; }
+.quick-link-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,240,255,0.06),transparent); opacity:0; transition:opacity 0.25s; }
+.quick-link-card:hover::before { opacity:1; }
+.quick-link-card:hover { border-color:var(--cyan); box-shadow:0 0 20px rgba(0,240,255,0.15),0 4px 15px rgba(0,0,0,0.3); transform:translateY(-3px); }
+.quick-link-card .ql-icon { width:40px; height:40px; border-radius:10px; background:linear-gradient(135deg,rgba(0,240,255,0.15),rgba(191,95,255,0.15)); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
+.quick-link-card small { font-size:0.7rem; color:var(--subtext); font-weight:400; display:block; margin-top:2px; }
 
-.date-chip {
-  font-size: 0.72rem;
-  color: var(--subtext);
-  background: var(--glass2);
-  border: 1px solid var(--border);
-  padding: 4px 12px;
-  border-radius: 20px;
-}
+.news-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+.news-link { display:flex; align-items:flex-start; gap:0.75rem; padding:0.85rem; border-radius:10px; border:1px solid var(--border); background:var(--glass); text-decoration:none; color:var(--text); transition:all 0.25s; backdrop-filter:blur(10px); }
+.news-link:hover { border-color:rgba(191,95,255,0.4); box-shadow:0 0 20px rgba(191,95,255,0.1); transform:translateY(-1px); }
+.nl-icon { width:38px; height:38px; border-radius:8px; background:linear-gradient(135deg,rgba(191,95,255,0.15),rgba(0,240,255,0.1)); border:1px solid var(--border2); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.nl-title { font-weight:700; font-size:0.85rem; color:var(--text); }
+.nl-sub { font-size:0.72rem; color:var(--subtext); margin-top:0.15rem; }
 
-/* ═══════════════════════════════════════════
-   LAYOUT
-═══════════════════════════════════════════ */
-.container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
-  /* 魚背景が透けて見えるよう、背景は設定しない */
-}
+.log-table { width:100%; border-collapse:collapse; font-size:0.84rem; }
+.log-table th { padding:0.65rem 0.9rem; text-align:left; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--cyan); border-bottom:1px solid var(--border); background:rgba(0,240,255,0.04); }
+.log-table td { padding:0.65rem 0.9rem; border-bottom:1px solid rgba(255,255,255,0.05); vertical-align:middle; }
+.log-table tr:last-child td { border-bottom:none; }
+.log-table tr:hover td { background:rgba(0,240,255,0.04); }
+.log-table a { color:var(--cyan); text-decoration:none; font-weight:600; transition:text-shadow 0.2s; }
+.log-table a:hover { text-shadow:0 0 8px var(--cyan); }
+.risk-badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:0.7rem; font-weight:600; }
+.risk-mid  { background:rgba(255,171,64,0.15); color:var(--amber); border:1px solid rgba(255,171,64,0.3); }
+.risk-low  { background:rgba(0,230,118,0.12);  color:var(--green); border:1px solid rgba(0,230,118,0.3); }
+.risk-high { background:rgba(255,77,109,0.15);  color:var(--red);   border:1px solid rgba(255,77,109,0.3); }
 
-/* セクション行に薄い暗幕をかけて文字読みやすさを確保、魚背景は透けて見える */
-.section-row {
-  margin-bottom: 2.5rem;
-  background: rgba(7,7,15,0.45);
-  border-radius: 16px;
-  padding: 1.5rem;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
+.macro-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.75rem; }
+.macro-card { background:var(--glass); border:1px solid var(--border); border-radius:10px; padding:1rem; text-align:center; backdrop-filter:blur(10px); transition:border-color 0.3s; }
+.macro-card:hover { border-color:rgba(0,240,255,0.35); }
+.macro-card .m-label { font-size:0.68rem; color:var(--subtext); margin-bottom:0.4rem; letter-spacing:0.05em; }
+.macro-card .m-value { font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:0.03em; background:linear-gradient(135deg,var(--cyan),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; }
+.macro-card .m-sub { font-size:0.68rem; margin-top:0.3rem; color:var(--subtext); }
+.up   { color:var(--green) !important; -webkit-text-fill-color:var(--green) !important; }
+.down { color:var(--red)   !important; -webkit-text-fill-color:var(--red)   !important; }
+.macro-alert { background:rgba(0,240,255,0.05); border:1px solid rgba(0,240,255,0.2); border-left:3px solid var(--cyan); border-radius:0 10px 10px 0; padding:0.85rem 1rem; font-size:0.8rem; color:var(--subtext); line-height:1.7; margin-top:0.75rem; }
+.macro-alert strong { color:var(--cyan); }
 
-/* Section Title */
-.section-title {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text);
-  margin-bottom: 1rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 1px solid var(--border);
-}
-.section-title .icon { font-size: 1rem; }
-.section-title .tag {
-  font-size: 0.65rem;
-  padding: 2px 8px;
-  border-radius: 20px;
-  background: linear-gradient(90deg, var(--cyan2), var(--purple2));
-  color: white;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-.section-title .line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--border), transparent);
-}
+.watchlist-header { font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--subtext); margin-bottom:0.6rem; display:flex; align-items:center; gap:0.4rem; }
+.stock-row { display:flex; align-items:center; justify-content:space-between; padding:0.6rem 0.5rem; border-radius:6px; border-bottom:1px solid rgba(255,255,255,0.05); font-size:0.83rem; transition:background 0.2s; }
+.stock-row:last-child { border-bottom:none; }
+.stock-row:hover { background:rgba(0,240,255,0.04); }
+.stock-name { font-weight:600; color:var(--text); }
+.stock-code { font-size:0.68rem; color:var(--subtext); font-family:monospace; }
+.stock-sector { font-size:0.68rem; padding:2px 8px; border-radius:10px; background:rgba(0,240,255,0.08); border:1px solid rgba(0,240,255,0.15); color:var(--cyan); }
+.stock-status { font-size:0.7rem; color:var(--subtext); font-style:italic; }
 
-/* Grids */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; }
+.arb-card { background:var(--glass); border:1px solid var(--border); border-left:3px solid var(--purple); border-radius:0 10px 10px 0; padding:1rem; backdrop-filter:blur(10px); transition:border-color 0.3s,transform 0.2s; }
+.arb-card:hover { border-color:var(--purple); border-left-color:var(--cyan); transform:translateX(3px); }
+.arb-title { font-weight:700; font-size:0.85rem; color:var(--text); margin-bottom:0.4rem; display:flex; align-items:center; gap:0.5rem; }
+.arb-letter { display:inline-flex; width:22px; height:22px; border-radius:50%; background:linear-gradient(135deg,var(--purple2),var(--cyan2)); color:white; font-size:0.7rem; font-weight:800; align-items:center; justify-content:center; flex-shrink:0; }
+.arb-logic { font-size:0.79rem; color:var(--subtext); line-height:1.6; }
+.arb-horizon { margin-top:0.5rem; font-size:0.7rem; color:var(--cyan); font-weight:600; letter-spacing:0.05em; }
 
-/* ═══════════════════════════════════════════
-   GLASS CARDS
-═══════════════════════════════════════════ */
-.card {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.25rem;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
-}
-.card:hover {
-  border-color: rgba(0,240,255,0.4);
-  box-shadow: 0 0 30px rgba(0,240,255,0.08), 0 4px 20px rgba(0,0,0,0.3);
-  transform: translateY(-2px);
-}
+.criteria-label { font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.6rem; }
+.criteria-label.ok   { color:var(--green); }
+.criteria-label.star { color:var(--gold); }
+.criteria-label.no   { color:var(--red); }
+.criteria-list { list-style:none; }
+.criteria-list li { display:flex; align-items:flex-start; gap:0.5rem; padding:0.45rem 0; font-size:0.82rem; color:var(--subtext); border-bottom:1px solid rgba(255,255,255,0.05); line-height:1.4; }
+.criteria-list li:last-child { border-bottom:none; }
+.mark { flex-shrink:0; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:800; margin-top:0.1rem; }
+.mark-ok   { background:rgba(0,230,118,0.15);  color:var(--green); border:1px solid rgba(0,230,118,0.3); }
+.mark-star { background:rgba(255,208,96,0.15); color:var(--gold);  border:1px solid rgba(255,208,96,0.3); }
+.mark-no   { background:rgba(255,77,109,0.15); color:var(--red);   border:1px solid rgba(255,77,109,0.3); }
+.criteria-tip { background:rgba(0,240,255,0.05); border:1px solid rgba(0,240,255,0.15); border-radius:8px; padding:0.75rem; font-size:0.78rem; color:var(--subtext); line-height:1.6; margin-top:0.75rem; }
+.criteria-tip strong { color:var(--cyan); }
 
-/* ═══════════════════════════════════════════
-   QUICK LINKS
-═══════════════════════════════════════════ */
-.quick-link-card {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1rem 1.1rem;
-  text-decoration: none;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  font-weight: 600;
-  font-size: 0.88rem;
-  transition: all 0.25s;
-  backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
-}
-.quick-link-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,240,255,0.06), transparent);
-  opacity: 0;
-  transition: opacity 0.25s;
-}
-.quick-link-card:hover::before { opacity: 1; }
-.quick-link-card:hover {
-  border-color: var(--cyan);
-  box-shadow: 0 0 20px rgba(0,240,255,0.15), 0 4px 15px rgba(0,0,0,0.3);
-  transform: translateY(-3px);
-}
-.quick-link-card .ql-icon {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(0,240,255,0.15), rgba(191,95,255,0.15));
-  border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-.quick-link-card small { font-size: 0.7rem; color: var(--subtext); font-weight: 400; display: block; margin-top: 2px; }
+.neon-divider { height:1px; background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),transparent); margin:0.5rem 0 2rem; opacity:0.4; }
 
-/* ═══════════════════════════════════════════
-   NEWS LINKS
-═══════════════════════════════════════════ */
-.news-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+footer { position:relative; z-index:2; text-align:center; padding:2rem 1rem 1.5rem; border-top:1px solid var(--border); background:rgba(7,7,15,0.8); backdrop-filter:blur(20px); }
+.footer-logo { font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:0.15em; background:linear-gradient(90deg,var(--gold),var(--cyan),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:0.3rem; }
+.footer-motto { font-size:0.72rem; letter-spacing:0.2em; color:var(--subtext); margin-bottom:0.8rem; }
+footer p { font-size:0.75rem; color:var(--subtext); }
+footer span { color:var(--cyan); }
 
-.news-link {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.85rem;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--glass);
-  text-decoration: none;
-  color: var(--text);
-  transition: all 0.25s;
-  backdrop-filter: blur(10px);
-}
-.news-link:hover {
-  border-color: rgba(191,95,255,0.4);
-  box-shadow: 0 0 20px rgba(191,95,255,0.1);
-  transform: translateY(-1px);
-}
-.nl-icon {
-  width: 38px; height: 38px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(191,95,255,0.15), rgba(0,240,255,0.1));
-  border: 1px solid var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-}
-.nl-title { font-weight: 700; font-size: 0.85rem; color: var(--text); }
-.nl-sub { font-size: 0.72rem; color: var(--subtext); margin-top: 0.15rem; }
+.skill-card { background:var(--glass); border:1px solid var(--border2); border-radius:14px; padding:1.4rem 1.2rem 1.2rem; display:flex; flex-direction:column; align-items:flex-start; gap:0.55rem; backdrop-filter:blur(10px); transition:border-color 0.3s,box-shadow 0.3s,transform 0.2s; position:relative; overflow:hidden; }
+.skill-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--purple),var(--cyan)); opacity:0.7; }
+.skill-card:hover { border-color:rgba(191,95,255,0.45); box-shadow:0 0 30px rgba(191,95,255,0.12),0 4px 20px rgba(0,0,0,0.3); transform:translateY(-3px); }
+.skill-card--empty { border-style:dashed; opacity:0.45; pointer-events:none; }
+.skill-icon { font-size:1.8rem; line-height:1; margin-bottom:0.1rem; }
+.skill-name { font-family:'Bebas Neue',sans-serif; font-size:1.15rem; letter-spacing:0.08em; background:linear-gradient(90deg,var(--cyan),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.skill-trigger { font-size:0.73rem; color:var(--subtext); line-height:1.55; flex:1; }
+.skill-trigger code { display:inline-block; background:rgba(0,240,255,0.08); border:1px solid rgba(0,240,255,0.2); border-radius:5px; padding:1px 6px; font-family:monospace; color:var(--cyan); font-size:0.72rem; margin:1px; white-space:nowrap; }
+.skill-dl-btn { display:inline-flex; align-items:center; gap:0.4rem; margin-top:0.4rem; padding:0.45rem 1rem; border-radius:8px; background:linear-gradient(135deg,rgba(191,95,255,0.2),rgba(0,240,255,0.15)); border:1px solid rgba(191,95,255,0.35); color:var(--text); text-decoration:none; font-size:0.78rem; font-weight:700; letter-spacing:0.05em; transition:all 0.25s; }
+.skill-dl-btn:hover { background:linear-gradient(135deg,rgba(191,95,255,0.35),rgba(0,240,255,0.25)); border-color:var(--cyan); box-shadow:0 0 16px rgba(0,240,255,0.2); transform:translateY(-1px); }
+.skill-version { font-size:0.65rem; color:var(--subtext); margin-left:auto; align-self:flex-end; font-family:monospace; opacity:0.6; }
 
-/* ═══════════════════════════════════════════
-   LOG TABLE
-═══════════════════════════════════════════ */
-.log-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.84rem;
-}
-.log-table th {
-  padding: 0.65rem 0.9rem;
-  text-align: left;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  border-bottom: 1px solid var(--border);
-  background: rgba(0,240,255,0.04);
-}
-.log-table td {
-  padding: 0.65rem 0.9rem;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  vertical-align: middle;
-}
-.log-table tr:last-child td { border-bottom: none; }
-.log-table tr:hover td { background: rgba(0,240,255,0.04); }
-.log-table a {
-  color: var(--cyan);
-  text-decoration: none;
-  font-weight: 600;
-  transition: text-shadow 0.2s;
-}
-.log-table a:hover { text-shadow: 0 0 8px var(--cyan); }
+.claude-sub-label { font-size:0.68rem; color:var(--subtext); letter-spacing:0.14em; text-transform:uppercase; margin:1.2rem 0 0.6rem 2px; display:flex; align-items:center; gap:0.4rem; }
+.claude-sub-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--border),transparent); }
 
-.risk-badge {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 0.7rem;
-  font-weight: 600;
-}
-.risk-mid  { background: rgba(255,171,64,0.15);  color: var(--amber); border: 1px solid rgba(255,171,64,0.3); }
-.risk-low  { background: rgba(0,230,118,0.12);   color: var(--green); border: 1px solid rgba(0,230,118,0.3); }
-.risk-high { background: rgba(255,77,109,0.15);  color: var(--red);   border: 1px solid rgba(255,77,109,0.3); }
+.output-file-list { display:flex; flex-direction:column; gap:0.45rem; }
+.output-file-item { display:flex; align-items:center; gap:0.6rem; padding:0.55rem 0.8rem; background:var(--glass); border:1px solid var(--border); border-radius:8px; text-decoration:none; color:var(--text); font-size:0.8rem; transition:all 0.2s; backdrop-filter:blur(6px); }
+.output-file-item:hover { border-color:var(--cyan); background:var(--glass2); box-shadow:0 0 12px rgba(0,240,255,0.1); transform:translateX(3px); }
+.output-file-item .fi-icon { font-size:1rem; flex-shrink:0; width:24px; text-align:center; }
+.output-file-item .fi-name { font-weight:600; flex:1; }
+.output-file-item .fi-type { font-size:0.65rem; font-family:monospace; color:var(--cyan); background:rgba(0,240,255,0.08); border:1px solid rgba(0,240,255,0.2); border-radius:4px; padding:1px 6px; flex-shrink:0; }
+.output-file-item .fi-date { font-size:0.65rem; color:var(--subtext); font-family:monospace; flex-shrink:0; }
 
-/* ═══════════════════════════════════════════
-   MACRO DASHBOARD
-═══════════════════════════════════════════ */
-.macro-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
-
-.macro-card {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1rem;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  transition: border-color 0.3s;
-}
-.macro-card:hover { border-color: rgba(0,240,255,0.35); }
-.macro-card .m-label { font-size: 0.68rem; color: var(--subtext); margin-bottom: 0.4rem; letter-spacing: 0.05em; }
-.macro-card .m-value {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2rem;
-  letter-spacing: 0.03em;
-  background: linear-gradient(135deg, var(--cyan), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-}
-.macro-card .m-sub { font-size: 0.68rem; margin-top: 0.3rem; color: var(--subtext); }
-.up   { color: var(--green) !important; -webkit-text-fill-color: var(--green) !important; }
-.down { color: var(--red)   !important; -webkit-text-fill-color: var(--red)   !important; }
-
-.macro-alert {
-  background: rgba(0,240,255,0.05);
-  border: 1px solid rgba(0,240,255,0.2);
-  border-left: 3px solid var(--cyan);
-  border-radius: 0 10px 10px 0;
-  padding: 0.85rem 1rem;
-  font-size: 0.8rem;
-  color: var(--subtext);
-  line-height: 1.7;
-  margin-top: 0.75rem;
-}
-.macro-alert strong { color: var(--cyan); }
-
-/* ═══════════════════════════════════════════
-   WATCHLIST
-═══════════════════════════════════════════ */
-.watchlist-header {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--subtext);
-  margin-bottom: 0.6rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.stock-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.6rem 0.5rem;
-  border-radius: 6px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  font-size: 0.83rem;
-  transition: background 0.2s;
-}
-.stock-row:last-child { border-bottom: none; }
-.stock-row:hover { background: rgba(0,240,255,0.04); }
-.stock-name { font-weight: 600; color: var(--text); }
-.stock-code { font-size: 0.68rem; color: var(--subtext); font-family: monospace; }
-.stock-sector {
-  font-size: 0.68rem;
-  padding: 2px 8px;
-  border-radius: 10px;
-  background: rgba(0,240,255,0.08);
-  border: 1px solid rgba(0,240,255,0.15);
-  color: var(--cyan);
-}
-.stock-status { font-size: 0.7rem; color: var(--subtext); font-style: italic; }
-
-/* ═══════════════════════════════════════════
-   ARBITRAGE
-═══════════════════════════════════════════ */
-.arb-card {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--purple);
-  border-radius: 0 10px 10px 0;
-  padding: 1rem;
-  backdrop-filter: blur(10px);
-  transition: border-color 0.3s, transform 0.2s;
-}
-.arb-card:hover {
-  border-color: var(--purple);
-  border-left-color: var(--cyan);
-  transform: translateX(3px);
-}
-.arb-title {
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: var(--text);
-  margin-bottom: 0.4rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.arb-letter {
-  display: inline-flex;
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--purple2), var(--cyan2));
-  color: white;
-  font-size: 0.7rem;
-  font-weight: 800;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.arb-logic { font-size: 0.79rem; color: var(--subtext); line-height: 1.6; }
-.arb-horizon {
-  margin-top: 0.5rem;
-  font-size: 0.7rem;
-  color: var(--cyan);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-/* ═══════════════════════════════════════════
-   SCREENING
-═══════════════════════════════════════════ */
-.criteria-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 0.6rem;
-}
-.criteria-label.ok     { color: var(--green); }
-.criteria-label.star   { color: var(--gold); }
-.criteria-label.no     { color: var(--red); }
-
-.criteria-list { list-style: none; }
-.criteria-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  padding: 0.45rem 0;
-  font-size: 0.82rem;
-  color: var(--subtext);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  line-height: 1.4;
-}
-.criteria-list li:last-child { border-bottom: none; }
-.mark {
-  flex-shrink: 0;
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.6rem;
-  font-weight: 800;
-  margin-top: 0.1rem;
-}
-.mark-ok   { background: rgba(0,230,118,0.15);  color: var(--green); border: 1px solid rgba(0,230,118,0.3); }
-.mark-star { background: rgba(255,208,96,0.15); color: var(--gold);  border: 1px solid rgba(255,208,96,0.3); }
-.mark-no   { background: rgba(255,77,109,0.15); color: var(--red);   border: 1px solid rgba(255,77,109,0.3); }
-
-.criteria-tip {
-  background: rgba(0,240,255,0.05);
-  border: 1px solid rgba(0,240,255,0.15);
-  border-radius: 8px;
-  padding: 0.75rem;
-  font-size: 0.78rem;
-  color: var(--subtext);
-  line-height: 1.6;
-  margin-top: 0.75rem;
-}
-.criteria-tip strong { color: var(--cyan); }
-
-/* ═══════════════════════════════════════════
-   DIVIDER
-═══════════════════════════════════════════ */
-.neon-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--cyan), var(--purple), transparent);
-  margin: 0.5rem 0 2rem;
-  opacity: 0.4;
-}
-
-/* ═══════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════ */
-footer {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 2rem 1rem 1.5rem;
-  border-top: 1px solid var(--border);
-  background: rgba(7,7,15,0.8);
-  backdrop-filter: blur(20px);
-}
-.footer-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2rem;
-  letter-spacing: 0.15em;
-  background: linear-gradient(90deg, var(--gold), var(--cyan), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 0.3rem;
-}
-.footer-motto {
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  color: var(--subtext);
-  margin-bottom: 0.8rem;
-}
-footer p { font-size: 0.75rem; color: var(--subtext); }
-footer span { color: var(--cyan); }
-
-/* ═══════════════════════════════════════════
-   SKILL CARDS — スキル集
-═══════════════════════════════════════════ */
-.skill-card {
-  background: var(--glass);
-  border: 1px solid var(--border2);
-  border-radius: 14px;
-  padding: 1.4rem 1.2rem 1.2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.55rem;
-  backdrop-filter: blur(10px);
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
-  position: relative;
-  overflow: hidden;
-}
-.skill-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--purple), var(--cyan));
-  opacity: 0.7;
-}
-.skill-card:hover {
-  border-color: rgba(191,95,255,0.45);
-  box-shadow: 0 0 30px rgba(191,95,255,0.12), 0 4px 20px rgba(0,0,0,0.3);
-  transform: translateY(-3px);
-}
-.skill-card--empty {
-  border-style: dashed;
-  opacity: 0.45;
-  pointer-events: none;
-}
-.skill-icon {
-  font-size: 1.8rem;
-  line-height: 1;
-  margin-bottom: 0.1rem;
-}
-.skill-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.15rem;
-  letter-spacing: 0.08em;
-  background: linear-gradient(90deg, var(--cyan), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.skill-trigger {
-  font-size: 0.73rem;
-  color: var(--subtext);
-  line-height: 1.55;
-  flex: 1;
-}
-.skill-trigger code {
-  display: inline-block;
-  background: rgba(0,240,255,0.08);
-  border: 1px solid rgba(0,240,255,0.2);
-  border-radius: 5px;
-  padding: 1px 6px;
-  font-family: monospace;
-  color: var(--cyan);
-  font-size: 0.72rem;
-  margin: 1px 1px;
-  white-space: nowrap;
-}
-.skill-dl-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 0.4rem;
-  padding: 0.45rem 1rem;
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(191,95,255,0.2), rgba(0,240,255,0.15));
-  border: 1px solid rgba(191,95,255,0.35);
-  color: var(--text);
-  text-decoration: none;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  transition: all 0.25s;
-}
-.skill-dl-btn:hover {
-  background: linear-gradient(135deg, rgba(191,95,255,0.35), rgba(0,240,255,0.25));
-  border-color: var(--cyan);
-  box-shadow: 0 0 16px rgba(0,240,255,0.2);
-  transform: translateY(-1px);
-}
-.skill-version {
-  font-size: 0.65rem;
-  color: var(--subtext);
-  margin-left: auto;
-  align-self: flex-end;
-  font-family: monospace;
-  opacity: 0.6;
-}
-
-/* ═══════════════════════════════════════════
-   CLAUDE WORKSPACE
-═══════════════════════════════════════════ */
-.claude-sub-label {
-  font-size: 0.68rem;
-  color: var(--subtext);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin: 1.2rem 0 0.6rem 2px;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-.claude-sub-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--border), transparent);
-}
-
-/* 生成物ファイルリストカード */
-.output-file-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-.output-file-item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.55rem 0.8rem;
-  background: var(--glass);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  text-decoration: none;
-  color: var(--text);
-  font-size: 0.8rem;
-  transition: all 0.2s;
-  backdrop-filter: blur(6px);
-}
-.output-file-item:hover {
-  border-color: var(--cyan);
-  background: var(--glass2);
-  box-shadow: 0 0 12px rgba(0,240,255,0.1);
-  transform: translateX(3px);
-}
-.output-file-item .fi-icon {
-  font-size: 1rem;
-  flex-shrink: 0;
-  width: 24px;
-  text-align: center;
-}
-.output-file-item .fi-name { font-weight: 600; flex: 1; }
-.output-file-item .fi-type {
-  font-size: 0.65rem;
-  font-family: monospace;
-  color: var(--cyan);
-  background: rgba(0,240,255,0.08);
-  border: 1px solid rgba(0,240,255,0.2);
-  border-radius: 4px;
-  padding: 1px 6px;
-  flex-shrink: 0;
-}
-.output-file-item .fi-date {
-  font-size: 0.65rem;
-  color: var(--subtext);
-  font-family: monospace;
-  flex-shrink: 0;
-}
-
-/* ═══════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════ */
-@media (max-width: 960px) {
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
-  .macro-grid { grid-template-columns: repeat(2, 1fr); }
-  .news-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 640px) {
-  .grid-2 { grid-template-columns: 1fr; }
-  .grid-3 { grid-template-columns: 1fr; }
-  .grid-4 { grid-template-columns: 1fr 1fr; }
-  .macro-grid { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
-  .valiente-title { font-size: clamp(5rem, 20vw, 8rem); }
-}
+@media (max-width:960px) { .grid-4 { grid-template-columns:repeat(2,1fr); } .macro-grid { grid-template-columns:repeat(2,1fr); } .news-grid { grid-template-columns:1fr; } }
+@media (max-width:640px) { .grid-2 { grid-template-columns:1fr; } .grid-3 { grid-template-columns:1fr; } .grid-4 { grid-template-columns:1fr 1fr; } .macro-grid { grid-template-columns:1fr 1fr; } .nav-links { display:none; } .valiente-title { font-size:clamp(5rem,20vw,8rem); } }
 </style>
 </head>
 <body>
 
-<!-- Animated Bokeh Background -->
 <div class="bokeh-bg">
   <div class="bokeh-blob b1"></div>
   <div class="bokeh-blob b2"></div>
@@ -902,54 +211,28 @@ footer span { color: var(--cyan); }
 
 <div class="page-wrap">
 
-<!-- ══════════════════════════════════════════
-     HERO — Full-screen VALIENTE photo
-══════════════════════════════════════════ -->
 <div class="hero">
   <div class="hero-inner">
-    <!-- VALIENTE Transparent Shield Logo (actual PNG) -->
-    <img class="shield-logo"
-         src="images/valiente-logo.png"
-         alt="VALIENTE Shield"
-         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-    <!-- SVG fallback (hidden unless image fails to load) -->
+    <img class="shield-logo" src="images/valiente-logo.png" alt="VALIENTE Shield" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
     <svg class="shield-logo" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;">
       <defs>
-        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%"   stop-color="#00f0ff"/>
-          <stop offset="50%"  stop-color="#bf5fff"/>
-          <stop offset="100%" stop-color="#ffd060"/>
-        </linearGradient>
-        <linearGradient id="shieldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%"   stop-color="#ffd060"/>
-          <stop offset="100%" stop-color="#00f0ff"/>
-        </linearGradient>
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-          <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
+        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00f0ff"/><stop offset="50%" stop-color="#bf5fff"/><stop offset="100%" stop-color="#ffd060"/></linearGradient>
+        <linearGradient id="shieldGrad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffd060"/><stop offset="100%" stop-color="#00f0ff"/></linearGradient>
+        <filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
       </defs>
-      <path d="M100 8 L185 38 L185 135 Q185 195 100 228 Q15 195 15 135 L15 38 Z"
-            stroke="url(#shieldGrad)" stroke-width="2.5" fill="rgba(0,240,255,0.04)" filter="url(#glow)"/>
+      <path d="M100 8 L185 38 L185 135 Q185 195 100 228 Q15 195 15 135 L15 38 Z" stroke="url(#shieldGrad)" stroke-width="2.5" fill="rgba(0,240,255,0.04)" filter="url(#glow)"/>
       <line x1="15" y1="78" x2="185" y2="78" stroke="url(#shieldGrad)" stroke-width="1.5" opacity="0.7"/>
-      <path d="M100 15 L178 42 L178 135 Q178 188 100 218 Q22 188 22 135 L22 42 Z"
-            stroke="url(#shieldGrad2)" stroke-width="1" fill="none" opacity="0.3"/>
       <text x="58" y="66" text-anchor="middle" font-size="28" filter="url(#glow)">🦁</text>
       <text x="142" y="66" text-anchor="middle" font-size="24" filter="url(#glow)">👑</text>
-      <text x="100" y="115" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="11" font-weight="300" fill="url(#shieldGrad)" letter-spacing="0.5">desorganizacióna</text>
-      <text x="100" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-style="italic" fill="url(#shieldGrad2)" letter-spacing="1">organizada</text>
-      <circle cx="100" cy="170" r="2" fill="url(#shieldGrad)" opacity="0.7"/>
+      <text x="100" y="115" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="11" font-weight="300" fill="url(#shieldGrad)" letter-spacing="0.5">desorganizacióna</text>
+      <text x="100" y="140" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-style="italic" fill="url(#shieldGrad2)" letter-spacing="1">organizada</text>
     </svg>
-
     <p class="motto">desorganizacióna organizada</p>
     <h1 class="valiente-title">VALIENTE</h1>
     <p class="tagline">Deep Learning <span>×</span> Football &nbsp;|&nbsp; Indica Labs Portal</p>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     STICKY NAV
-══════════════════════════════════════════ -->
 <nav class="sticky-nav">
   <div class="nav-logo">VALIENTE</div>
   <ul class="nav-links">
@@ -957,6 +240,7 @@ footer span { color: var(--cyan); }
     <li><a href="#skills">スキル</a></li>
     <li><a href="#cloud">クラウド</a></li>
     <li><a href="#claude">Claude</a></li>
+    <li><a href="#holdings">Holdings</a></li>
     <li><a href="#news">ニュース</a></li>
     <li><a href="#log">学習ログ</a></li>
     <li><a href="#macro">マクロ</a></li>
@@ -968,333 +252,249 @@ footer span { color: var(--cyan); }
 
 <div class="container">
 
-<!-- ══════════════════════════════════════════
-     QUICK LINKS
-══════════════════════════════════════════ -->
+<!-- QUICK LINKS -->
 <div class="section-row" id="links">
-  <div class="section-title">
-    <span class="icon">🔗</span> クイックリンク
-    <span class="line"></span>
-  </div>
+  <div class="section-title"><span class="icon">🔗</span> クイックリンク<span class="line"></span></div>
   <div class="grid-4">
-    <a class="quick-link-card" href="https://indicalabs.sharepoint.com/sites/JapanTeam/SitePages/CollabHome.aspx" target="_blank">
-      <div class="ql-icon">🏠</div>
-      <div><div>Japan Team</div><small>SharePoint ホーム</small></div>
-    </a>
-    <a class="quick-link-card" href="https://indicalab.bamboohr.com/employees/pto/?id=126" target="_blank">
-      <div class="ql-icon">👥</div>
-      <div><div>HR</div><small>BambooHR</small></div>
-    </a>
-    <a class="quick-link-card" href="https://www.chatwork.com/#%21rid378330219" target="_blank">
-      <div class="ql-icon">💬</div>
-      <div><div>Chatwork</div><small>チームチャット</small></div>
-    </a>
-    <a class="quick-link-card" href="https://learning.shift-ai.co.jp/members/mjTPK2PDxwQZ/home" target="_blank">
-      <div class="ql-icon">🤖</div>
-      <div><div>Shift AI</div><small>AI学習プラットフォーム</small></div>
-    </a>
+    <a class="quick-link-card" href="https://indicalabs.sharepoint.com/sites/JapanTeam/SitePages/CollabHome.aspx" target="_blank"><div class="ql-icon">🏠</div><div><div>Japan Team</div><small>SharePoint ホーム</small></div></a>
+    <a class="quick-link-card" href="https://indicalab.bamboohr.com/employees/pto/?id=126" target="_blank"><div class="ql-icon">👥</div><div><div>HR</div><small>BambooHR</small></div></a>
+    <a class="quick-link-card" href="https://www.chatwork.com/#%21rid378330219" target="_blank"><div class="ql-icon">💬</div><div><div>Chatwork</div><small>チームチャット</small></div></a>
+    <a class="quick-link-card" href="https://learning.shift-ai.co.jp/members/mjTPK2PDxwQZ/home" target="_blank"><div class="ql-icon">🤖</div><div><div>Shift AI</div><small>AI学習プラットフォーム</small></div></a>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     SKILL COLLECTION — スキル集
-══════════════════════════════════════════ -->
+<!-- SKILLS -->
 <div class="section-row" id="skills">
-  <div class="section-title">
-    <span class="icon">⚡</span> スキル集
-    <span class="tag">Cowork Plugin</span>
-    <span class="line"></span>
-  </div>
-  <p style="font-size:0.78rem; color:var(--subtext); margin-bottom:1rem; line-height:1.7;">
-    Cowork モードで使えるカスタムスキルのコレクション。<code style="background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.2);border-radius:4px;padding:1px 6px;color:var(--cyan);font-size:0.72rem;">.skill</code> ファイルをダブルクリックまたは Cowork の設定からインストールできます。
-  </p>
+  <div class="section-title"><span class="icon">⚡</span> スキル集<span class="tag">Cowork Plugin</span><span class="line"></span></div>
+  <p style="font-size:0.78rem;color:var(--subtext);margin-bottom:1rem;line-height:1.7;">Cowork モードで使えるカスタムスキルのコレクション。<code style="background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.2);border-radius:4px;padding:1px 6px;color:var(--cyan);font-size:0.72rem;">.skill</code> ファイルをダブルクリックまたは Cowork の設定からインストールできます。</p>
   <div class="grid-4">
-
-    <!-- #1 VALIENTEスキル -->
-    <div class="skill-card">
-      <div class="skill-icon">🌐</div>
-      <div class="skill-name">VALIENTEスキル</div>
-      <div class="skill-trigger">
-        このポータルのデザインシステムをベースにウェブページ・HTMLを自動生成。<br>
-        <code>ポータルページ作って</code>
-        <code>ウェブページ作って</code>
-        <code>セクション追加して</code>
-        <code>GitHub にコミットして</code>
-      </div>
-      <a class="skill-dl-btn" href="skills/valiente-web.skill" download="valiente-web.skill">
-        ⬇&nbsp; ダウンロード
-      </a>
-      <span class="skill-version">v1.0 · 2026-05</span>
-    </div>
-
-    <!-- #2 VALIENTE Portal Template v2 -->
-    <div class="skill-card">
-      <div class="skill-icon">🏛️</div>
-      <div class="skill-name">Portal Template v2</div>
-      <div class="skill-trigger">
-        現在のポータルデザインを固定した雛形テンプレート。背景・レイアウト固定、コンテンツのみ差し替え可能。<br>
-        <code>テンプレートから作って</code>
-        <code>雛形を使って</code>
-        <code>v2ベースで</code>
-      </div>
-      <a class="skill-dl-btn" href="skills/valiente-portal-v2.skill" download="valiente-portal-v2.skill">
-        ⬇&nbsp; ダウンロード
-      </a>
-      <span class="skill-version">v2.0 · 2026-05</span>
-    </div>
-
-    <!-- 準備中スロット × 2 -->
-    <div class="skill-card skill-card--empty">
-      <div class="skill-icon">＋</div>
-      <div class="skill-name">準備中</div>
-      <div class="skill-trigger">新しいスキルが追加されます</div>
-    </div>
-    <div class="skill-card skill-card--empty">
-      <div class="skill-icon">＋</div>
-      <div class="skill-name">準備中</div>
-      <div class="skill-trigger">新しいスキルが追加されます</div>
-    </div>
-
+    <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">VALIENTEスキル</div><div class="skill-trigger">このポータルのデザインシステムをベースにウェブページ・HTMLを自動生成。<br><code>ポータルページ作って</code><code>ウェブページ作って</code><code>セクション追加して</code><code>GitHub にコミットして</code></div><a class="skill-dl-btn" href="skills/valiente-web.skill" download="valiente-web.skill">⬇&nbsp; ダウンロード</a><span class="skill-version">v1.0 · 2026-05</span></div>
+    <div class="skill-card"><div class="skill-icon">🏛️</div><div class="skill-name">Portal Template v2</div><div class="skill-trigger">現在のポータルデザインを固定した雛形テンプレート。<br><code>テンプレートから作って</code><code>雛形を使って</code><code>v2ベースで</code></div><a class="skill-dl-btn" href="skills/valiente-portal-v2.skill" download="valiente-portal-v2.skill">⬇&nbsp; ダウンロード</a><span class="skill-version">v2.0 · 2026-05</span></div>
+    <div class="skill-card skill-card--empty"><div class="skill-icon">＋</div><div class="skill-name">準備中</div><div class="skill-trigger">新しいスキルが追加されます</div></div>
+    <div class="skill-card skill-card--empty"><div class="skill-icon">＋</div><div class="skill-name">準備中</div><div class="skill-trigger">新しいスキルが追加されます</div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     CLOUD AUTOMATION — クラウド自動化
-══════════════════════════════════════════ -->
+<!-- CLOUD AUTOMATION -->
 <div class="section-row" id="cloud">
-  <div class="section-title">
-    <span class="icon">☁️</span> クラウド自動化
-    <span class="tag">GitHub Actions</span>
-    <span class="line"></span>
-  </div>
-  <p style="font-size:0.78rem; color:var(--subtext); margin-bottom:1rem; line-height:1.7;">
-    スケジュールタスクをローカル端末から切り離し、<strong style="color:var(--cyan);">GitHub のクラウドサーバー</strong>で自動実行する仕組み。
-    端末を起動していなくても毎日・毎週・毎時など好きなタイミングで動かせます。
-  </p>
-
+  <div class="section-title"><span class="icon">☁️</span> クラウド自動化<span class="tag">GitHub Actions</span><span class="line"></span></div>
+  <p style="font-size:0.78rem;color:var(--subtext);margin-bottom:1rem;line-height:1.7;">スケジュールタスクをローカル端末から切り離し、<strong style="color:var(--cyan);">GitHub のクラウドサーバー</strong>で自動実行する仕組み。端末を起動していなくても毎日・毎週・毎時など好きなタイミングで動かせます。</p>
   <div class="grid-4">
-
-    <!-- GitHub Actions テンプレート -->
-    <div class="skill-card">
-      <div class="skill-icon">⚙️</div>
-      <div class="skill-name">クラウドスケジュール</div>
-      <div class="skill-trigger">
-        GitHub Actions で定期タスクをクラウド実行するワークフローテンプレート。<br>
-        <code>.github/workflows/</code> に置くだけで有効になる。<br>
-        <code>cron スケジュール</code>
-        <code>手動トリガー</code>
-        <code>Claude API 連携</code>
-      </div>
-      <a class="skill-dl-btn" href="schedules/cloud-schedule.yml" download="cloud-schedule.yml">
-        ⬇&nbsp; ダウンロード
-      </a>
-      <span class="skill-version">v1.0 · 2026-05 · .yml</span>
-    </div>
-
-    <!-- 使い方ガイドカード -->
-    <div class="skill-card" style="cursor:default;">
-      <div class="skill-icon">📋</div>
-      <div class="skill-name">セットアップ手順</div>
-      <div class="skill-trigger" style="font-size:0.72rem; line-height:1.8;">
-        <strong style="color:var(--cyan);">① ダウンロード</strong> → <code>cloud-schedule.yml</code> を取得<br>
-        <strong style="color:var(--cyan);">② 配置</strong> → リポジトリの <code>.github/workflows/</code> に置く<br>
-        <strong style="color:var(--cyan);">③ Secrets 登録</strong> → GitHub Settings で <code>ANTHROPIC_API_KEY</code> 等を登録<br>
-        <strong style="color:var(--cyan);">④ コミット</strong> → プッシュするだけで自動有効化<br>
-        <strong style="color:var(--cyan);">⑤ 確認</strong> → Actions タブでログをチェック
-      </div>
-      <a class="skill-dl-btn" href="https://github.com/cr0sswarp/indica-portal/tree/main/schedules" target="_blank" style="background:rgba(0,188,100,0.12); border-color:rgba(0,188,100,0.3); color:#00c87a;">
-        🐙&nbsp; GitHub で見る
-      </a>
-      <span class="skill-version">無料 · 月2,000分まで</span>
-    </div>
-
-    <!-- 準備中スロット × 2 -->
-    <div class="skill-card skill-card--empty">
-      <div class="skill-icon">＋</div>
-      <div class="skill-name">準備中</div>
-      <div class="skill-trigger">レポート自動生成など追加予定</div>
-    </div>
-    <div class="skill-card skill-card--empty">
-      <div class="skill-icon">＋</div>
-      <div class="skill-name">準備中</div>
-      <div class="skill-trigger">Notion / Gmail 連携テンプレート</div>
-    </div>
-
+    <div class="skill-card"><div class="skill-icon">⚙️</div><div class="skill-name">クラウドスケジュール</div><div class="skill-trigger">GitHub Actions で定期タスクをクラウド実行するワークフローテンプレート。<br><code>.github/workflows/</code> に置くだけで有効になる。<br><code>cron スケジュール</code><code>手動トリガー</code><code>Claude API 連携</code></div><a class="skill-dl-btn" href="schedules/cloud-schedule.yml" download="cloud-schedule.yml">⬇&nbsp; ダウンロード</a><span class="skill-version">v1.0 · 2026-05 · .yml</span></div>
+    <div class="skill-card" style="cursor:default;"><div class="skill-icon">📋</div><div class="skill-name">セットアップ手順</div><div class="skill-trigger" style="font-size:0.72rem;line-height:1.8;"><strong style="color:var(--cyan);">① ダウンロード</strong> → <code>cloud-schedule.yml</code> を取得<br><strong style="color:var(--cyan);">② 配置</strong> → <code>.github/workflows/</code> に置く<br><strong style="color:var(--cyan);">③ Secrets 登録</strong> → <code>ANTHROPIC_API_KEY</code> 等を登録<br><strong style="color:var(--cyan);">④ コミット</strong> → プッシュで自動有効化<br><strong style="color:var(--cyan);">⑤ 確認</strong> → Actions タブでログをチェック</div><a class="skill-dl-btn" href="https://github.com/cr0sswarp/indica-portal/tree/main/schedules" target="_blank" style="background:rgba(0,188,100,0.12);border-color:rgba(0,188,100,0.3);color:#00c87a;">🐙&nbsp; GitHub で見る</a><span class="skill-version">無料 · 月2,000分まで</span></div>
+    <div class="skill-card skill-card--empty"><div class="skill-icon">＋</div><div class="skill-name">準備中</div><div class="skill-trigger">レポート自動生成など追加予定</div></div>
+    <div class="skill-card skill-card--empty"><div class="skill-icon">＋</div><div class="skill-name">準備中</div><div class="skill-trigger">Notion / Gmail 連携テンプレート</div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     CLAUDE WORKSPACE — 外部脳 & 生成物
-══════════════════════════════════════════ -->
+<!-- CLAUDE WORKSPACE -->
 <div class="section-row" id="claude">
-  <div class="section-title">
-    <span class="icon">🧠</span> Claude ワークスペース
-    <span class="tag">外部脳 & 生成物</span>
-    <span class="line"></span>
-  </div>
-  <p style="font-size:0.78rem; color:var(--subtext); margin-bottom:0.3rem; line-height:1.7;">
-    Claude / Cowork で作成した生成物・外部ナレッジベース・関連ツールへのワンクリックアクセス。
-  </p>
-
-  <!-- ── AI ツール & 外部脳 ── -->
+  <div class="section-title"><span class="icon">🧠</span> Claude ワークスペース<span class="tag">外部脳 & 生成物</span><span class="line"></span></div>
+  <p style="font-size:0.78rem;color:var(--subtext);margin-bottom:0.3rem;line-height:1.7;">Claude / Cowork で作成した生成物・外部ナレッジベース・関連ツールへのワンクリックアクセス。</p>
   <div class="claude-sub-label">✦ AI ツール & 外部脳</div>
   <div class="grid-4" style="margin-bottom:0.5rem;">
-    <a class="quick-link-card" href="https://claude.ai" target="_blank">
-      <div class="ql-icon" style="background:linear-gradient(135deg,rgba(191,95,255,0.2),rgba(0,240,255,0.15));">✦</div>
-      <div><div>Claude.ai</div><small>Web チャット</small></div>
-    </a>
-    <a class="quick-link-card" href="https://www.notion.so/" target="_blank">
-      <div class="ql-icon">📓</div>
-      <div><div>Notion 外部脳</div><small>ナレッジベース</small></div>
-    </a>
-    <a class="quick-link-card" href="obsidian://open" target="_blank">
-      <div class="ql-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.25),rgba(191,95,255,0.15));">💎</div>
-      <div><div>Obsidian Vault</div><small>ローカル第二の脳</small></div>
-    </a>
-    <a class="quick-link-card" href="https://console.anthropic.com" target="_blank">
-      <div class="ql-icon">⚙️</div>
-      <div><div>Anthropic Console</div><small>API キー管理</small></div>
-    </a>
+    <a class="quick-link-card" href="https://claude.ai" target="_blank"><div class="ql-icon" style="background:linear-gradient(135deg,rgba(191,95,255,0.2),rgba(0,240,255,0.15));">✦</div><div><div>Claude.ai</div><small>Web チャット</small></div></a>
+    <a class="quick-link-card" href="https://www.notion.so/" target="_blank"><div class="ql-icon">📓</div><div><div>Notion 外部脳</div><small>ナレッジベース</small></div></a>
+    <a class="quick-link-card" href="obsidian://open" target="_blank"><div class="ql-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.25),rgba(191,95,255,0.15));">💎</div><div><div>Obsidian Vault</div><small>ローカル第二の脳</small></div></a>
+    <a class="quick-link-card" href="https://console.anthropic.com" target="_blank"><div class="ql-icon">⚙️</div><div><div>Anthropic Console</div><small>API キー管理</small></div></a>
   </div>
-
-  <!-- ── ポータル & リポジトリ ── -->
   <div class="claude-sub-label">🐙 リポジトリ & ポータル</div>
   <div class="grid-4" style="margin-bottom:0.5rem;">
-    <a class="quick-link-card" href="https://portal.indicalab.jp" target="_blank">
-      <div class="ql-icon" style="background:linear-gradient(135deg,rgba(0,240,255,0.15),rgba(0,188,212,0.1));">🌐</div>
-      <div><div>Portal</div><small>portal.indicalab.jp</small></div>
-    </a>
-    <a class="quick-link-card" href="https://github.com/cr0sswarp/indica-portal" target="_blank">
-      <div class="ql-icon">🐙</div>
-      <div><div>indica-portal</div><small>GitHub リポジトリ</small></div>
-    </a>
-    <a class="quick-link-card" href="https://github.com/cr0sswarp/indica-portal/tree/main/skills" target="_blank">
-      <div class="ql-icon">⚡</div>
-      <div><div>skills フォルダ</div><small>スキルファイル一覧</small></div>
-    </a>
-    <a class="quick-link-card" href="https://docs.anthropic.com" target="_blank">
-      <div class="ql-icon">📖</div>
-      <div><div>Anthropic Docs</div><small>API リファレンス</small></div>
-    </a>
+    <a class="quick-link-card" href="https://portal.indicalab.jp" target="_blank"><div class="ql-icon" style="background:linear-gradient(135deg,rgba(0,240,255,0.15),rgba(0,188,212,0.1));">🌐</div><div><div>Portal</div><small>portal.indicalab.jp</small></div></a>
+    <a class="quick-link-card" href="https://github.com/cr0sswarp/indica-portal" target="_blank"><div class="ql-icon">🐙</div><div><div>indica-portal</div><small>GitHub リポジトリ</small></div></a>
+    <a class="quick-link-card" href="https://github.com/cr0sswarp/indica-portal/tree/main/skills" target="_blank"><div class="ql-icon">⚡</div><div><div>skills フォルダ</div><small>スキルファイル一覧</small></div></a>
+    <a class="quick-link-card" href="https://docs.anthropic.com" target="_blank"><div class="ql-icon">📖</div><div><div>Anthropic Docs</div><small>API リファレンス</small></div></a>
   </div>
-
-  <!-- ── 生成物ファイルリスト ── -->
   <div class="claude-sub-label">📁 Cowork 生成物ファイル</div>
   <div class="grid-2">
     <div class="output-file-list">
-      <a class="output-file-item" href="skills/valiente-web.skill" download>
-        <span class="fi-icon">⚡</span>
-        <span class="fi-name">valiente-web.skill</span>
-        <span class="fi-type">.skill</span>
-        <span class="fi-date">2026-05</span>
-      </a>
-      <a class="output-file-item" href="skills/valiente-portal-v2.skill" download>
-        <span class="fi-icon">🏛️</span>
-        <span class="fi-name">valiente-portal-v2.skill</span>
-        <span class="fi-type">.skill</span>
-        <span class="fi-date">2026-05</span>
-      </a>
-      <a class="output-file-item" href="stock_learning_loop_2026-05-08.html" target="_blank">
-        <span class="fi-icon">📊</span>
-        <span class="fi-name">投資学習ループ 2026-05-08</span>
-        <span class="fi-type">.html</span>
-        <span class="fi-date">2026-05-08</span>
-      </a>
-      <div class="output-file-item" style="opacity:0.4;pointer-events:none;border-style:dashed;">
-        <span class="fi-icon">＋</span>
-        <span class="fi-name">次の生成物がここに追加されます</span>
-        <span class="fi-type">---</span>
-      </div>
+      <a class="output-file-item" href="skills/valiente-web.skill" download><span class="fi-icon">⚡</span><span class="fi-name">valiente-web.skill</span><span class="fi-type">.skill</span><span class="fi-date">2026-05</span></a>
+      <a class="output-file-item" href="skills/valiente-portal-v2.skill" download><span class="fi-icon">🏛️</span><span class="fi-name">valiente-portal-v2.skill</span><span class="fi-type">.skill</span><span class="fi-date">2026-05</span></a>
+      <a class="output-file-item" href="stock_learning_loop_2026-05-08.html" target="_blank"><span class="fi-icon">📊</span><span class="fi-name">投資学習ループ 2026-05-08</span><span class="fi-type">.html</span><span class="fi-date">2026-05-08</span></a>
+      <div class="output-file-item" style="opacity:0.4;pointer-events:none;border-style:dashed;"><span class="fi-icon">＋</span><span class="fi-name">次の生成物がここに追加されます</span><span class="fi-type">---</span></div>
     </div>
     <div class="output-file-list">
       <div class="card" style="background:rgba(0,240,255,0.03);border-color:rgba(0,240,255,0.12);padding:1rem;">
         <div style="font-size:0.75rem;font-weight:700;color:var(--cyan);margin-bottom:0.6rem;letter-spacing:0.06em;">💡 ファイルを追加するには</div>
-        <p style="font-size:0.73rem;color:var(--subtext);line-height:1.8;margin:0;">
-          Cowork で生成したファイルを<br>
-          <code style="color:var(--cyan);background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.2);border-radius:4px;padding:1px 5px;font-size:0.68rem;">portal.indicalab.jp</code> に追加したいときは<br>
-          「<strong style="color:var(--text);">ポータルにリンクを追加して</strong>」と伝えると<br>
-          VALIENTEスキルが自動でここに反映します。
-        </p>
+        <p style="font-size:0.73rem;color:var(--subtext);line-height:1.8;margin:0;">Cowork で生成したファイルを<br><code style="color:var(--cyan);background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.2);border-radius:4px;padding:1px 5px;font-size:0.68rem;">portal.indicalab.jp</code> に追加したいときは<br>「<strong style="color:var(--text);">ポータルにリンクを追加して</strong>」と伝えると<br>VALIENTEスキルが自動でここに反映します。</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- VALIENTE Purple Bokeh Banner -->
-<div class="valiente-banner" style="background-image: url('images/IMG_3143.jpg');"></div>
-
 <!-- ══════════════════════════════════════════
-     DAILY NEWS
+     MAKINO HOLDINGS — AI Executive Portal  ★新規追加★
 ══════════════════════════════════════════ -->
-<div class="section-row" id="news">
+<div class="neon-divider"></div>
+
+<div class="section-row" id="holdings">
   <div class="section-title">
-    <span class="icon">📰</span> デイリーニュース
-    <span class="tag">毎日更新</span>
+    <span class="icon">🏛️</span> Makino Holdings
+    <span class="tag">AI Executive Portal</span>
     <span class="line"></span>
   </div>
+  <p style="font-size:0.78rem;color:var(--subtext);margin-bottom:1rem;line-height:1.7;">
+    三事業統括ホールディングス — <strong style="color:var(--cyan);">Chairman & CEO 牧野英哉</strong> の AI 経営ダッシュボード。ブレインストーミング → EA AI → 各社CXO → 壁打ち → クローズのフローで全タスクを自律処理。
+  </p>
+
+  <!-- CEO 指令センター -->
+  <div class="claude-sub-label">👑 CEO 指令センター</div>
+  <div class="grid-4" style="margin-bottom:1rem;">
+    <a class="quick-link-card" href="https://claude.ai" target="_blank">
+      <div class="ql-icon" style="background:linear-gradient(135deg,rgba(255,208,96,0.2),rgba(191,95,255,0.15));">👑</div>
+      <div><div>CEO ダッシュボード</div><small>全CXO指令 · ブレスト入力</small></div>
+    </a>
+    <a class="quick-link-card" href="https://www.notion.so/32dacd132ae74dc097c5eb5bd25026fe" target="_blank">
+      <div class="ql-icon" style="background:linear-gradient(135deg,rgba(0,240,255,0.15),rgba(0,188,212,0.1));">🌐</div>
+      <div><div>Teams 会議ログ</div><small>深夜海外会議 日本語要約</small></div>
+    </a>
+    <a class="quick-link-card" href="https://www.notion.so/" target="_blank">
+      <div class="ql-icon" style="background:linear-gradient(135deg,rgba(255,208,96,0.15),rgba(232,148,74,0.1));">🗂</div>
+      <div><div>Notion タスク DB</div><small>EA AI アーカイブ先</small></div>
+    </a>
+    <a class="quick-link-card" href="obsidian://open" target="_blank">
+      <div class="ql-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.25),rgba(191,95,255,0.15));">💎</div>
+      <div><div>Obsidian Vault</div><small>イノベーション · ナレッジグラフ</small></div>
+    </a>
+  </div>
+
+  <!-- 三事業会社 -->
+  <div class="claude-sub-label">🏢 三事業会社 — 各社 CXO</div>
+  <div class="grid-3" style="margin-bottom:1rem;">
+
+    <div class="card" style="border-color:rgba(0,230,118,0.3);border-top:2px solid var(--green);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0.6rem;right:0.75rem;font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--green);opacity:0.1;line-height:1;">01</div>
+      <div style="font-size:1.4rem;margin-bottom:0.4rem;">⚽</div>
+      <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green);margin-bottom:3px;">Soccer Company</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.06em;background:linear-gradient(90deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem;">Makino Sports Dev.</div>
+      <div style="font-size:0.72rem;color:var(--subtext);line-height:1.6;margin-bottom:0.75rem;padding-bottom:0.75rem;border-bottom:1px solid rgba(255,255,255,0.05);">牧野羽瑠 バロンドール支援。バルセロナアカデミー戦略・育成計画・スポーツ科学を一体運営。</div>
+      <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:0.6rem;">
+        <div style="display:flex;align-items:center;gap:6px;padding:3px 6px;border-radius:5px;background:rgba(0,230,118,0.05);"><span style="width:4px;height:4px;border-radius:50%;background:var(--green);flex-shrink:0;"></span><span style="font-size:0.68rem;background:rgba(0,230,118,0.12);color:var(--green);padding:1px 5px;border-radius:8px;">COO</span><span style="font-size:0.7rem;color:var(--subtext);">育成・戦略統括</span></div>
+        <div style="display:flex;align-items:center;gap:6px;padding:3px 6px;border-radius:5px;background:rgba(0,230,118,0.05);"><span style="width:4px;height:4px;border-radius:50%;background:var(--green);flex-shrink:0;"></span><span style="font-size:0.68rem;background:rgba(0,230,118,0.12);color:var(--green);padding:1px 5px;border-radius:8px;">CMO</span><span style="font-size:0.7rem;color:var(--subtext);">スポンサー・人脈</span></div>
+      </div>
+      <div style="font-size:0.68rem;color:var(--subtext);padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.05);">KPI: バロンドール / バルセロナ入団 / スポーツ財団</div>
+    </div>
+
+    <div class="card" style="border-color:rgba(255,171,64,0.3);border-top:2px solid var(--amber);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0.6rem;right:0.75rem;font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--amber);opacity:0.1;line-height:1;">02</div>
+      <div style="font-size:1.4rem;margin-bottom:0.4rem;">🏛</div>
+      <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);margin-bottom:3px;">Asset Company</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.06em;background:linear-gradient(90deg,var(--gold),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem;">Makino Asset Mgmt.</div>
+      <div style="font-size:0.72rem;color:var(--subtext);line-height:1.6;margin-bottom:0.75rem;padding-bottom:0.75rem;border-bottom:1px solid rgba(255,255,255,0.05);">不動産・株式投資を柱とした100億円資産形成。財団設立のための資金基盤。ひなご・リノシー連携。</div>
+      <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:0.6rem;">
+        <div style="display:flex;align-items:center;gap:6px;padding:3px 6px;border-radius:5px;background:rgba(255,171,64,0.05);"><span style="width:4px;height:4px;border-radius:50%;background:var(--amber);flex-shrink:0;"></span><span style="font-size:0.68rem;background:rgba(255,171,64,0.12);color:var(--amber);padding:1px 5px;border-radius:8px;">CFO</span><span style="font-size:0.7rem;color:var(--subtext);">資産運用・財務戦略</span></div>
+        <div style="display:flex;align-items:center;gap:6px;padding:3px 6px;border-radius:5px;background:rgba(255,171,64,0.05);"><span style="width:4px;height:4px;border-radius:50%;background:var(--amber);flex-shrink:0;"></span><span style="font-size:0.68rem;background:rgba(255,171,64,0.12);color:var(--amber);padding:1px 5px;border-radius:8px;">CIO</span><span style="font-size:0.7rem;color:var(--subtext);">投資判断・株価AI</span></div>
+      </div>
+      <div style="font-size:0.68rem;color:var(--subtext);padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.05);">KPI: 100億円資産 / 財団資金確保 / 不動産最適化</div>
+    </div>
+
+    <div class="card" style="border-color:rgba(0,240,255,0.3);border-top:2px solid var(--cyan);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0.6rem;right:0.75rem;font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--cyan);opacity:0.1;line-height:1;">03</div>
+      <div style="font-size:1.4rem;margin-bottom:0.4rem;">🔬</div>
+      <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:3px;">Pathology AI Company</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.06em;background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem;">Indica Labs Japan</div>
+      <div style="font-size:0.72rem;color:var(--subtext);line-height:1.6;margin-bottom:0.75rem;padding-bottom:0.75rem;border-bottom:1px solid rgba(255,255,255,0.05);">HALO / HALO AI / HALO Link 販売。KOL開拓・Callisto協業・PMDA申請支援。定期収益の柱。</div>
+      <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:0.6rem;">
+        <div style="display:flex;align-items:center;gap:6px;padding:3px 6px;border-radius:5px;background:rgba(0,240,255,0.05);"><span style="width:4px;height:4px;border-radius:50%;background:var(--cyan);flex-shrink:0;"></span><span style="font-size:0.68rem;background:rgba(0,240,255,0.1);color:var(--cyan);padding:1px 5px;border-radius:8px;">CTO</span><span style="font-size:0.7rem;color:var(--subtext);">AI開発・PMDA対応</span></div>
+        <div style="display:flex;align-items:center;gap:6px;padding:3px 6px;border-radius:5px;background:rgba(0,240,255,0.05);"><span style="width:4px;height:4px;border-radius:50%;background:var(--cyan);flex-shrink:0;"></span><span style="font-size:0.68rem;background:rgba(0,240,255,0.1);color:var(--cyan);padding:1px 5px;border-radius:8px;">CSO</span><span style="font-size:0.7rem;color:var(--subtext);">KOL・製薬営業</span></div>
+      </div>
+      <div style="font-size:0.68rem;color:var(--subtext);padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.05);">KPI: HALO AP全国展開 / Callisto 5案件 / 日本法人設立</div>
+    </div>
+
+  </div>
+
+  <!-- 業務フロー -->
+  <div class="claude-sub-label">⚙️ 業務フロー — 2ループ構造</div>
+  <div class="grid-2" style="margin-bottom:1rem;">
+    <div class="card" style="border-color:rgba(255,208,96,0.2);">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.875rem;">
+        <div style="width:26px;height:26px;border-radius:6px;background:rgba(255,208,96,0.1);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">💡</div>
+        <div><div style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,208,96,0.6);">Loop A — Innovation</div><div style="font-size:0.82rem;font-weight:600;color:var(--text);">クリエイティブ・ループ</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:4px;font-size:0.72rem;color:var(--subtext);flex-wrap:wrap;">
+        <span style="background:rgba(255,208,96,0.1);border:1px solid rgba(255,208,96,0.2);border-radius:4px;padding:2px 8px;color:var(--gold);">CEO ブレスト</span>
+        <span style="color:var(--gold);">→</span>
+        <span style="background:rgba(191,95,255,0.1);border:1px solid rgba(191,95,255,0.2);border-radius:4px;padding:2px 8px;color:var(--purple);">EA AI 分類</span>
+        <span style="color:var(--subtext);">→</span>
+        <span style="background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.2);border-radius:4px;padding:2px 8px;color:#9B6FE0;">Obsidian</span>
+        <span style="color:var(--subtext);">+</span>
+        <span style="background:rgba(255,108,0,0.1);border:1px solid rgba(255,108,0,0.2);border-radius:4px;padding:2px 8px;color:#E67E22;">Notion</span>
+      </div>
+      <div style="margin-top:0.6rem;padding:0.5rem 0.7rem;background:rgba(0,230,118,0.04);border:1px solid rgba(0,230,118,0.15);border-radius:6px;font-size:0.7rem;color:var(--subtext);line-height:1.6;"><span style="color:var(--green);font-weight:700;">◎ 2ツール同期</span> — ObsidianのナレッジグラフがCEOの新発想を誘発 → 再びブレストへ</div>
+    </div>
+    <div class="card" style="border-color:rgba(191,95,255,0.2);">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.875rem;">
+        <div style="width:26px;height:26px;border-radius:6px;background:rgba(191,95,255,0.1);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">⚙</div>
+        <div><div style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(191,95,255,0.6);">Loop B — Execution</div><div style="font-size:0.82rem;font-weight:600;color:var(--text);">実行ループ</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:4px;font-size:0.72rem;color:var(--subtext);flex-wrap:wrap;">
+        <span style="background:rgba(191,95,255,0.1);border:1px solid rgba(191,95,255,0.2);border-radius:4px;padding:2px 8px;color:var(--purple);">EA AI 抽出</span>
+        <span style="color:var(--purple);">→</span>
+        <span style="background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.2);border-radius:4px;padding:2px 8px;color:var(--cyan);">各社 CXO</span>
+        <span style="color:var(--subtext);">→</span>
+        <span style="background:rgba(191,95,255,0.1);border:1px solid rgba(191,95,255,0.2);border-radius:4px;padding:2px 8px;color:var(--purple);">ドラフト提出</span>
+        <span style="color:var(--subtext);">→</span>
+        <span style="background:rgba(255,208,96,0.1);border:1px solid rgba(255,208,96,0.2);border-radius:4px;padding:2px 8px;color:var(--gold);">CEO 承認</span>
+      </div>
+      <div style="margin-top:0.6rem;padding:0.5rem 0.7rem;background:rgba(255,208,96,0.03);border:1px solid rgba(255,208,96,0.15);border-left:2px solid var(--gold);border-radius:0 6px 6px 0;font-size:0.7rem;color:var(--subtext);line-height:1.6;"><span style="color:var(--gold);font-weight:700;">第一目標</span> — 全ToDoにCXOが常にゴール設定済みドラフトをスタンバイ</div>
+    </div>
+  </div>
+
+  <!-- 緊急タスク & アクセス -->
+  <div class="claude-sub-label">🔴 緊急タスク & アクセス</div>
+  <div class="grid-4">
+    <div class="arb-card" style="border-left-color:var(--cyan);">
+      <div class="arb-title" style="font-size:0.8rem;"><span class="arb-letter" style="background:linear-gradient(135deg,var(--cyan2),var(--cyan));">!</span>インテック 見積もり催促</div>
+      <div class="arb-logic">牛久先生・森井先生・吉澤先生（奈良医大）3案件。石黒さんとの会議で「いつでも出せる」スタンスを伝える。</div>
+      <div class="arb-horizon" style="color:var(--red);">⚡ 最優先 · Path CTO 担当</div>
+    </div>
+    <div class="arb-card" style="border-left-color:var(--amber);">
+      <div class="arb-title" style="font-size:0.8rem;"><span class="arb-letter" style="background:linear-gradient(135deg,var(--gold2),var(--amber));">¥</span>横浜物件 売却戦略</div>
+      <div class="arb-logic">品子さん（ひなご）交渉再開。Plaud録音確認 → 前回交渉の続きから。鹿毛さん（野村）並走。住まいサーフィン活用。</div>
+      <div class="arb-horizon" style="color:var(--amber);">⚡ 緊急 · Asset CFO 担当</div>
+    </div>
+    <div class="arb-card" style="border-left-color:var(--purple);">
+      <div class="arb-title" style="font-size:0.8rem;"><span class="arb-letter">🌐</span>Teams 深夜会議</div>
+      <div class="arb-logic">深夜の海外会議をEA AIが翌朝日本語要約。NotionのキャッチアップDBに自動蓄積。朝の確認で全てキャッチアップ。</div>
+      <div class="arb-horizon">📋 <a href="https://www.notion.so/32dacd132ae74dc097c5eb5bd25026fe" target="_blank" style="color:var(--cyan);text-decoration:none;">Notion ログを開く →</a></div>
+    </div>
+    <div class="arb-card" style="border-left-color:var(--green);">
+      <div class="arb-title" style="font-size:0.8rem;"><span class="arb-letter" style="background:linear-gradient(135deg,#00c87a,var(--green));">⚽</span>バロンドール計画</div>
+      <div class="arb-logic">ハルのプロ化に向けた月次進捗。UMITO参加・朝倉未来対策（病理AI×スポーツ科学×財団の引き出し）を準備。</div>
+      <div class="arb-horizon" style="color:var(--green);">📅 今月 · Soccer COO 担当</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════ここまでHoldingsセクション══════════ -->
+
+<div class="valiente-banner" style="background-image:url('images/IMG_3143.jpg');"></div>
+
+<!-- DAILY NEWS -->
+<div class="section-row" id="news">
+  <div class="section-title"><span class="icon">📰</span> デイリーニュース<span class="tag">毎日更新</span><span class="line"></span></div>
   <div class="news-grid">
-    <a class="news-link" href="https://www.mag2.com/m/0001323030" target="_blank">
-      <div class="nl-icon">📧</div>
-      <div><div class="nl-title">中島聡 ザックバラン</div><div class="nl-sub">週刊 Life is beautiful · まぐまぐ（毎週水曜）</div></div>
-    </a>
-    <a class="news-link" href="https://indicalabs.sharepoint.com/sites/JapanTeam/Shared%20Documents/DailyReports/" target="_blank">
-      <div class="nl-icon">📋</div>
-      <div><div class="nl-title">デイリーレポート</div><div class="nl-sub">SharePoint · DailyReports フォルダ</div></div>
-    </a>
-    <a class="news-link" href="https://indicalabs-my.sharepoint.com/" target="_blank">
-      <div class="nl-icon">☁️</div>
-      <div><div class="nl-title">OneDrive / クラウド更新</div><div class="nl-sub">ドキュメント・ファイル最新情報</div></div>
-    </a>
-    <a class="news-link" href="https://indicalabs.sharepoint.com/sites/JapanTeam" target="_blank">
-      <div class="nl-icon">🗂️</div>
-      <div><div class="nl-title">SharePoint ドキュメント</div><div class="nl-sub">全共有ドキュメント一覧</div></div>
-    </a>
-    <a class="news-link" href="https://www.imf.org/en/Publications/WEO" target="_blank">
-      <div class="nl-icon">🌐</div>
-      <div><div class="nl-title">IMF World Economic Outlook</div><div class="nl-sub">グローバルマクロ · 最新レポート</div></div>
-    </a>
-    <a class="news-link" href="https://www.nikkei.com/" target="_blank">
-      <div class="nl-icon">📊</div>
-      <div><div class="nl-title">日経新聞</div><div class="nl-sub">国内経済 · 企業ニュース</div></div>
-    </a>
+    <a class="news-link" href="https://www.mag2.com/m/0001323030" target="_blank"><div class="nl-icon">📧</div><div><div class="nl-title">中島聡 ザックバラン</div><div class="nl-sub">週刊 Life is beautiful · まぐまぐ（毎週水曜）</div></div></a>
+    <a class="news-link" href="https://indicalabs.sharepoint.com/sites/JapanTeam/Shared%20Documents/DailyReports/" target="_blank"><div class="nl-icon">📋</div><div><div class="nl-title">デイリーレポート</div><div class="nl-sub">SharePoint · DailyReports フォルダ</div></div></a>
+    <a class="news-link" href="https://indicalabs-my.sharepoint.com/" target="_blank"><div class="nl-icon">☁️</div><div><div class="nl-title">OneDrive / クラウド更新</div><div class="nl-sub">ドキュメント・ファイル最新情報</div></div></a>
+    <a class="news-link" href="https://indicalabs.sharepoint.com/sites/JapanTeam" target="_blank"><div class="nl-icon">🗂️</div><div><div class="nl-title">SharePoint ドキュメント</div><div class="nl-sub">全共有ドキュメント一覧</div></div></a>
+    <a class="news-link" href="https://www.imf.org/en/Publications/WEO" target="_blank"><div class="nl-icon">🌐</div><div><div class="nl-title">IMF World Economic Outlook</div><div class="nl-sub">グローバルマクロ · 最新レポート</div></div></a>
+    <a class="news-link" href="https://www.nikkei.com/" target="_blank"><div class="nl-icon">📊</div><div><div class="nl-title">日経新聞</div><div class="nl-sub">国内経済 · 企業ニュース</div></div></a>
   </div>
 </div>
 
 <div class="neon-divider"></div>
 
-<!-- ══════════════════════════════════════════
-     LEARNING LOG
-══════════════════════════════════════════ -->
+<!-- LEARNING LOG -->
 <div class="section-row" id="log">
-  <div class="section-title">
-    <span class="icon">📈</span> 投資学習ログ
-    <span class="tag">毎日更新</span>
-    <span class="line"></span>
-  </div>
-  <div class="card" style="padding: 0; overflow: hidden;">
+  <div class="section-title"><span class="icon">📈</span> 投資学習ログ<span class="tag">毎日更新</span><span class="line"></span></div>
+  <div class="card" style="padding:0;overflow:hidden;">
     <table class="log-table">
-      <thead>
-        <tr>
-          <th>日付</th>
-          <th>主要テーマ</th>
-          <th>市場環境</th>
-          <th>キーインサイト</th>
-          <th>ログ</th>
-        </tr>
-      </thead>
+      <thead><tr><th>日付</th><th>主要テーマ</th><th>市場環境</th><th>キーインサイト</th><th>ログ</th></tr></thead>
       <tbody>
-        <tr>
-          <td><strong style="color:var(--cyan); font-family:monospace;">2026-05-08</strong></td>
-          <td>グレートローテーション · IMF戦争リスク · 日本AI周辺株</td>
-          <td><span class="risk-badge risk-mid">⚠️ 中リスク</span></td>
-          <td>AI装置株割安 · 金利ある世界 · 防衛ヘッジ</td>
-          <td><a href="stock_learning_loop_2026-05-08.html" target="_blank">→ 開く</a></td>
-        </tr>
-        <tr>
-          <td colspan="5" style="text-align:center; color:var(--subtext); font-size:0.78rem; padding:1.2rem;">
-            ↓ 翌日以降のログが自動追加されます
-          </td>
-        </tr>
+        <tr><td><strong style="color:var(--cyan);font-family:monospace;">2026-05-08</strong></td><td>グレートローテーション · IMF戦争リスク · 日本AI周辺株</td><td><span class="risk-badge risk-mid">⚠️ 中リスク</span></td><td>AI装置株割安 · 金利ある世界 · 防衛ヘッジ</td><td><a href="stock_learning_loop_2026-05-08.html" target="_blank">→ 開く</a></td></tr>
+        <tr><td colspan="5" style="text-align:center;color:var(--subtext);font-size:0.78rem;padding:1.2rem;">↓ 翌日以降のログが自動追加されます</td></tr>
       </tbody>
     </table>
   </div>
@@ -1302,172 +502,59 @@ footer span { color: var(--cyan); }
 
 <div class="neon-divider"></div>
 
-<!-- ══════════════════════════════════════════
-     MACRO DASHBOARD
-══════════════════════════════════════════ -->
+<!-- MACRO -->
 <div class="section-row" id="macro">
-  <div class="section-title">
-    <span class="icon">🌐</span> マクロ経済ダッシュボード
-    <span class="tag">2026年5月</span>
-    <span class="line"></span>
-  </div>
+  <div class="section-title"><span class="icon">🌐</span> マクロ経済ダッシュボード<span class="tag">2026年5月</span><span class="line"></span></div>
   <div class="macro-grid" style="margin-bottom:0.75rem;">
-    <div class="macro-card">
-      <div class="m-label">世界成長率 (IMF)</div>
-      <div class="m-value down">3.1<span style="font-size:1.1rem">%</span></div>
-      <div class="m-sub down">▼ 下方修正</div>
-    </div>
-    <div class="macro-card">
-      <div class="m-label">S&P500 目標 (MS)</div>
-      <div class="m-value">7,500</div>
-      <div class="m-sub up">▲ 政治リスク注意</div>
-    </div>
-    <div class="macro-card">
-      <div class="m-label">日経平均 目標 (野村)</div>
-      <div class="m-value">55,000</div>
-      <div class="m-sub up">▲ 上振れ59,000</div>
-    </div>
-    <div class="macro-card">
-      <div class="m-label">米コアPCE</div>
-      <div class="m-value down">3.1<span style="font-size:1.1rem">%</span></div>
-      <div class="m-sub down">目標2%超過中</div>
-    </div>
-    <div class="macro-card">
-      <div class="m-label">ドル/円 目標 (野村)</div>
-      <div class="m-value">152.5</div>
-      <div class="m-sub">円高方向へ</div>
-    </div>
-    <div class="macro-card">
-      <div class="m-label">日銀政策金利</div>
-      <div class="m-value up">1.0<span style="font-size:1.1rem">%+</span></div>
-      <div class="m-sub up">利上げ継続観測</div>
-    </div>
-    <div class="macro-card">
-      <div class="m-label">GS 米国成長率</div>
-      <div class="m-value up">2.6<span style="font-size:1.1rem">%</span></div>
-      <div class="m-sub up">コンセンサス超え</div>
-    </div>
-    <div class="macro-card">
-      <div class="m-label">最大リスク</div>
-      <div class="m-value" style="font-size:1.1rem; -webkit-text-fill-color:var(--red); color:var(--red);">中東紛争</div>
-      <div class="m-sub down">エネルギー急騰シナリオ</div>
-    </div>
+    <div class="macro-card"><div class="m-label">世界成長率 (IMF)</div><div class="m-value down">3.1<span style="font-size:1.1rem">%</span></div><div class="m-sub down">▼ 下方修正</div></div>
+    <div class="macro-card"><div class="m-label">S&P500 目標 (MS)</div><div class="m-value">7,500</div><div class="m-sub up">▲ 政治リスク注意</div></div>
+    <div class="macro-card"><div class="m-label">日経平均 目標 (野村)</div><div class="m-value">55,000</div><div class="m-sub up">▲ 上振れ59,000</div></div>
+    <div class="macro-card"><div class="m-label">米コアPCE</div><div class="m-value down">3.1<span style="font-size:1.1rem">%</span></div><div class="m-sub down">目標2%超過中</div></div>
+    <div class="macro-card"><div class="m-label">ドル/円 目標 (野村)</div><div class="m-value">152.5</div><div class="m-sub">円高方向へ</div></div>
+    <div class="macro-card"><div class="m-label">日銀政策金利</div><div class="m-value up">1.0<span style="font-size:1.1rem">%+</span></div><div class="m-sub up">利上げ継続観測</div></div>
+    <div class="macro-card"><div class="m-label">GS 米国成長率</div><div class="m-value up">2.6<span style="font-size:1.1rem">%</span></div><div class="m-sub up">コンセンサス超え</div></div>
+    <div class="macro-card"><div class="m-label">最大リスク</div><div class="m-value" style="font-size:1.1rem;-webkit-text-fill-color:var(--red);color:var(--red);">中東紛争</div><div class="m-sub down">エネルギー急騰シナリオ</div></div>
   </div>
-  <div class="macro-alert">
-    ⚠️ <strong>IMF最重要リスク</strong>: 「戦争の影の下の世界経済」(WEO Apr 2026) — 中東紛争長期化シナリオでは世界成長率2.0%、インフレ6%超。エネルギー価格急騰が最大の非線形リスク。
-    &nbsp;|&nbsp; 📊 <strong>グレートローテーション</strong>: テック独走→防衛・金融・インフラ・日本AI周辺株へ資金シフト継続中。
-  </div>
+  <div class="macro-alert">⚠️ <strong>IMF最重要リスク</strong>: 「戦争の影の下の世界経済」(WEO Apr 2026) — 中東紛争長期化シナリオでは世界成長率2.0%、インフレ6%超。エネルギー価格急騰が最大の非線形リスク。&nbsp;|&nbsp; 📊 <strong>グレートローテーション</strong>: テック独走→防衛・金融・インフラ・日本AI周辺株へ資金シフト継続中。</div>
 </div>
 
 <div class="neon-divider"></div>
 
-<!-- ══════════════════════════════════════════
-     WATCHLIST
-══════════════════════════════════════════ -->
+<!-- WATCHLIST -->
 <div class="section-row" id="watchlist">
-  <div class="section-title">
-    <span class="icon">🎯</span> 長期保有候補 ウォッチリスト
-    <span class="line"></span>
-  </div>
+  <div class="section-title"><span class="icon">🎯</span> 長期保有候補 ウォッチリスト<span class="line"></span></div>
   <div class="grid-2">
     <div class="card">
       <div class="watchlist-header">🇯🇵 日本株</div>
-      <div class="stock-row">
-        <div><div class="stock-name">東京エレクトロン</div><div class="stock-code">8035</div></div>
-        <span class="stock-sector">AI半導体装置</span>
-        <span class="stock-status">要決算確認</span>
-      </div>
-      <div class="stock-row">
-        <div><div class="stock-name">アドバンテスト</div><div class="stock-code">6857</div></div>
-        <span class="stock-sector">AIテスト装置</span>
-        <span class="stock-status">要決算確認</span>
-      </div>
-      <div class="stock-row">
-        <div><div class="stock-name">三菱重工</div><div class="stock-code">7011</div></div>
-        <span class="stock-sector">防衛・インフラ</span>
-        <span class="stock-status">受注残確認要</span>
-      </div>
-      <div class="stock-row">
-        <div><div class="stock-name">東京海上HD</div><div class="stock-code">8766</div></div>
-        <span class="stock-sector">金融・保険</span>
-        <span class="stock-status">利上げ恩恵 ★BRK</span>
-      </div>
-      <div class="stock-row">
-        <div><div class="stock-name">三菱商事</div><div class="stock-code">8058</div></div>
-        <span class="stock-sector">総合商社</span>
-        <span class="stock-status">コモディティ動向 ★BRK</span>
-      </div>
+      <div class="stock-row"><div><div class="stock-name">東京エレクトロン</div><div class="stock-code">8035</div></div><span class="stock-sector">AI半導体装置</span><span class="stock-status">要決算確認</span></div>
+      <div class="stock-row"><div><div class="stock-name">アドバンテスト</div><div class="stock-code">6857</div></div><span class="stock-sector">AIテスト装置</span><span class="stock-status">要決算確認</span></div>
+      <div class="stock-row"><div><div class="stock-name">三菱重工</div><div class="stock-code">7011</div></div><span class="stock-sector">防衛・インフラ</span><span class="stock-status">受注残確認要</span></div>
+      <div class="stock-row"><div><div class="stock-name">東京海上HD</div><div class="stock-code">8766</div></div><span class="stock-sector">金融・保険</span><span class="stock-status">利上げ恩恵 ★BRK</span></div>
+      <div class="stock-row"><div><div class="stock-name">三菱商事</div><div class="stock-code">8058</div></div><span class="stock-sector">総合商社</span><span class="stock-status">コモディティ動向 ★BRK</span></div>
     </div>
     <div class="card">
       <div class="watchlist-header">🇺🇸 米国株</div>
-      <div class="stock-row">
-        <div><div class="stock-name">NVIDIA</div><div class="stock-code">NVDA</div></div>
-        <span class="stock-sector">AI純粋プレイ</span>
-        <span class="stock-status">高PER要注意</span>
-      </div>
-      <div class="stock-row">
-        <div><div class="stock-name">Lockheed Martin</div><div class="stock-code">LMT</div></div>
-        <span class="stock-sector">防衛・宇宙</span>
-        <span class="stock-status">地政学プレミアム</span>
-      </div>
-      <div class="stock-row">
-        <div><div class="stock-name">JPMorgan Chase</div><div class="stock-code">JPM</div></div>
-        <span class="stock-sector">金融・M&A</span>
-        <span class="stock-status">高金利環境恩恵</span>
-      </div>
-      <div class="stock-row">
-        <div><div class="stock-name">ExxonMobil</div><div class="stock-code">XOM</div></div>
-        <span class="stock-sector">エネルギー</span>
-        <span class="stock-status">中東緊張ヘッジ</span>
-      </div>
-      <div class="stock-row">
-        <div><div class="stock-name">Berkshire Hathaway</div><div class="stock-code">BRK.B</div></div>
-        <span class="stock-sector">コングロマリット</span>
-        <span class="stock-status">日本商社保有</span>
-      </div>
+      <div class="stock-row"><div><div class="stock-name">NVIDIA</div><div class="stock-code">NVDA</div></div><span class="stock-sector">AI純粋プレイ</span><span class="stock-status">高PER要注意</span></div>
+      <div class="stock-row"><div><div class="stock-name">Lockheed Martin</div><div class="stock-code">LMT</div></div><span class="stock-sector">防衛・宇宙</span><span class="stock-status">地政学プレミアム</span></div>
+      <div class="stock-row"><div><div class="stock-name">JPMorgan Chase</div><div class="stock-code">JPM</div></div><span class="stock-sector">金融・M&A</span><span class="stock-status">高金利環境恩恵</span></div>
+      <div class="stock-row"><div><div class="stock-name">ExxonMobil</div><div class="stock-code">XOM</div></div><span class="stock-sector">エネルギー</span><span class="stock-status">中東緊張ヘッジ</span></div>
+      <div class="stock-row"><div><div class="stock-name">Berkshire Hathaway</div><div class="stock-code">BRK.B</div></div><span class="stock-sector">コングロマリット</span><span class="stock-status">日本商社保有</span></div>
     </div>
   </div>
 </div>
 
-<!-- VALIENTE Gold Glitter Banner -->
-<div class="valiente-banner" style="background-image: url('images/IMG_0169.jpg');"></div>
+<div class="valiente-banner" style="background-image:url('images/IMG_0169.jpg');"></div>
 
-<!-- ══════════════════════════════════════════
-     ARBITRAGE
-══════════════════════════════════════════ -->
+<!-- ARBITRAGE -->
 <div class="section-row" id="arb">
-  <div class="section-title">
-    <span class="icon">🔄</span> アービトラージ機会メモ
-    <span class="line"></span>
-  </div>
+  <div class="section-title"><span class="icon">🔄</span> アービトラージ機会メモ<span class="line"></span></div>
   <div class="grid-2" style="margin-bottom:1.5rem;">
-    <div class="arb-card">
-      <div class="arb-title"><span class="arb-letter">A</span>日本AI周辺 vs 米国AI純粋プレイ</div>
-      <div class="arb-logic">東エレク・アドバンテストはNVIDIA等の「下流受益者」でPER割安。AIサイクル成熟期まで相対優位継続の可能性。</div>
-      <div class="arb-horizon">⏱ ホライゾン: 2〜3年</div>
-    </div>
-    <div class="arb-card">
-      <div class="arb-title"><span class="arb-letter">B</span>内需株 × 円高メリット</div>
-      <div class="arb-logic">日銀利上げ→円高→輸入コスト低下→食品・小売・通信の実質利益率改善。賃金上昇持続性と消費センチメントの確認が必要。</div>
-      <div class="arb-horizon">⏱ ホライゾン: 1〜2年</div>
-    </div>
-    <div class="arb-card">
-      <div class="arb-title"><span class="arb-letter">C</span>地政学ヘッジ × 防衛株ロング</div>
-      <div class="arb-logic">中東最悪シナリオ（IMF）のポートフォリオヘッジ。防衛株は景気後退時にも受注が安定。エネルギー連動EBITDA成長率でスクリーニング。</div>
-      <div class="arb-horizon">⏱ ホライゾン: 長期（恒常的ヘッ���）</div>
-    </div>
-    <div class="arb-card">
-      <div class="arb-title"><span class="arb-letter">D</span>エネルギー価格スパイク × インフレ連動</div>
-      <div class="arb-logic">ホルムズ海峡リスク→原油急騰→インフレ再燃シナリオへのヘッ���。原油ETF・エネルギーメジャヾ・TIPS活用。現状はヘッジ目的。</div>
-      <div class="arb-horizon">⏱ ホライゾン: 短期（ヘッ���）</div>
-    </div>
+    <div class="arb-card"><div class="arb-title"><span class="arb-letter">A</span>日本AI周辺 vs 米国AI純粋プレイ</div><div class="arb-logic">東エレク・アドバンテストはNVIDIA等の「下流受益者」でPER割安。AIサイクル成熟期まで相対優位継続の可能性。</div><div class="arb-horizon">⏱ ホライゾン: 2〜3年</div></div>
+    <div class="arb-card"><div class="arb-title"><span class="arb-letter">B</span>内需株 × 円高メリット</div><div class="arb-logic">日銀利上げ→円高→輸入コスト低下→食品・小売・通信の実質利益率改善。賃金上昇持続性と消費センチメントの確認が必要。</div><div class="arb-horizon">⏱ ホライゾン: 1〜2年</div></div>
+    <div class="arb-card"><div class="arb-title"><span class="arb-letter">C</span>地政学ヘッジ × 防衛株ロング</div><div class="arb-logic">中東最悪シナリオ（IMF）のポートフォリオヘッジ。防衛株は景気後退時にも受注が安定。エネルギー連動EBITDA成長率でスクリーニング。</div><div class="arb-horizon">⏱ ホライゾン: 長期（恒常的ヘッジ）</div></div>
+    <div class="arb-card"><div class="arb-title"><span class="arb-letter">D</span>エネルギー価格スパイク × インフレ連動</div><div class="arb-logic">ホルムズ海峡リスク→原油急騰→インフレ再燃シナリオへのヘッジ。原油ETF・エネルギーメジャー・TIPS活用。現状はヘッジ目的。</div><div class="arb-horizon">⏱ ホライゾン: 短期（ヘッジ）</div></div>
   </div>
-
-  <!-- Screening Criteria -->
-  <div class="section-title" style="margin-top:0;">
-    <span class="icon">📐</span> 財務スクリードング基準（長期保有用）
-    <span class="line"></span>
-  </div>
+  <div class="section-title" style="margin-top:0;"><span class="icon">📐</span> 財務スクリーニング基準（長期保有用）<span class="line"></span></div>
   <div class="grid-2">
     <div class="card">
       <div class="criteria-label ok">✅ 必須条件</div>
@@ -1492,21 +579,15 @@ footer span { color: var(--cyan); }
         <li><span class="mark mark-no">✗</span>中国売上依存度 &gt; 30%</li>
         <li><span class="mark mark-no">✗</span>PER &gt; 50倍（成長率で正当化不可の場合）</li>
       </ul>
-      <div class="criteria-tip">
-        💡 「<strong>金利ある世界</strong>」では、ゼロ金利時代の高PER許容戦略は修正が必要。ROE・FCFを重視した割安株シフトが必須。
-      </div>
+      <div class="criteria-tip">💡 「<strong>金利ある世界</strong>」では、ゼロ金利時代の高PER許容戦略は修正が必要。ROE・FCFを重視した割安株シフトが必須。</div>
     </div>
   </div>
 </div>
 
 </div><!-- /container -->
 
-<!-- VALIENTE Shield Banner (pre-footer) — IMG_3144 -->
-<div class="valiente-banner" style="height:220px; margin-bottom:0; background-image: url('images/IMG_3144.jpg'); background-position: center 40%;"></div>
+<div class="valiente-banner" style="height:220px;margin-bottom:0;background-image:url('images/IMG_3144.jpg');background-position:center 40%;"></div>
 
-<!-- ══════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════ -->
 <footer>
   <div class="footer-logo">VALIENTE</div>
   <div class="footer-motto">desorganizacióna organizada &nbsp;·&nbsp; Deep Learning × Football</div>
@@ -1522,5 +603,6 @@ document.getElementById('todayDate').textContent = d.toLocaleDateString('ja-JP',
 document.getElementById('footerDate').textContent = d.toLocaleDateString('ja-JP');
 </script>
 
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4bff93487dbe4da895cf92bd4056bce0","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
