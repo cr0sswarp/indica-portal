@@ -36,7 +36,12 @@
 
 body {
   font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: url('images/logo_Original.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* ← 魚を全ページ固定壁紙に */
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
@@ -54,7 +59,7 @@ body {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.18;
+  opacity: 0.07; /* 魚背景を引き立てるため控えめに */
   animation: floatBlob linear infinite;
 }
 .b1 { width: 500px; height: 500px; background: var(--cyan);   top: -100px; left: -100px; animation-duration: 25s; }
@@ -101,22 +106,19 @@ body::after {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('images/logo_Original.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* ← 魚固定、文字だけスクロール */
+  /* 背景はbodyの魚画像を透過表示 — ここでは設定不要 */
+  background: transparent;
 }
-/* Dark gradient overlay so text stays readable */
+/* 薄いグラデーションオーバーレイ（文字読みやすさ確保） */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(7,7,15,0.1) 0%,
-    rgba(7,7,15,0.35) 60%,
-    rgba(7,7,15,0.85) 100%
+    rgba(7,7,15,0.0)  0%,
+    rgba(7,7,15,0.1)  50%,
+    rgba(7,7,15,0.6)  100%
   );
   z-index: 0;
 }
@@ -197,15 +199,16 @@ body::after {
 
 .valiente-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(4rem, 12vw, 9rem);
-  letter-spacing: 0.05em;
-  line-height: 0.9;
+  font-size: clamp(7rem, 22vw, 18rem); /* ← 背景シールドと重なるサイズ */
+  letter-spacing: 0.08em;
+  line-height: 0.85;
   background: linear-gradient(135deg, var(--gold) 0%, var(--cyan) 50%, var(--purple) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 30px rgba(0,240,255,0.4));
+  filter: drop-shadow(0 0 50px rgba(0,240,255,0.6)) drop-shadow(0 0 100px rgba(191,95,255,0.3));
   margin-bottom: 0.4rem;
+  mix-blend-mode: screen; /* ← 魚の色と融合して重なる */
 }
 
 .tagline {
@@ -273,9 +276,18 @@ body::after {
   max-width: 1320px;
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
+  /* 魚背景が透けて見えるよう、背景は設定しない */
 }
 
-.section-row { margin-bottom: 2.5rem; }
+/* セクション行に薄い暗幕をかけて文字読みやすさを確保、魚背景は透けて見える */
+.section-row {
+  margin-bottom: 2.5rem;
+  background: rgba(7,7,15,0.45);
+  border-radius: 16px;
+  padding: 1.5rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
 
 /* Section Title */
 .section-title {
@@ -692,7 +704,7 @@ footer span { color: var(--cyan); }
   .grid-4 { grid-template-columns: 1fr 1fr; }
   .macro-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
-  .valiente-title { font-size: 5rem; }
+  .valiente-title { font-size: clamp(5rem, 20vw, 8rem); }
 }
 </style>
 </head>
@@ -741,8 +753,8 @@ footer span { color: var(--cyan); }
       <line x1="15" y1="78" x2="185" y2="78" stroke="url(#shieldGrad)" stroke-width="1.5" opacity="0.7"/>
       <path d="M100 15 L178 42 L178 135 Q178 188 100 218 Q22 188 22 135 L22 42 Z"
             stroke="url(#shieldGrad2)" stroke-width="1" fill="none" opacity="0.3"/>
-      <text x="58" y="66" text-anchor="middle" font-size="28" filter="url(#glow)">&#129409;</text>
-      <text x="142" y="66" text-anchor="middle" font-size="24" filter="url(#glow)">&#128081;</text>
+      <text x="58" y="66" text-anchor="middle" font-size="28" filter="url(#glow)">🦁</text>
+      <text x="142" y="66" text-anchor="middle" font-size="24" filter="url(#glow)">👑</text>
       <text x="100" y="115" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="11" font-weight="300" fill="url(#shieldGrad)" letter-spacing="0.5">desorganizacióna</text>
       <text x="100" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-style="italic" fill="url(#shieldGrad2)" letter-spacing="1">organizada</text>
       <circle cx="100" cy="170" r="2" fill="url(#shieldGrad)" opacity="0.7"/>
@@ -800,7 +812,7 @@ footer span { color: var(--cyan); }
   </div>
 </div>
 
-<!-- VALIENTE Purple Bokeh Banner — IMG_3143 parallax -->
+<!-- VALIENTE Purple Bokeh Banner -->
 <div class="valiente-banner" style="background-image: url('images/IMG_3143.jpg');"></div>
 
 <!-- ══════════════════════════════════════════
@@ -1009,7 +1021,7 @@ footer span { color: var(--cyan); }
   </div>
 </div>
 
-<!-- VALIENTE Gold Glitter Banner — IMG_0169 parallax -->
+<!-- VALIENTE Gold Glitter Banner -->
 <div class="valiente-banner" style="background-image: url('images/IMG_0169.jpg');"></div>
 
 <!-- ══════════════════════════════════════════
@@ -1081,7 +1093,7 @@ footer span { color: var(--cyan); }
 
 </div><!-- /container -->
 
-<!-- VALIENTE Shield Banner (pre-footer) — IMG_3144 parallax -->
+<!-- VALIENTE Shield Banner (pre-footer) — IMG_3144 -->
 <div class="valiente-banner" style="height:220px; margin-bottom:0; background-image: url('images/IMG_3144.jpg'); background-position: center 40%;"></div>
 
 <!-- ══════════════════════════════════════════
