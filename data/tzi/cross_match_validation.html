@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<title>TZI Cross-Match Validation</title>
+<style>
+* {box-sizing:border-box;margin:0;padding:0}
+body {background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif}
+.hero {background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);padding:24px 32px;border-bottom:1px solid #30363d}
+.hero h1 {font-size:1.3rem;color:#58a6ff} .hero p {font-size:.82rem;color:#8b949e;margin-top:4px}
+.content {max-width:1100px;margin:0 auto;padding:24px 20px}
+h2 {font-size:1rem;padding-bottom:8px;border-bottom:1px solid #30363d;margin:24px 0 14px}
+table {width:100%;border-collapse:collapse;font-size:12px}
+th {background:#21262d;padding:8px 10px;text-align:left;color:#8b949e}
+td {padding:7px 10px;border-bottom:1px solid #21262d}
+tr:hover td {background:#161b22}
+img {max-width:100%;border-radius:8px;margin:12px 0}
+.note {background:#21262d;border:1px solid #30363d;border-radius:6px;padding:12px 16px;font-size:12px;color:#8b949e;margin-bottom:16px}
+</style></head><body>
+<div class="hero">
+  <h1>TZI Cross-Match Validation — #6 牧野羽瑠 Right-Back Tracking</h1>
+  <p>Direction-normalized positions across all matches. Right-back should show Y ≥ 34m consistently.</p>
+</div>
+<div class="content">
+  <div class="note">
+    <strong style="color:#e6edf3">Validation Criterion:</strong>
+    A right-back should appear on the right side of the field (Y ≥ 34m) in ≥55% of sightings
+    in normalized coordinates (where Waseda always attacks toward X=105).
+    If the heatmap concentrates at center-line or wrong side, it indicates tracking error.
+  </div>
+  <img src="cross_match_validation.png" alt="Cross-match validation heatmaps">
+  <h2>Per-Match Summary</h2>
+  <table><thead><tr>
+    <th>Match ID</th><th>Opponent</th><th>Track ID</th><th>Sightings</th>
+    <th>Centroid X</th><th>Centroid Y</th><th>% Right Side</th><th>Direction</th>
+  </tr></thead><tbody><tr>
+          <td style="color:#58a6ff">20260325</td>
+          <td>vs立教大 03/25</td>
+          <td>P11</td>
+          <td>9</td>
+          <td>53.8m</td>
+          <td>42.7m</td>
+          <td style="color:#3fb950;font-weight:700">100% ✓</td>
+          <td>flip1H=False flip2H=True</td>
+        </tr></tbody></table>
+</div>
+<div style="text-align:center;padding:20px;color:#8b949e;font-size:11px">
+TZI v3 Cross-Match Validation · Indica Labs · 2026</div>
+</body></html>
