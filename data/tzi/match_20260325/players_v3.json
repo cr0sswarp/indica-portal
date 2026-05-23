@@ -6,7 +6,7 @@
     "n_frames": 30,
     "n_with_jersey": 4,
     "avg_per_frame": 4.566666666666666,
-    "elapsed_sec": 17.4,
+    "elapsed_sec": 9.5,
     "flip_1h": false,
     "flip_2h": true
   },
@@ -24,7 +24,7 @@
       [
         111,
         75,
-        144
+        143
       ]
     ],
     [
