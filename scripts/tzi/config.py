@@ -14,7 +14,7 @@ VIDEO_H1 = PROJECT_ROOT / "videos" / "26_03_25_前半.mp4"
 VIDEO_H2 = PROJECT_ROOT / "videos" / "26_03_25_後半.mp4"
 
 # データパス
-MATCH_DIR   = PROJECT_ROOT / "TZI_prototype" / "match_20260325"
+MATCH_DIR   = PROJECT_ROOT / "data" / "tzi" / "match_20260325"
 TRAJ_JSON   = MATCH_DIR / "jersey6_trajectory.json"
 ANCHOR_DIR  = MATCH_DIR / "anchor_checks"
 OUTPUT_DIR  = MATCH_DIR
