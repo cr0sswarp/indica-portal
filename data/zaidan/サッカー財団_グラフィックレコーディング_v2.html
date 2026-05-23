@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サッカー財団 壁打ちグラフィックレコーディング</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a6b3c;
+    --green-light: #2d9e5f;
+    --green-pale: #e8f5ee;
+    --gold: #c9a84c;
+    --gold-light: #f0d080;
+    --ink: #1a1a2e;
+    --ink-soft: #2d2d4a;
+    --cream: #faf8f2;
+    --white: #ffffff;
+    --red-accent: #c0392b;
+    --blue-accent: #2471a3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  .page {
+    min-height: 100vh;
+    position: relative;
+    padding: 40px 30px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ヘッダー */
+  .header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .header-date {
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .header-title {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    color: var(--green);
+    line-height: 1.2;
+    position: relative;
+    display: inline-block;
+  }
+
+  .header-title::after {
+    content: '';
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    border-radius: 2px;
+    margin-top: 8px;
+    animation: growWidth 1s ease 0.5s both;
+  }
+
+  .header-sub {
+    font-size: 14px;
+    color: #888;
+    margin-top: 10px;
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+  }
+
+  /* ミッション大バナー */
+  .mission-banner {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+    border-radius: 20px;
+    padding: 36px 40px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.8s ease 0.3s both;
+    box-shadow: 0 12px 40px rgba(26,107,60,0.25);
+  }
+
+  .mission-banner::before {
+    content: '⚽';
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    font-size: 120px;
+    opacity: 0.08;
+    transform: rotate(15deg);
+  }
+
+  .mission-label {
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .mission-text {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mission-text span {
+    color: var(--gold-light);
+    border-bottom: 2px dashed var(--gold-light);
+    padding-bottom: 1px;
+  }
+
+  /* グリッドレイアウト */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  /* カード */
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  }
+
+  .card-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .card-label {
+    font-family: 'Caveat', cursive;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+
+  .card-name {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  .card-desc .tag {
+    display: inline-block;
+    background: var(--green-pale);
+    color: var(--green);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 4px;
+    margin-bottom: 2px;
+  }
+
+  .card-role {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--green-pale);
+    color: var(--green);
+  }
+
+  /* 人物カードのアクセントライン */
+  .card-founder { border-top: 4px solid var(--blue-accent); animation-delay: 0.4s; }
+  .card-director { border-top: 4px solid var(--gold); animation-delay: 0.5s; }
+  .card-son { border-top: 4px solid var(--red-accent); animation-delay: 0.6s; }
+
+  /* エコノメソッド補足バナー */
+  .ekkono-banner {
+    background: #f0f7ff;
+    border-left: 4px solid var(--blue-accent);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin-bottom: 40px;
+    font-size: 13px;
+    color: #2c3e50;
+    line-height: 1.7;
+    animation: fadeUp 0.8s ease 0.65s both;
+  }
+
+  .ekkono-banner strong {
+    color: var(--blue-accent);
+    font-size: 14px;
+  }
+
+  .ekkono-banner .founders {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .ekkono-banner .founder-chip {
+    background: var(--blue-accent);
+    color: white;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* セクションタイトル */
+  .section-title {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--ink);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 24px;
+    background: linear-gradient(180deg, var(--green), var(--gold));
+    border-radius: 3px;
+  }
+
+  /* 課題・循環図 */
+  .challenge-card {
+    background: #fff9f0;
+    border: 2px dashed var(--gold);
+    border-radius: 16px;
+    padding: 28px;
+    animation: fadeUp 0.8s ease 0.7s both;
+  }
+
+  .cycle {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 16px;
+  }
+
+  .cycle-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--white);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    position: relative;
+    border-left: 4px solid var(--red-accent);
+    margin-bottom: 4px;
+  }
+
+  .cycle-arrow {
+    text-align: center;
+    font-size: 18px;
+    color: var(--red-accent);
+    margin: 0;
+    line-height: 1;
+    padding: 2px 0;
+  }
+
+  /* ロードマップ */
+  .roadmap {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    animation: fadeUp 0.8s ease 0.8s both;
+  }
+
+  .phase-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: start;
+  }
+
+  .phase-badge {
+    background: var(--green);
+    color: var(--white);
+    border-radius: 12px;
+    padding: 10px 8px;
+    text-align: center;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .phase-badge .phase-num {
+    font-size: 22px;
+    display: block;
+  }
+
+  .phase-content {
+    padding-top: 4px;
+  }
+
+  .phase-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .phase-detail {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .phase-row:not(:last-child) {
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e0e0e0;
+  }
+
+  /* アクション */
+  .action-card {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4a 100%);
+    border-radius: 16px;
+    padding: 28px;
+    color: var(--white);
+    animation: fadeUp 0.8s ease 0.9s both;
+  }
+
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .action-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .action-num {
+    background: var(--gold);
+    color: var(--ink);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .action-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .action-text strong {
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 15px;
+  }
+
+  /* 息子へのメッセージ */
+  .message-card {
+    background: linear-gradient(135deg, #2471a3 0%, #1a5276 100%);
+    border-radius: 16px;
+    padding: 28px;
+    color: var(--white);
+    animation: fadeUp 0.8s ease 1s both;
+  }
+
+  .quote {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(18px, 3vw, 26px);
+    line-height: 1.6;
+    color: var(--white);
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .quote::before {
+    content: '"';
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    font-size: 60px;
+    color: rgba(255,255,255,0.2);
+    font-family: serif;
+    line-height: 1;
+  }
+
+  .quote-source {
+    margin-top: 12px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    text-align: right;
+  }
+
+  /* フッター */
+  .footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px dashed #ddd;
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: #aaa;
+    animation: fadeUp 0.8s ease 1.1s both;
+  }
+
+  .footer strong {
+    color: var(--green);
+    font-size: 18px;
+  }
+
+  /* アニメーション */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes growWidth {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  /* レスポンシブ */
+  @media (max-width: 700px) {
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .phase-row { grid-template-columns: 80px 1fr; }
+    .mission-banner { padding: 24px 20px; }
+    .ekkono-banner .founders { flex-direction: column; }
+  }
+
+  .deco-line {
+    font-family: 'Caveat', cursive;
+    font-size: 13px;
+    color: var(--gold);
+    text-align: right;
+    margin-bottom: 6px;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-date">📅 2026.03.19 壁打ちセッション #01</div>
+    <h1 class="header-title">サッカー財団 構想グラフィックレコード</h1>
+    <div class="header-sub">— 夢を、次の世代へ手渡すために —</div>
+  </div>
+
+  <!-- ミッション -->
+  <div class="mission-banner">
+    <div class="mission-label">🎯 MISSION STATEMENT</div>
+    <div class="mission-text">
+      「<span>サッカーを世界共通の言語</span>として、<span>夢を持ち本気で挑む人</span>を育て、<br>
+      その感動と成果を<span>社会へと還していく</span>。」
+    </div>
+  </div>
+
+  <!-- 3人の主役 -->
+  <div class="section-title">👥 財団を支える三つの柱</div>
+  <div class="grid-3">
+
+    <!-- あなた -->
+    <div class="card card-founder">
+      <span class="card-icon">💼</span>
+      <div class="card-label">FOUNDER / 創設者</div>
+      <div class="card-name">あなた</div>
+      <div class="card-desc">
+        <span class="tag">事業経営者</span><span class="tag">資産保有</span><br>
+        不動産投資・AI医療診断事業を展開<br><br>
+        スペインサッカーのコミュニティで評価され、元マリノス分析官らと対等に議論できる知見を持つ。<br><br>
+        <span class="tag">エコノメソッド活用</span><br>
+        FCバルセロナ発の認知育成メソッドを参照し、息子のプレー動画をともに振り返りながらアドバイスを送っている。
+      </div>
+      <span class="card-role">資金 × ビジョン × サッカー知見</span>
+    </div>
+
+    <!-- 監督 -->
+    <div class="card card-director">
+      <span class="card-icon">⚽</span>
+      <div class="card-label">CO-FOUNDER / 共同創設者</div>
+      <div class="card-name">監督</div>
+      <div class="card-desc">
+        <span class="tag">高校選手権全国優勝</span><span class="tag">キャプテン</span><br>
+        高校時代に全国選手権でキャプテンとして頂点に立った経歴を持つ。<br><br>
+        <span class="tag">京都サンガ</span><br>
+        J1昇格直前まで京都サンガを導いた指揮官としての実績。<br><br>
+        あなたと同い年・長年の盟友。息子にとっての<strong>師匠・絶対的信頼</strong>の存在。
+      </div>
+      <span class="card-role">技術的権威 × 現場の魂</span>
+    </div>
+
+    <!-- 息子 -->
+    <div class="card card-son">
+      <span class="card-icon">🌟</span>
+      <div class="card-label">SUCCESSOR / 継承者</div>
+      <div class="card-name">息子</div>
+      <div class="card-desc">
+        <span class="tag">早稲田大学</span><span class="tag">現役選手・最終学年</span><br>
+        バロンドール獲得を本気で目指す夢を持つ。<br><br>
+        監督を師と仰ぎ、絶対的な信頼関係を築いている。<br><br>
+        財団構想は未告知。現役中は「アンバサダー」として自然に関与させていく設計。
+      </div>
+      <span class="card-role">夢の体現者 × 未来の代表</span>
+    </div>
+  </div>
+
+  <!-- エコノメソッド補足 -->
+  <div class="ekkono-banner">
+    <strong>📚 エコノメソッド（Ekkono Method）とは</strong><br>
+    FCバルセロナの下部組織で長年指導した3名によって設立されたサッカーサービス・バルセロナ社が開発した、世界水準の認知育成メソッド。「認知・判断・実行」を軸に、賢くインテリジェンスの高い選手を育てることを目的とする。パリSG、日本サッカー協会なども採用。あなたはこのメソッドを参照・活用する形で息子のプレー分析に取り組んでいる。
+    <div class="founders">
+      <span class="founder-chip">ジョアン・ビラ（FCバルセロナ メソッド部門責任者）</span>
+      <span class="founder-chip">カルラス・ロマゴサ</span>
+      <span class="founder-chip">ダビッド・エルナンデス</span>
+    </div>
+  </div>
+
+  <!-- 課題と今の最優先 -->
+  <div class="grid-2">
+    <div class="challenge-card">
+      <div class="section-title">⚠️ 今の最重要課題</div>
+      <div class="deco-line">息子の心の中で起きていること</div>
+      <div class="cycle">
+        <div class="cycle-item">👀 父・監督・財団…複数の期待を感じる</div>
+        <div class="cycle-arrow">↓</div>
+        <div class="cycle-item">😰「応えなければ」プレッシャー</div>
+        <div class="cycle-arrow">↓</div>
+        <div class="cycle-item">🫤 本来のプレーができない</div>
+        <div class="cycle-arrow">↓</div>
+        <div class="cycle-item">❌ ミス・結果が出ない</div>
+        <div class="cycle-arrow">↓</div>
+        <div class="cycle-item">📉 自己肯定感が下がる</div>
+        <div class="cycle-arrow">↓</div>
+        <div class="cycle-item">🔄 さらに萎縮する（繰り返し）</div>
+      </div>
+    </div>
+
+    <div class="message-card">
+      <div class="section-title" style="color:white; margin-bottom:16px;">💬 息子への第一手</div>
+      <div class="deco-line" style="color:rgba(255,255,255,0.5)">一対一の食事で使う最初の一言</div>
+      <div class="quote">
+        最近どうだ。<br>サッカーじゃなくて、<br><strong style="color:#f0d080">お前自身が。</strong>
+      </div>
+      <div class="quote-source">— アドバイスなし・評価なし・ただ聞く</div>
+      <div style="margin-top:20px; padding:14px; background:rgba(255,255,255,0.1); border-radius:10px; font-size:13px; line-height:1.8; color:rgba(255,255,255,0.85);">
+        ✅ 日曜：家族4人の食事（サッカーの話なし）<br>
+        ✅ 別日：一対一の食事で本音を聞く<br>
+        📌 成功の基準：「また飯行こう」と思わせること
+      </div>
+    </div>
+  </div>
+
+  <!-- ロードマップ -->
+  <div class="section-title">🗺️ 財団設立ロードマップ</div>
+  <div class="roadmap">
+    <div class="phase-row">
+      <div class="phase-badge"><span class="phase-num">0</span>壁打ち期<br><small>〜3ヶ月</small></div>
+      <div class="phase-content">
+        <div class="phase-title">構想の言語化・監督アプローチ準備</div>
+        <div class="phase-detail">ミッション確定 ✅ ／ 監督へのファーストアプローチ文書作成 ／ 類似財団リサーチ</div>
+      </div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-badge"><span class="phase-num">1</span>準備期<br><small>3〜12ヶ月</small></div>
+      <div class="phase-content">
+        <div class="phase-title">人と器の準備</div>
+        <div class="phase-detail">監督と正式パートナー化（MOU締結）／一般財団法人として設立／理事会メンバー選定</div>
+      </div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-badge"><span class="phase-num">2</span>実績期<br><small>1〜3年</small></div>
+      <div class="phase-content">
+        <div class="phase-title">小さく始め、実績を積む</div>
+        <div class="phase-detail">サッカースクール・奨学金制度設計 ／ 国際交流プログラム構想 ／ 息子をアンバサダーとして自然に関与</div>
+      </div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-badge"><span class="phase-num">3</span>公益化<br><small>3〜5年</small></div>
+      <div class="phase-content">
+        <div class="phase-title">公益財団法人へ転換</div>
+        <div class="phase-detail">内閣府への公益認定申請 ／ 税制優遇・社会的信頼の獲得</div>
+      </div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-badge" style="background:var(--gold); color:var(--ink);"><span class="phase-num">4</span>継承期<br><small>5年〜</small></div>
+      <div class="phase-content">
+        <div class="phase-title">息子への継承設計の実装</div>
+        <div class="phase-detail">「家業を継ぐ」ではなく「使命を引き継ぐ」物語として設計 ／ 10世代継承ガバナンスの確立</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 次回アクション -->
+  <div style="margin-top:40px;">
+    <div class="section-title">✅ 次回壁打ちまでのアクション</div>
+    <div class="action-card">
+      <div class="action-item">
+        <div class="action-num">1</div>
+        <div class="action-text">
+          <strong>日曜：家族4人の食事</strong>
+          サッカー・財団の話は一切しない。父親として一緒にいる時間をただ楽しむ。
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">2</div>
+        <div class="action-text">
+          <strong>別日：息子と一対一の食事の約束を取り付ける</strong>
+          落ち着いた居酒屋か食事処で。「最近どうだ、お前自身が」の一言から始め、あとはただ聞く。
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">3</div>
+        <div class="action-text">
+          <strong>監督へのファーストアプローチ文書の作成（次回壁打ちで着手）</strong>
+          「お願いする」ではなく「一緒に作りたい」という文脈で設計する。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer">
+    <strong>「本気で夢を追う体験そのものを、次の世代への希望に変えていく。」</strong><br><br>
+    次回壁打ち時はこのファイルをClaude.aiに添付してスタート 🤝<br>
+    <span style="font-size:13px; margin-top:6px; display:block;">作成日：2026年3月19日</span>
+  </div>
+
+</div>
+</body>
+</html>

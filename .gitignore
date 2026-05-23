@@ -43,3 +43,6 @@ venv/
 *.pot
 *~
 .tmp/
+data/tzi/*/frames_v3/
+data/tzi/*/validation/
+data/tzi/*/manual_id/

@@ -131,15 +131,6 @@
       "half": "1H"
     },
     {
-      "time_min": 39.0,
-      "half": "1H",
-      "fx": 77.01,
-      "fy": 36.18,
-      "zone": "A2",
-      "note": "auto_v3_normalized",
-      "direction_flipped": false
-    },
-    {
       "time_min": 42.0,
       "half": "1H",
       "fx": 72.99,
@@ -175,28 +166,10 @@
       "note": "手動修正: [14]番の選手 (元: X=62.6Y=37.6)"
     },
     {
-      "time_min": 69.47,
-      "half": "2H",
-      "fx": 30.8,
-      "fy": 45.4,
-      "zone": "D2",
-      "note": "auto_v3_normalized",
-      "direction_flipped": true
-    },
-    {
-      "time_min": 81.47,
-      "half": "2H",
-      "fx": 26.54,
-      "fy": 40.47,
-      "zone": "D2",
-      "note": "auto_v3_normalized",
-      "direction_flipped": true
-    },
-    {
       "time_min": 84.47,
       "half": "2H",
-      "fx": 27.33,
-      "fy": 38.82,
+      "fx": 37.88,
+      "fy": 42.28,
       "zone": "D2",
       "note": "auto_v3_normalized",
       "direction_flipped": true

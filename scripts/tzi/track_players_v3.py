@@ -79,9 +79,9 @@ FONT = cv2.FONT_HERSHEY_SIMPLEX
 MATCH_CONFIGS = {
     "20260314":        {"h1": "26_03_14_I_TRM vs埼玉大.mp4",         "h2": None},
     "20260316":        {"h1": "26_03_16_I_vs 岐阜協立.mp4",          "h2": None},
-    "20260317mid":     {"h1": "26_03_17_I_ vs中京U-19 後半.mp4",     "h2": None},
+    "20260317mid":     {"h1": "26_03_17_I_ vs中京U-19 前半.mp4",     "h2": "26_03_17_I_ vs中京U-19 後半.mp4"},
     "20260317osaka":   {"h1": "26_03_17_I_ vs大阪学院 前半.mp4",     "h2": "26_03_17_I_ vs大阪学院 後半.mp4"},
-    "20260318":        {"h1": "26_03_18_I_ vs作新学院 前半.mp4",     "h2": None},
+    "20260318":        {"h1": "26_03_18_I_ vs作新学院 前半.mp4",     "h2": "26_03_18_I_ vs作新学院 後半.mp4"},
     "20260325":        {"h1": "26_03_25_I_TRM vs立教大 前半.mp4",    "h2": "26_03_25_I_TRM vs立教大 後半.mp4"},
     "20260329":        {"h1": "26_03_29_I_TRM vs川崎U-18 前半.mp4", "h2": "26_03_29_I_TRM vs 川崎U-18 後半.mp4"},
     "20260405":        {"h1": "26_04_05_I_TRM vs獨協大前半.mp4",     "h2": "26_04_05_I_TRM vs獨協大後半.mp4"},
@@ -89,7 +89,7 @@ MATCH_CONFIGS = {
 MATCH_LABELS = {
     "20260314":      "vs埼玉大 (03/14)",
     "20260316":      "vs岐阜協立 (03/16)",
-    "20260317mid":   "vs中京U-19後半 (03/17)",
+    "20260317mid":   "vs中京U-19 (03/17)",
     "20260317osaka": "vs大阪学院 (03/17)",
     "20260318":      "vs作新学院 (03/18)",
     "20260325":      "vs立教大 (03/25)",
@@ -175,9 +175,11 @@ def _extract_dets(mask, frame):
     out = []
     for c in cnts:
         a = cv2.contourArea(c)
-        if not (60 < a < 3500): continue
+        # Raise min area to 150 to filter small noise/shadow blobs
+        if not (150 < a < 3500): continue
         x, y, w, h = cv2.boundingRect(c)
-        if h / (w + 1e-5) < 0.4 or h / (w + 1e-5) > 9: continue
+        # Require taller-than-wide blobs (players are vertical); reject wide bench artifacts
+        if h / (w + 1e-5) < 0.65 or h / (w + 1e-5) > 9: continue
         cx, cy = x + w // 2, y + h
         fx, fy = p2f(cx, cy)
         crop = frame[max(0, y):y+h, max(0, x):x+w]
@@ -620,8 +622,13 @@ def generate_heatmap(tracks, match_dir, match_id, jersey6_id=None):
         import matplotlib
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
+        import matplotlib.font_manager as fm
         from scipy.ndimage import gaussian_filter
         from matplotlib.patches import FancyArrowPatch
+        _jp_font = "/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf"
+        if Path(_jp_font).exists():
+            fm.fontManager.addfont(_jp_font)
+            matplotlib.rcParams["font.family"] = "IPAGothic"
     except ImportError:
         print("  [heatmap] matplotlib/scipy not available, skipping")
         return
@@ -721,6 +728,11 @@ def save_direction_debug(tracks, match_dir, flip_1h, flip_2h):
         import matplotlib
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
+        import matplotlib.font_manager as fm
+        _jp = "/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf"
+        if Path(_jp).exists():
+            fm.fontManager.addfont(_jp)
+            matplotlib.rcParams["font.family"] = "IPAGothic"
     except ImportError:
         return
 

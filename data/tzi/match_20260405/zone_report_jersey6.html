@@ -50,13 +50,13 @@
     <!-- ゾーンスコア -->
     <div class="card">
       <h3>Total Zone Score</h3>
-      <div class="score-big" style="color:#27ae60">60</div>
-      <div class="verdict">✅ 通常</div>
+      <div class="score-big" style="color:#f39c12">40</div>
+      <div class="verdict">⚠️ 低集中</div>
       <div style="margin-top:20px">
         <div class="score-row">
           <span style="width:12px;font-weight:700">P</span>
-          <div class="bar"><div class="bar-fill" style="width:100%"></div></div>
-          <span style="width:36px;text-align:right;font-size:14px;font-weight:600">20/20</span>
+          <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+          <span style="width:36px;text-align:right;font-size:14px;font-weight:600">0/20</span>
         </div><div class="score-row">
           <span style="width:12px;font-weight:700">M</span>
           <div class="bar"><div class="bar-fill" style="width:10%"></div></div>
@@ -110,30 +110,30 @@
         <div class="zone-bar-row">
           <span class="zone-label">D2</span>
           <div class="zone-bar-bg">
-            <div class="zone-bar-fill" style="width:0.0%;background:#2980b9"></div>
+            <div class="zone-bar-fill" style="width:75.0%;background:#2980b9"></div>
           </div>
-          <span class="zone-pct">0%</span>
+          <span class="zone-pct">75%</span>
         </div>
         <div class="zone-bar-row">
           <span class="zone-label">D3</span>
           <div class="zone-bar-bg">
-            <div class="zone-bar-fill" style="width:0.0%;background:#1abc9c"></div>
-          </div>
-          <span class="zone-pct">0%</span>
-        </div>
-        <div class="zone-bar-row">
-          <span class="zone-label">A1</span>
-          <div class="zone-bar-bg">
-            <div class="zone-bar-fill" style="width:25.0%;background:#e74c3c"></div>
+            <div class="zone-bar-fill" style="width:25.0%;background:#1abc9c"></div>
           </div>
           <span class="zone-pct">25%</span>
         </div>
         <div class="zone-bar-row">
+          <span class="zone-label">A1</span>
+          <div class="zone-bar-bg">
+            <div class="zone-bar-fill" style="width:0.0%;background:#e74c3c"></div>
+          </div>
+          <span class="zone-pct">0%</span>
+        </div>
+        <div class="zone-bar-row">
           <span class="zone-label">A2</span>
           <div class="zone-bar-bg">
-            <div class="zone-bar-fill" style="width:75.0%;background:#e67e22"></div>
+            <div class="zone-bar-fill" style="width:0.0%;background:#e67e22"></div>
           </div>
-          <span class="zone-pct">75%</span>
+          <span class="zone-pct">0%</span>
         </div>
         <div class="zone-bar-row">
           <span class="zone-label">A3</span>
@@ -150,22 +150,7 @@
     <!-- ゾーン誘発トリガー -->
     <div class="card">
       <h3>🔑 ゾーン入りトリガー</h3>
-      
-            <div class="trigger-card">
-              <span class="zone-tag" style="background:#e67e22">A2</span>
-              <strong>2H 52分</strong>
-              ← 敵陣深く侵入 (X=64.5m)
-            </div>
-            <div class="trigger-card">
-              <span class="zone-tag" style="background:#e67e22">A2</span>
-              <strong>2H 55分</strong>
-              ← 敵陣深く侵入 (X=80.3m)
-            </div>
-            <div class="trigger-card">
-              <span class="zone-tag" style="background:#e67e22">A2</span>
-              <strong>2H 73分</strong>
-              ← 敵陣深く侵入 (X=81.3m)
-            </div>
+      <p style='color:#aaa'>アタッキングゾーン到達記録なし（このデータセット内）</p>
       <div style="margin-top:16px;font-size:12px;color:var(--muted)">
         アタッキングゾーン（A1-A3）での検出瞬間を特定。
         この瞬間の試合映像フレームを確認し、動き・判断パターンを言語化することで
@@ -182,27 +167,27 @@
       <tbody>
         <tr>
           <td>2H 42.7m</td>
-          <td style="font-family:monospace">(58.8, 43.1)</td>
-          <td><span class="zone-tag" style="background:#e74c3c">A1</span></td>
-          <td class="note">auto_v2_ocr</td>
+          <td style="font-family:monospace">(46.2, 43.1)</td>
+          <td><span class="zone-tag" style="background:#1abc9c">D3</span></td>
+          <td class="note">auto_v3_normalized</td>
         </tr>
         <tr>
           <td>2H 51.7m</td>
-          <td style="font-family:monospace">(64.5, 52.6)</td>
-          <td><span class="zone-tag" style="background:#e67e22">A2</span></td>
-          <td class="note">auto_v2_ocr</td>
+          <td style="font-family:monospace">(40.5, 52.6)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto_v3_normalized</td>
         </tr>
         <tr>
           <td>2H 54.7m</td>
-          <td style="font-family:monospace">(80.3, 59.2)</td>
-          <td><span class="zone-tag" style="background:#e67e22">A2</span></td>
-          <td class="note">auto_v2_ocr</td>
+          <td style="font-family:monospace">(24.7, 59.2)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto_v3_normalized</td>
         </tr>
         <tr>
           <td>2H 72.7m</td>
-          <td style="font-family:monospace">(81.3, 65.0)</td>
-          <td><span class="zone-tag" style="background:#e67e22">A2</span></td>
-          <td class="note">auto_v2_ocr</td>
+          <td style="font-family:monospace">(23.7, 65.0)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto_v3_normalized</td>
         </tr></tbody>
     </table>
   </div>
@@ -217,7 +202,7 @@
       <li>次の試合映像を Google Drive にアップロードし再分析を実行</li>
     </ol>
     <div style="margin-top:16px;background:#21262d;border-radius:6px;padding:12px;font-size:12px;color:var(--muted)">
-      <strong style="color:#27ae60">現在のゾーンスコア: 60/100</strong><br>
+      <strong style="color:#f39c12">現在のゾーンスコア: 40/100</strong><br>
       目標: 70点以上（準ゾーン）を毎試合安定させる → 90点以上（完全ゾーン）の試合を増やす
     </div>
   </div>

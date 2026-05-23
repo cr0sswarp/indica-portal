@@ -2,65 +2,65 @@
   "match": "20260318",
   "label": "vs作新学院 (03/18)",
   "stats": {
-    "n_players": 26,
-    "n_frames": 15,
-    "n_with_jersey": 1,
-    "avg_per_frame": 11.0,
-    "elapsed_sec": 10.1,
-    "flip_1h": false,
+    "n_players": 19,
+    "n_frames": 30,
+    "n_with_jersey": 0,
+    "avg_per_frame": 4.9,
+    "elapsed_sec": 15.3,
+    "flip_1h": true,
     "flip_2h": false
   },
   "direction": {
-    "flip_1h": false,
+    "flip_1h": true,
     "flip_2h": false
   },
   "opponent_colors": [
     [
       [
-        98,
-        30,
-        90
-      ],
-      [
-        128,
-        130,
-        210
-      ]
-    ],
-    [
-      [
         13,
-        6,
-        87
+        0,
+        138
       ],
       [
         43,
-        106,
-        207
-      ]
-    ],
-    [
-      [
-        23,
-        0,
-        160
-      ],
-      [
-        53,
-        74,
+        81,
         255
       ]
     ],
     [
       [
         18,
-        70,
-        48
+        74,
+        46
       ],
       [
         48,
-        170,
-        168
+        174,
+        166
+      ]
+    ],
+    [
+      [
+        14,
+        12,
+        82
+      ],
+      [
+        44,
+        112,
+        202
+      ]
+    ],
+    [
+      [
+        98,
+        29,
+        90
+      ],
+      [
+        128,
+        129,
+        210
       ]
     ]
   ],
@@ -68,131 +68,253 @@
     {
       "player_id": "P01",
       "jersey_number": null,
-      "n_sightings": 8,
+      "n_sightings": 5,
       "zone_dist": {
-        "A2": 4,
-        "A3": 4
+        "A1": 3,
+        "A2": 2
       },
       "zone_dist_norm": {
-        "A2": 4,
-        "A3": 4
+        "D3": 3,
+        "D2": 2
       },
       "sightings": [
         {
           "time_min": 3.0,
           "half": "1H",
-          "fx": 82.2,
-          "fy": 38.37,
-          "px": 1118,
-          "py": 316,
-          "zone": "A2",
-          "fx_norm": 82.2,
-          "fy_norm": 38.37,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 6.0,
-          "half": "1H",
-          "fx": 83.55,
-          "fy": 33.77,
-          "px": 1118,
-          "py": 285,
-          "zone": "A2",
-          "fx_norm": 83.55,
-          "fy_norm": 33.77,
-          "zone_norm": "A2",
-          "direction_flipped": false
+          "fx": 54.76,
+          "fy": 51.21,
+          "px": 677,
+          "py": 437,
+          "zone": "A1",
+          "fx_norm": 50.24,
+          "fy_norm": 51.21,
+          "zone_norm": "D3",
+          "direction_flipped": true
         },
         {
           "time_min": 9.0,
           "half": "1H",
-          "fx": 84.35,
-          "fy": 41.0,
-          "px": 1167,
-          "py": 347,
-          "zone": "A3",
-          "fx_norm": 84.35,
-          "fy_norm": 41.0,
-          "zone_norm": "A3",
-          "direction_flipped": false
+          "fx": 60.26,
+          "fy": 48.54,
+          "px": 775,
+          "py": 419,
+          "zone": "A1",
+          "fx_norm": 44.74,
+          "fy_norm": 48.54,
+          "zone_norm": "D3",
+          "direction_flipped": true
         },
         {
-          "time_min": 12.0,
+          "time_min": 18.0,
           "half": "1H",
-          "fx": 84.83,
-          "fy": 36.41,
-          "px": 1151,
-          "py": 299,
-          "zone": "A3",
-          "fx_norm": 84.83,
-          "fy_norm": 36.41,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 15.0,
-          "half": "1H",
-          "fx": 84.97,
-          "fy": 34.14,
-          "px": 1142,
-          "py": 284,
-          "zone": "A3",
-          "fx_norm": 84.97,
-          "fy_norm": 34.14,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 21.0,
-          "half": "1H",
-          "fx": 84.38,
-          "fy": 36.06,
-          "px": 1142,
-          "py": 306,
-          "zone": "A3",
-          "fx_norm": 84.38,
-          "fy_norm": 36.06,
-          "zone_norm": "A3",
-          "direction_flipped": false
+          "fx": 61.15,
+          "fy": 49.08,
+          "px": 792,
+          "py": 418,
+          "zone": "A1",
+          "fx_norm": 43.85,
+          "fy_norm": 49.08,
+          "zone_norm": "D3",
+          "direction_flipped": true
         },
         {
           "time_min": 24.0,
           "half": "1H",
-          "fx": 83.13,
-          "fy": 31.37,
-          "px": 1101,
-          "py": 268,
+          "fx": 63.32,
+          "fy": 44.52,
+          "px": 822,
+          "py": 371,
           "zone": "A2",
-          "fx_norm": 83.13,
-          "fy_norm": 31.37,
-          "zone_norm": "A2",
-          "direction_flipped": false
+          "fx_norm": 41.68,
+          "fy_norm": 44.52,
+          "zone_norm": "D2",
+          "direction_flipped": true
         },
         {
-          "time_min": 45.0,
+          "time_min": 33.0,
           "half": "1H",
-          "fx": 79.34,
-          "fy": 42.06,
-          "px": 1088,
-          "py": 355,
+          "fx": 65.34,
+          "fy": 39.15,
+          "px": 845,
+          "py": 324,
           "zone": "A2",
-          "fx_norm": 79.34,
-          "fy_norm": 42.06,
-          "zone_norm": "A2",
-          "direction_flipped": false
+          "fx_norm": 39.66,
+          "fy_norm": 39.15,
+          "zone_norm": "D2",
+          "direction_flipped": true
         }
       ]
     },
     {
       "player_id": "P02",
       "jersey_number": null,
-      "n_sightings": 12,
+      "n_sightings": 11,
       "zone_dist": {
-        "A1": 12
+        "D3": 1,
+        "A1": 10
       },
       "zone_dist_norm": {
-        "A1": 12
+        "A1": 6,
+        "D3": 5
+      },
+      "sightings": [
+        {
+          "time_min": 3.0,
+          "half": "1H",
+          "fx": 51.04,
+          "fy": 35.58,
+          "px": 612,
+          "py": 297,
+          "zone": "D3",
+          "fx_norm": 53.96,
+          "fy_norm": 35.58,
+          "zone_norm": "A1",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 53.78,
+          "fy": 34.73,
+          "px": 655,
+          "py": 292,
+          "zone": "A1",
+          "fx_norm": 51.22,
+          "fy_norm": 34.73,
+          "zone_norm": "D3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 54.9,
+          "fy": 36.05,
+          "px": 673,
+          "py": 298,
+          "zone": "A1",
+          "fx_norm": 50.1,
+          "fy_norm": 36.05,
+          "zone_norm": "D3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 33.0,
+          "half": "1H",
+          "fx": 54.99,
+          "fy": 34.73,
+          "px": 674,
+          "py": 293,
+          "zone": "A1",
+          "fx_norm": 50.01,
+          "fy_norm": 34.73,
+          "zone_norm": "D3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 57.37,
+          "fy": 43.32,
+          "px": 718,
+          "py": 360,
+          "zone": "A1",
+          "fx_norm": 47.63,
+          "fy_norm": 43.32,
+          "zone_norm": "D3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 39.0,
+          "half": "1H",
+          "fx": 56.54,
+          "fy": 44.93,
+          "px": 705,
+          "py": 380,
+          "zone": "A1",
+          "fx_norm": 48.46,
+          "fy_norm": 44.93,
+          "zone_norm": "D3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 51.01,
+          "half": "2H",
+          "fx": 55.69,
+          "fy": 38.82,
+          "px": 687,
+          "py": 327,
+          "zone": "A1",
+          "fx_norm": 55.69,
+          "fy_norm": 38.82,
+          "zone_norm": "A1",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 66.01,
+          "half": "2H",
+          "fx": 54.22,
+          "fy": 39.04,
+          "px": 663,
+          "py": 327,
+          "zone": "A1",
+          "fx_norm": 54.22,
+          "fy_norm": 39.04,
+          "zone_norm": "A1",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 72.01,
+          "half": "2H",
+          "fx": 56.44,
+          "fy": 41.54,
+          "px": 701,
+          "py": 350,
+          "zone": "A1",
+          "fx_norm": 56.44,
+          "fy_norm": 41.54,
+          "zone_norm": "A1",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 75.01,
+          "half": "2H",
+          "fx": 57.96,
+          "fy": 39.93,
+          "px": 725,
+          "py": 333,
+          "zone": "A1",
+          "fx_norm": 57.96,
+          "fy_norm": 39.93,
+          "zone_norm": "A1",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 90.01,
+          "half": "2H",
+          "fx": 59.91,
+          "fy": 32.88,
+          "px": 749,
+          "py": 272,
+          "zone": "A1",
+          "fx_norm": 59.91,
+          "fy_norm": 32.88,
+          "zone_norm": "A1",
+          "direction_flipped": false
+        }
+      ]
+    },
+    {
+      "player_id": "P03",
+      "jersey_number": null,
+      "n_sightings": 13,
+      "zone_dist": {
+        "A1": 2,
+        "A2": 11
+      },
+      "zone_dist_norm": {
+        "D3": 2,
+        "D2": 5,
+        "A2": 6
       },
       "sightings": [
         {
@@ -203,181 +325,10 @@
           "px": 725,
           "py": 270,
           "zone": "A1",
-          "fx_norm": 58.4,
+          "fx_norm": 46.6,
           "fy_norm": 32.0,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 6.0,
-          "half": "1H",
-          "fx": 56.45,
-          "fy": 25.92,
-          "px": 692,
-          "py": 230,
-          "zone": "A1",
-          "fx_norm": 56.45,
-          "fy_norm": 25.92,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 9.0,
-          "half": "1H",
-          "fx": 58.33,
-          "fy": 22.85,
-          "px": 717,
-          "py": 211,
-          "zone": "A1",
-          "fx_norm": 58.33,
-          "fy_norm": 22.85,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 12.0,
-          "half": "1H",
-          "fx": 52.57,
-          "fy": 30.04,
-          "px": 636,
-          "py": 256,
-          "zone": "A1",
-          "fx_norm": 52.57,
-          "fy_norm": 30.04,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 15.0,
-          "half": "1H",
-          "fx": 53.78,
-          "fy": 34.73,
-          "px": 655,
-          "py": 292,
-          "zone": "A1",
-          "fx_norm": 53.78,
-          "fy_norm": 34.73,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 18.0,
-          "half": "1H",
-          "fx": 54.9,
-          "fy": 36.05,
-          "px": 673,
-          "py": 298,
-          "zone": "A1",
-          "fx_norm": 54.9,
-          "fy_norm": 36.05,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 27.0,
-          "half": "1H",
-          "fx": 53.09,
-          "fy": 32.75,
-          "px": 644,
-          "py": 278,
-          "zone": "A1",
-          "fx_norm": 53.09,
-          "fy_norm": 32.75,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 33.0,
-          "half": "1H",
-          "fx": 52.76,
-          "fy": 31.48,
-          "px": 639,
-          "py": 270,
-          "zone": "A1",
-          "fx_norm": 52.76,
-          "fy_norm": 31.48,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 55.97,
-          "fy": 32.25,
-          "px": 688,
-          "py": 275,
-          "zone": "A1",
-          "fx_norm": 55.97,
-          "fy_norm": 32.25,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 55.36,
-          "fy": 39.71,
-          "px": 682,
-          "py": 335,
-          "zone": "A1",
-          "fx_norm": 55.36,
-          "fy_norm": 39.71,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 42.0,
-          "half": "1H",
-          "fx": 53.22,
-          "fy": 41.65,
-          "px": 647,
-          "py": 350,
-          "zone": "A1",
-          "fx_norm": 53.22,
-          "fy_norm": 41.65,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 56.42,
-          "fy": 37.45,
-          "px": 698,
-          "py": 311,
-          "zone": "A1",
-          "fx_norm": 56.42,
-          "fy_norm": 37.45,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P03",
-      "jersey_number": null,
-      "n_sightings": 11,
-      "zone_dist": {
-        "A2": 7,
-        "A1": 4
-      },
-      "zone_dist_norm": {
-        "A2": 7,
-        "A1": 4
-      },
-      "sightings": [
-        {
-          "time_min": 3.0,
-          "half": "1H",
-          "fx": 63.39,
-          "fy": 28.44,
-          "px": 796,
-          "py": 244,
-          "zone": "A2",
-          "fx_norm": 63.39,
-          "fy_norm": 28.44,
-          "zone_norm": "A2",
-          "direction_flipped": false
+          "zone_norm": "D3",
+          "direction_flipped": true
         },
         {
           "time_min": 6.0,
@@ -387,36 +338,10 @@
           "px": 778,
           "py": 276,
           "zone": "A1",
-          "fx_norm": 61.82,
+          "fx_norm": 43.18,
           "fy_norm": 32.51,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 9.0,
-          "half": "1H",
-          "fx": 62.59,
-          "fy": 37.91,
-          "px": 798,
-          "py": 323,
-          "zone": "A1",
-          "fx_norm": 62.59,
-          "fy_norm": 37.91,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 12.0,
-          "half": "1H",
-          "fx": 67.86,
-          "fy": 34.86,
-          "px": 876,
-          "py": 297,
-          "zone": "A2",
-          "fx_norm": 67.86,
-          "fy_norm": 34.86,
-          "zone_norm": "A2",
-          "direction_flipped": false
+          "zone_norm": "D3",
+          "direction_flipped": true
         },
         {
           "time_min": 18.0,
@@ -426,87 +351,457 @@
           "px": 858,
           "py": 261,
           "zone": "A2",
-          "fx_norm": 67.15,
+          "fx_norm": 37.85,
           "fy_norm": 31.62,
-          "zone_norm": "A2",
-          "direction_flipped": false
+          "zone_norm": "D2",
+          "direction_flipped": true
         },
         {
           "time_min": 21.0,
           "half": "1H",
-          "fx": 63.55,
-          "fy": 34.01,
-          "px": 807,
-          "py": 290,
+          "fx": 68.95,
+          "fy": 38.7,
+          "px": 903,
+          "py": 325,
           "zone": "A2",
-          "fx_norm": 63.55,
-          "fy_norm": 34.01,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 61.1,
-          "fy": 30.97,
-          "px": 765,
-          "py": 266,
-          "zone": "A1",
-          "fx_norm": 61.1,
-          "fy_norm": 30.97,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 27.0,
-          "half": "1H",
-          "fx": 62.03,
-          "fy": 35.22,
-          "px": 785,
-          "py": 297,
-          "zone": "A1",
-          "fx_norm": 62.03,
-          "fy_norm": 35.22,
-          "zone_norm": "A1",
-          "direction_flipped": false
+          "fx_norm": 36.05,
+          "fy_norm": 38.7,
+          "zone_norm": "D2",
+          "direction_flipped": true
         },
         {
           "time_min": 30.0,
           "half": "1H",
-          "fx": 66.36,
-          "fy": 32.13,
-          "px": 847,
-          "py": 276,
+          "fx": 69.95,
+          "fy": 45.51,
+          "px": 940,
+          "py": 383,
           "zone": "A2",
-          "fx_norm": 66.36,
-          "fy_norm": 32.13,
+          "fx_norm": 35.05,
+          "fy_norm": 45.51,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 73.76,
+          "fy": 43.0,
+          "px": 997,
+          "py": 365,
+          "zone": "A2",
+          "fx_norm": 31.24,
+          "fy_norm": 43.0,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 45.0,
+          "half": "1H",
+          "fx": 73.68,
+          "fy": 48.16,
+          "px": 1016,
+          "py": 407,
+          "zone": "A2",
+          "fx_norm": 31.32,
+          "fy_norm": 48.16,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 48.01,
+          "half": "2H",
+          "fx": 83.08,
+          "fy": 39.7,
+          "px": 1139,
+          "py": 337,
+          "zone": "A2",
+          "fx_norm": 83.08,
+          "fy_norm": 39.7,
           "zone_norm": "A2",
           "direction_flipped": false
+        },
+        {
+          "time_min": 57.01,
+          "half": "2H",
+          "fx": 80.0,
+          "fy": 52.86,
+          "px": 1157,
+          "py": 461,
+          "zone": "A2",
+          "fx_norm": 80.0,
+          "fy_norm": 52.86,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 63.01,
+          "half": "2H",
+          "fx": 80.54,
+          "fy": 32.77,
+          "px": 1067,
+          "py": 279,
+          "zone": "A2",
+          "fx_norm": 80.54,
+          "fy_norm": 32.77,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 66.01,
+          "half": "2H",
+          "fx": 74.71,
+          "fy": 42.69,
+          "px": 1012,
+          "py": 358,
+          "zone": "A2",
+          "fx_norm": 74.71,
+          "fy_norm": 42.69,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 69.01,
+          "half": "2H",
+          "fx": 70.76,
+          "fy": 36.06,
+          "px": 925,
+          "py": 298,
+          "zone": "A2",
+          "fx_norm": 70.76,
+          "fy_norm": 36.06,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 81.01,
+          "half": "2H",
+          "fx": 66.63,
+          "fy": 29.52,
+          "px": 846,
+          "py": 253,
+          "zone": "A2",
+          "fx_norm": 66.63,
+          "fy_norm": 29.52,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        }
+      ]
+    },
+    {
+      "player_id": "P07",
+      "jersey_number": null,
+      "n_sightings": 10,
+      "zone_dist": {
+        "A2": 7,
+        "A3": 3
+      },
+      "zone_dist_norm": {
+        "D2": 4,
+        "A3": 3,
+        "A2": 3
+      },
+      "sightings": [
+        {
+          "time_min": 6.0,
+          "half": "1H",
+          "fx": 83.48,
+          "fy": 9.52,
+          "px": 1027,
+          "py": 127,
+          "zone": "A2",
+          "fx_norm": 21.52,
+          "fy_norm": 9.52,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 80.19,
+          "fy": 25.38,
+          "px": 1034,
+          "py": 221,
+          "zone": "A2",
+          "fx_norm": 24.81,
+          "fy_norm": 25.38,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 78.47,
+          "fy": 35.35,
+          "px": 1045,
+          "py": 296,
+          "zone": "A2",
+          "fx_norm": 26.53,
+          "fy_norm": 35.35,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 45.0,
+          "half": "1H",
+          "fx": 79.34,
+          "fy": 42.06,
+          "px": 1088,
+          "py": 355,
+          "zone": "A2",
+          "fx_norm": 25.66,
+          "fy_norm": 42.06,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 48.01,
+          "half": "2H",
+          "fx": 90.12,
+          "fy": 26.11,
+          "px": 1181,
+          "py": 226,
+          "zone": "A3",
+          "fx_norm": 90.12,
+          "fy_norm": 26.11,
+          "zone_norm": "A3",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 57.01,
+          "half": "2H",
+          "fx": 92.43,
+          "fy": 27.51,
+          "px": 1222,
+          "py": 238,
+          "zone": "A3",
+          "fx_norm": 92.43,
+          "fy_norm": 27.51,
+          "zone_norm": "A3",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 60.01,
+          "half": "2H",
+          "fx": 89.18,
+          "fy": 38.03,
+          "px": 1230,
+          "py": 299,
+          "zone": "A3",
+          "fx_norm": 89.18,
+          "fy_norm": 38.03,
+          "zone_norm": "A3",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 81.01,
+          "half": "2H",
+          "fx": 81.45,
+          "fy": 34.62,
+          "px": 1089,
+          "py": 292,
+          "zone": "A2",
+          "fx_norm": 81.45,
+          "fy_norm": 34.62,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 87.01,
+          "half": "2H",
+          "fx": 74.95,
+          "fy": 39.26,
+          "px": 1003,
+          "py": 330,
+          "zone": "A2",
+          "fx_norm": 74.95,
+          "fy_norm": 39.26,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 90.01,
+          "half": "2H",
+          "fx": 79.19,
+          "fy": 34.5,
+          "px": 1053,
+          "py": 293,
+          "zone": "A2",
+          "fx_norm": 79.19,
+          "fy_norm": 34.5,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        }
+      ]
+    },
+    {
+      "player_id": "P13",
+      "jersey_number": null,
+      "n_sightings": 12,
+      "zone_dist": {
+        "D3": 10,
+        "D2": 2
+      },
+      "zone_dist_norm": {
+        "A1": 5,
+        "D3": 5,
+        "D2": 2
+      },
+      "sightings": [
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 42.87,
+          "fy": 44.54,
+          "px": 469,
+          "py": 381,
+          "zone": "D3",
+          "fx_norm": 62.13,
+          "fy_norm": 44.54,
+          "zone_norm": "A1",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 27.0,
+          "half": "1H",
+          "fx": 45.5,
+          "fy": 46.3,
+          "px": 512,
+          "py": 390,
+          "zone": "D3",
+          "fx_norm": 59.5,
+          "fy_norm": 46.3,
+          "zone_norm": "A1",
+          "direction_flipped": true
         },
         {
           "time_min": 33.0,
           "half": "1H",
-          "fx": 65.34,
-          "fy": 39.15,
-          "px": 845,
-          "py": 324,
-          "zone": "A2",
-          "fx_norm": 65.34,
-          "fy_norm": 39.15,
-          "zone_norm": "A2",
+          "fx": 43.43,
+          "fy": 38.48,
+          "px": 488,
+          "py": 318,
+          "zone": "D3",
+          "fx_norm": 61.57,
+          "fy_norm": 38.48,
+          "zone_norm": "A1",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 42.0,
+          "half": "1H",
+          "fx": 43.37,
+          "fy": 32.62,
+          "px": 495,
+          "py": 276,
+          "zone": "D3",
+          "fx_norm": 61.63,
+          "fy_norm": 32.62,
+          "zone_norm": "A1",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 45.0,
+          "half": "1H",
+          "fx": 48.07,
+          "fy": 32.75,
+          "px": 567,
+          "py": 277,
+          "zone": "D3",
+          "fx_norm": 56.93,
+          "fy_norm": 32.75,
+          "zone_norm": "A1",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 51.01,
+          "half": "2H",
+          "fx": 42.37,
+          "fy": 34.49,
+          "px": 477,
+          "py": 290,
+          "zone": "D3",
+          "fx_norm": 42.37,
+          "fy_norm": 34.49,
+          "zone_norm": "D3",
           "direction_flipped": false
         },
         {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 63.68,
-          "fy": 38.14,
-          "px": 816,
-          "py": 324,
-          "zone": "A2",
-          "fx_norm": 63.68,
-          "fy_norm": 38.14,
-          "zone_norm": "A2",
+          "time_min": 57.01,
+          "half": "2H",
+          "fx": 41.66,
+          "fy": 41.97,
+          "px": 453,
+          "py": 350,
+          "zone": "D2",
+          "fx_norm": 41.66,
+          "fy_norm": 41.97,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 66.01,
+          "half": "2H",
+          "fx": 43.79,
+          "fy": 43.73,
+          "px": 486,
+          "py": 369,
+          "zone": "D3",
+          "fx_norm": 43.79,
+          "fy_norm": 43.73,
+          "zone_norm": "D3",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 69.01,
+          "half": "2H",
+          "fx": 46.14,
+          "fy": 46.49,
+          "px": 523,
+          "py": 390,
+          "zone": "D3",
+          "fx_norm": 46.14,
+          "fy_norm": 46.49,
+          "zone_norm": "D3",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 72.01,
+          "half": "2H",
+          "fx": 43.32,
+          "fy": 41.23,
+          "px": 482,
+          "py": 349,
+          "zone": "D3",
+          "fx_norm": 43.32,
+          "fy_norm": 41.23,
+          "zone_norm": "D3",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 81.01,
+          "half": "2H",
+          "fx": 45.44,
+          "fy": 44.73,
+          "px": 513,
+          "py": 379,
+          "zone": "D3",
+          "fx_norm": 45.44,
+          "fy_norm": 44.73,
+          "zone_norm": "D3",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 84.01,
+          "half": "2H",
+          "fx": 41.33,
+          "fy": 36.76,
+          "px": 457,
+          "py": 306,
+          "zone": "D2",
+          "fx_norm": 41.33,
+          "fy_norm": 36.76,
+          "zone_norm": "D2",
           "direction_flipped": false
         }
       ]
@@ -516,11 +811,948 @@
       "jersey_number": null,
       "n_sightings": 9,
       "zone_dist": {
+        "D1": 1,
+        "D2": 8
+      },
+      "zone_dist_norm": {
+        "A3": 1,
+        "A2": 4,
+        "D2": 4
+      },
+      "sightings": [
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 12.17,
+          "fy": 23.07,
+          "px": 69,
+          "py": 206,
+          "zone": "D1",
+          "fx_norm": 92.83,
+          "fy_norm": 23.07,
+          "zone_norm": "A3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 27.0,
+          "half": "1H",
+          "fx": 23.94,
+          "fy": 33.37,
+          "px": 195,
+          "py": 282,
+          "zone": "D2",
+          "fx_norm": 81.06,
+          "fy_norm": 33.37,
+          "zone_norm": "A2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 30.0,
+          "half": "1H",
+          "fx": 27.46,
+          "fy": 39.15,
+          "px": 227,
+          "py": 324,
+          "zone": "D2",
+          "fx_norm": 77.54,
+          "fy_norm": 39.15,
+          "zone_norm": "A2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 39.0,
+          "half": "1H",
+          "fx": 27.98,
+          "fy": 42.92,
+          "px": 220,
+          "py": 364,
+          "zone": "D2",
+          "fx_norm": 77.02,
+          "fy_norm": 42.92,
+          "zone_norm": "A2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 42.0,
+          "half": "1H",
+          "fx": 30.7,
+          "fy": 53.85,
+          "px": 219,
+          "py": 463,
+          "zone": "D2",
+          "fx_norm": 74.3,
+          "fy_norm": 53.85,
+          "zone_norm": "A2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 48.01,
+          "half": "2H",
+          "fx": 37.74,
+          "fy": 53.26,
+          "px": 355,
+          "py": 456,
+          "zone": "D2",
+          "fx_norm": 37.74,
+          "fy_norm": 53.26,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 51.01,
+          "half": "2H",
+          "fx": 39.06,
+          "fy": 47.07,
+          "px": 397,
+          "py": 396,
+          "zone": "D2",
+          "fx_norm": 39.06,
+          "fy_norm": 47.07,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 66.01,
+          "half": "2H",
+          "fx": 32.87,
+          "fy": 55.28,
+          "px": 254,
+          "py": 484,
+          "zone": "D2",
+          "fx_norm": 32.87,
+          "fy_norm": 55.28,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 90.01,
+          "half": "2H",
+          "fx": 31.14,
+          "fy": 49.75,
+          "px": 246,
+          "py": 418,
+          "zone": "D2",
+          "fx_norm": 31.14,
+          "fy_norm": 49.75,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        }
+      ]
+    },
+    {
+      "player_id": "P16",
+      "jersey_number": null,
+      "n_sightings": 10,
+      "zone_dist": {
+        "D1": 5,
+        "D2": 5
+      },
+      "zone_dist_norm": {
+        "A3": 4,
+        "D1": 1,
+        "D2": 5
+      },
+      "sightings": [
+        {
+          "time_min": 27.0,
+          "half": "1H",
+          "fx": 4.53,
+          "fy": 14.51,
+          "px": 8,
+          "py": 150,
+          "zone": "D1",
+          "fx_norm": 100.47,
+          "fy_norm": 14.51,
+          "zone_norm": "A3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 33.0,
+          "half": "1H",
+          "fx": 10.69,
+          "fy": 7.77,
+          "px": 116,
+          "py": 118,
+          "zone": "D1",
+          "fx_norm": 94.31,
+          "fy_norm": 7.77,
+          "zone_norm": "A3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 39.0,
+          "half": "1H",
+          "fx": 17.44,
+          "fy": 20.31,
+          "px": 154,
+          "py": 190,
+          "zone": "D1",
+          "fx_norm": 87.56,
+          "fy_norm": 20.31,
+          "zone_norm": "A3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 45.0,
+          "half": "1H",
+          "fx": 18.0,
+          "fy": 30.01,
+          "px": 120,
+          "py": 255,
+          "zone": "D1",
+          "fx_norm": 87.0,
+          "fy_norm": 30.01,
+          "zone_norm": "A3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 48.01,
+          "half": "2H",
+          "fx": 11.42,
+          "fy": 29.87,
+          "px": 23,
+          "py": 250,
+          "zone": "D1",
+          "fx_norm": 11.42,
+          "fy_norm": 29.87,
+          "zone_norm": "D1",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 60.01,
+          "half": "2H",
+          "fx": 23.34,
+          "fy": 46.99,
+          "px": 120,
+          "py": 382,
+          "zone": "D2",
+          "fx_norm": 23.34,
+          "fy_norm": 46.99,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 66.01,
+          "half": "2H",
+          "fx": 21.77,
+          "fy": 41.45,
+          "px": 123,
+          "py": 350,
+          "zone": "D2",
+          "fx_norm": 21.77,
+          "fy_norm": 41.45,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 75.01,
+          "half": "2H",
+          "fx": 24.44,
+          "fy": 37.33,
+          "px": 186,
+          "py": 310,
+          "zone": "D2",
+          "fx_norm": 24.44,
+          "fy_norm": 37.33,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 84.01,
+          "half": "2H",
+          "fx": 23.51,
+          "fy": 45.54,
+          "px": 131,
+          "py": 380,
+          "zone": "D2",
+          "fx_norm": 23.51,
+          "fy_norm": 45.54,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 87.01,
+          "half": "2H",
+          "fx": 21.88,
+          "fy": 40.8,
+          "px": 128,
+          "py": 347,
+          "zone": "D2",
+          "fx_norm": 21.88,
+          "fy_norm": 40.8,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        }
+      ]
+    },
+    {
+      "player_id": "P14",
+      "jersey_number": null,
+      "n_sightings": 9,
+      "zone_dist": {
+        "D3": 3,
+        "A1": 6
+      },
+      "zone_dist_norm": {
+        "A1": 4,
+        "D3": 5
+      },
+      "sightings": [
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 48.08,
+          "fy": 38.82,
+          "px": 563,
+          "py": 324,
+          "zone": "D3",
+          "fx_norm": 56.92,
+          "fy_norm": 38.82,
+          "zone_norm": "A1",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 39.0,
+          "half": "1H",
+          "fx": 55.36,
+          "fy": 39.71,
+          "px": 682,
+          "py": 335,
+          "zone": "A1",
+          "fx_norm": 49.64,
+          "fy_norm": 39.71,
+          "zone_norm": "D3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 42.0,
+          "half": "1H",
+          "fx": 53.22,
+          "fy": 41.65,
+          "px": 647,
+          "py": 350,
+          "zone": "A1",
+          "fx_norm": 51.78,
+          "fy_norm": 41.65,
+          "zone_norm": "D3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 45.0,
+          "half": "1H",
+          "fx": 56.42,
+          "fy": 37.45,
+          "px": 698,
+          "py": 311,
+          "zone": "A1",
+          "fx_norm": 48.58,
+          "fy_norm": 37.45,
+          "zone_norm": "D3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 51.01,
+          "half": "2H",
+          "fx": 50.91,
+          "fy": 39.26,
+          "px": 609,
+          "py": 328,
+          "zone": "D3",
+          "fx_norm": 50.91,
+          "fy_norm": 39.26,
+          "zone_norm": "D3",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 54.01,
+          "half": "2H",
+          "fx": 46.35,
+          "fy": 41.65,
+          "px": 532,
+          "py": 346,
+          "zone": "D3",
+          "fx_norm": 46.35,
+          "fy_norm": 41.65,
+          "zone_norm": "D3",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 72.01,
+          "half": "2H",
+          "fx": 52.92,
+          "fy": 40.9,
+          "px": 642,
+          "py": 345,
+          "zone": "A1",
+          "fx_norm": 52.92,
+          "fy_norm": 40.9,
+          "zone_norm": "A1",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 84.01,
+          "half": "2H",
+          "fx": 55.23,
+          "fy": 47.99,
+          "px": 684,
+          "py": 404,
+          "zone": "A1",
+          "fx_norm": 55.23,
+          "fy_norm": 47.99,
+          "zone_norm": "A1",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 90.01,
+          "half": "2H",
+          "fx": 59.46,
+          "fy": 52.4,
+          "px": 766,
+          "py": 447,
+          "zone": "A1",
+          "fx_norm": 59.46,
+          "fy_norm": 52.4,
+          "zone_norm": "A1",
+          "direction_flipped": false
+        }
+      ]
+    },
+    {
+      "player_id": "P08",
+      "jersey_number": null,
+      "n_sightings": 8,
+      "zone_dist": {
+        "D2": 8
+      },
+      "zone_dist_norm": {
+        "A2": 3,
+        "D2": 5
+      },
+      "sightings": [
+        {
+          "time_min": 6.0,
+          "half": "1H",
+          "fx": 37.16,
+          "fy": 41.02,
+          "px": 380,
+          "py": 345,
+          "zone": "D2",
+          "fx_norm": 67.84,
+          "fy_norm": 41.02,
+          "zone_norm": "A2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 36.38,
+          "fy": 48.56,
+          "px": 345,
+          "py": 405,
+          "zone": "D2",
+          "fx_norm": 68.62,
+          "fy_norm": 48.56,
+          "zone_norm": "A2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 42.0,
+          "half": "1H",
+          "fx": 33.75,
+          "fy": 36.17,
+          "px": 338,
+          "py": 304,
+          "zone": "D2",
+          "fx_norm": 71.25,
+          "fy_norm": 36.17,
+          "zone_norm": "A2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 51.01,
+          "half": "2H",
+          "fx": 31.74,
+          "fy": 38.71,
+          "px": 298,
+          "py": 325,
+          "zone": "D2",
+          "fx_norm": 31.74,
+          "fy_norm": 38.71,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 57.01,
+          "half": "2H",
+          "fx": 33.45,
+          "fy": 35.57,
+          "px": 335,
+          "py": 296,
+          "zone": "D2",
+          "fx_norm": 33.45,
+          "fy_norm": 35.57,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 60.01,
+          "half": "2H",
+          "fx": 31.31,
+          "fy": 24.29,
+          "px": 334,
+          "py": 205,
+          "zone": "D2",
+          "fx_norm": 31.31,
+          "fy_norm": 24.29,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 81.01,
+          "half": "2H",
+          "fx": 35.6,
+          "fy": 30.16,
+          "px": 382,
+          "py": 258,
+          "zone": "D2",
+          "fx_norm": 35.6,
+          "fy_norm": 30.16,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 84.01,
+          "half": "2H",
+          "fx": 38.85,
+          "fy": 36.99,
+          "px": 417,
+          "py": 308,
+          "zone": "D2",
+          "fx_norm": 38.85,
+          "fy_norm": 36.99,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        }
+      ]
+    },
+    {
+      "player_id": "P04",
+      "jersey_number": null,
+      "n_sightings": 8,
+      "zone_dist": {
+        "A3": 3,
+        "A2": 5
+      },
+      "zone_dist_norm": {
+        "D1": 3,
+        "A2": 5
+      },
+      "sightings": [
+        {
+          "time_min": 3.0,
+          "half": "1H",
+          "fx": 89.76,
+          "fy": 32.65,
+          "px": 1209,
+          "py": 275,
+          "zone": "A3",
+          "fx_norm": 15.24,
+          "fy_norm": 32.65,
+          "zone_norm": "D1",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 42.0,
+          "half": "1H",
+          "fx": 90.76,
+          "fy": 40.46,
+          "px": 1271,
+          "py": 340,
+          "zone": "A3",
+          "fx_norm": 14.24,
+          "fy_norm": 40.46,
+          "zone_norm": "D1",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 45.0,
+          "half": "1H",
+          "fx": 86.56,
+          "fy": 40.47,
+          "px": 1201,
+          "py": 337,
+          "zone": "A3",
+          "fx_norm": 18.44,
+          "fy_norm": 40.47,
+          "zone_norm": "D1",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 51.01,
+          "half": "2H",
+          "fx": 67.05,
+          "fy": 39.92,
+          "px": 875,
+          "py": 333,
+          "zone": "A2",
+          "fx_norm": 67.05,
+          "fy_norm": 39.92,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 57.01,
+          "half": "2H",
+          "fx": 65.72,
+          "fy": 34.62,
+          "px": 842,
+          "py": 292,
+          "zone": "A2",
+          "fx_norm": 65.72,
+          "fy_norm": 34.62,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 60.01,
+          "half": "2H",
+          "fx": 66.81,
+          "fy": 45.51,
+          "px": 885,
+          "py": 363,
+          "zone": "A2",
+          "fx_norm": 66.81,
+          "fy_norm": 45.51,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 63.01,
+          "half": "2H",
+          "fx": 63.6,
+          "fy": 47.98,
+          "px": 834,
+          "py": 405,
+          "zone": "A2",
+          "fx_norm": 63.6,
+          "fy_norm": 47.98,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 87.01,
+          "half": "2H",
+          "fx": 73.0,
+          "fy": 43.0,
+          "px": 984,
+          "py": 360,
+          "zone": "A2",
+          "fx_norm": 73.0,
+          "fy_norm": 43.0,
+          "zone_norm": "A2",
+          "direction_flipped": false
+        }
+      ]
+    },
+    {
+      "player_id": "P11",
+      "jersey_number": null,
+      "n_sightings": 7,
+      "zone_dist": {
+        "D1": 7
+      },
+      "zone_dist_norm": {
+        "A3": 3,
+        "D1": 4
+      },
+      "sightings": [
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 9.57,
+          "fy": 23.97,
+          "px": 28,
+          "py": 207,
+          "zone": "D1",
+          "fx_norm": 95.43,
+          "fy_norm": 23.97,
+          "zone_norm": "A3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 11.5,
+          "fy": 30.27,
+          "px": 22,
+          "py": 252,
+          "zone": "D1",
+          "fx_norm": 93.5,
+          "fy_norm": 30.27,
+          "zone_norm": "A3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 45.0,
+          "half": "1H",
+          "fx": 11.22,
+          "fy": 28.79,
+          "px": 26,
+          "py": 250,
+          "zone": "D1",
+          "fx_norm": 93.78,
+          "fy_norm": 28.79,
+          "zone_norm": "A3",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 48.01,
+          "half": "2H",
+          "fx": 20.15,
+          "fy": 15.57,
+          "px": 208,
+          "py": 161,
+          "zone": "D1",
+          "fx_norm": 20.15,
+          "fy_norm": 15.57,
+          "zone_norm": "D1",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 60.01,
+          "half": "2H",
+          "fx": 13.24,
+          "fy": 22.62,
+          "px": 86,
+          "py": 195,
+          "zone": "D1",
+          "fx_norm": 13.24,
+          "fy_norm": 22.62,
+          "zone_norm": "D1",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 66.01,
+          "half": "2H",
+          "fx": 10.0,
+          "fy": 14.35,
+          "px": 80,
+          "py": 154,
+          "zone": "D1",
+          "fx_norm": 10.0,
+          "fy_norm": 14.35,
+          "zone_norm": "D1",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 84.01,
+          "half": "2H",
+          "fx": 9.09,
+          "fy": 20.3,
+          "px": 40,
+          "py": 193,
+          "zone": "D1",
+          "fx_norm": 9.09,
+          "fy_norm": 20.3,
+          "zone_norm": "D1",
+          "direction_flipped": false
+        }
+      ]
+    },
+    {
+      "player_id": "P05",
+      "jersey_number": null,
+      "n_sightings": 7,
+      "zone_dist": {
+        "A2": 7
+      },
+      "zone_dist_norm": {
+        "D2": 7
+      },
+      "sightings": [
+        {
+          "time_min": 3.0,
+          "half": "1H",
+          "fx": 72.44,
+          "fy": 42.59,
+          "px": 973,
+          "py": 360,
+          "zone": "A2",
+          "fx_norm": 32.56,
+          "fy_norm": 42.59,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 6.0,
+          "half": "1H",
+          "fx": 69.86,
+          "fy": 50.67,
+          "px": 956,
+          "py": 435,
+          "zone": "A2",
+          "fx_norm": 35.14,
+          "fy_norm": 50.67,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 82.6,
+          "fy": 46.27,
+          "px": 1166,
+          "py": 396,
+          "zone": "A2",
+          "fx_norm": 22.4,
+          "fy_norm": 46.27,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 12.0,
+          "half": "1H",
+          "fx": 79.17,
+          "fy": 42.89,
+          "px": 1089,
+          "py": 358,
+          "zone": "A2",
+          "fx_norm": 25.83,
+          "fy_norm": 42.89,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 80.26,
+          "fy": 43.81,
+          "px": 1112,
+          "py": 366,
+          "zone": "A2",
+          "fx_norm": 24.74,
+          "fy_norm": 43.81,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 82.85,
+          "fy": 58.58,
+          "px": 1252,
+          "py": 520,
+          "zone": "A2",
+          "fx_norm": 22.15,
+          "fy_norm": 58.58,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 42.0,
+          "half": "1H",
+          "fx": 80.05,
+          "fy": 56.82,
+          "px": 1183,
+          "py": 503,
+          "zone": "A2",
+          "fx_norm": 24.95,
+          "fy_norm": 56.82,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        }
+      ]
+    },
+    {
+      "player_id": "P06",
+      "jersey_number": null,
+      "n_sightings": 5,
+      "zone_dist": {
+        "A2": 2,
+        "A3": 3
+      },
+      "zone_dist_norm": {
+        "D2": 2,
+        "D1": 3
+      },
+      "sightings": [
+        {
+          "time_min": 3.0,
+          "half": "1H",
+          "fx": 82.2,
+          "fy": 38.37,
+          "px": 1118,
+          "py": 316,
+          "zone": "A2",
+          "fx_norm": 22.8,
+          "fy_norm": 38.37,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 84.35,
+          "fy": 41.0,
+          "px": 1167,
+          "py": 347,
+          "zone": "A3",
+          "fx_norm": 20.65,
+          "fy_norm": 41.0,
+          "zone_norm": "D1",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 12.0,
+          "half": "1H",
+          "fx": 84.83,
+          "fy": 36.41,
+          "px": 1151,
+          "py": 299,
+          "zone": "A3",
+          "fx_norm": 20.17,
+          "fy_norm": 36.41,
+          "zone_norm": "D1",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 84.97,
+          "fy": 34.14,
+          "px": 1142,
+          "py": 284,
+          "zone": "A3",
+          "fx_norm": 20.03,
+          "fy_norm": 34.14,
+          "zone_norm": "D1",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 30.0,
+          "half": "1H",
+          "fx": 79.83,
+          "fy": 16.06,
+          "px": 999,
+          "py": 162,
+          "zone": "A2",
+          "fx_norm": 25.17,
+          "fy_norm": 16.06,
+          "zone_norm": "D2",
+          "direction_flipped": true
+        }
+      ]
+    },
+    {
+      "player_id": "P09",
+      "jersey_number": null,
+      "n_sightings": 9,
+      "zone_dist": {
         "D2": 6,
         "D3": 3
       },
       "zone_dist_norm": {
-        "D2": 6,
+        "A2": 6,
         "D3": 3
       },
       "sightings": [
@@ -532,393 +1764,10 @@
           "px": 402,
           "py": 289,
           "zone": "D2",
-          "fx_norm": 37.57,
+          "fx_norm": 67.43,
           "fy_norm": 34.61,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 9.0,
-          "half": "1H",
-          "fx": 39.5,
-          "fy": 38.14,
-          "px": 425,
-          "py": 326,
-          "zone": "D2",
-          "fx_norm": 39.5,
-          "fy_norm": 38.14,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 12.0,
-          "half": "1H",
-          "fx": 42.62,
-          "fy": 31.6,
-          "px": 485,
-          "py": 272,
-          "zone": "D3",
-          "fx_norm": 42.62,
-          "fy_norm": 31.6,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 21.0,
-          "half": "1H",
-          "fx": 41.74,
-          "fy": 21.14,
-          "px": 486,
-          "py": 199,
-          "zone": "D2",
-          "fx_norm": 41.74,
-          "fy_norm": 21.14,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 35.49,
-          "fy": 17.29,
-          "px": 407,
-          "py": 169,
-          "zone": "D2",
-          "fx_norm": 35.49,
-          "fy_norm": 17.29,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 33.0,
-          "half": "1H",
-          "fx": 34.27,
-          "fy": 12.47,
-          "px": 400,
-          "py": 147,
-          "zone": "D2",
-          "fx_norm": 34.27,
-          "fy_norm": 12.47,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 41.85,
-          "fy": 17.47,
-          "px": 492,
-          "py": 175,
-          "zone": "D2",
-          "fx_norm": 41.85,
-          "fy_norm": 17.47,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 42.0,
-          "half": "1H",
-          "fx": 43.68,
-          "fy": 29.23,
-          "px": 504,
-          "py": 255,
-          "zone": "D3",
-          "fx_norm": 43.68,
-          "fy_norm": 29.23,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 48.07,
-          "fy": 32.75,
-          "px": 567,
-          "py": 277,
-          "zone": "D3",
-          "fx_norm": 48.07,
-          "fy_norm": 32.75,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P11",
-      "jersey_number": null,
-      "n_sightings": 9,
-      "zone_dist": {
-        "A2": 2,
-        "A3": 7
-      },
-      "zone_dist_norm": {
-        "A2": 2,
-        "A3": 7
-      },
-      "sightings": [
-        {
-          "time_min": 6.0,
-          "half": "1H",
-          "fx": 83.48,
-          "fy": 9.52,
-          "px": 1027,
-          "py": 127,
-          "zone": "A2",
-          "fx_norm": 83.48,
-          "fy_norm": 9.52,
           "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 9.0,
-          "half": "1H",
-          "fx": 83.19,
-          "fy": 21.83,
-          "px": 1064,
-          "py": 202,
-          "zone": "A2",
-          "fx_norm": 83.19,
-          "fy_norm": 21.83,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 15.0,
-          "half": "1H",
-          "fx": 84.71,
-          "fy": 28.19,
-          "px": 1111,
-          "py": 248,
-          "zone": "A3",
-          "fx_norm": 84.71,
-          "fy_norm": 28.19,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 21.0,
-          "half": "1H",
-          "fx": 89.76,
-          "fy": 19.03,
-          "px": 1144,
-          "py": 185,
-          "zone": "A3",
-          "fx_norm": 89.76,
-          "fy_norm": 19.03,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 92.92,
-          "fy": 17.42,
-          "px": 1180,
-          "py": 174,
-          "zone": "A3",
-          "fx_norm": 92.92,
-          "fy_norm": 17.42,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 27.0,
-          "half": "1H",
-          "fx": 95.92,
-          "fy": 23.06,
-          "px": 1249,
-          "py": 208,
-          "zone": "A3",
-          "fx_norm": 95.92,
-          "fy_norm": 23.06,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 95.2,
-          "fy": 28.06,
-          "px": 1266,
-          "py": 246,
-          "zone": "A3",
-          "fx_norm": 95.2,
-          "fy_norm": 28.06,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 42.0,
-          "half": "1H",
-          "fx": 90.76,
-          "fy": 40.46,
-          "px": 1271,
-          "py": 340,
-          "zone": "A3",
-          "fx_norm": 90.76,
-          "fy_norm": 40.46,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 86.56,
-          "fy": 40.47,
-          "px": 1201,
-          "py": 337,
-          "zone": "A3",
-          "fx_norm": 86.56,
-          "fy_norm": 40.47,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P14",
-      "jersey_number": null,
-      "n_sightings": 8,
-      "zone_dist": {
-        "D2": 7,
-        "D1": 1
-      },
-      "zone_dist_norm": {
-        "D2": 7,
-        "D1": 1
-      },
-      "sightings": [
-        {
-          "time_min": 9.0,
-          "half": "1H",
-          "fx": 26.53,
-          "fy": 34.11,
-          "px": 232,
-          "py": 290,
-          "zone": "D2",
-          "fx_norm": 26.53,
-          "fy_norm": 34.11,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 18.0,
-          "half": "1H",
-          "fx": 21.06,
-          "fy": 38.37,
-          "px": 127,
-          "py": 317,
-          "zone": "D2",
-          "fx_norm": 21.06,
-          "fy_norm": 38.37,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 21.0,
-          "half": "1H",
-          "fx": 19.9,
-          "fy": 30.54,
-          "px": 146,
-          "py": 262,
-          "zone": "D1",
-          "fx_norm": 19.9,
-          "fy_norm": 30.54,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 21.44,
-          "fy": 25.87,
-          "px": 188,
-          "py": 231,
-          "zone": "D2",
-          "fx_norm": 21.44,
-          "fy_norm": 25.87,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 27.0,
-          "half": "1H",
-          "fx": 23.94,
-          "fy": 33.37,
-          "px": 195,
-          "py": 282,
-          "zone": "D2",
-          "fx_norm": 23.94,
-          "fy_norm": 33.37,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 30.0,
-          "half": "1H",
-          "fx": 27.46,
-          "fy": 39.15,
-          "px": 227,
-          "py": 324,
-          "zone": "D2",
-          "fx_norm": 27.46,
-          "fy_norm": 39.15,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 27.98,
-          "fy": 42.92,
-          "px": 220,
-          "py": 364,
-          "zone": "D2",
-          "fx_norm": 27.98,
-          "fy_norm": 42.92,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 42.0,
-          "half": "1H",
-          "fx": 30.7,
-          "fy": 53.85,
-          "px": 219,
-          "py": 463,
-          "zone": "D2",
-          "fx_norm": 30.7,
-          "fy_norm": 53.85,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P12",
-      "jersey_number": null,
-      "n_sightings": 9,
-      "zone_dist": {
-        "D2": 4,
-        "D3": 5
-      },
-      "zone_dist_norm": {
-        "D2": 4,
-        "D3": 5
-      },
-      "sightings": [
-        {
-          "time_min": 6.0,
-          "half": "1H",
-          "fx": 36.58,
-          "fy": 27.17,
-          "px": 403,
-          "py": 238,
-          "zone": "D2",
-          "fx_norm": 36.58,
-          "fy_norm": 27.17,
-          "zone_norm": "D2",
-          "direction_flipped": false
+          "direction_flipped": true
         },
         {
           "time_min": 9.0,
@@ -928,10 +1777,10 @@
           "px": 348,
           "py": 273,
           "zone": "D2",
-          "fx_norm": 33.69,
+          "fx_norm": 71.31,
           "fy_norm": 32.24,
-          "zone_norm": "D2",
-          "direction_flipped": false
+          "zone_norm": "A2",
+          "direction_flipped": true
         },
         {
           "time_min": 18.0,
@@ -941,75 +1790,119 @@
           "px": 390,
           "py": 223,
           "zone": "D2",
-          "fx_norm": 35.48,
+          "fx_norm": 69.52,
           "fy_norm": 25.75,
-          "zone_norm": "D2",
-          "direction_flipped": false
+          "zone_norm": "A2",
+          "direction_flipped": true
         },
         {
           "time_min": 24.0,
           "half": "1H",
-          "fx": 42.92,
-          "fy": 31.99,
-          "px": 489,
-          "py": 274,
-          "zone": "D3",
-          "fx_norm": 42.92,
-          "fy_norm": 31.99,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 30.0,
-          "half": "1H",
-          "fx": 47.27,
-          "fy": 39.93,
-          "px": 549,
-          "py": 336,
-          "zone": "D3",
-          "fx_norm": 47.27,
-          "fy_norm": 39.93,
-          "zone_norm": "D3",
-          "direction_flipped": false
+          "fx": 35.49,
+          "fy": 17.29,
+          "px": 407,
+          "py": 169,
+          "zone": "D2",
+          "fx_norm": 69.51,
+          "fy_norm": 17.29,
+          "zone_norm": "A2",
+          "direction_flipped": true
         },
         {
           "time_min": 33.0,
           "half": "1H",
-          "fx": 47.9,
-          "fy": 33.25,
-          "px": 564,
-          "py": 288,
+          "fx": 22.64,
+          "fy": 14.2,
+          "px": 245,
+          "py": 151,
+          "zone": "D2",
+          "fx_norm": 82.36,
+          "fy_norm": 14.2,
+          "zone_norm": "A2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 45.0,
+          "half": "1H",
+          "fx": 25.9,
+          "fy": 28.81,
+          "px": 242,
+          "py": 249,
+          "zone": "D2",
+          "fx_norm": 79.1,
+          "fy_norm": 28.81,
+          "zone_norm": "A2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 51.01,
+          "half": "2H",
+          "fx": 43.51,
+          "fy": 18.77,
+          "px": 513,
+          "py": 182,
           "zone": "D3",
-          "fx_norm": 47.9,
-          "fy_norm": 33.25,
+          "fx_norm": 43.51,
+          "fy_norm": 18.77,
           "zone_norm": "D3",
           "direction_flipped": false
         },
         {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 48.65,
-          "fy": 35.93,
-          "px": 574,
-          "py": 306,
+          "time_min": 60.01,
+          "half": "2H",
+          "fx": 44.03,
+          "fy": 23.87,
+          "px": 515,
+          "py": 200,
           "zone": "D3",
-          "fx_norm": 48.65,
-          "fy_norm": 35.93,
+          "fx_norm": 44.03,
+          "fy_norm": 23.87,
           "zone_norm": "D3",
           "direction_flipped": false
         },
         {
-          "time_min": 42.0,
-          "half": "1H",
-          "fx": 43.37,
-          "fy": 32.62,
-          "px": 495,
-          "py": 276,
+          "time_min": 63.01,
+          "half": "2H",
+          "fx": 43.51,
+          "fy": 31.21,
+          "px": 499,
+          "py": 263,
           "zone": "D3",
-          "fx_norm": 43.37,
-          "fy_norm": 32.62,
+          "fx_norm": 43.51,
+          "fy_norm": 31.21,
           "zone_norm": "D3",
           "direction_flipped": false
+        }
+      ]
+    },
+    {
+      "player_id": "P15",
+      "jersey_number": null,
+      "n_sightings": 7,
+      "zone_dist": {
+        "D3": 1,
+        "D2": 4,
+        "D1": 2
+      },
+      "zone_dist_norm": {
+        "A1": 1,
+        "A2": 1,
+        "D2": 3,
+        "D1": 2
+      },
+      "sightings": [
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 45.57,
+          "fy": 33.38,
+          "px": 528,
+          "py": 283,
+          "zone": "D3",
+          "fx_norm": 59.43,
+          "fy_norm": 33.38,
+          "zone_norm": "A1",
+          "direction_flipped": true
         },
         {
           "time_min": 45.0,
@@ -1019,445 +1912,103 @@
           "px": 431,
           "py": 352,
           "zone": "D2",
-          "fx_norm": 40.37,
+          "fx_norm": 64.63,
           "fy_norm": 42.18,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P16",
-      "jersey_number": null,
-      "n_sightings": 9,
-      "zone_dist": {
-        "D2": 9
-      },
-      "zone_dist_norm": {
-        "D2": 9
-      },
-      "sightings": [
-        {
-          "time_min": 12.0,
-          "half": "1H",
-          "fx": 28.83,
-          "fy": 13.7,
-          "px": 327,
-          "py": 151,
-          "zone": "D2",
-          "fx_norm": 28.83,
-          "fy_norm": 13.7,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 21.0,
-          "half": "1H",
-          "fx": 25.77,
-          "fy": 29.08,
-          "px": 239,
-          "py": 249,
-          "zone": "D2",
-          "fx_norm": 25.77,
-          "fy_norm": 29.08,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 29.69,
-          "fy": 24.29,
-          "px": 311,
-          "py": 221,
-          "zone": "D2",
-          "fx_norm": 29.69,
-          "fy_norm": 24.29,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 30.0,
-          "half": "1H",
-          "fx": 31.38,
-          "fy": 27.99,
-          "px": 325,
-          "py": 245,
-          "zone": "D2",
-          "fx_norm": 31.38,
-          "fy_norm": 27.99,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 33.0,
-          "half": "1H",
-          "fx": 25.75,
-          "fy": 22.49,
-          "px": 261,
-          "py": 208,
-          "zone": "D2",
-          "fx_norm": 25.75,
-          "fy_norm": 22.49,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 29.15,
-          "fy": 29.08,
-          "px": 289,
-          "py": 253,
-          "zone": "D2",
-          "fx_norm": 29.15,
-          "fy_norm": 29.08,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 32.53,
-          "fy": 25.6,
-          "px": 348,
-          "py": 228,
-          "zone": "D2",
-          "fx_norm": 32.53,
-          "fy_norm": 25.6,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 42.0,
-          "half": "1H",
-          "fx": 33.75,
-          "fy": 36.17,
-          "px": 338,
-          "py": 304,
-          "zone": "D2",
-          "fx_norm": 33.75,
-          "fy_norm": 36.17,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 36.13,
-          "fy": 33.99,
-          "px": 381,
-          "py": 289,
-          "zone": "D2",
-          "fx_norm": 36.13,
-          "fy_norm": 33.99,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P04",
-      "jersey_number": null,
-      "n_sightings": 8,
-      "zone_dist": {
-        "A1": 6,
-        "A2": 2
-      },
-      "zone_dist_norm": {
-        "A1": 6,
-        "A2": 2
-      },
-      "sightings": [
-        {
-          "time_min": 3.0,
-          "half": "1H",
-          "fx": 54.76,
-          "fy": 51.21,
-          "px": 677,
-          "py": 437,
-          "zone": "A1",
-          "fx_norm": 54.76,
-          "fy_norm": 51.21,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 9.0,
-          "half": "1H",
-          "fx": 60.26,
-          "fy": 48.54,
-          "px": 775,
-          "py": 419,
-          "zone": "A1",
-          "fx_norm": 60.26,
-          "fy_norm": 48.54,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 18.0,
-          "half": "1H",
-          "fx": 61.15,
-          "fy": 49.08,
-          "px": 792,
-          "py": 418,
-          "zone": "A1",
-          "fx_norm": 61.15,
-          "fy_norm": 49.08,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 63.32,
-          "fy": 44.52,
-          "px": 822,
-          "py": 371,
-          "zone": "A2",
-          "fx_norm": 63.32,
-          "fy_norm": 44.52,
           "zone_norm": "A2",
+          "direction_flipped": true
+        },
+        {
+          "time_min": 51.01,
+          "half": "2H",
+          "fx": 24.16,
+          "fy": 47.27,
+          "px": 133,
+          "py": 397,
+          "zone": "D2",
+          "fx_norm": 24.16,
+          "fy_norm": 47.27,
+          "zone_norm": "D2",
           "direction_flipped": false
         },
         {
-          "time_min": 33.0,
-          "half": "1H",
-          "fx": 60.95,
-          "fy": 34.49,
-          "px": 767,
-          "py": 294,
-          "zone": "A1",
-          "fx_norm": 60.95,
-          "fy_norm": 34.49,
-          "zone_norm": "A1",
+          "time_min": 54.01,
+          "half": "2H",
+          "fx": 20.91,
+          "fy": 36.87,
+          "px": 132,
+          "py": 310,
+          "zone": "D1",
+          "fx_norm": 20.91,
+          "fy_norm": 36.87,
+          "zone_norm": "D1",
           "direction_flipped": false
         },
         {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 62.6,
-          "fy": 30.45,
-          "px": 787,
+          "time_min": 60.01,
+          "half": "2H",
+          "fx": 19.63,
+          "fy": 33.11,
+          "px": 130,
           "py": 263,
-          "zone": "A1",
-          "fx_norm": 62.6,
-          "fy_norm": 30.45,
-          "zone_norm": "A1",
+          "zone": "D1",
+          "fx_norm": 19.63,
+          "fy_norm": 33.11,
+          "zone_norm": "D1",
           "direction_flipped": false
         },
         {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 61.65,
-          "fy": 23.01,
-          "px": 764,
-          "py": 208,
-          "zone": "A1",
-          "fx_norm": 61.65,
-          "fy_norm": 23.01,
-          "zone_norm": "A1",
+          "time_min": 75.01,
+          "half": "2H",
+          "fx": 26.82,
+          "fy": 32.36,
+          "px": 243,
+          "py": 275,
+          "zone": "D2",
+          "fx_norm": 26.82,
+          "fy_norm": 32.36,
+          "zone_norm": "D2",
           "direction_flipped": false
         },
         {
-          "time_min": 42.0,
-          "half": "1H",
-          "fx": 67.96,
-          "fy": 16.2,
-          "px": 841,
-          "py": 168,
-          "zone": "A2",
-          "fx_norm": 67.96,
-          "fy_norm": 16.2,
-          "zone_norm": "A2",
+          "time_min": 81.01,
+          "half": "2H",
+          "fx": 32.91,
+          "fy": 33.37,
+          "px": 333,
+          "py": 283,
+          "zone": "D2",
+          "fx_norm": 32.91,
+          "fy_norm": 33.37,
+          "zone_norm": "D2",
           "direction_flipped": false
         }
       ]
     },
     {
-      "player_id": "P05",
-      "jersey_number": 1,
-      "n_sightings": 9,
+      "player_id": "P12",
+      "jersey_number": null,
+      "n_sightings": 3,
       "zone_dist": {
-        "A3": 1,
-        "A2": 8
+        "D2": 2,
+        "D1": 1
       },
       "zone_dist_norm": {
-        "A3": 1,
-        "A2": 8
+        "A2": 2,
+        "A3": 1
       },
       "sightings": [
-        {
-          "time_min": 3.0,
-          "half": "1H",
-          "fx": 91.53,
-          "fy": 39.26,
-          "px": 1276,
-          "py": 330,
-          "zone": "A3",
-          "fx_norm": 91.53,
-          "fy_norm": 39.26,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 9.0,
-          "half": "1H",
-          "fx": 73.14,
-          "fy": 36.41,
-          "px": 964,
-          "py": 311,
-          "zone": "A2",
-          "fx_norm": 73.14,
-          "fy_norm": 36.41,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 15.0,
-          "half": "1H",
-          "fx": 75.06,
-          "fy": 26.09,
-          "px": 962,
-          "py": 229,
-          "zone": "A2",
-          "fx_norm": 75.06,
-          "fy_norm": 26.09,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
         {
           "time_min": 18.0,
           "half": "1H",
-          "fx": 80.19,
-          "fy": 25.38,
-          "px": 1034,
-          "py": 221,
-          "zone": "A2",
-          "fx_norm": 80.19,
-          "fy_norm": 25.38,
+          "fx": 21.06,
+          "fy": 38.37,
+          "px": 127,
+          "py": 317,
+          "zone": "D2",
+          "fx_norm": 83.94,
+          "fy_norm": 38.37,
           "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 78.47,
-          "fy": 35.35,
-          "px": 1045,
-          "py": 296,
-          "zone": "A2",
-          "fx_norm": 78.47,
-          "fy_norm": 35.35,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 72.27,
-          "fy": 34.74,
-          "px": 945,
-          "py": 292,
-          "zone": "A2",
-          "fx_norm": 72.27,
-          "fy_norm": 34.74,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 68.05,
-          "fy": 40.9,
-          "px": 894,
-          "py": 348,
-          "zone": "A2",
-          "fx_norm": 68.05,
-          "fy_norm": 40.9,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 42.0,
-          "half": "1H",
-          "fx": 71.61,
-          "fy": 30.85,
-          "px": 924,
-          "py": 266,
-          "zone": "A2",
-          "fx_norm": 71.61,
-          "fy_norm": 30.85,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 71.42,
-          "fy": 33.39,
-          "px": 928,
-          "py": 284,
-          "zone": "A2",
-          "fx_norm": 71.42,
-          "fy_norm": 33.39,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P06",
-      "jersey_number": null,
-      "n_sightings": 7,
-      "zone_dist": {
-        "D1": 5,
-        "D2": 2
-      },
-      "zone_dist_norm": {
-        "D1": 5,
-        "D2": 2
-      },
-      "sightings": [
-        {
-          "time_min": 3.0,
-          "half": "1H",
-          "fx": 15.06,
-          "fy": 22.93,
-          "px": 110,
-          "py": 213,
-          "zone": "D1",
-          "fx_norm": 15.06,
-          "fy_norm": 22.93,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 15.0,
-          "half": "1H",
-          "fx": 12.17,
-          "fy": 23.07,
-          "px": 69,
-          "py": 206,
-          "zone": "D1",
-          "fx_norm": 12.17,
-          "fy_norm": 23.07,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 13.35,
-          "fy": 25.86,
-          "px": 72,
-          "py": 232,
-          "zone": "D1",
-          "fx_norm": 13.35,
-          "fy_norm": 25.86,
-          "zone_norm": "D1",
-          "direction_flipped": false
+          "direction_flipped": true
         },
         {
           "time_min": 27.0,
@@ -1467,23 +2018,10 @@
           "px": 120,
           "py": 325,
           "zone": "D1",
-          "fx_norm": 20.73,
+          "fx_norm": 84.27,
           "fy_norm": 38.71,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 30.0,
-          "half": "1H",
-          "fx": 20.48,
-          "fy": 34.84,
-          "px": 135,
-          "py": 296,
-          "zone": "D1",
-          "fx_norm": 20.48,
-          "fy_norm": 34.84,
-          "zone_norm": "D1",
-          "direction_flipped": false
+          "zone_norm": "A3",
+          "direction_flipped": true
         },
         {
           "time_min": 33.0,
@@ -1493,334 +2031,182 @@
           "px": 130,
           "py": 331,
           "zone": "D2",
-          "fx_norm": 21.76,
+          "fx_norm": 83.24,
           "fy_norm": 40.04,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 22.65,
-          "fy": 34.11,
-          "px": 172,
-          "py": 289,
-          "zone": "D2",
-          "fx_norm": 22.65,
-          "fy_norm": 34.11,
-          "zone_norm": "D2",
-          "direction_flipped": false
+          "zone_norm": "A2",
+          "direction_flipped": true
         }
       ]
     },
     {
-      "player_id": "P13",
+      "player_id": "P19",
       "jersey_number": null,
-      "n_sightings": 4,
+      "n_sightings": 6,
       "zone_dist": {
-        "D2": 4
+        "D1": 1,
+        "D2": 5
       },
       "zone_dist_norm": {
-        "D2": 4
+        "D1": 1,
+        "D2": 5
       },
       "sightings": [
         {
-          "time_min": 6.0,
-          "half": "1H",
-          "fx": 37.16,
-          "fy": 41.02,
-          "px": 380,
-          "py": 345,
+          "time_min": 66.01,
+          "half": "2H",
+          "fx": 19.31,
+          "fy": 49.49,
+          "px": 33,
+          "py": 415,
+          "zone": "D1",
+          "fx_norm": 19.31,
+          "fy_norm": 49.49,
+          "zone_norm": "D1",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 69.01,
+          "half": "2H",
+          "fx": 29.75,
+          "fy": 41.34,
+          "px": 256,
+          "py": 349,
           "zone": "D2",
-          "fx_norm": 37.16,
-          "fy_norm": 41.02,
+          "fx_norm": 29.75,
+          "fy_norm": 41.34,
           "zone_norm": "D2",
           "direction_flipped": false
         },
         {
-          "time_min": 9.0,
-          "half": "1H",
-          "fx": 41.55,
-          "fy": 42.6,
-          "px": 450,
-          "py": 369,
+          "time_min": 72.01,
+          "half": "2H",
+          "fx": 34.43,
+          "fy": 43.84,
+          "px": 326,
+          "py": 371,
           "zone": "D2",
-          "fx_norm": 41.55,
-          "fy_norm": 42.6,
+          "fx_norm": 34.43,
+          "fy_norm": 43.84,
           "zone_norm": "D2",
           "direction_flipped": false
         },
         {
-          "time_min": 18.0,
-          "half": "1H",
-          "fx": 36.38,
-          "fy": 48.56,
+          "time_min": 75.01,
+          "half": "2H",
+          "fx": 31.91,
+          "fy": 41.87,
+          "px": 290,
+          "py": 352,
+          "zone": "D2",
+          "fx_norm": 31.91,
+          "fy_norm": 41.87,
+          "zone_norm": "D2",
+          "direction_flipped": false
+        },
+        {
+          "time_min": 78.01,
+          "half": "2H",
+          "fx": 34.85,
+          "fy": 39.93,
           "px": 345,
-          "py": 405,
+          "py": 335,
           "zone": "D2",
-          "fx_norm": 36.38,
-          "fy_norm": 48.56,
+          "fx_norm": 34.85,
+          "fy_norm": 39.93,
           "zone_norm": "D2",
           "direction_flipped": false
         },
         {
-          "time_min": 21.0,
-          "half": "1H",
-          "fx": 32.24,
-          "fy": 60.88,
-          "px": 214,
-          "py": 561,
+          "time_min": 81.01,
+          "half": "2H",
+          "fx": 35.37,
+          "fy": 40.8,
+          "px": 351,
+          "py": 339,
           "zone": "D2",
-          "fx_norm": 32.24,
-          "fy_norm": 60.88,
+          "fx_norm": 35.37,
+          "fy_norm": 40.8,
           "zone_norm": "D2",
           "direction_flipped": false
         }
       ]
     },
     {
-      "player_id": "P21",
-      "jersey_number": null,
-      "n_sightings": 3,
-      "zone_dist": {
-        "D3": 3
-      },
-      "zone_dist_norm": {
-        "D3": 3
-      },
-      "sightings": [
-        {
-          "time_min": 21.0,
-          "half": "1H",
-          "fx": 51.79,
-          "fy": 50.34,
-          "px": 622,
-          "py": 449,
-          "zone": "D3",
-          "fx_norm": 51.79,
-          "fy_norm": 50.34,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 48.08,
-          "fy": 38.82,
-          "px": 563,
-          "py": 324,
-          "zone": "D3",
-          "fx_norm": 48.08,
-          "fy_norm": 38.82,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 27.0,
-          "half": "1H",
-          "fx": 45.5,
-          "fy": 46.3,
-          "px": 512,
-          "py": 390,
-          "zone": "D3",
-          "fx_norm": 45.5,
-          "fy_norm": 46.3,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P22",
-      "jersey_number": null,
-      "n_sightings": 3,
-      "zone_dist": {
-        "D3": 3
-      },
-      "zone_dist_norm": {
-        "D3": 3
-      },
-      "sightings": [
-        {
-          "time_min": 21.0,
-          "half": "1H",
-          "fx": 47.6,
-          "fy": 33.87,
-          "px": 559,
-          "py": 288,
-          "zone": "D3",
-          "fx_norm": 47.6,
-          "fy_norm": 33.87,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 45.57,
-          "fy": 33.38,
-          "px": 528,
-          "py": 283,
-          "zone": "D3",
-          "fx_norm": 45.57,
-          "fy_norm": 33.38,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 33.0,
-          "half": "1H",
-          "fx": 43.43,
-          "fy": 38.48,
-          "px": 488,
-          "py": 318,
-          "zone": "D3",
-          "fx_norm": 43.43,
-          "fy_norm": 38.48,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P24",
-      "jersey_number": null,
-      "n_sightings": 4,
-      "zone_dist": {
-        "D1": 4
-      },
-      "zone_dist_norm": {
-        "D1": 4
-      },
-      "sightings": [
-        {
-          "time_min": 33.0,
-          "half": "1H",
-          "fx": 19.68,
-          "fy": 11.35,
-          "px": 216,
-          "py": 138,
-          "zone": "D1",
-          "fx_norm": 19.68,
-          "fy_norm": 11.35,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 14.68,
-          "fy": 23.08,
-          "px": 104,
-          "py": 213,
-          "zone": "D1",
-          "fx_norm": 14.68,
-          "fy_norm": 23.08,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 17.44,
-          "fy": 20.31,
-          "px": 154,
-          "py": 190,
-          "zone": "D1",
-          "fx_norm": 17.44,
-          "fy_norm": 20.31,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 18.0,
-          "fy": 30.01,
-          "px": 120,
-          "py": 255,
-          "zone": "D1",
-          "fx_norm": 18.0,
-          "fy_norm": 30.01,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P07",
+      "player_id": "P18",
       "jersey_number": null,
       "n_sightings": 5,
       "zone_dist": {
-        "A2": 5
+        "D3": 4,
+        "D2": 1
       },
       "zone_dist_norm": {
-        "A2": 5
+        "D3": 4,
+        "D2": 1
       },
       "sightings": [
         {
-          "time_min": 3.0,
-          "half": "1H",
-          "fx": 72.44,
-          "fy": 42.59,
-          "px": 973,
-          "py": 360,
-          "zone": "A2",
-          "fx_norm": 72.44,
-          "fy_norm": 42.59,
-          "zone_norm": "A2",
+          "time_min": 60.01,
+          "half": "2H",
+          "fx": 52.04,
+          "fy": 14.28,
+          "px": 629,
+          "py": 145,
+          "zone": "D3",
+          "fx_norm": 52.04,
+          "fy_norm": 14.28,
+          "zone_norm": "D3",
           "direction_flipped": false
         },
         {
-          "time_min": 6.0,
-          "half": "1H",
-          "fx": 69.86,
-          "fy": 50.67,
-          "px": 956,
-          "py": 435,
-          "zone": "A2",
-          "fx_norm": 69.86,
-          "fy_norm": 50.67,
-          "zone_norm": "A2",
+          "time_min": 69.01,
+          "half": "2H",
+          "fx": 46.65,
+          "fy": 13.22,
+          "px": 559,
+          "py": 147,
+          "zone": "D3",
+          "fx_norm": 46.65,
+          "fy_norm": 13.22,
+          "zone_norm": "D3",
           "direction_flipped": false
         },
         {
-          "time_min": 21.0,
-          "half": "1H",
-          "fx": 68.95,
-          "fy": 38.7,
-          "px": 903,
-          "py": 325,
-          "zone": "A2",
-          "fx_norm": 68.95,
-          "fy_norm": 38.7,
-          "zone_norm": "A2",
+          "time_min": 72.01,
+          "half": "2H",
+          "fx": 50.21,
+          "fy": 37.91,
+          "px": 598,
+          "py": 321,
+          "zone": "D3",
+          "fx_norm": 50.21,
+          "fy_norm": 37.91,
+          "zone_norm": "D3",
           "direction_flipped": false
         },
         {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 73.51,
-          "fy": 26.65,
-          "px": 941,
-          "py": 237,
-          "zone": "A2",
-          "fx_norm": 73.51,
-          "fy_norm": 26.65,
-          "zone_norm": "A2",
+          "time_min": 81.01,
+          "half": "2H",
+          "fx": 48.31,
+          "fy": 35.58,
+          "px": 569,
+          "py": 295,
+          "zone": "D3",
+          "fx_norm": 48.31,
+          "fy_norm": 35.58,
+          "zone_norm": "D3",
           "direction_flipped": false
         },
         {
-          "time_min": 30.0,
-          "half": "1H",
-          "fx": 79.83,
-          "fy": 16.06,
-          "px": 999,
-          "py": 162,
-          "zone": "A2",
-          "fx_norm": 79.83,
-          "fy_norm": 16.06,
-          "zone_norm": "A2",
+          "time_min": 90.01,
+          "half": "2H",
+          "fx": 27.18,
+          "fy": 36.75,
+          "px": 232,
+          "py": 303,
+          "zone": "D2",
+          "fx_norm": 27.18,
+          "fy_norm": 36.75,
+          "zone_norm": "D2",
           "direction_flipped": false
         }
       ]
@@ -1837,733 +2223,42 @@
       },
       "sightings": [
         {
-          "time_min": 12.0,
-          "half": "1H",
-          "fx": 67.65,
-          "fy": 30.84,
-          "px": 864,
-          "py": 261,
+          "time_min": 48.01,
+          "half": "2H",
+          "fx": 79.06,
+          "fy": 3.05,
+          "px": 955,
+          "py": 92,
           "zone": "A2",
-          "fx_norm": 67.65,
-          "fy_norm": 30.84,
+          "fx_norm": 79.06,
+          "fy_norm": 3.05,
           "zone_norm": "A2",
           "direction_flipped": false
         },
         {
-          "time_min": 15.0,
-          "half": "1H",
-          "fx": 70.72,
-          "fy": 23.02,
-          "px": 892,
-          "py": 209,
+          "time_min": 57.01,
+          "half": "2H",
+          "fx": 76.86,
+          "fy": 2.83,
+          "px": 928,
+          "py": 92,
           "zone": "A2",
-          "fx_norm": 70.72,
-          "fy_norm": 23.02,
+          "fx_norm": 76.86,
+          "fy_norm": 2.83,
           "zone_norm": "A2",
           "direction_flipped": false
         },
         {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 71.29,
-          "fy": 23.02,
-          "px": 900,
-          "py": 211,
+          "time_min": 60.01,
+          "half": "2H",
+          "fx": 81.83,
+          "fy": 9.14,
+          "px": 1005,
+          "py": 124,
           "zone": "A2",
-          "fx_norm": 71.29,
-          "fy_norm": 23.02,
+          "fx_norm": 81.83,
+          "fy_norm": 9.14,
           "zone_norm": "A2",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P25",
-      "jersey_number": null,
-      "n_sightings": 3,
-      "zone_dist": {
-        "D1": 3
-      },
-      "zone_dist_norm": {
-        "D1": 3
-      },
-      "sightings": [
-        {
-          "time_min": 33.0,
-          "half": "1H",
-          "fx": 16.26,
-          "fy": 13.14,
-          "px": 166,
-          "py": 150,
-          "zone": "D1",
-          "fx_norm": 16.26,
-          "fy_norm": 13.14,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 10.79,
-          "fy": 14.87,
-          "px": 88,
-          "py": 162,
-          "zone": "D1",
-          "fx_norm": 10.79,
-          "fy_norm": 14.87,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 42.0,
-          "half": "1H",
-          "fx": 10.79,
-          "fy": 16.23,
-          "px": 82,
-          "py": 168,
-          "zone": "D1",
-          "fx_norm": 10.79,
-          "fy_norm": 16.23,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P23",
-      "jersey_number": null,
-      "n_sightings": 5,
-      "zone_dist": {
-        "D2": 5
-      },
-      "zone_dist_norm": {
-        "D2": 5
-      },
-      "sightings": [
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 34.09,
-          "fy": 23.11,
-          "px": 376,
-          "py": 215,
-          "zone": "D2",
-          "fx_norm": 34.09,
-          "fy_norm": 23.11,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 30.0,
-          "half": "1H",
-          "fx": 36.67,
-          "fy": 32.87,
-          "px": 392,
-          "py": 282,
-          "zone": "D2",
-          "fx_norm": 36.67,
-          "fy_norm": 32.87,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 37.3,
-          "fy": 33.12,
-          "px": 401,
-          "py": 282,
-          "zone": "D2",
-          "fx_norm": 37.3,
-          "fy_norm": 33.12,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 35.04,
-          "fy": 32.87,
-          "px": 367,
-          "py": 284,
-          "zone": "D2",
-          "fx_norm": 35.04,
-          "fy_norm": 32.87,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 42.0,
-          "half": "1H",
-          "fx": 39.16,
-          "fy": 30.82,
-          "px": 434,
-          "py": 266,
-          "zone": "D2",
-          "fx_norm": 39.16,
-          "fy_norm": 30.82,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P26",
-      "jersey_number": null,
-      "n_sightings": 3,
-      "zone_dist": {
-        "D2": 3
-      },
-      "zone_dist_norm": {
-        "D2": 3
-      },
-      "sightings": [
-        {
-          "time_min": 33.0,
-          "half": "1H",
-          "fx": 22.64,
-          "fy": 14.2,
-          "px": 245,
-          "py": 151,
-          "zone": "D2",
-          "fx_norm": 22.64,
-          "fy_norm": 14.2,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 23.13,
-          "fy": 24.57,
-          "px": 217,
-          "py": 223,
-          "zone": "D2",
-          "fx_norm": 23.13,
-          "fy_norm": 24.57,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 25.9,
-          "fy": 28.81,
-          "px": 242,
-          "py": 249,
-          "zone": "D2",
-          "fx_norm": 25.9,
-          "fy_norm": 28.81,
-          "zone_norm": "D2",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P18",
-      "jersey_number": null,
-      "n_sightings": 5,
-      "zone_dist": {
-        "A1": 5
-      },
-      "zone_dist_norm": {
-        "A1": 5
-      },
-      "sightings": [
-        {
-          "time_min": 15.0,
-          "half": "1H",
-          "fx": 56.05,
-          "fy": 3.98,
-          "px": 678,
-          "py": 103,
-          "zone": "A1",
-          "fx_norm": 56.05,
-          "fy_norm": 3.98,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 33.0,
-          "half": "1H",
-          "fx": 59.84,
-          "fy": 7.16,
-          "px": 726,
-          "py": 119,
-          "zone": "A1",
-          "fx_norm": 59.84,
-          "fy_norm": 7.16,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 59.73,
-          "fy": 26.49,
-          "px": 740,
-          "py": 234,
-          "zone": "A1",
-          "fx_norm": 59.73,
-          "fy_norm": 26.49,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 54.13,
-          "fy": 22.99,
-          "px": 658,
-          "py": 210,
-          "zone": "A1",
-          "fx_norm": 54.13,
-          "fy_norm": 22.99,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 54.6,
-          "fy": 24.62,
-          "px": 665,
-          "py": 220,
-          "zone": "A1",
-          "fx_norm": 54.6,
-          "fy_norm": 24.62,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P08",
-      "jersey_number": null,
-      "n_sightings": 5,
-      "zone_dist": {
-        "D3": 5
-      },
-      "zone_dist_norm": {
-        "D3": 5
-      },
-      "sightings": [
-        {
-          "time_min": 3.0,
-          "half": "1H",
-          "fx": 51.04,
-          "fy": 35.58,
-          "px": 612,
-          "py": 297,
-          "zone": "D3",
-          "fx_norm": 51.04,
-          "fy_norm": 35.58,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 12.0,
-          "half": "1H",
-          "fx": 44.61,
-          "fy": 22.98,
-          "px": 524,
-          "py": 210,
-          "zone": "D3",
-          "fx_norm": 44.61,
-          "fy_norm": 22.98,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 21.0,
-          "half": "1H",
-          "fx": 42.87,
-          "fy": 44.54,
-          "px": 469,
-          "py": 381,
-          "zone": "D3",
-          "fx_norm": 42.87,
-          "fy_norm": 44.54,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 33.0,
-          "half": "1H",
-          "fx": 45.16,
-          "fy": 32.12,
-          "px": 523,
-          "py": 274,
-          "zone": "D3",
-          "fx_norm": 45.16,
-          "fy_norm": 32.12,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 47.65,
-          "fy": 22.68,
-          "px": 567,
-          "py": 211,
-          "zone": "D3",
-          "fx_norm": 47.65,
-          "fy_norm": 22.68,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P09",
-      "jersey_number": null,
-      "n_sightings": 5,
-      "zone_dist": {
-        "A3": 5
-      },
-      "zone_dist_norm": {
-        "A3": 5
-      },
-      "sightings": [
-        {
-          "time_min": 3.0,
-          "half": "1H",
-          "fx": 100.31,
-          "fy": 12.48,
-          "px": 1255,
-          "py": 147,
-          "zone": "A3",
-          "fx_norm": 100.31,
-          "fy_norm": 12.48,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 21.0,
-          "half": "1H",
-          "fx": 97.68,
-          "fy": 21.4,
-          "px": 1265,
-          "py": 201,
-          "zone": "A3",
-          "fx_norm": 97.68,
-          "fy_norm": 21.4,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 88.25,
-          "fy": 15.91,
-          "px": 1111,
-          "py": 166,
-          "zone": "A3",
-          "fx_norm": 88.25,
-          "fy_norm": 15.91,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 102.23,
-          "fy": 4.55,
-          "px": 1242,
-          "py": 107,
-          "zone": "A3",
-          "fx_norm": 102.23,
-          "fy_norm": 4.55,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 95.51,
-          "fy": 12.82,
-          "px": 1194,
-          "py": 151,
-          "zone": "A3",
-          "fx_norm": 95.51,
-          "fy_norm": 12.82,
-          "zone_norm": "A3",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P19",
-      "jersey_number": null,
-      "n_sightings": 6,
-      "zone_dist": {
-        "A1": 5,
-        "D3": 1
-      },
-      "zone_dist_norm": {
-        "A1": 5,
-        "D3": 1
-      },
-      "sightings": [
-        {
-          "time_min": 15.0,
-          "half": "1H",
-          "fx": 54.69,
-          "fy": 11.45,
-          "px": 663,
-          "py": 139,
-          "zone": "A1",
-          "fx_norm": 54.69,
-          "fy_norm": 11.45,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 53.9,
-          "fy": 11.99,
-          "px": 653,
-          "py": 143,
-          "zone": "A1",
-          "fx_norm": 53.9,
-          "fy_norm": 11.99,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 27.0,
-          "half": "1H",
-          "fx": 50.25,
-          "fy": 16.32,
-          "px": 605,
-          "py": 168,
-          "zone": "D3",
-          "fx_norm": 50.25,
-          "fy_norm": 16.32,
-          "zone_norm": "D3",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 33.0,
-          "half": "1H",
-          "fx": 54.99,
-          "fy": 34.73,
-          "px": 674,
-          "py": 293,
-          "zone": "A1",
-          "fx_norm": 54.99,
-          "fy_norm": 34.73,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 57.37,
-          "fy": 43.32,
-          "px": 718,
-          "py": 360,
-          "zone": "A1",
-          "fx_norm": 57.37,
-          "fy_norm": 43.32,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 39.0,
-          "half": "1H",
-          "fx": 56.54,
-          "fy": 44.93,
-          "px": 705,
-          "py": 380,
-          "zone": "A1",
-          "fx_norm": 56.54,
-          "fy_norm": 44.93,
-          "zone_norm": "A1",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P15",
-      "jersey_number": null,
-      "n_sightings": 6,
-      "zone_dist": {
-        "A2": 6
-      },
-      "zone_dist_norm": {
-        "A2": 6
-      },
-      "sightings": [
-        {
-          "time_min": 9.0,
-          "half": "1H",
-          "fx": 82.6,
-          "fy": 46.27,
-          "px": 1166,
-          "py": 396,
-          "zone": "A2",
-          "fx_norm": 82.6,
-          "fy_norm": 46.27,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 12.0,
-          "half": "1H",
-          "fx": 79.17,
-          "fy": 42.89,
-          "px": 1089,
-          "py": 358,
-          "zone": "A2",
-          "fx_norm": 79.17,
-          "fy_norm": 42.89,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 15.0,
-          "half": "1H",
-          "fx": 80.26,
-          "fy": 43.81,
-          "px": 1112,
-          "py": 366,
-          "zone": "A2",
-          "fx_norm": 80.26,
-          "fy_norm": 43.81,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 30.0,
-          "half": "1H",
-          "fx": 69.95,
-          "fy": 45.51,
-          "px": 940,
-          "py": 383,
-          "zone": "A2",
-          "fx_norm": 69.95,
-          "fy_norm": 45.51,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 73.76,
-          "fy": 43.0,
-          "px": 997,
-          "py": 365,
-          "zone": "A2",
-          "fx_norm": 73.76,
-          "fy_norm": 43.0,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 73.68,
-          "fy": 48.16,
-          "px": 1016,
-          "py": 407,
-          "zone": "A2",
-          "fx_norm": 73.68,
-          "fy_norm": 48.16,
-          "zone_norm": "A2",
-          "direction_flipped": false
-        }
-      ]
-    },
-    {
-      "player_id": "P20",
-      "jersey_number": null,
-      "n_sightings": 6,
-      "zone_dist": {
-        "D1": 6
-      },
-      "zone_dist_norm": {
-        "D1": 6
-      },
-      "sightings": [
-        {
-          "time_min": 15.0,
-          "half": "1H",
-          "fx": 9.57,
-          "fy": 23.97,
-          "px": 28,
-          "py": 207,
-          "zone": "D1",
-          "fx_norm": 9.57,
-          "fy_norm": 23.97,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 24.0,
-          "half": "1H",
-          "fx": 11.5,
-          "fy": 30.27,
-          "px": 22,
-          "py": 252,
-          "zone": "D1",
-          "fx_norm": 11.5,
-          "fy_norm": 30.27,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 27.0,
-          "half": "1H",
-          "fx": 4.53,
-          "fy": 14.51,
-          "px": 8,
-          "py": 150,
-          "zone": "D1",
-          "fx_norm": 4.53,
-          "fy_norm": 14.51,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 33.0,
-          "half": "1H",
-          "fx": 15.36,
-          "fy": 17.57,
-          "px": 137,
-          "py": 171,
-          "zone": "D1",
-          "fx_norm": 15.36,
-          "fy_norm": 17.57,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 36.0,
-          "half": "1H",
-          "fx": 10.05,
-          "fy": 27.13,
-          "px": 18,
-          "py": 235,
-          "zone": "D1",
-          "fx_norm": 10.05,
-          "fy_norm": 27.13,
-          "zone_norm": "D1",
-          "direction_flipped": false
-        },
-        {
-          "time_min": 45.0,
-          "half": "1H",
-          "fx": 11.22,
-          "fy": 28.79,
-          "px": 26,
-          "py": 250,
-          "zone": "D1",
-          "fx_norm": 11.22,
-          "fy_norm": 28.79,
-          "zone_norm": "D1",
           "direction_flipped": false
         }
       ]
