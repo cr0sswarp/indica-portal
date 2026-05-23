@@ -40,7 +40,8 @@ run_match() {
     fi
 
     $PYTHON scripts/tzi/generate_correction_html.py --match "$match_id" 2>&1 | tee -a "$log"
-    $PYTHON scripts/tzi/generate_zone_report.py --match "$match_id" 2>&1 | tee -a "$log"
+    # zone report only runs if jersey6_trajectory.json exists (requires manual #6 ID first)
+    $PYTHON scripts/tzi/generate_zone_report.py --match "$match_id" 2>&1 | tee -a "$log" || true
 
     echo "[DONE] match_${match_id}"
 }
