@@ -4,9 +4,10 @@ TZI: jersey6_trajectory.json + jersey_sightings.json から
 羽瑠（#6）のゾーン分析レポートを生成する。
 
 使い方:
-    cd scripts/tzi
-    python generate_zone_report.py
+    python generate_zone_report.py                   # match_20260325 (default)
+    python generate_zone_report.py --match 20260329  # other match
 """
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -18,6 +19,18 @@ import matplotlib.patches as patches
 from scipy.ndimage import gaussian_filter
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent
+
+def _resolve_paths(match_id: str):
+    global MATCH_DIR, TRAJ_JSON, SIGHT_JSON, SUMMARY_JSON, REPORT_HTML, ZONE_FIG
+    MATCH_DIR    = PROJECT_ROOT / "data" / "tzi" / f"match_{match_id}"
+    TRAJ_JSON    = MATCH_DIR / "jersey6_trajectory.json"
+    SIGHT_JSON   = MATCH_DIR / "jersey_sightings.json"
+    SUMMARY_JSON = MATCH_DIR / "full_match_summary.json"
+    REPORT_HTML  = MATCH_DIR / "zone_report_jersey6.html"
+    ZONE_FIG     = MATCH_DIR / "zone_analysis_jersey6.png"
+
+# Default to 20260325 for backward compat
+_resolve_paths("20260325")
 MATCH_DIR    = PROJECT_ROOT / "data" / "tzi" / "match_20260325"
 TRAJ_JSON    = MATCH_DIR / "jersey6_trajectory.json"
 SIGHT_JSON   = MATCH_DIR / "jersey_sightings.json"
@@ -123,10 +136,14 @@ def zone_level(score):
 def load_data():
     with open(TRAJ_JSON) as f:
         traj = json.load(f)
-    with open(SIGHT_JSON) as f:
-        sightings = json.load(f)
-    with open(SUMMARY_JSON) as f:
-        summary = json.load(f)
+    sightings = {}
+    if SIGHT_JSON.exists():
+        with open(SIGHT_JSON) as f:
+            sightings = json.load(f)
+    summary = {}
+    if SUMMARY_JSON.exists():
+        with open(SUMMARY_JSON) as f:
+            summary = json.load(f)
     return traj, sightings, summary
 
 
@@ -449,7 +466,16 @@ def generate_html_report(traj, sightings, summary, scores, positions):
 
 # ── メイン ────────────────────────────────────────────────────
 def main():
-    print("TZI ゾーン分析レポート生成中...")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--match", default="20260325", help="Match ID e.g. 20260329")
+    args = parser.parse_args()
+    _resolve_paths(args.match)
+
+    print(f"TZI ゾーン分析レポート生成中... (match={args.match})")
+
+    if not TRAJ_JSON.exists():
+        print(f"ERROR: {TRAJ_JSON} not found. Run track_all_players.py first.")
+        sys.exit(1)
 
     traj, sightings, summary = load_data()
 
