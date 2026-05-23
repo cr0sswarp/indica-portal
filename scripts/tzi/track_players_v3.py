@@ -869,22 +869,29 @@ def process_half(video_path, half_label, t_offset, match_dir, interval_min,
     fps     = cap.get(cv2.CAP_PROP_FPS) or 30.0
     total_f = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     sample  = max(1, int(fps * 60 * interval_min))
+    duration_min = total_f / fps / 60
 
     frames_dir = match_dir / "frames_v3"
     frames_dir.mkdir(exist_ok=True)
 
     tracker    = PlayerTrackerV3()
     frame_log  = []
-    opp_log    = []   # Store opponent centroids for direction detection
-    fn = 0
+    opp_log    = []
 
-    print(f"\n{half_label}: {total_f}f, {fps:.0f}fps, ~{total_f/fps/60:.0f}min")
+    # Build list of target frame positions (fast-seek mode)
+    target_frames = []
+    fn_cursor = sample
+    while fn_cursor <= total_f:
+        target_frames.append(fn_cursor)
+        fn_cursor += sample
 
-    while True:
+    print(f"\n{half_label}: {total_f}f, {fps:.0f}fps, ~{duration_min:.0f}min  ({len(target_frames)} samples)")
+
+    for fn in target_frames:
+        cap.set(cv2.CAP_PROP_POS_FRAMES, fn - 1)
         ret, frame = cap.read()
-        if not ret: break
-        fn += 1
-        if fn % sample != 0: continue
+        if not ret:
+            continue
 
         local_t = fn / fps / 60
         t_min   = local_t + t_offset
@@ -922,7 +929,7 @@ def process_half(video_path, half_label, t_offset, match_dir, interval_min,
         frame_log.append({"time_min": round(t_min, 2), "n_waseda": len(dets_w),
                            "n_opp": len(dets_o), "n_active": len(active)})
 
-        if fn % (sample * 10) == 0:
+        if target_frames.index(fn) % 10 == 0 and target_frames.index(fn) > 0:
             print(f"  {local_t:.0f}min  W={len(dets_w)} O={len(dets_o)} "
                   f"active={len(active)} susp={len(tracker.suspended)}")
 

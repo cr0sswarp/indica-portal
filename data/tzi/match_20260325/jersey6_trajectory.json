@@ -1,7 +1,12 @@
 {
-  "match": "20260325 vs立教大",
+  "match": "vs立教大 (03/25)",
   "player": "牧野羽瑠 #6",
   "auto_generated": true,
+  "normalized_coords": true,
+  "direction": {
+    "flip_1h": false,
+    "flip_2h": true
+  },
   "confirmed_positions": [
     {
       "frame": 1200,
@@ -54,7 +59,8 @@
       "fx": 69.22,
       "fy": 52.04,
       "zone": "A2",
-      "note": "auto_v2_ocr"
+      "note": "auto_v3_normalized",
+      "direction_flipped": false
     },
     {
       "frame": 29700,
@@ -107,7 +113,8 @@
       "fx": 70.65,
       "fy": 49.97,
       "zone": "A2",
-      "note": "auto_v2_ocr"
+      "note": "auto_v3_normalized",
+      "direction_flipped": false
     },
     {
       "frame": 64800,
@@ -129,7 +136,8 @@
       "fx": 77.01,
       "fy": 36.18,
       "zone": "A2",
-      "note": "auto_v2_ocr"
+      "note": "auto_v3_normalized",
+      "direction_flipped": false
     },
     {
       "time_min": 42.0,
@@ -137,7 +145,8 @@
       "fx": 72.99,
       "fy": 44.42,
       "zone": "A2",
-      "note": "auto_v2_ocr"
+      "note": "auto_v3_normalized",
+      "direction_flipped": false
     },
     {
       "time_min": 45.0,
@@ -145,15 +154,17 @@
       "fx": 74.09,
       "fy": 34.86,
       "zone": "A2",
-      "note": "auto_v2_ocr"
+      "note": "auto_v3_normalized",
+      "direction_flipped": false
     },
     {
       "time_min": 48.47,
       "half": "2H",
-      "fx": 69.55,
+      "fx": 35.45,
       "fy": 42.28,
-      "zone": "A2",
-      "note": "auto_v2_ocr"
+      "zone": "D2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": true
     },
     {
       "frame": 14100,
@@ -166,26 +177,29 @@
     {
       "time_min": 69.47,
       "half": "2H",
-      "fx": 74.2,
+      "fx": 30.8,
       "fy": 45.4,
-      "zone": "A2",
-      "note": "auto_v2_ocr"
+      "zone": "D2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": true
     },
     {
       "time_min": 81.47,
       "half": "2H",
-      "fx": 78.46,
+      "fx": 26.54,
       "fy": 40.47,
-      "zone": "A2",
-      "note": "auto_v2_ocr"
+      "zone": "D2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": true
     },
     {
       "time_min": 84.47,
       "half": "2H",
-      "fx": 77.67,
+      "fx": 27.33,
       "fy": 38.82,
-      "zone": "A2",
-      "note": "auto_v2_ocr"
+      "zone": "D2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": true
     },
     {
       "frame": 78300,

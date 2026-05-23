@@ -1,6 +1,7 @@
 {
-  "match": "早稲田 vs 立教 2026-03-25",
-  "jersey": "6",
+  "match": "20260325 vs立教大",
+  "player": "牧野羽瑠 #6",
+  "auto_generated": true,
   "confirmed_positions": [
     {
       "frame": 1200,
@@ -48,6 +49,14 @@
       "half": "1H"
     },
     {
+      "time_min": 12.0,
+      "half": "1H",
+      "fx": 69.22,
+      "fy": 52.04,
+      "zone": "A2",
+      "note": "auto_v2_ocr"
+    },
+    {
       "frame": 29700,
       "fx": 18.7,
       "fy": 37.3,
@@ -93,6 +102,14 @@
       "note": "手動修正: [1]番の選手 (元: X=29.7Y=39.9)"
     },
     {
+      "time_min": 27.0,
+      "half": "1H",
+      "fx": 70.65,
+      "fy": 49.97,
+      "zone": "A2",
+      "note": "auto_v2_ocr"
+    },
+    {
       "frame": 64800,
       "fx": 29.7,
       "fy": 35.7,
@@ -107,12 +124,68 @@
       "half": "1H"
     },
     {
+      "time_min": 39.0,
+      "half": "1H",
+      "fx": 77.01,
+      "fy": 36.18,
+      "zone": "A2",
+      "note": "auto_v2_ocr"
+    },
+    {
+      "time_min": 42.0,
+      "half": "1H",
+      "fx": 72.99,
+      "fy": 44.42,
+      "zone": "A2",
+      "note": "auto_v2_ocr"
+    },
+    {
+      "time_min": 45.0,
+      "half": "1H",
+      "fx": 74.09,
+      "fy": 34.86,
+      "zone": "A2",
+      "note": "auto_v2_ocr"
+    },
+    {
+      "time_min": 48.47,
+      "half": "2H",
+      "fx": 69.55,
+      "fy": 42.28,
+      "zone": "A2",
+      "note": "auto_v2_ocr"
+    },
+    {
       "frame": 14100,
       "fx": 66.1,
       "fy": 40.4,
       "time_min": 52.8,
       "half": "2H",
       "note": "手動修正: [14]番の選手 (元: X=62.6Y=37.6)"
+    },
+    {
+      "time_min": 69.47,
+      "half": "2H",
+      "fx": 74.2,
+      "fy": 45.4,
+      "zone": "A2",
+      "note": "auto_v2_ocr"
+    },
+    {
+      "time_min": 81.47,
+      "half": "2H",
+      "fx": 78.46,
+      "fy": 40.47,
+      "zone": "A2",
+      "note": "auto_v2_ocr"
+    },
+    {
+      "time_min": 84.47,
+      "half": "2H",
+      "fx": 77.67,
+      "fy": 38.82,
+      "zone": "A2",
+      "note": "auto_v2_ocr"
     },
     {
       "frame": 78300,
@@ -128,6 +201,5 @@
       "time_min": 88.5,
       "half": "2H"
     }
-  ],
-  "total_confirmations": 17
+  ]
 }
