@@ -1,0 +1,39 @@
+{
+  "match": "vs獨協大 (04/05)",
+  "player": "牧野羽瑠 #6",
+  "auto_generated": true,
+  "confirmed_positions": [
+    {
+      "time_min": 42.69,
+      "half": "2H",
+      "fx": 58.79,
+      "fy": 43.11,
+      "zone": "A1",
+      "note": "auto_v2_ocr"
+    },
+    {
+      "time_min": 51.69,
+      "half": "2H",
+      "fx": 64.47,
+      "fy": 52.56,
+      "zone": "A2",
+      "note": "auto_v2_ocr"
+    },
+    {
+      "time_min": 54.69,
+      "half": "2H",
+      "fx": 80.3,
+      "fy": 59.16,
+      "zone": "A2",
+      "note": "auto_v2_ocr"
+    },
+    {
+      "time_min": 72.69,
+      "half": "2H",
+      "fx": 81.34,
+      "fy": 65.03,
+      "zone": "A2",
+      "note": "auto_v2_ocr"
+    }
+  ]
+}
