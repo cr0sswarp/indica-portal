@@ -1,0 +1,713 @@
+{
+  "2": [
+    {
+      "time_min": 1.0,
+      "fx": 68.6,
+      "fy": 39.5,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 4.5,
+      "fx": 38.9,
+      "fy": 36.0,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 16.0,
+      "fx": 82.1,
+      "fy": 38.1,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 22.5,
+      "fx": 82.9,
+      "fy": 36.2,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 25.5,
+      "fx": 35.2,
+      "fy": 38.9,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 28.5,
+      "fx": 35.7,
+      "fy": 37.7,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 32.5,
+      "fx": 42.6,
+      "fy": 42.9,
+      "zone": "D3",
+      "lane": "M"
+    },
+    {
+      "time_min": 42.5,
+      "fx": 25.1,
+      "fy": 46.3,
+      "zone": "D2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 13.5,
+      "fx": 39.6,
+      "fy": 36.8,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 21.5,
+      "fx": 65.6,
+      "fy": 34.5,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 35.0,
+      "fx": 72.2,
+      "fy": 54.7,
+      "zone": "A2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 42.0,
+      "fx": 48.8,
+      "fy": 56.9,
+      "zone": "D3",
+      "lane": "MR"
+    }
+  ],
+  "5": [
+    {
+      "time_min": 2.5,
+      "fx": 47.1,
+      "fy": 32.1,
+      "zone": "D3",
+      "lane": "M"
+    },
+    {
+      "time_min": 9.0,
+      "fx": 63.2,
+      "fy": 42.0,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 14.0,
+      "fx": 41.1,
+      "fy": 57.9,
+      "zone": "D2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 17.5,
+      "fx": 55.6,
+      "fy": 48.2,
+      "zone": "A1",
+      "lane": "MR"
+    },
+    {
+      "time_min": 35.0,
+      "fx": 23.8,
+      "fy": 62.7,
+      "zone": "D2",
+      "lane": "R"
+    },
+    {
+      "time_min": 37.0,
+      "fx": 24.2,
+      "fy": 37.2,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 41.0,
+      "fx": 33.3,
+      "fy": 37.9,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 42.0,
+      "fx": 76.9,
+      "fy": 44.2,
+      "zone": "A2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 23.5,
+      "fx": 62.6,
+      "fy": 58.6,
+      "zone": "A1",
+      "lane": "MR"
+    },
+    {
+      "time_min": 44.5,
+      "fx": 57.8,
+      "fy": 35.1,
+      "zone": "A1",
+      "lane": "M"
+    }
+  ],
+  "4": [
+    {
+      "time_min": 4.0,
+      "fx": 33.5,
+      "fy": 41.8,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 6.0,
+      "fx": 68.1,
+      "fy": 38.5,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 6.0,
+      "fx": 62.0,
+      "fy": 37.9,
+      "zone": "A1",
+      "lane": "M"
+    },
+    {
+      "time_min": 12.0,
+      "fx": 73.2,
+      "fy": 35.6,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 17.0,
+      "fx": 38.9,
+      "fy": 43.2,
+      "zone": "D2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 21.0,
+      "fx": 34.3,
+      "fy": 47.8,
+      "zone": "D2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 22.0,
+      "fx": 31.4,
+      "fy": 32.7,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 22.0,
+      "fx": 54.8,
+      "fy": 32.6,
+      "zone": "A1",
+      "lane": "M"
+    },
+    {
+      "time_min": 22.5,
+      "fx": 30.1,
+      "fy": 48.9,
+      "zone": "D2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 23.5,
+      "fx": 81.5,
+      "fy": 40.6,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 31.5,
+      "fx": 32.0,
+      "fy": 36.2,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 32.0,
+      "fx": 25.7,
+      "fy": 62.2,
+      "zone": "D2",
+      "lane": "R"
+    },
+    {
+      "time_min": 33.0,
+      "fx": 21.5,
+      "fy": 44.4,
+      "zone": "D2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 35.5,
+      "fx": 19.0,
+      "fy": 40.6,
+      "zone": "D1",
+      "lane": "M"
+    },
+    {
+      "time_min": 37.0,
+      "fx": 47.1,
+      "fy": 35.1,
+      "zone": "D3",
+      "lane": "M"
+    },
+    {
+      "time_min": 39.0,
+      "fx": 77.0,
+      "fy": 36.2,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 39.5,
+      "fx": 43.8,
+      "fy": 43.4,
+      "zone": "D3",
+      "lane": "MR"
+    },
+    {
+      "time_min": 43.0,
+      "fx": 49.3,
+      "fy": 52.4,
+      "zone": "D3",
+      "lane": "MR"
+    },
+    {
+      "time_min": 2.0,
+      "fx": 44.2,
+      "fy": 45.5,
+      "zone": "D3",
+      "lane": "MR"
+    },
+    {
+      "time_min": 3.0,
+      "fx": 69.6,
+      "fy": 42.2,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 4.0,
+      "fx": 61.6,
+      "fy": 31.6,
+      "zone": "A1",
+      "lane": "M"
+    },
+    {
+      "time_min": 9.5,
+      "fx": 83.1,
+      "fy": 50.2,
+      "zone": "A2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 12.5,
+      "fx": 42.3,
+      "fy": 45.0,
+      "zone": "D3",
+      "lane": "MR"
+    },
+    {
+      "time_min": 12.5,
+      "fx": 89.6,
+      "fy": 35.6,
+      "zone": "A3",
+      "lane": "M"
+    },
+    {
+      "time_min": 15.0,
+      "fx": 50.4,
+      "fy": 35.2,
+      "zone": "D3",
+      "lane": "M"
+    },
+    {
+      "time_min": 16.0,
+      "fx": 62.3,
+      "fy": 56.0,
+      "zone": "A1",
+      "lane": "MR"
+    },
+    {
+      "time_min": 16.0,
+      "fx": 48.3,
+      "fy": 46.8,
+      "zone": "D3",
+      "lane": "MR"
+    },
+    {
+      "time_min": 22.5,
+      "fx": 91.1,
+      "fy": 37.8,
+      "zone": "A3",
+      "lane": "M"
+    },
+    {
+      "time_min": 23.5,
+      "fx": 38.9,
+      "fy": 54.0,
+      "zone": "D2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 26.0,
+      "fx": 15.2,
+      "fy": 41.0,
+      "zone": "D1",
+      "lane": "M"
+    },
+    {
+      "time_min": 28.0,
+      "fx": 44.1,
+      "fy": 29.6,
+      "zone": "D3",
+      "lane": "M"
+    },
+    {
+      "time_min": 35.0,
+      "fx": 80.5,
+      "fy": 66.0,
+      "zone": "A2",
+      "lane": "R"
+    },
+    {
+      "time_min": 38.5,
+      "fx": 16.9,
+      "fy": 36.9,
+      "zone": "D1",
+      "lane": "M"
+    },
+    {
+      "time_min": 40.5,
+      "fx": 64.0,
+      "fy": 37.7,
+      "zone": "A2",
+      "lane": "M"
+    }
+  ],
+  "7": [
+    {
+      "time_min": 4.5,
+      "fx": 53.0,
+      "fy": 40.0,
+      "zone": "A1",
+      "lane": "M"
+    },
+    {
+      "time_min": 5.0,
+      "fx": 23.1,
+      "fy": 38.1,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 13.5,
+      "fx": 23.6,
+      "fy": 33.4,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 18.0,
+      "fx": 34.8,
+      "fy": 34.1,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 24.5,
+      "fx": 42.9,
+      "fy": 33.1,
+      "zone": "D3",
+      "lane": "M"
+    },
+    {
+      "time_min": 31.5,
+      "fx": 65.1,
+      "fy": 37.8,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 16.5,
+      "fx": 39.3,
+      "fy": 50.7,
+      "zone": "D2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 18.5,
+      "fx": 43.0,
+      "fy": 39.3,
+      "zone": "D3",
+      "lane": "M"
+    },
+    {
+      "time_min": 20.5,
+      "fx": 37.1,
+      "fy": 34.4,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 38.5,
+      "fx": 86.3,
+      "fy": 35.6,
+      "zone": "A3",
+      "lane": "M"
+    }
+  ],
+  "6": [
+    {
+      "time_min": 5.0,
+      "fx": 30.9,
+      "fy": 52.1,
+      "zone": "D2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 36.0,
+      "fx": 29.7,
+      "fy": 35.7,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 43.5,
+      "fx": 71.0,
+      "fy": 52.5,
+      "zone": "A2",
+      "lane": "MR"
+    }
+  ],
+  "3": [
+    {
+      "time_min": 6.5,
+      "fx": 20.8,
+      "fy": 36.9,
+      "zone": "D1",
+      "lane": "M"
+    },
+    {
+      "time_min": 14.5,
+      "fx": 69.8,
+      "fy": 39.0,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 37.5,
+      "fx": 59.0,
+      "fy": 37.1,
+      "zone": "A1",
+      "lane": "M"
+    },
+    {
+      "time_min": 41.0,
+      "fx": 50.1,
+      "fy": 35.1,
+      "zone": "D3",
+      "lane": "M"
+    },
+    {
+      "time_min": 41.5,
+      "fx": 73.6,
+      "fy": 56.5,
+      "zone": "A2",
+      "lane": "MR"
+    },
+    {
+      "time_min": 12.0,
+      "fx": 28.7,
+      "fy": 32.2,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 14.0,
+      "fx": 40.9,
+      "fy": 28.8,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 29.0,
+      "fx": 51.5,
+      "fy": 50.3,
+      "zone": "D3",
+      "lane": "MR"
+    },
+    {
+      "time_min": 38.5,
+      "fx": 41.7,
+      "fy": 37.0,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 40.5,
+      "fx": 50.1,
+      "fy": 37.9,
+      "zone": "D3",
+      "lane": "M"
+    }
+  ],
+  "8": [
+    {
+      "time_min": 8.5,
+      "fx": 72.2,
+      "fy": 36.2,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 14.0,
+      "fx": 67.2,
+      "fy": 39.3,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 22.0,
+      "fx": 54.6,
+      "fy": 37.2,
+      "zone": "A1",
+      "lane": "M"
+    }
+  ],
+  "1": [
+    {
+      "time_min": 13.0,
+      "fx": 63.1,
+      "fy": 63.5,
+      "zone": "A2",
+      "lane": "R"
+    },
+    {
+      "time_min": 13.0,
+      "fx": 80.2,
+      "fy": 30.3,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 33.0,
+      "fx": 46.5,
+      "fy": 48.4,
+      "zone": "D3",
+      "lane": "MR"
+    },
+    {
+      "time_min": 7.5,
+      "fx": 26.6,
+      "fy": 36.0,
+      "zone": "D2",
+      "lane": "M"
+    },
+    {
+      "time_min": 19.5,
+      "fx": 82.9,
+      "fy": 42.9,
+      "zone": "A2",
+      "lane": "M"
+    },
+    {
+      "time_min": 21.5,
+      "fx": 73.5,
+      "fy": 62.0,
+      "zone": "A2",
+      "lane": "R"
+    },
+    {
+      "time_min": 24.0,
+      "fx": 88.4,
+      "fy": 39.9,
+      "zone": "A3",
+      "lane": "M"
+    }
+  ],
+  "36": [
+    {
+      "time_min": 16.0,
+      "fx": 67.2,
+      "fy": 35.7,
+      "zone": "A2",
+      "lane": "M"
+    }
+  ],
+  "55": [
+    {
+      "time_min": 27.0,
+      "fx": 70.7,
+      "fy": 50.0,
+      "zone": "A2",
+      "lane": "MR"
+    }
+  ],
+  "15": [
+    {
+      "time_min": 36.0,
+      "fx": 50.6,
+      "fy": 40.0,
+      "zone": "D3",
+      "lane": "M"
+    }
+  ],
+  "54": [
+    {
+      "time_min": 40.5,
+      "fx": 55.7,
+      "fy": 41.8,
+      "zone": "A1",
+      "lane": "M"
+    }
+  ],
+  "13": [
+    {
+      "time_min": 44.0,
+      "fx": 27.1,
+      "fy": 66.3,
+      "zone": "D2",
+      "lane": "R"
+    }
+  ],
+  "94": [
+    {
+      "time_min": 12.5,
+      "fx": 35.1,
+      "fy": 35.8,
+      "zone": "D2",
+      "lane": "M"
+    }
+  ],
+  "52": [
+    {
+      "time_min": 34.0,
+      "fx": 28.6,
+      "fy": 44.8,
+      "zone": "D2",
+      "lane": "MR"
+    }
+  ],
+  "12": [
+    {
+      "time_min": 34.5,
+      "fx": 44.0,
+      "fy": 43.9,
+      "zone": "D3",
+      "lane": "MR"
+    }
+  ]
+}
