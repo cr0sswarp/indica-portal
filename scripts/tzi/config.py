@@ -10,8 +10,8 @@ import cv2
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 
 # 動画パス
-VIDEO_H1 = PROJECT_ROOT / "videos" / "26_03_25_前半.mp4"
-VIDEO_H2 = PROJECT_ROOT / "videos" / "26_03_25_後半.mp4"
+VIDEO_H1 = PROJECT_ROOT / "videos" / "26_03_25_I_TRM vs立教大 前半.mp4"
+VIDEO_H2 = PROJECT_ROOT / "videos" / "26_03_25_I_TRM vs立教大 後半.mp4"
 
 # データパス
 MATCH_DIR   = PROJECT_ROOT / "data" / "tzi" / "match_20260325"
