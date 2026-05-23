@@ -116,9 +116,12 @@ def fx_to_zone(fx):
 
 
 def normalize_pos(fx, fy, flip):
-    """Normalize field coordinates so Waseda always attacks right (x→105)."""
+    """Normalize field coordinates so Waseda always attacks right (x→105).
+    Only X is flipped — 'right touchline' stays the same side all game.
+    Teams swap ENDS (goals) at HT, not their wing assignments.
+    """
     if flip:
-        return round(FW - fx, 2), round(FH - fy, 2)
+        return round(FW - fx, 2), round(fy, 2)
     return round(fx, 2), round(fy, 2)
 
 
