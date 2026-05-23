@@ -59,13 +59,12 @@ main() {
     # 2. rclone リモート設定が存在するか確認
     if ! rclone listremotes | grep -q "^${RCLONE_REMOTE}:$"; then
         log_error "rclone リモート '${RCLONE_REMOTE}' が設定されていません"
-        log_info "セットアップ手順:"
-        log_info "  1. 以下を実行:"
-        log_info "     rclone config"
-        log_info "  2. 'n' で新規リモートを作成"
-        log_info "  3. 名前: $RCLONE_REMOTE"
-        log_info "  4. ストレージタイプ: 'drive' (Google Drive) を選択"
-        log_info "  5. ブラウザで認証を完了"
+        log_info "セットアップ手順（ブラウザ不要・ヘッドレス認証）:"
+        log_info "  bash scripts/setup_gdrive.sh"
+        log_info ""
+        log_info "  ※ rclone config 実行中に"
+        log_info "     'Use web browser to authenticate? (Y/n)' は 'n' と答えること"
+        log_info "     → URLが表示されるのでローカルのブラウザで開き、コードを貼り付ける"
         exit 1
     fi
 
