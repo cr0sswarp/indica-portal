@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<title>TZI Tracking v2 — match_20260318</title>
+<style>
+* {box-sizing:border-box;margin:0;padding:0}
+body {background:#0d1117;color:#e6edf3;font-family:'Segoe UI',Arial,sans-serif}
+.hero {background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);padding:24px 32px;border-bottom:1px solid #30363d}
+.hero h1 {font-size:1.4rem;color:#58a6ff}
+.hero p  {font-size:.82rem;color:#8b949e;margin-top:4px}
+.stats {display:flex;gap:20px;padding:16px 32px;background:#161b22;border-bottom:1px solid #30363d;flex-wrap:wrap}
+.stat {background:#21262d;border:1px solid #30363d;border-radius:8px;padding:10px 18px}
+.stat .v {font-size:1.8rem;font-weight:700}
+.stat .l {font-size:.75rem;color:#8b949e}
+.content {max-width:1100px;margin:0 auto;padding:24px 20px}
+h2 {font-size:1rem;padding-bottom:8px;border-bottom:1px solid #30363d;margin:24px 0 14px}
+table {width:100%;border-collapse:collapse;font-size:12px}
+th {background:#21262d;padding:8px 10px;text-align:left;color:#8b949e}
+td {padding:7px 10px;border-bottom:1px solid #21262d}
+tr:hover td {background:#161b22}
+</style></head><body>
+<div class="hero">
+  <h1>TZI Player Tracking v2 — match_20260318</h1>
+  <p>Re-ID + Track Merging + Jersey OCR + Substitution Detection</p>
+</div>
+<div class="stats">
+  <div class="stat"><div class="v" style="color:#3fb950">26</div><div class="l">Unique Players</div></div>
+  <div class="stat"><div class="v" style="color:#58a6ff">15</div><div class="l">Frames Sampled</div></div>
+  <div class="stat"><div class="v" style="color:#f0883e">1</div><div class="l">Jersey # Identified</div></div>
+  <div class="stat"><div class="v" style="color:#d2a8ff">0</div><div class="l">Substitutions Detected</div></div>
+  <div class="stat"><div class="v" style="color:#79c0ff">11.0</div><div class="l">Avg Players/Frame</div></div>
+</div>
+<div class="content">
+  <h2>Player List (全26名)</h2>
+  <table><thead><tr><th>Track ID</th><th>Jersey #</th><th>Sightings</th><th>Active Period</th><th>Primary Zone</th></tr></thead>
+  <tbody><tr>
+          <td style="font-weight:700;color:#58a6ff">P05</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#1</td>
+          <td>9</td>
+          <td>3–45 min</td>
+          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P01</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>8</td>
+          <td>3–45 min</td>
+          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P02</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>12</td>
+          <td>3–45 min</td>
+          <td><span style="background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A1</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P03</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>11</td>
+          <td>3–39 min</td>
+          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P10</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>9</td>
+          <td>6–45 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P11</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>9</td>
+          <td>6–45 min</td>
+          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P14</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>8</td>
+          <td>9–42 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P12</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>9</td>
+          <td>6–45 min</td>
+          <td><span style="background:#1abc9c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D3</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P16</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>9</td>
+          <td>12–45 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P04</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>8</td>
+          <td>3–42 min</td>
+          <td><span style="background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A1</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P06</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>7</td>
+          <td>3–45 min</td>
+          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P13</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>4</td>
+          <td>6–21 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P21</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>3</td>
+          <td>21–27 min</td>
+          <td><span style="background:#1abc9c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D3</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P22</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>3</td>
+          <td>21–33 min</td>
+          <td><span style="background:#1abc9c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D3</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P24</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>4</td>
+          <td>33–45 min</td>
+          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P07</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>5</td>
+          <td>3–30 min</td>
+          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P17</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>3</td>
+          <td>12–39 min</td>
+          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P25</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>3</td>
+          <td>33–42 min</td>
+          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P23</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>5</td>
+          <td>24–42 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P26</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>3</td>
+          <td>33–45 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P18</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>5</td>
+          <td>15–45 min</td>
+          <td><span style="background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A1</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P08</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>5</td>
+          <td>3–45 min</td>
+          <td><span style="background:#1abc9c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D3</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P09</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>5</td>
+          <td>3–45 min</td>
+          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P19</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>6</td>
+          <td>15–39 min</td>
+          <td><span style="background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A1</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P15</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>6</td>
+          <td>9–45 min</td>
+          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P20</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>6</td>
+          <td>15–45 min</td>
+          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
+        </tr></tbody></table>
+
+  <h2>Substitutions Detected (0件)</h2>
+  <p style="color:#8b949e;font-size:12px">No substitutions detected</p>
+</div>
+<div style="text-align:center;padding:20px;color:#8b949e;font-size:11px">
+  TZI v2 — Tactical Zone Intelligence · Indica Labs · 2026
+</div></body></html>
