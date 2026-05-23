@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>TZI ゾーン分析レポート — Jersey #6 牧野羽瑠</title>
+<style>
+  :root {
+    --bg: #0d1117; --surface: #161b22; --border: #30363d;
+    --text: #e6edf3; --muted: #8b949e; --accent: #58a6ff;
+  }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:'Helvetica Neue',sans-serif; }
+  .header { background:linear-gradient(135deg,#1a1a2e,#16213e); padding:32px 40px; border-bottom:1px solid var(--border); }
+  .header h1 { margin:0; font-size:24px; letter-spacing:2px; }
+  .header .sub { color:var(--muted); margin-top:6px; font-size:13px; }
+  .container { max-width:1100px; margin:0 auto; padding:32px 24px; }
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:24px; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:20px; }
+  .card h3 { margin:0 0 16px; font-size:14px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+  .score-big { font-size:56px; font-weight:700; line-height:1; margin:8px 0; }
+  .zone-tag { padding:3px 10px; border-radius:4px; font-size:11px; font-weight:700; color:white; }
+  .score-row { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid var(--border); }
+  .score-row:last-child { border:none; }
+  .bar { background:#21262d; border-radius:3px; height:6px; flex:1; margin:0 12px; }
+  .bar-fill { background:var(--accent); border-radius:3px; height:6px; transition:width .3s; }
+  .zone-bar-row { display:flex; align-items:center; gap:8px; margin:5px 0; }
+  .zone-label { width:28px; font-weight:700; font-size:12px; }
+  .zone-bar-bg { flex:1; background:#21262d; border-radius:3px; height:8px; }
+  .zone-bar-fill { height:8px; border-radius:3px; }
+  .zone-pct { width:36px; text-align:right; font-size:12px; color:var(--muted); }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { background:#21262d; padding:10px 12px; text-align:left; color:var(--muted); font-weight:600; }
+  td { padding:9px 12px; border-bottom:1px solid var(--border); }
+  .note { color:var(--muted); font-size:11px; }
+  .trigger-card { background:#21262d; border-radius:6px; padding:10px 14px; margin:6px 0; font-size:13px; display:flex; align-items:center; gap:10px; }
+  .section-title { font-size:16px; font-weight:600; margin:32px 0 12px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+  .field-img { width:100%; border-radius:8px; }
+  .verdict { font-size:22px; font-weight:700; }
+  .match-stat { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--border); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🎯 TZI ゾーン分析レポート</h1>
+  <div class="sub">早稲田 vs 立教  · 2026-03-25  · Jersey #6 牧野羽瑠</div>
+</div>
+<div class="container">
+
+  <div class="grid-2">
+
+    <!-- ゾーンスコア -->
+    <div class="card">
+      <h3>Total Zone Score</h3>
+      <div class="score-big" style="color:#27ae60">60</div>
+      <div class="verdict">✅ 通常</div>
+      <div style="margin-top:20px">
+        <div class="score-row">
+          <span style="width:12px;font-weight:700">P</span>
+          <div class="bar"><div class="bar-fill" style="width:10%"></div></div>
+          <span style="width:36px;text-align:right;font-size:14px;font-weight:600">2/20</span>
+        </div><div class="score-row">
+          <span style="width:12px;font-weight:700">M</span>
+          <div class="bar"><div class="bar-fill" style="width:35%"></div></div>
+          <span style="width:36px;text-align:right;font-size:14px;font-weight:600">7/20</span>
+        </div><div class="score-row">
+          <span style="width:12px;font-weight:700">D</span>
+          <div class="bar"><div class="bar-fill" style="width:85%"></div></div>
+          <span style="width:36px;text-align:right;font-size:14px;font-weight:600">17/20</span>
+        </div><div class="score-row">
+          <span style="width:12px;font-weight:700">V</span>
+          <div class="bar"><div class="bar-fill" style="width:100%"></div></div>
+          <span style="width:36px;text-align:right;font-size:14px;font-weight:600">20/20</span>
+        </div><div class="score-row">
+          <span style="width:12px;font-weight:700">B</span>
+          <div class="bar"><div class="bar-fill" style="width:70%"></div></div>
+          <span style="width:36px;text-align:right;font-size:14px;font-weight:600">14/20</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- マッチサマリー -->
+    <div class="card">
+      <h3>マッチサマリー</h3>
+      <div class="match-stat"><span>試合</span><span></span></div>
+      <div class="match-stat"><span>ポゼッション（早稲田）</span><span>0.0%</span></div>
+      <div class="match-stat"><span>ポゼッション（立教）</span><span>0.0%</span></div>
+      <div class="match-stat"><span>アタック侵入（早稲田）</span><span>0 回</span></div>
+      <div class="match-stat"><span>アタック侵入（立教）</span><span>0 回</span></div>
+      <div class="match-stat"><span>#6 確認ポジション数</span><span>16 点</span></div>
+      <div class="match-stat"><span>分析バージョン</span><span></span></div>
+    </div>
+
+  </div>
+
+  <!-- フィールド図 -->
+  <div class="section-title">📍 フィールドポジションマップ</div>
+  <img src="zone_analysis_jersey6.png" class="field-img" alt="Field Analysis">
+
+  <div class="grid-2" style="margin-top:20px">
+    <!-- ゾーン分布 -->
+    <div class="card">
+      <h3>ゾーン分布</h3>
+      
+        <div class="zone-bar-row">
+          <span class="zone-label">D1</span>
+          <div class="zone-bar-bg">
+            <div class="zone-bar-fill" style="width:6.2%;background:#3498db"></div>
+          </div>
+          <span class="zone-pct">6%</span>
+        </div>
+        <div class="zone-bar-row">
+          <span class="zone-label">D2</span>
+          <div class="zone-bar-bg">
+            <div class="zone-bar-fill" style="width:75.0%;background:#2980b9"></div>
+          </div>
+          <span class="zone-pct">75%</span>
+        </div>
+        <div class="zone-bar-row">
+          <span class="zone-label">D3</span>
+          <div class="zone-bar-bg">
+            <div class="zone-bar-fill" style="width:12.5%;background:#1abc9c"></div>
+          </div>
+          <span class="zone-pct">12%</span>
+        </div>
+        <div class="zone-bar-row">
+          <span class="zone-label">A1</span>
+          <div class="zone-bar-bg">
+            <div class="zone-bar-fill" style="width:0.0%;background:#e74c3c"></div>
+          </div>
+          <span class="zone-pct">0%</span>
+        </div>
+        <div class="zone-bar-row">
+          <span class="zone-label">A2</span>
+          <div class="zone-bar-bg">
+            <div class="zone-bar-fill" style="width:6.2%;background:#e67e22"></div>
+          </div>
+          <span class="zone-pct">6%</span>
+        </div>
+        <div class="zone-bar-row">
+          <span class="zone-label">A3</span>
+          <div class="zone-bar-bg">
+            <div class="zone-bar-fill" style="width:0.0%;background:#f1c40f"></div>
+          </div>
+          <span class="zone-pct">0%</span>
+        </div>
+      <div style="margin-top:12px;font-size:12px;color:var(--muted)">
+        D1-D3 = 自陣  ·  A1-A3 = 敵陣
+      </div>
+    </div>
+
+    <!-- ゾーン誘発トリガー -->
+    <div class="card">
+      <h3>🔑 ゾーン入りトリガー</h3>
+      
+            <div class="trigger-card">
+              <span class="zone-tag" style="background:#e67e22">A2</span>
+              <strong>2H 75分</strong>
+              ← 敵陣深く侵入 (X=81.3m)
+            </div>
+      <div style="margin-top:16px;font-size:12px;color:var(--muted)">
+        アタッキングゾーン（A1-A3）での検出瞬間を特定。
+        この瞬間の試合映像フレームを確認し、動き・判断パターンを言語化することで
+        毎試合ゾーンを再現するルーティンを構築できる。
+      </div>
+    </div>
+  </div>
+
+  <!-- タイムライン -->
+  <div class="section-title">📊 ポジションタイムライン</div>
+  <div class="card">
+    <table>
+      <thead><tr><th>時刻</th><th>座標 (m)</th><th>ゾーン</th><th>メモ</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>1H 5.0m</td>
+          <td style="font-family:monospace">(24.0, 35.1)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto: player_idx=2</td>
+        </tr>
+        <tr>
+          <td>1H 10.0m</td>
+          <td style="font-family:monospace">(46.8, 39.8)</td>
+          <td><span class="zone-tag" style="background:#1abc9c">D3</span></td>
+          <td class="note">auto: player_idx=1</td>
+        </tr>
+        <tr>
+          <td>1H 15.0m</td>
+          <td style="font-family:monospace">(41.6, 36.5)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto: player_idx=3</td>
+        </tr>
+        <tr>
+          <td>1H 20.0m</td>
+          <td style="font-family:monospace">(32.3, 46.4)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto: player_idx=3</td>
+        </tr>
+        <tr>
+          <td>1H 25.0m</td>
+          <td style="font-family:monospace">(29.7, 45.4)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto: player_idx=1</td>
+        </tr>
+        <tr>
+          <td>1H 30.0m</td>
+          <td style="font-family:monospace">(27.2, 41.6)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto: player_idx=2</td>
+        </tr>
+        <tr>
+          <td>1H 35.0m</td>
+          <td style="font-family:monospace">(14.1, 29.2)</td>
+          <td><span class="zone-tag" style="background:#3498db">D1</span></td>
+          <td class="note">auto: player_idx=1</td>
+        </tr>
+        <tr>
+          <td>2H 50.0m</td>
+          <td style="font-family:monospace">(50.7, 60.6)</td>
+          <td><span class="zone-tag" style="background:#1abc9c">D3</span></td>
+          <td class="note">auto: player_idx=1</td>
+        </tr>
+        <tr>
+          <td>2H 55.0m</td>
+          <td style="font-family:monospace">(41.6, 37.0)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto: player_idx=1</td>
+        </tr>
+        <tr>
+          <td>2H 60.0m</td>
+          <td style="font-family:monospace">(36.7, 38.0)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto: player_idx=3</td>
+        </tr>
+        <tr>
+          <td>2H 65.0m</td>
+          <td style="font-family:monospace">(30.7, 60.4)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto: player_idx=1</td>
+        </tr>
+        <tr>
+          <td>2H 70.0m</td>
+          <td style="font-family:monospace">(38.2, 53.0)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto: player_idx=1</td>
+        </tr>
+        <tr>
+          <td>2H 75.0m</td>
+          <td style="font-family:monospace">(81.3, 65.0)</td>
+          <td><span class="zone-tag" style="background:#e67e22">A2</span></td>
+          <td class="note">auto: player_idx=1</td>
+        </tr>
+        <tr>
+          <td>2H 80.0m</td>
+          <td style="font-family:monospace">(39.8, 61.3)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto: player_idx=1</td>
+        </tr>
+        <tr>
+          <td>2H 85.0m</td>
+          <td style="font-family:monospace">(21.1, 46.2)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto: player_idx=1</td>
+        </tr>
+        <tr>
+          <td>2H 90.0m</td>
+          <td style="font-family:monospace">(29.9, 40.1)</td>
+          <td><span class="zone-tag" style="background:#2980b9">D2</span></td>
+          <td class="note">auto: player_idx=1</td>
+        </tr></tbody>
+    </table>
+  </div>
+
+  <!-- 次のアクション -->
+  <div class="section-title">📝 次の試合へのアクション</div>
+  <div class="card">
+    <ol style="line-height:2;color:var(--text)">
+      <li>アタッキングゾーン到達率を高める → 試合前に「A2/A3侵入イメージ」を3回反復</li>
+      <li>ポジション変化の速さ（D指標）を改善 → ボール受け前に次の動き先を決定</li>
+      <li>フィールドカバー範囲（V指標）を拡大 → 視野確認ルーティンを組み込む</li>
+      <li>次の試合映像を Google Drive にアップロードし再分析を実行</li>
+    </ol>
+    <div style="margin-top:16px;background:#21262d;border-radius:6px;padding:12px;font-size:12px;color:var(--muted)">
+      <strong style="color:#27ae60">現在のゾーンスコア: 60/100</strong><br>
+      目標: 70点以上（準ゾーン）を毎試合安定させる → 90点以上（完全ゾーン）の試合を増やす
+    </div>
+  </div>
+
+</div>
+<div style="text-align:center;padding:20px;color:var(--muted);font-size:11px">
+  TZI — Tactical Zone Intelligence  ·  Indica Labs  ·  2026
+</div>
+</body>
+</html>

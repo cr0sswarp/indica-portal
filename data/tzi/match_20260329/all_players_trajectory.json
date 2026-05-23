@@ -1,0 +1,2239 @@
+{
+  "match": "20260329",
+  "sample_interval_min": 3.0,
+  "total_players": 45,
+  "players": [
+    {
+      "player_id": "P008",
+      "sightings": [
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 67.69,
+          "fy": 40.9,
+          "zone": "A2",
+          "px": 888,
+          "py": 347
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 67.69,
+          "fy": 40.9,
+          "zone": "A2",
+          "px": 888,
+          "py": 347
+        },
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 67.53,
+          "fy": 38.37,
+          "zone": "A2",
+          "px": 879,
+          "py": 321
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 67.52,
+          "fy": 43.51,
+          "zone": "A2",
+          "px": 892,
+          "py": 372
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 69.24,
+          "fy": 41.65,
+          "zone": "A2",
+          "px": 916,
+          "py": 352
+        },
+        {
+          "time_min": 30.0,
+          "half": "1H",
+          "fx": 68.24,
+          "fy": 40.47,
+          "zone": "A2",
+          "px": 896,
+          "py": 347
+        },
+        {
+          "time_min": 33.0,
+          "half": "1H",
+          "fx": 68.24,
+          "fy": 40.47,
+          "zone": "A2",
+          "px": 896,
+          "py": 347
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 68.24,
+          "fy": 40.47,
+          "zone": "A2",
+          "px": 896,
+          "py": 347
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 8,
+        "A3": 0
+      },
+      "avg_fx": 68.05,
+      "avg_fy": 40.84,
+      "total_sightings": 8
+    },
+    {
+      "player_id": "P000",
+      "sightings": [
+        {
+          "time_min": 3.0,
+          "half": "1H",
+          "fx": 33.69,
+          "fy": 49.57,
+          "zone": "D2",
+          "px": 293,
+          "py": 440
+        },
+        {
+          "time_min": 6.0,
+          "half": "1H",
+          "fx": 37.23,
+          "fy": 47.64,
+          "zone": "D2",
+          "px": 363,
+          "py": 405
+        },
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 33.98,
+          "fy": 44.24,
+          "zone": "D2",
+          "px": 317,
+          "py": 384
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 33.98,
+          "fy": 44.24,
+          "zone": "D2",
+          "px": 317,
+          "py": 384
+        },
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 32.39,
+          "fy": 43.02,
+          "zone": "D2",
+          "px": 294,
+          "py": 367
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 32.39,
+          "fy": 43.02,
+          "zone": "D2",
+          "px": 294,
+          "py": 367
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 32.39,
+          "fy": 43.02,
+          "zone": "D2",
+          "px": 294,
+          "py": 367
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 7,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 33.72,
+      "avg_fy": 44.96,
+      "total_sightings": 7
+    },
+    {
+      "player_id": "P007",
+      "sightings": [
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 33.54,
+          "fy": 42.29,
+          "zone": "D2",
+          "px": 316,
+          "py": 366
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 33.92,
+          "fy": 39.82,
+          "zone": "D2",
+          "px": 330,
+          "py": 342
+        },
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 33.92,
+          "fy": 39.82,
+          "zone": "D2",
+          "px": 330,
+          "py": 342
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 33.92,
+          "fy": 39.82,
+          "zone": "D2",
+          "px": 330,
+          "py": 342
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 37.39,
+          "fy": 42.91,
+          "zone": "D2",
+          "px": 379,
+          "py": 371
+        },
+        {
+          "time_min": 30.0,
+          "half": "1H",
+          "fx": 37.39,
+          "fy": 42.91,
+          "zone": "D2",
+          "px": 379,
+          "py": 371
+        },
+        {
+          "time_min": 33.0,
+          "half": "1H",
+          "fx": 37.39,
+          "fy": 42.91,
+          "zone": "D2",
+          "px": 379,
+          "py": 371
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 7,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 35.35,
+      "avg_fy": 41.5,
+      "total_sightings": 7
+    },
+    {
+      "player_id": "P502",
+      "sightings": [
+        {
+          "time_min": 54.67,
+          "half": "2H",
+          "fx": 82.54,
+          "fy": 48.51,
+          "zone": "A2",
+          "px": 1178,
+          "py": 431
+        },
+        {
+          "time_min": 60.67,
+          "half": "2H",
+          "fx": 82.54,
+          "fy": 48.51,
+          "zone": "A2",
+          "px": 1178,
+          "py": 431
+        },
+        {
+          "time_min": 63.67,
+          "half": "2H",
+          "fx": 82.54,
+          "fy": 48.51,
+          "zone": "A2",
+          "px": 1178,
+          "py": 431
+        },
+        {
+          "time_min": 66.67,
+          "half": "2H",
+          "fx": 84.41,
+          "fy": 52.44,
+          "zone": "A3",
+          "px": 1238,
+          "py": 475
+        },
+        {
+          "time_min": 69.67,
+          "half": "2H",
+          "fx": 84.41,
+          "fy": 52.44,
+          "zone": "A3",
+          "px": 1238,
+          "py": 475
+        },
+        {
+          "time_min": 72.67,
+          "half": "2H",
+          "fx": 84.41,
+          "fy": 52.44,
+          "zone": "A3",
+          "px": 1238,
+          "py": 475
+        },
+        {
+          "time_min": 75.67,
+          "half": "2H",
+          "fx": 84.41,
+          "fy": 52.44,
+          "zone": "A3",
+          "px": 1238,
+          "py": 475
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 3,
+        "A3": 4
+      },
+      "avg_fx": 83.61,
+      "avg_fy": 50.76,
+      "total_sightings": 7
+    },
+    {
+      "player_id": "P004",
+      "sightings": [
+        {
+          "time_min": 6.0,
+          "half": "1H",
+          "fx": 55.85,
+          "fy": 35.7,
+          "zone": "A1",
+          "px": 688,
+          "py": 295
+        },
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 55.85,
+          "fy": 35.7,
+          "zone": "A1",
+          "px": 688,
+          "py": 295
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 55.85,
+          "fy": 35.7,
+          "zone": "A1",
+          "px": 688,
+          "py": 295
+        },
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 54.27,
+          "fy": 31.99,
+          "zone": "A1",
+          "px": 662,
+          "py": 271
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 54.27,
+          "fy": 31.99,
+          "zone": "A1",
+          "px": 662,
+          "py": 271
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 54.27,
+          "fy": 31.99,
+          "zone": "A1",
+          "px": 662,
+          "py": 271
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 6,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 55.06,
+      "avg_fy": 33.85,
+      "total_sightings": 6
+    },
+    {
+      "player_id": "P014",
+      "sightings": [
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 72.25,
+          "fy": 30.98,
+          "zone": "A2",
+          "px": 934,
+          "py": 264
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 72.25,
+          "fy": 30.98,
+          "zone": "A2",
+          "px": 934,
+          "py": 264
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 72.25,
+          "fy": 30.98,
+          "zone": "A2",
+          "px": 934,
+          "py": 264
+        },
+        {
+          "time_min": 30.0,
+          "half": "1H",
+          "fx": 70.7,
+          "fy": 34.62,
+          "zone": "A2",
+          "px": 920,
+          "py": 292
+        },
+        {
+          "time_min": 33.0,
+          "half": "1H",
+          "fx": 70.7,
+          "fy": 34.62,
+          "zone": "A2",
+          "px": 920,
+          "py": 292
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 70.7,
+          "fy": 34.62,
+          "zone": "A2",
+          "px": 920,
+          "py": 292
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 6,
+        "A3": 0
+      },
+      "avg_fx": 71.47,
+      "avg_fy": 32.8,
+      "total_sightings": 6
+    },
+    {
+      "player_id": "P504",
+      "sightings": [
+        {
+          "time_min": 54.67,
+          "half": "2H",
+          "fx": 42.0,
+          "fy": 41.23,
+          "zone": "D3",
+          "px": 460,
+          "py": 344
+        },
+        {
+          "time_min": 60.67,
+          "half": "2H",
+          "fx": 43.32,
+          "fy": 41.87,
+          "zone": "D3",
+          "px": 481,
+          "py": 356
+        },
+        {
+          "time_min": 63.67,
+          "half": "2H",
+          "fx": 43.32,
+          "fy": 41.87,
+          "zone": "D3",
+          "px": 481,
+          "py": 356
+        },
+        {
+          "time_min": 66.67,
+          "half": "2H",
+          "fx": 43.32,
+          "fy": 41.87,
+          "zone": "D3",
+          "px": 481,
+          "py": 356
+        },
+        {
+          "time_min": 69.67,
+          "half": "2H",
+          "fx": 43.32,
+          "fy": 41.87,
+          "zone": "D3",
+          "px": 481,
+          "py": 356
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 5,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 43.06,
+      "avg_fy": 41.74,
+      "total_sightings": 5
+    },
+    {
+      "player_id": "P505",
+      "sightings": [
+        {
+          "time_min": 54.67,
+          "half": "2H",
+          "fx": 34.23,
+          "fy": 37.45,
+          "zone": "D2",
+          "px": 342,
+          "py": 312
+        },
+        {
+          "time_min": 60.67,
+          "half": "2H",
+          "fx": 36.69,
+          "fy": 38.03,
+          "zone": "D2",
+          "px": 380,
+          "py": 322
+        },
+        {
+          "time_min": 63.67,
+          "half": "2H",
+          "fx": 36.69,
+          "fy": 38.03,
+          "zone": "D2",
+          "px": 380,
+          "py": 322
+        },
+        {
+          "time_min": 66.67,
+          "half": "2H",
+          "fx": 36.69,
+          "fy": 38.03,
+          "zone": "D2",
+          "px": 380,
+          "py": 322
+        },
+        {
+          "time_min": 69.67,
+          "half": "2H",
+          "fx": 36.69,
+          "fy": 38.03,
+          "zone": "D2",
+          "px": 380,
+          "py": 322
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 5,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 36.2,
+      "avg_fy": 37.91,
+      "total_sightings": 5
+    },
+    {
+      "player_id": "P001",
+      "sightings": [
+        {
+          "time_min": 3.0,
+          "half": "1H",
+          "fx": 74.23,
+          "fy": 48.89,
+          "zone": "A2",
+          "px": 1029,
+          "py": 434
+        },
+        {
+          "time_min": 6.0,
+          "half": "1H",
+          "fx": 76.66,
+          "fy": 46.94,
+          "zone": "A2",
+          "px": 1064,
+          "py": 403
+        },
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 76.66,
+          "fy": 46.94,
+          "zone": "A2",
+          "px": 1064,
+          "py": 403
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 76.66,
+          "fy": 46.94,
+          "zone": "A2",
+          "px": 1064,
+          "py": 403
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 4,
+        "A3": 0
+      },
+      "avg_fx": 76.05,
+      "avg_fy": 47.43,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P009",
+      "sightings": [
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 61.43,
+          "fy": 46.19,
+          "zone": "A1",
+          "px": 792,
+          "py": 406
+        },
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 61.43,
+          "fy": 46.19,
+          "zone": "A1",
+          "px": 792,
+          "py": 406
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 61.43,
+          "fy": 46.19,
+          "zone": "A1",
+          "px": 792,
+          "py": 406
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 61.43,
+          "fy": 46.19,
+          "zone": "A1",
+          "px": 792,
+          "py": 406
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 4,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 61.43,
+      "avg_fy": 46.19,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P010",
+      "sightings": [
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 41.62,
+          "fy": 36.52,
+          "zone": "D2",
+          "px": 462,
+          "py": 310
+        },
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 41.62,
+          "fy": 36.52,
+          "zone": "D2",
+          "px": 462,
+          "py": 310
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 41.62,
+          "fy": 36.52,
+          "zone": "D2",
+          "px": 462,
+          "py": 310
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 41.62,
+          "fy": 36.52,
+          "zone": "D2",
+          "px": 462,
+          "py": 310
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 4,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 41.62,
+      "avg_fy": 36.52,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P017",
+      "sightings": [
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 22.94,
+          "fy": 37.57,
+          "zone": "D2",
+          "px": 161,
+          "py": 318
+        },
+        {
+          "time_min": 30.0,
+          "half": "1H",
+          "fx": 27.22,
+          "fy": 41.55,
+          "zone": "D2",
+          "px": 213,
+          "py": 350
+        },
+        {
+          "time_min": 33.0,
+          "half": "1H",
+          "fx": 27.22,
+          "fy": 41.55,
+          "zone": "D2",
+          "px": 213,
+          "py": 350
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 27.22,
+          "fy": 41.55,
+          "zone": "D2",
+          "px": 213,
+          "py": 350
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 4,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 26.15,
+      "avg_fy": 40.55,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P019",
+      "sightings": [
+        {
+          "time_min": 30.0,
+          "half": "1H",
+          "fx": 26.32,
+          "fy": 30.55,
+          "zone": "D2",
+          "px": 242,
+          "py": 264
+        },
+        {
+          "time_min": 33.0,
+          "half": "1H",
+          "fx": 26.32,
+          "fy": 30.55,
+          "zone": "D2",
+          "px": 242,
+          "py": 264
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 26.32,
+          "fy": 30.55,
+          "zone": "D2",
+          "px": 242,
+          "py": 264
+        },
+        {
+          "time_min": 42.0,
+          "half": "1H",
+          "fx": 21.91,
+          "fy": 30.54,
+          "zone": "D2",
+          "px": 176,
+          "py": 263
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 4,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 25.22,
+      "avg_fy": 30.55,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P508",
+      "sightings": [
+        {
+          "time_min": 60.67,
+          "half": "2H",
+          "fx": 44.58,
+          "fy": 40.47,
+          "zone": "D3",
+          "px": 504,
+          "py": 346
+        },
+        {
+          "time_min": 63.67,
+          "half": "2H",
+          "fx": 44.58,
+          "fy": 40.47,
+          "zone": "D3",
+          "px": 504,
+          "py": 346
+        },
+        {
+          "time_min": 66.67,
+          "half": "2H",
+          "fx": 44.58,
+          "fy": 40.47,
+          "zone": "D3",
+          "px": 504,
+          "py": 346
+        },
+        {
+          "time_min": 69.67,
+          "half": "2H",
+          "fx": 44.58,
+          "fy": 40.47,
+          "zone": "D3",
+          "px": 504,
+          "py": 346
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 4,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 44.58,
+      "avg_fy": 40.47,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P509",
+      "sightings": [
+        {
+          "time_min": 63.67,
+          "half": "2H",
+          "fx": 31.06,
+          "fy": 32.87,
+          "zone": "D2",
+          "px": 306,
+          "py": 282
+        },
+        {
+          "time_min": 66.67,
+          "half": "2H",
+          "fx": 31.06,
+          "fy": 32.87,
+          "zone": "D2",
+          "px": 306,
+          "py": 282
+        },
+        {
+          "time_min": 69.67,
+          "half": "2H",
+          "fx": 31.06,
+          "fy": 32.87,
+          "zone": "D2",
+          "px": 306,
+          "py": 282
+        },
+        {
+          "time_min": 72.67,
+          "half": "2H",
+          "fx": 31.06,
+          "fy": 32.87,
+          "zone": "D2",
+          "px": 306,
+          "py": 282
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 4,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 31.06,
+      "avg_fy": 32.87,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P510",
+      "sightings": [
+        {
+          "time_min": 66.67,
+          "half": "2H",
+          "fx": 55.26,
+          "fy": 52.57,
+          "zone": "A1",
+          "px": 687,
+          "py": 459
+        },
+        {
+          "time_min": 69.67,
+          "half": "2H",
+          "fx": 55.26,
+          "fy": 52.57,
+          "zone": "A1",
+          "px": 687,
+          "py": 459
+        },
+        {
+          "time_min": 72.67,
+          "half": "2H",
+          "fx": 55.26,
+          "fy": 52.57,
+          "zone": "A1",
+          "px": 687,
+          "py": 459
+        },
+        {
+          "time_min": 75.67,
+          "half": "2H",
+          "fx": 55.26,
+          "fy": 52.57,
+          "zone": "A1",
+          "px": 687,
+          "py": 459
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 4,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 55.26,
+      "avg_fy": 52.57,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P511",
+      "sightings": [
+        {
+          "time_min": 66.67,
+          "half": "2H",
+          "fx": 60.42,
+          "fy": 38.82,
+          "zone": "A1",
+          "px": 764,
+          "py": 325
+        },
+        {
+          "time_min": 69.67,
+          "half": "2H",
+          "fx": 62.99,
+          "fy": 36.99,
+          "zone": "A1",
+          "px": 803,
+          "py": 313
+        },
+        {
+          "time_min": 72.67,
+          "half": "2H",
+          "fx": 65.2,
+          "fy": 41.65,
+          "zone": "A2",
+          "px": 848,
+          "py": 360
+        },
+        {
+          "time_min": 75.67,
+          "half": "2H",
+          "fx": 65.2,
+          "fy": 41.65,
+          "zone": "A2",
+          "px": 848,
+          "py": 360
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 2,
+        "A2": 2,
+        "A3": 0
+      },
+      "avg_fx": 63.45,
+      "avg_fy": 39.78,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P512",
+      "sightings": [
+        {
+          "time_min": 66.67,
+          "half": "2H",
+          "fx": 52.75,
+          "fy": 38.03,
+          "zone": "A1",
+          "px": 639,
+          "py": 320
+        },
+        {
+          "time_min": 69.67,
+          "half": "2H",
+          "fx": 52.75,
+          "fy": 38.03,
+          "zone": "A1",
+          "px": 639,
+          "py": 320
+        },
+        {
+          "time_min": 72.67,
+          "half": "2H",
+          "fx": 52.75,
+          "fy": 38.03,
+          "zone": "A1",
+          "px": 639,
+          "py": 320
+        },
+        {
+          "time_min": 75.67,
+          "half": "2H",
+          "fx": 52.75,
+          "fy": 38.03,
+          "zone": "A1",
+          "px": 639,
+          "py": 320
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 4,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 52.75,
+      "avg_fy": 38.03,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P513",
+      "sightings": [
+        {
+          "time_min": 66.67,
+          "half": "2H",
+          "fx": 74.69,
+          "fy": 38.48,
+          "zone": "A2",
+          "px": 996,
+          "py": 322
+        },
+        {
+          "time_min": 69.67,
+          "half": "2H",
+          "fx": 74.69,
+          "fy": 38.48,
+          "zone": "A2",
+          "px": 996,
+          "py": 322
+        },
+        {
+          "time_min": 72.67,
+          "half": "2H",
+          "fx": 74.69,
+          "fy": 38.48,
+          "zone": "A2",
+          "px": 996,
+          "py": 322
+        },
+        {
+          "time_min": 75.67,
+          "half": "2H",
+          "fx": 74.69,
+          "fy": 38.48,
+          "zone": "A2",
+          "px": 996,
+          "py": 322
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 4,
+        "A3": 0
+      },
+      "avg_fx": 74.69,
+      "avg_fy": 38.48,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P514",
+      "sightings": [
+        {
+          "time_min": 66.67,
+          "half": "2H",
+          "fx": 76.8,
+          "fy": 38.37,
+          "zone": "A2",
+          "px": 1030,
+          "py": 317
+        },
+        {
+          "time_min": 69.67,
+          "half": "2H",
+          "fx": 76.8,
+          "fy": 38.37,
+          "zone": "A2",
+          "px": 1030,
+          "py": 317
+        },
+        {
+          "time_min": 72.67,
+          "half": "2H",
+          "fx": 76.8,
+          "fy": 38.37,
+          "zone": "A2",
+          "px": 1030,
+          "py": 317
+        },
+        {
+          "time_min": 75.67,
+          "half": "2H",
+          "fx": 76.8,
+          "fy": 38.37,
+          "zone": "A2",
+          "px": 1030,
+          "py": 317
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 4,
+        "A3": 0
+      },
+      "avg_fx": 76.8,
+      "avg_fy": 38.37,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P515",
+      "sightings": [
+        {
+          "time_min": 66.67,
+          "half": "2H",
+          "fx": 71.43,
+          "fy": 31.88,
+          "zone": "A2",
+          "px": 924,
+          "py": 270
+        },
+        {
+          "time_min": 69.67,
+          "half": "2H",
+          "fx": 71.43,
+          "fy": 31.88,
+          "zone": "A2",
+          "px": 924,
+          "py": 270
+        },
+        {
+          "time_min": 72.67,
+          "half": "2H",
+          "fx": 71.43,
+          "fy": 31.88,
+          "zone": "A2",
+          "px": 924,
+          "py": 270
+        },
+        {
+          "time_min": 75.67,
+          "half": "2H",
+          "fx": 71.43,
+          "fy": 31.88,
+          "zone": "A2",
+          "px": 924,
+          "py": 270
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 4,
+        "A3": 0
+      },
+      "avg_fx": 71.43,
+      "avg_fy": 31.88,
+      "total_sightings": 4
+    },
+    {
+      "player_id": "P002",
+      "sightings": [
+        {
+          "time_min": 6.0,
+          "half": "1H",
+          "fx": 72.38,
+          "fy": 60.23,
+          "zone": "A2",
+          "px": 1047,
+          "py": 545
+        },
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 72.38,
+          "fy": 60.23,
+          "zone": "A2",
+          "px": 1047,
+          "py": 545
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 72.38,
+          "fy": 60.23,
+          "zone": "A2",
+          "px": 1047,
+          "py": 545
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 3,
+        "A3": 0
+      },
+      "avg_fx": 72.38,
+      "avg_fy": 60.23,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P003",
+      "sightings": [
+        {
+          "time_min": 6.0,
+          "half": "1H",
+          "fx": 77.87,
+          "fy": 43.61,
+          "zone": "A2",
+          "px": 1070,
+          "py": 374
+        },
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 77.87,
+          "fy": 43.61,
+          "zone": "A2",
+          "px": 1070,
+          "py": 374
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 77.87,
+          "fy": 43.61,
+          "zone": "A2",
+          "px": 1070,
+          "py": 374
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 3,
+        "A3": 0
+      },
+      "avg_fx": 77.87,
+      "avg_fy": 43.61,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P005",
+      "sightings": [
+        {
+          "time_min": 6.0,
+          "half": "1H",
+          "fx": 32.18,
+          "fy": 30.81,
+          "zone": "D2",
+          "px": 329,
+          "py": 262
+        },
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 32.18,
+          "fy": 30.81,
+          "zone": "D2",
+          "px": 329,
+          "py": 262
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 32.18,
+          "fy": 30.81,
+          "zone": "D2",
+          "px": 329,
+          "py": 262
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 3,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 32.18,
+      "avg_fy": 30.81,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P006",
+      "sightings": [
+        {
+          "time_min": 6.0,
+          "half": "1H",
+          "fx": 80.05,
+          "fy": 24.8,
+          "zone": "A2",
+          "px": 1030,
+          "py": 218
+        },
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 80.05,
+          "fy": 24.8,
+          "zone": "A2",
+          "px": 1030,
+          "py": 218
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 80.05,
+          "fy": 24.8,
+          "zone": "A2",
+          "px": 1030,
+          "py": 218
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 3,
+        "A3": 0
+      },
+      "avg_fx": 80.05,
+      "avg_fy": 24.8,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P011",
+      "sightings": [
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 85.76,
+          "fy": 40.36,
+          "zone": "A3",
+          "px": 1187,
+          "py": 336
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 85.76,
+          "fy": 40.36,
+          "zone": "A3",
+          "px": 1187,
+          "py": 336
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 85.76,
+          "fy": 40.36,
+          "zone": "A3",
+          "px": 1187,
+          "py": 336
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 3
+      },
+      "avg_fx": 85.76,
+      "avg_fy": 40.36,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P012",
+      "sightings": [
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 57.47,
+          "fy": 37.68,
+          "zone": "A1",
+          "px": 715,
+          "py": 318
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 57.47,
+          "fy": 37.68,
+          "zone": "A1",
+          "px": 715,
+          "py": 318
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 57.47,
+          "fy": 37.68,
+          "zone": "A1",
+          "px": 715,
+          "py": 318
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 3,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 57.47,
+      "avg_fy": 37.68,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P013",
+      "sightings": [
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 91.19,
+          "fy": 34.75,
+          "zone": "A3",
+          "px": 1243,
+          "py": 289
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 91.19,
+          "fy": 34.75,
+          "zone": "A3",
+          "px": 1243,
+          "py": 289
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 91.19,
+          "fy": 34.75,
+          "zone": "A3",
+          "px": 1243,
+          "py": 289
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 3
+      },
+      "avg_fx": 91.19,
+      "avg_fy": 34.75,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P015",
+      "sightings": [
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 57.9,
+          "fy": 28.84,
+          "zone": "A1",
+          "px": 715,
+          "py": 249
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 57.9,
+          "fy": 28.84,
+          "zone": "A1",
+          "px": 715,
+          "py": 249
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 57.9,
+          "fy": 28.84,
+          "zone": "A1",
+          "px": 715,
+          "py": 249
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 3,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 57.9,
+      "avg_fy": 28.84,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P016",
+      "sightings": [
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 84.85,
+          "fy": 27.22,
+          "zone": "A3",
+          "px": 1109,
+          "py": 238
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 84.85,
+          "fy": 27.22,
+          "zone": "A3",
+          "px": 1109,
+          "py": 238
+        },
+        {
+          "time_min": 24.0,
+          "half": "1H",
+          "fx": 84.85,
+          "fy": 27.22,
+          "zone": "A3",
+          "px": 1109,
+          "py": 238
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 3
+      },
+      "avg_fx": 84.85,
+      "avg_fy": 27.22,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P018",
+      "sightings": [
+        {
+          "time_min": 30.0,
+          "half": "1H",
+          "fx": 68.48,
+          "fy": 38.14,
+          "zone": "A2",
+          "px": 894,
+          "py": 329
+        },
+        {
+          "time_min": 33.0,
+          "half": "1H",
+          "fx": 68.48,
+          "fy": 38.14,
+          "zone": "A2",
+          "px": 894,
+          "py": 329
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 68.48,
+          "fy": 38.14,
+          "zone": "A2",
+          "px": 894,
+          "py": 329
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 3,
+        "A3": 0
+      },
+      "avg_fx": 68.48,
+      "avg_fy": 38.14,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P020",
+      "sightings": [
+        {
+          "time_min": 30.0,
+          "half": "1H",
+          "fx": 35.63,
+          "fy": 28.55,
+          "zone": "D2",
+          "px": 386,
+          "py": 248
+        },
+        {
+          "time_min": 33.0,
+          "half": "1H",
+          "fx": 35.63,
+          "fy": 28.55,
+          "zone": "D2",
+          "px": 386,
+          "py": 248
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 35.63,
+          "fy": 28.55,
+          "zone": "D2",
+          "px": 386,
+          "py": 248
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 3,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 35.63,
+      "avg_fy": 28.55,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P021",
+      "sightings": [
+        {
+          "time_min": 33.0,
+          "half": "1H",
+          "fx": 83.11,
+          "fy": 41.75,
+          "zone": "A2",
+          "px": 1150,
+          "py": 356
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 84.23,
+          "fy": 38.14,
+          "zone": "A3",
+          "px": 1150,
+          "py": 326
+        },
+        {
+          "time_min": 42.0,
+          "half": "1H",
+          "fx": 84.23,
+          "fy": 38.14,
+          "zone": "A3",
+          "px": 1150,
+          "py": 326
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 1,
+        "A3": 2
+      },
+      "avg_fx": 83.86,
+      "avg_fy": 39.34,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P500",
+      "sightings": [
+        {
+          "time_min": 54.67,
+          "half": "2H",
+          "fx": 40.85,
+          "fy": 53.26,
+          "zone": "D2",
+          "px": 414,
+          "py": 480
+        },
+        {
+          "time_min": 60.67,
+          "half": "2H",
+          "fx": 40.85,
+          "fy": 53.26,
+          "zone": "D2",
+          "px": 414,
+          "py": 480
+        },
+        {
+          "time_min": 63.67,
+          "half": "2H",
+          "fx": 40.85,
+          "fy": 53.26,
+          "zone": "D2",
+          "px": 414,
+          "py": 480
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 3,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 40.85,
+      "avg_fy": 53.26,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P501",
+      "sightings": [
+        {
+          "time_min": 54.67,
+          "half": "2H",
+          "fx": 40.81,
+          "fy": 50.53,
+          "zone": "D2",
+          "px": 420,
+          "py": 449
+        },
+        {
+          "time_min": 60.67,
+          "half": "2H",
+          "fx": 40.81,
+          "fy": 50.53,
+          "zone": "D2",
+          "px": 420,
+          "py": 449
+        },
+        {
+          "time_min": 63.67,
+          "half": "2H",
+          "fx": 40.81,
+          "fy": 50.53,
+          "zone": "D2",
+          "px": 420,
+          "py": 449
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 3,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 40.81,
+      "avg_fy": 50.53,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P503",
+      "sightings": [
+        {
+          "time_min": 54.67,
+          "half": "2H",
+          "fx": 40.63,
+          "fy": 48.74,
+          "zone": "D2",
+          "px": 421,
+          "py": 427
+        },
+        {
+          "time_min": 60.67,
+          "half": "2H",
+          "fx": 40.63,
+          "fy": 48.74,
+          "zone": "D2",
+          "px": 421,
+          "py": 427
+        },
+        {
+          "time_min": 63.67,
+          "half": "2H",
+          "fx": 40.63,
+          "fy": 48.74,
+          "zone": "D2",
+          "px": 421,
+          "py": 427
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 3,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 40.63,
+      "avg_fy": 48.74,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P506",
+      "sightings": [
+        {
+          "time_min": 54.67,
+          "half": "2H",
+          "fx": 47.41,
+          "fy": 32.63,
+          "zone": "D3",
+          "px": 557,
+          "py": 278
+        },
+        {
+          "time_min": 60.67,
+          "half": "2H",
+          "fx": 47.41,
+          "fy": 32.63,
+          "zone": "D3",
+          "px": 557,
+          "py": 278
+        },
+        {
+          "time_min": 63.67,
+          "half": "2H",
+          "fx": 47.41,
+          "fy": 32.63,
+          "zone": "D3",
+          "px": 557,
+          "py": 278
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 3,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 47.41,
+      "avg_fy": 32.63,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P507",
+      "sightings": [
+        {
+          "time_min": 54.67,
+          "half": "2H",
+          "fx": 33.31,
+          "fy": 24.0,
+          "zone": "D2",
+          "px": 363,
+          "py": 217
+        },
+        {
+          "time_min": 60.67,
+          "half": "2H",
+          "fx": 33.31,
+          "fy": 24.0,
+          "zone": "D2",
+          "px": 363,
+          "py": 217
+        },
+        {
+          "time_min": 63.67,
+          "half": "2H",
+          "fx": 33.31,
+          "fy": 24.0,
+          "zone": "D2",
+          "px": 363,
+          "py": 217
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 3,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 33.31,
+      "avg_fy": 24.0,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P517",
+      "sightings": [
+        {
+          "time_min": 84.67,
+          "half": "2H",
+          "fx": 59.36,
+          "fy": 35.34,
+          "zone": "A1",
+          "px": 743,
+          "py": 298
+        },
+        {
+          "time_min": 87.67,
+          "half": "2H",
+          "fx": 59.36,
+          "fy": 35.34,
+          "zone": "A1",
+          "px": 743,
+          "py": 298
+        },
+        {
+          "time_min": 90.67,
+          "half": "2H",
+          "fx": 56.42,
+          "fy": 35.7,
+          "zone": "A1",
+          "px": 697,
+          "py": 303
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 3,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 58.38,
+      "avg_fy": 35.46,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P518",
+      "sightings": [
+        {
+          "time_min": 84.67,
+          "half": "2H",
+          "fx": 76.2,
+          "fy": 32.77,
+          "zone": "A2",
+          "px": 1000,
+          "py": 280
+        },
+        {
+          "time_min": 87.67,
+          "half": "2H",
+          "fx": 76.2,
+          "fy": 32.77,
+          "zone": "A2",
+          "px": 1000,
+          "py": 280
+        },
+        {
+          "time_min": 90.67,
+          "half": "2H",
+          "fx": 76.2,
+          "fy": 32.77,
+          "zone": "A2",
+          "px": 1000,
+          "py": 280
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 3,
+        "A3": 0
+      },
+      "avg_fx": 76.2,
+      "avg_fy": 32.77,
+      "total_sightings": 3
+    },
+    {
+      "player_id": "P516",
+      "sightings": [
+        {
+          "time_min": 75.67,
+          "half": "2H",
+          "fx": 81.34,
+          "fy": 65.03,
+          "zone": "A2",
+          "px": 1272,
+          "py": 651
+        },
+        {
+          "time_min": 84.67,
+          "half": "2H",
+          "fx": 81.34,
+          "fy": 65.03,
+          "zone": "A2",
+          "px": 1272,
+          "py": 651
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 2,
+        "A3": 0
+      },
+      "avg_fx": 81.34,
+      "avg_fy": 65.03,
+      "total_sightings": 2
+    },
+    {
+      "player_id": "P519",
+      "sightings": [
+        {
+          "time_min": 87.67,
+          "half": "2H",
+          "fx": 37.97,
+          "fy": 50.45,
+          "zone": "D2",
+          "px": 368,
+          "py": 451
+        },
+        {
+          "time_min": 90.67,
+          "half": "2H",
+          "fx": 37.97,
+          "fy": 50.45,
+          "zone": "D2",
+          "px": 368,
+          "py": 451
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 2,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 37.97,
+      "avg_fy": 50.45,
+      "total_sightings": 2
+    },
+    {
+      "player_id": "P520",
+      "sightings": [
+        {
+          "time_min": 87.67,
+          "half": "2H",
+          "fx": 37.21,
+          "fy": 48.56,
+          "zone": "D2",
+          "px": 360,
+          "py": 430
+        },
+        {
+          "time_min": 90.67,
+          "half": "2H",
+          "fx": 37.21,
+          "fy": 48.56,
+          "zone": "D2",
+          "px": 360,
+          "py": 430
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 2,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 37.21,
+      "avg_fy": 48.56,
+      "total_sightings": 2
+    },
+    {
+      "player_id": "P521",
+      "sightings": [
+        {
+          "time_min": 90.67,
+          "half": "2H",
+          "fx": 29.9,
+          "fy": 40.15,
+          "zone": "D2",
+          "px": 263,
+          "py": 338
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 1,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 0
+      },
+      "avg_fx": 29.9,
+      "avg_fy": 40.15,
+      "total_sightings": 1
+    },
+    {
+      "player_id": "P522",
+      "sightings": [
+        {
+          "time_min": 90.67,
+          "half": "2H",
+          "fx": 87.39,
+          "fy": 38.59,
+          "zone": "A3",
+          "px": 1204,
+          "py": 325
+        }
+      ],
+      "zone_distribution": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "A1": 0,
+        "A2": 0,
+        "A3": 1
+      },
+      "avg_fx": 87.39,
+      "avg_fy": 38.59,
+      "total_sightings": 1
+    }
+  ]
+}
