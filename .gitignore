@@ -10,6 +10,10 @@ output/
 # Downloaded videos (use rclone to fetch)
 videos/
 
+# TZI large files
+data/tzi/match_20260325/*.mp4
+data/tzi/match_20260325/*.mov
+
 # Python cache
 __pycache__/
 *.py[cod]

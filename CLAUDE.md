@@ -19,11 +19,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ├── index.html              # メインポータルページ（HTML/CSS）
 ├── scripts/                # Python自動化スクリプト
 │   ├── daily_loop_stock.py  # 株価予想ループ（毎日 3:03 JST）
-│   └── nakajima.py         # メルマガ要約・PDF生成（毎週水曜 8:36 JST）
+│   ├── nakajima.py         # メルマガ要約・PDF生成（毎週水曜 8:36 JST）
+│   ├── download_videos.sh  # Google Driveから動画をダウンロード
+│   └── tzi/                # TZI動画分析スクリプト
+│       ├── config.py       # 設定・定数
+│       ├── extract_frame.py # フレーム確認
+│       ├── check_all_anchors.py # アンカー確認
+│       ├── generate_video.py # マークアップ動画生成
+│       └── generate_heatmap.py # ヒートマップ生成
+├── data/tzi/               # TZI分析結果
+│   └── match_20260325/     # 2026-03-25 早稲田vs立教
+│       ├── jersey6_trajectory.json  # #6選手の軌跡データ
+│       ├── heatmap_jersey6_latest.png # ヒートマップ
+│       ├── anchor_checks/ # アンカーポイント確認画像
+│       └── ※動画は.gitignoreで除外
 ├── .github/workflows/      # GitHub Actions ワークフロー
 │   ├── daily-loop-stock.yml
 │   └── nakajima.yml
 ├── skills/                 # Cowork スキルファイル (.skill)
+├── videos/                 # rcloneでダウンロード済み動画
 ├── schedules/              # スケジュール定義
 └── images/                 # ポータル用画像（背景など）
 ```
@@ -41,6 +55,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - ReportLab → PDF生成
 - Notion ← 結果保存（オプション）
 - GitHub Artifacts ← PDF アップロード
+
+**TZI (Tactical Zone Intelligence) - 動画分析:**
+- Google Drive → 試合映像ダウンロード（rclone経由）
+- OpenCV → フレーム抽出・選手検出
+- Homography → ピクセル座標 → フィールド座標に変換
+- JSON → アンカーポイントによる位置確認
+- ffmpeg → マークアップ動画生成
+- matplotlib → ヒートマップ生成
 
 ## ⚙️ セットアップ
 
@@ -106,6 +128,30 @@ GitHub の **Actions** タブで各ワークフローを選択 → **Run workflo
 ```bash
 # 環境変数を .env に記述してから以下で確認
 python -c "import os; print(os.environ.get('ANTHROPIC_API_KEY', 'NOT SET'))"
+```
+
+### TZI動画分析（ローカルテスト）
+
+```bash
+# venvが未作成の場合（初回のみ）
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# scripts/tzi/ で実行
+cd scripts/tzi
+
+# 特定時刻のフレーム確認
+python extract_frame.py 300 1H 30.9 52.1
+
+# 全アンカー一括確認
+python check_all_anchors.py
+
+# ヒートマップ再生成（約30秒）
+python generate_heatmap.py
+
+# 90分マークアップ動画再生成（約7分）
+python generate_video.py
 ```
 
 ## 🔧 開発ワークフロー
