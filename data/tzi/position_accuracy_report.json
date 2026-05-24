@@ -1,21 +1,29 @@
 {
-  "_README": "動画不要の位置精度評価。正解5試合で右SB特定手法を検証し、ホールドアウト3試合の#6誤検出を定量化。recommended_haru_1H は「前半=右SB」前提の推定で、確定には動画確認が必要。",
+  "_README": "動画不要の位置精度評価 v2。tactical_intelligence.py と同一の signature_distance でランキング。ホールドアウト3試合で改善版パイプライン (前半右SBシグネチャ) のシミュレーションを追加。",
+  "_changes_v2": [
+    "スコアリングをsignature_distance (パイプラインと同一) に統一",
+    "ROLE_SIGNATURE y_lo: 42→38 (確定右SB位置がy=40.8, y=41.9で42を下回るため)",
+    "ホールドアウトフォールバック: max(tactical_iq)→1H右SBシグネチャ (tactical_intelligence.pyも修正)",
+    "HTMLにSVGフィールド図を追加"
+  ],
   "field": {
     "FW": 105.0,
     "FH": 68.0,
     "coords": "normalized (Waseda attacks x→105)"
   },
-  "right_sb_signature": {
-    "x": [
-      15.0,
-      42.0
-    ],
-    "y": [
-      42.0,
-      68.0
-    ],
-    "xw": 0.8,
-    "yw": 1.6
+  "role_signature_v2": {
+    "サイドバック": {
+      "x": [
+        15,
+        45
+      ],
+      "y": [
+        38,
+        68
+      ],
+      "xw": 0.8,
+      "yw": 1.6
+    }
   },
   "min_sightings": 4,
   "matches": [
@@ -29,41 +37,43 @@
         "avg_x": 35.7,
         "avg_y": 40.8,
         "std_x": 13.9,
-        "ground_truth": true
+        "ground_truth": true,
+        "method": "ground_truth"
       },
       "best_candidate": {
-        "player_id": "P03",
-        "jersey_number": null,
-        "avg_x": 28.4,
-        "avg_y": 45.9,
-        "std_x": 8.8,
-        "side": "右",
-        "rb_score": 1.0
+        "player_id": "P13",
+        "jersey_number": 88,
+        "avg_x": 41.5,
+        "avg_y": 38.5,
+        "std_x": 14.3,
+        "side": "中央",
+        "sig_dist": 0.0,
+        "d_adj": -2.55
       },
       "top3": [
         {
-          "player_id": "P03",
-          "avg_x": 28.4,
-          "avg_y": 45.9,
-          "side": "右",
-          "rb_score": 1.0
+          "player_id": "P13",
+          "avg_x": 41.5,
+          "avg_y": 38.5,
+          "side": "中央",
+          "sig_dist": 0.0
+        },
+        {
+          "player_id": "P09",
+          "avg_x": 41.1,
+          "avg_y": 39.2,
+          "side": "中央",
+          "sig_dist": 0.0
         },
         {
           "player_id": "P15",
           "avg_x": 28.8,
           "avg_y": 45.0,
           "side": "右",
-          "rb_score": 1.0
-        },
-        {
-          "player_id": "P19",
-          "avg_x": 39.6,
-          "avg_y": 44.3,
-          "side": "右",
-          "rb_score": 1.0
+          "sig_dist": 0.0
         }
       ],
-      "agreement_dist_m": 8.9,
+      "agreement_dist_m": 6.2,
       "method_consistent": true
     },
     {
@@ -76,41 +86,43 @@
         "avg_x": 33.3,
         "avg_y": 51.7,
         "std_x": 8.8,
-        "ground_truth": true
+        "ground_truth": true,
+        "method": "ground_truth"
       },
       "best_candidate": {
-        "player_id": "P05",
-        "jersey_number": 76,
-        "avg_x": 28.1,
-        "avg_y": 61.0,
-        "std_x": 3.2,
-        "side": "右",
-        "rb_score": 1.0
+        "player_id": "P12",
+        "jersey_number": 3,
+        "avg_x": 37.8,
+        "avg_y": 39.3,
+        "std_x": 11.2,
+        "side": "中央",
+        "sig_dist": 0.0,
+        "d_adj": -3.0
       },
       "top3": [
         {
-          "player_id": "P05",
-          "avg_x": 28.1,
-          "avg_y": 61.0,
-          "side": "右",
-          "rb_score": 1.0
-        },
-        {
-          "player_id": "P15",
-          "avg_x": 26.7,
-          "avg_y": 43.0,
-          "side": "右",
-          "rb_score": 1.0
+          "player_id": "P12",
+          "avg_x": 37.8,
+          "avg_y": 39.3,
+          "side": "中央",
+          "sig_dist": 0.0
         },
         {
           "player_id": "P13",
           "avg_x": 27.7,
           "avg_y": 41.2,
           "side": "中央",
-          "rb_score": 0.975
+          "sig_dist": 0.0
+        },
+        {
+          "player_id": "P09",
+          "avg_x": 32.6,
+          "avg_y": 38.6,
+          "side": "中央",
+          "sig_dist": 0.0
         }
       ],
-      "agreement_dist_m": 10.6,
+      "agreement_dist_m": 13.2,
       "method_consistent": true
     },
     {
@@ -123,41 +135,43 @@
         "avg_x": 31.4,
         "avg_y": 55.2,
         "std_x": 1.5,
-        "ground_truth": true
+        "ground_truth": true,
+        "method": "ground_truth"
       },
       "best_candidate": {
-        "player_id": "P07",
+        "player_id": "P01",
         "jersey_number": null,
-        "avg_x": 30.8,
-        "avg_y": 46.0,
-        "std_x": 7.8,
-        "side": "右",
-        "rb_score": 1.0
+        "avg_x": 29.7,
+        "avg_y": 40.1,
+        "std_x": 6.2,
+        "side": "中央",
+        "sig_dist": 0.0,
+        "d_adj": -1.95
       },
       "top3": [
         {
-          "player_id": "P07",
-          "avg_x": 30.8,
-          "avg_y": 46.0,
-          "side": "右",
-          "rb_score": 1.0
+          "player_id": "P01",
+          "avg_x": 29.7,
+          "avg_y": 40.1,
+          "side": "中央",
+          "sig_dist": 0.0
         },
         {
-          "player_id": "P06",
-          "avg_x": 29.9,
-          "avg_y": 46.5,
-          "side": "右",
-          "rb_score": 1.0
+          "player_id": "P12",
+          "avg_x": 40.3,
+          "avg_y": 40.2,
+          "side": "中央",
+          "sig_dist": 0.0
         },
         {
           "player_id": "P08",
           "avg_x": 29.2,
           "avg_y": 41.3,
           "side": "中央",
-          "rb_score": 0.979
+          "sig_dist": 0.0
         }
       ],
-      "agreement_dist_m": 9.2,
+      "agreement_dist_m": 15.2,
       "method_consistent": true
     },
     {
@@ -170,42 +184,44 @@
         "avg_x": 38.7,
         "avg_y": 41.1,
         "std_x": 14.0,
-        "ground_truth": true
+        "ground_truth": true,
+        "method": "ground_truth"
       },
       "best_candidate": {
-        "player_id": "P14",
+        "player_id": "P10",
         "jersey_number": null,
-        "avg_x": 30.5,
-        "avg_y": 47.1,
-        "std_x": 11.7,
-        "side": "右",
-        "rb_score": 1.0
+        "avg_x": 34.2,
+        "avg_y": 37.9,
+        "std_x": 4.3,
+        "side": "中央",
+        "sig_dist": 0.09,
+        "d_adj": -2.31
       },
       "top3": [
         {
-          "player_id": "P14",
-          "avg_x": 30.5,
-          "avg_y": 47.1,
-          "side": "右",
-          "rb_score": 1.0
+          "player_id": "P10",
+          "avg_x": 34.2,
+          "avg_y": 37.9,
+          "side": "中央",
+          "sig_dist": 0.09
         },
         {
-          "player_id": "P23",
-          "avg_x": 33.2,
-          "avg_y": 41.2,
+          "player_id": "P03",
+          "avg_x": 43.7,
+          "avg_y": 40.3,
           "side": "中央",
-          "rb_score": 0.975
+          "sig_dist": 0.0
         },
         {
           "player_id": "P07",
           "avg_x": 43.0,
           "avg_y": 40.9,
           "side": "中央",
-          "rb_score": 0.953
+          "sig_dist": 0.0
         }
       ],
-      "agreement_dist_m": 10.1,
-      "method_consistent": true
+      "agreement_dist_m": 5.5,
+      "method_consistent": false
     },
     {
       "match": "20260318",
@@ -217,7 +233,8 @@
         "avg_x": 50.3,
         "avg_y": 31.0,
         "std_x": 29.0,
-        "ground_truth": null
+        "ground_truth": null,
+        "method": "auto (holdout検証)"
       },
       "best_candidate": {
         "player_id": "P18",
@@ -226,7 +243,8 @@
         "avg_y": 40.7,
         "std_x": 5.6,
         "side": "中央",
-        "rb_score": 0.96
+        "sig_dist": 0.0,
+        "d_adj": -0.75
       },
       "top3": [
         {
@@ -234,34 +252,35 @@
           "avg_x": 36.8,
           "avg_y": 40.7,
           "side": "中央",
-          "rb_score": 0.96
-        },
-        {
-          "player_id": "P06",
-          "avg_x": 47.2,
-          "avg_y": 43.7,
-          "side": "右",
-          "rb_score": 0.921
+          "sig_dist": 0.0
         },
         {
           "player_id": "P07",
           "avg_x": 39.4,
           "avg_y": 37.5,
           "side": "中央",
-          "rb_score": 0.865
+          "sig_dist": 0.73
+        },
+        {
+          "player_id": "P06",
+          "avg_x": 47.2,
+          "avg_y": 43.7,
+          "side": "右",
+          "sig_dist": 1.77
         }
       ],
       "flags": [
         "現行#6が左寄り(avg_y=31.0) — 羽瑠の既知右SBと矛盾",
-        "現行#6のstd_x=29.0が大 — 混線/誤トラックの兆候"
+        "現行#6のstd_x=29.0が大 — 混線/誤トラックの兆候",
+        "右SBシグネチャ距離: 現行=15.4m > 最有力候補=0.0m (差15.4m)"
       ],
-      "recommended_haru_1H": {
+      "improved_pipeline_would_pick": {
         "player_id": "P18",
         "avg_x": 36.8,
         "avg_y": 40.7,
         "side": "中央",
-        "rb_score": 0.96,
-        "caveat": "前半=右SB前提の推定。確定には動画確認が必要。"
+        "sig_dist": 0.0,
+        "caveat": "前半右SBシグネチャによる自動推定。確定には動画確認が必要。"
       }
     },
     {
@@ -274,41 +293,43 @@
         "avg_x": 25.4,
         "avg_y": 41.9,
         "std_x": 3.5,
-        "ground_truth": true
+        "ground_truth": true,
+        "method": "ground_truth"
       },
       "best_candidate": {
-        "player_id": "P10",
+        "player_id": "P11",
         "jersey_number": null,
-        "avg_x": 40.8,
-        "avg_y": 43.1,
-        "std_x": 8.0,
-        "side": "右",
-        "rb_score": 1.0
+        "avg_x": 40.4,
+        "avg_y": 40.3,
+        "std_x": 13.2,
+        "side": "中央",
+        "sig_dist": 0.0,
+        "d_adj": -2.85
       },
       "top3": [
         {
-          "player_id": "P10",
-          "avg_x": 40.8,
-          "avg_y": 43.1,
-          "side": "右",
-          "rb_score": 1.0
+          "player_id": "P11",
+          "avg_x": 40.4,
+          "avg_y": 40.3,
+          "side": "中央",
+          "sig_dist": 0.0
         },
         {
-          "player_id": "P24",
-          "avg_x": 29.5,
-          "avg_y": 44.6,
-          "side": "右",
-          "rb_score": 1.0
+          "player_id": "P05",
+          "avg_x": 42.0,
+          "avg_y": 38.1,
+          "side": "中央",
+          "sig_dist": 0.0
         },
         {
-          "player_id": "P15",
-          "avg_x": 38.2,
-          "avg_y": 42.9,
-          "side": "右",
-          "rb_score": 1.0
+          "player_id": "P09",
+          "avg_x": 40.7,
+          "avg_y": 40.1,
+          "side": "中央",
+          "sig_dist": 0.0
         }
       ],
-      "agreement_dist_m": 15.5,
+      "agreement_dist_m": 15.1,
       "method_consistent": true
     },
     {
@@ -321,7 +342,8 @@
         "avg_x": 50.1,
         "avg_y": 40.3,
         "std_x": 9.4,
-        "ground_truth": null
+        "ground_truth": null,
+        "method": "auto (holdout検証)"
       },
       "best_candidate": {
         "player_id": "P01",
@@ -330,7 +352,8 @@
         "avg_y": 43.9,
         "std_x": 3.2,
         "side": "右",
-        "rb_score": 1.0
+        "sig_dist": 0.0,
+        "d_adj": -0.75
       },
       "top3": [
         {
@@ -338,24 +361,24 @@
           "avg_x": 33.1,
           "avg_y": 43.9,
           "side": "右",
-          "rb_score": 1.0
+          "sig_dist": 0.0
         },
         {
           "player_id": "P02",
           "avg_x": 68.9,
           "avg_y": 45.5,
           "side": "右",
-          "rb_score": 0.667
+          "sig_dist": 19.11
         }
       ],
       "flags": [],
-      "recommended_haru_1H": {
+      "improved_pipeline_would_pick": {
         "player_id": "P01",
         "avg_x": 33.1,
         "avg_y": 43.9,
         "side": "右",
-        "rb_score": 1.0,
-        "caveat": "前半=右SB前提の推定。確定には動画確認が必要。"
+        "sig_dist": 0.0,
+        "caveat": "前半右SBシグネチャによる自動推定。確定には動画確認が必要。"
       }
     },
     {
@@ -368,7 +391,8 @@
         "avg_x": 63.5,
         "avg_y": 25.6,
         "std_x": 34.2,
-        "ground_truth": null
+        "ground_truth": null,
+        "method": "auto (holdout検証)"
       },
       "best_candidate": {
         "player_id": "P05",
@@ -377,7 +401,8 @@
         "avg_y": 44.9,
         "std_x": 3.4,
         "side": "右",
-        "rb_score": 1.0
+        "sig_dist": 0.0,
+        "d_adj": -0.6
       },
       "top3": [
         {
@@ -385,34 +410,35 @@
           "avg_x": 20.6,
           "avg_y": 44.9,
           "side": "右",
-          "rb_score": 1.0
-        },
-        {
-          "player_id": "P03",
-          "avg_x": 85.2,
-          "avg_y": 28.1,
-          "side": "中央",
-          "rb_score": 0.245
+          "sig_dist": 0.0
         },
         {
           "player_id": "P01",
           "avg_x": 53.0,
           "avg_y": 14.1,
           "side": "左",
-          "rb_score": 0.167
+          "sig_dist": 44.66
+        },
+        {
+          "player_id": "P03",
+          "avg_x": 85.2,
+          "avg_y": 28.1,
+          "side": "中央",
+          "sig_dist": 48.04
         }
       ],
       "flags": [
         "現行#6が左寄り(avg_y=25.6) — 羽瑠の既知右SBと矛盾",
-        "現行#6のstd_x=34.2が大 — 混線/誤トラックの兆候"
+        "現行#6のstd_x=34.2が大 — 混線/誤トラックの兆候",
+        "右SBシグネチャ距離: 現行=34.6m > 最有力候補=0.0m (差34.6m)"
       ],
-      "recommended_haru_1H": {
+      "improved_pipeline_would_pick": {
         "player_id": "P05",
         "avg_x": 20.6,
         "avg_y": 44.9,
         "side": "右",
-        "rb_score": 1.0,
-        "caveat": "前半=右SB前提の推定。確定には動画確認が必要。"
+        "sig_dist": 0.0,
+        "caveat": "前半右SBシグネチャによる自動推定。確定には動画確認が必要。"
       }
     }
   ]

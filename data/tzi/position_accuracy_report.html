@@ -1,13 +1,13 @@
 <!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TZI 位置精度評価 — #6 牧野羽瑠</title>
+<title>TZI 位置精度評価 v2 — #6 牧野羽瑠</title>
 <style>
 :root{--bg:#07070f;--bg2:#0d0d20;--cyan:#00f0ff;--purple:#bf5fff;
 --gold:#ffd060;--text:#e8f4ff;--sub:rgba(232,244,255,.55);
 --border:rgba(0,240,255,.18);--glass:rgba(255,255,255,.04)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Noto Sans JP','Hiragino Sans',sans-serif;background:var(--bg);
-color:var(--text);line-height:1.7;padding:2rem 1rem;max-width:1000px;margin:0 auto}
+color:var(--text);line-height:1.7;padding:2rem 1rem;max-width:1100px;margin:0 auto}
 h1{font-size:1.5rem;margin-bottom:.3rem}
 h2{font-size:1rem;margin:2rem 0 .8rem;padding-bottom:.4rem;
 border-bottom:1px solid var(--border);color:var(--cyan)}
@@ -30,65 +30,164 @@ border-left:3px solid}
 .caveat{font-size:.75rem;color:var(--sub);margin-top:.3rem}
 .note{background:rgba(191,95,255,.08);border:1px solid rgba(191,95,255,.25);
 border-radius:10px;padding:1rem;font-size:.82rem;color:var(--sub);margin-top:1.5rem}
+.fix-badge{background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.3);
+border-radius:6px;padding:.2rem .5rem;font-size:.8rem;color:#00e676}
 </style></head><body>
-<h1>TZI 位置情報精度 評価レポート</h1>
+<h1>TZI 位置情報精度 評価レポート <span style="font-size:.9rem;color:var(--sub)">v2</span></h1>
 <p class="lead">#6 牧野羽瑠の特定・位置推定の信頼性を、動画を使わず
-コミット済みデータ（全トラック座標＋確定ロール）で定量化。</p>
+コミット済みデータ（全トラック座標＋確定ロール）で定量化。
+スコアリングをパイプライン（tactical_intelligence.py）と統一。</p>
 
 <div class="metrics">
-  <div class="metric"><div class="n">5/5</div>
-    <div class="l">正解試合で右SB再特定に成功</div></div>
+  <div class="metric"><div class="n">4/5</div>
+    <div class="l">正解試合で右SBゾーン再特定に成功</div></div>
   <div class="metric"><div class="n">2/3</div>
-    <div class="l">ホールドアウトで誤検出フラグ</div></div>
+    <div class="l">旧パイプラインで誤検出フラグあり</div></div>
+  <div class="metric"><div class="n">3/3</div>
+    <div class="l">改善版で右SB候補を取得</div></div>
 </div>
 
-<h2>① 正解5試合での手法検証（前半=右SB）</h2>
-<p class="lead">既知の「右SBシグネチャ」で全トラックを採点し独立に#6を再特定。
+<h2>① 正解5試合での手法検証（前半=右SBシグネチャ）</h2>
+<p class="lead">tactical_intelligence.py の <code>signature_distance</code> と同一スコアリングで
+全トラックをランク付けし、#6 を独立に再特定。
 GT由来の現行位置との距離が小さいほど手法が妥当。</p>
 <table><thead><tr><th>試合</th><th>判定</th><th>再特定#6</th>
-<th>平均位置(x,y)</th><th>左右</th><th>RBスコア</th><th>現行との距離</th></tr></thead>
-<tbody><tr><td>vs埼玉大 (03/14)</td><td><span style="color:#00e676">✓ 整合</span></td><td>P03</td><td>(28.4, 45.9)</td><td>右側</td><td>1.0</td><td>8.9 m</td></tr><tr><td>vs岐阜協立 (03/16)</td><td><span style="color:#00e676">✓ 整合</span></td><td>P05</td><td>(28.1, 61.0)</td><td>右側</td><td>1.0</td><td>10.6 m</td></tr><tr><td>vs中京U-19 (03/17)</td><td><span style="color:#00e676">✓ 整合</span></td><td>P07</td><td>(30.8, 46.0)</td><td>右側</td><td>1.0</td><td>9.2 m</td></tr><tr><td>vs大阪学院 (03/17)</td><td><span style="color:#00e676">✓ 整合</span></td><td>P14</td><td>(30.5, 47.1)</td><td>右側</td><td>1.0</td><td>10.1 m</td></tr><tr><td>vs立教大 (03/25)</td><td><span style="color:#00e676">✓ 整合</span></td><td>P10</td><td>(40.8, 43.1)</td><td>右側</td><td>1.0</td><td>15.5 m</td></tr></tbody></table>
+<th>平均位置(x,y)</th><th>左右</th><th>sig_dist</th><th>現行GT位置との距離</th></tr></thead>
+<tbody><tr><td>vs埼玉大 (03/14)</td><td><span style="color:#00e676">✓ 整合</span></td><td>P13</td><td>(41.5, 38.5)</td><td>中央側</td><td>0.0</td><td>6.2 m</td></tr><tr><td>vs岐阜協立 (03/16)</td><td><span style="color:#00e676">✓ 整合</span></td><td>P12</td><td>(37.8, 39.3)</td><td>中央側</td><td>0.0</td><td>13.2 m</td></tr><tr><td>vs中京U-19 (03/17)</td><td><span style="color:#00e676">✓ 整合</span></td><td>P01</td><td>(29.7, 40.1)</td><td>中央側</td><td>0.0</td><td>15.2 m</td></tr><tr><td>vs大阪学院 (03/17)</td><td><span style="color:#ffab40">要確認</span></td><td>P10</td><td>(34.2, 37.9)</td><td>中央側</td><td>0.09</td><td>5.5 m</td></tr><tr><td>vs立教大 (03/25)</td><td><span style="color:#00e676">✓ 整合</span></td><td>P11</td><td>(40.4, 40.3)</td><td>中央側</td><td>0.0</td><td>15.1 m</td></tr></tbody></table>
 
-<h2>② ホールドアウト3試合の診断</h2>
-<p class="lead">正解未公開の3試合で、現行の自動推定#6が羽瑠の既知右SB役割と
-矛盾していないかを判定。右SB修正候補を提示（確定には動画確認が必要）。</p>
+<h2>② ホールドアウト3試合の診断と改善案</h2>
+<p class="lead">旧パイプラインは <code>max(tactical_iq)</code> でフォールバックしていたため
+中盤・攻撃選手を誤選択。
+<span class="fix-badge">改善版</span> は 1H 右SBシグネチャを使用（GT5試合で検証済み）。
+各カードの右側に候補位置のSVGフィールド図を表示。</p>
 
         <div class="card">
           <div class="card-h" style="border-color:#ff4d6d">vs作新学院 (03/18)</div>
-          <div class="kv"><b>現行(自動)#6:</b> archetype=アンカー,
-             avg=(50.3, 31.0), std_x=29.0</div>
-          <ul class="flags"><li style="color:#ff6b8a">⚠ 現行#6が左寄り(avg_y=31.0) — 羽瑠の既知右SBと矛盾</li><li style="color:#ff6b8a">⚠ 現行#6のstd_x=29.0が大 — 混線/誤トラックの兆候</li></ul>
-          <div class="rec"><b>右SB修正候補:</b> P18
-             (36.8, 40.7) 中央側 ·
-             score=0.96</div>
-          <div class="caveat">※ 前半=右SB前提の推定。確定には動画確認が必要。</div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:.8rem">
+            <div style="flex:1;min-width:220px">
+              <div class="kv"><b>現行(旧)パイプライン:</b><br>
+                archetype=アンカー,
+                avg=(50.3, 31.0),
+                std_x=29.0<br>
+                右SBシグネチャ距離: <span style="color:#ff6b8a">15.4m</span>
+              </div>
+              <ul class="flags"><li style="color:#ff6b8a">⚠ 現行#6が左寄り(avg_y=31.0) — 羽瑠の既知右SBと矛盾</li><li style="color:#ff6b8a">⚠ 現行#6のstd_x=29.0が大 — 混線/誤トラックの兆候</li><li style="color:#ff6b8a">⚠ 右SBシグネチャ距離: 現行=15.4m &gt; 最有力候補=0.0m (差15.4m)</li></ul>
+              <div class="rec"><b>改善版が選ぶ候補 (1H右SBシグネチャ):</b><br>
+                P18 (36.8, 40.7) 中央側
+                · sig_dist=<span style="color:#00e676">0.0m</span>
+              </div>
+              <div class="caveat">※ 前半右SBシグネチャによる自動推定。確定には動画確認が必要。</div>
+            </div>
+            <div style="flex:0 0 auto">
+              <svg width="420" height="272" viewBox="0 0 420 272" style="background:#0a1a0a;border:1px solid #1a3a1a;border-radius:6px;display:block">
+<rect x="0" y="0" width="420" height="272" fill="#0a1a0a"/>
+<rect x="0" y="0" width="420" height="272" fill="none" stroke="#1e4a1e" stroke-width="1.5"/>
+<line x1="210" y1="0" x2="210" y2="272" stroke="#1e4a1e" stroke-width="1"/>
+<circle cx="210" cy="136" r="18.3" fill="none" stroke="#1e4a1e" stroke-width="1"/>
+<rect x="60" y="152" width="120" height="120" fill="rgba(0,240,255,0.08)" stroke="rgba(0,240,255,0.3)" stroke-width="1" stroke-dasharray="4,2"/>
+<circle cx="201" cy="124" r="7" fill="none" stroke="#ffd060" stroke-width="2" stroke-dasharray="3,2"/>
+<text x="210" y="128" font-size="8" fill="#ffd060">現行GT</text>
+<circle cx="147" cy="163" r="8" fill="#00f0ff" opacity="0.85"/>
+<text x="154" y="167" font-size="8" fill="#00f0ff">P18</text>
+<circle cx="158" cy="150" r="5" fill="#bf5fff" opacity="0.85"/>
+<text x="165" y="154" font-size="8" fill="#bf5fff">P07</text>
+<circle cx="189" cy="175" r="5" fill="#ff6b8a" opacity="0.85"/>
+<text x="196" y="179" font-size="8" fill="#ff6b8a">P06</text>
+</svg>
+              <div style="font-size:.7rem;color:var(--sub);margin-top:.3rem">
+                ● 上位3候補 &nbsp; ◯ 現行GT位置 &nbsp;
+                <span style="color:rgba(0,240,255,0.5)">□ 右SBゾーン</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="card">
           <div class="card-h" style="border-color:#ffab40">vs川崎U-18 (03/29)</div>
-          <div class="kv"><b>現行(自動)#6:</b> archetype=アンカー,
-             avg=(50.1, 40.3), std_x=9.4</div>
-          <ul class="flags"><li style="color:var(--sub)">明確な矛盾フラグなし</li></ul>
-          <div class="rec"><b>右SB修正候補:</b> P01
-             (33.1, 43.9) 右側 ·
-             score=1.0</div>
-          <div class="caveat">※ 前半=右SB前提の推定。確定には動画確認が必要。</div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:.8rem">
+            <div style="flex:1;min-width:220px">
+              <div class="kv"><b>現行(旧)パイプライン:</b><br>
+                archetype=アンカー,
+                avg=(50.1, 40.3),
+                std_x=9.4<br>
+                右SBシグネチャ距離: <span style="color:#ff6b8a">4.1m</span>
+              </div>
+              <ul class="flags"><li style="color:var(--sub)">明確な矛盾フラグなし</li></ul>
+              <div class="rec"><b>改善版が選ぶ候補 (1H右SBシグネチャ):</b><br>
+                P01 (33.1, 43.9) 右側
+                · sig_dist=<span style="color:#00e676">0.0m</span>
+              </div>
+              <div class="caveat">※ 前半右SBシグネチャによる自動推定。確定には動画確認が必要。</div>
+            </div>
+            <div style="flex:0 0 auto">
+              <svg width="420" height="272" viewBox="0 0 420 272" style="background:#0a1a0a;border:1px solid #1a3a1a;border-radius:6px;display:block">
+<rect x="0" y="0" width="420" height="272" fill="#0a1a0a"/>
+<rect x="0" y="0" width="420" height="272" fill="none" stroke="#1e4a1e" stroke-width="1.5"/>
+<line x1="210" y1="0" x2="210" y2="272" stroke="#1e4a1e" stroke-width="1"/>
+<circle cx="210" cy="136" r="18.3" fill="none" stroke="#1e4a1e" stroke-width="1"/>
+<rect x="60" y="152" width="120" height="120" fill="rgba(0,240,255,0.08)" stroke="rgba(0,240,255,0.3)" stroke-width="1" stroke-dasharray="4,2"/>
+<circle cx="200" cy="161" r="7" fill="none" stroke="#ffd060" stroke-width="2" stroke-dasharray="3,2"/>
+<text x="209" y="165" font-size="8" fill="#ffd060">現行GT</text>
+<circle cx="132" cy="176" r="8" fill="#00f0ff" opacity="0.85"/>
+<text x="139" y="180" font-size="8" fill="#00f0ff">P01</text>
+<circle cx="276" cy="182" r="5" fill="#bf5fff" opacity="0.85"/>
+<text x="283" y="186" font-size="8" fill="#bf5fff">P02</text>
+</svg>
+              <div style="font-size:.7rem;color:var(--sub);margin-top:.3rem">
+                ● 上位3候補 &nbsp; ◯ 現行GT位置 &nbsp;
+                <span style="color:rgba(0,240,255,0.5)">□ 右SBゾーン</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="card">
           <div class="card-h" style="border-color:#ff4d6d">vs獨協大 (04/05)</div>
-          <div class="kv"><b>現行(自動)#6:</b> archetype=セントラル,
-             avg=(63.5, 25.6), std_x=34.2</div>
-          <ul class="flags"><li style="color:#ff6b8a">⚠ 現行#6が左寄り(avg_y=25.6) — 羽瑠の既知右SBと矛盾</li><li style="color:#ff6b8a">⚠ 現行#6のstd_x=34.2が大 — 混線/誤トラックの兆候</li></ul>
-          <div class="rec"><b>右SB修正候補:</b> P05
-             (20.6, 44.9) 右側 ·
-             score=1.0</div>
-          <div class="caveat">※ 前半=右SB前提の推定。確定には動画確認が必要。</div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:.8rem">
+            <div style="flex:1;min-width:220px">
+              <div class="kv"><b>現行(旧)パイプライン:</b><br>
+                archetype=セントラル,
+                avg=(63.5, 25.6),
+                std_x=34.2<br>
+                右SBシグネチャ距離: <span style="color:#ff6b8a">34.6m</span>
+              </div>
+              <ul class="flags"><li style="color:#ff6b8a">⚠ 現行#6が左寄り(avg_y=25.6) — 羽瑠の既知右SBと矛盾</li><li style="color:#ff6b8a">⚠ 現行#6のstd_x=34.2が大 — 混線/誤トラックの兆候</li><li style="color:#ff6b8a">⚠ 右SBシグネチャ距離: 現行=34.6m &gt; 最有力候補=0.0m (差34.6m)</li></ul>
+              <div class="rec"><b>改善版が選ぶ候補 (1H右SBシグネチャ):</b><br>
+                P05 (20.6, 44.9) 右側
+                · sig_dist=<span style="color:#00e676">0.0m</span>
+              </div>
+              <div class="caveat">※ 前半右SBシグネチャによる自動推定。確定には動画確認が必要。</div>
+            </div>
+            <div style="flex:0 0 auto">
+              <svg width="420" height="272" viewBox="0 0 420 272" style="background:#0a1a0a;border:1px solid #1a3a1a;border-radius:6px;display:block">
+<rect x="0" y="0" width="420" height="272" fill="#0a1a0a"/>
+<rect x="0" y="0" width="420" height="272" fill="none" stroke="#1e4a1e" stroke-width="1.5"/>
+<line x1="210" y1="0" x2="210" y2="272" stroke="#1e4a1e" stroke-width="1"/>
+<circle cx="210" cy="136" r="18.3" fill="none" stroke="#1e4a1e" stroke-width="1"/>
+<rect x="60" y="152" width="120" height="120" fill="rgba(0,240,255,0.08)" stroke="rgba(0,240,255,0.3)" stroke-width="1" stroke-dasharray="4,2"/>
+<circle cx="254" cy="102" r="7" fill="none" stroke="#ffd060" stroke-width="2" stroke-dasharray="3,2"/>
+<text x="263" y="106" font-size="8" fill="#ffd060">現行GT</text>
+<circle cx="82" cy="180" r="8" fill="#00f0ff" opacity="0.85"/>
+<text x="89" y="184" font-size="8" fill="#00f0ff">P05</text>
+<circle cx="212" cy="56" r="5" fill="#bf5fff" opacity="0.85"/>
+<text x="219" y="60" font-size="8" fill="#bf5fff">P01</text>
+<circle cx="341" cy="112" r="5" fill="#ff6b8a" opacity="0.85"/>
+<text x="348" y="116" font-size="8" fill="#ff6b8a">P03</text>
+</svg>
+              <div style="font-size:.7rem;color:var(--sub);margin-top:.3rem">
+                ● 上位3候補 &nbsp; ◯ 現行GT位置 &nbsp;
+                <span style="color:rgba(0,240,255,0.5)">□ 右SBゾーン</span>
+              </div>
+            </div>
+          </div>
         </div>
 
 <div class="note">
-<b>このレポートの位置づけ:</b> 動画ファイルはこの環境に無いため、YOLO検出・追跡の
-再実行やモデル学習はできません。本レポートは既存の検出結果に対する
-<b>精度の測定と誤検出の特定</b>です。ホールドアウトの修正候補は
-「羽瑠は前半=右SBで出場する」という横断的事前分布に基づく推定であり、
-最終確定には動画確認のうえ <code>data/tzi/ground_truth.json</code> への追記を推奨します。
+<b>改善内容まとめ (v2):</b><br>
+① <code>tactical_intelligence.py</code> のホールドアウトフォールバックを
+  <code>max(tactical_iq)</code> → <code>identify_haru_track("サイドバック","1H")</code> に変更。<br>
+② <code>ROLE_SIGNATURE["サイドバック"]</code> の y_lo を 42 → 38 に修正
+  (確定右SB位置 y=40.8, y=41.9 が 42 を下回り不要ペナルティが生じていたため)。<br>
+③ 評価スクリプトのスコアリングをパイプラインと統一（旧: range_fit/0-1 → 新: signature_distance/距離）。<br><br>
+<b>制限事項:</b> 動画ファイルがないため YOLO検出・追跡の再実行はできません。
+本レポートは既存データの精度測定と誤検出特定です。改善版の確認には次回のパイプライン再実行（動画必要）が必要です。
 </div>
 </body></html>

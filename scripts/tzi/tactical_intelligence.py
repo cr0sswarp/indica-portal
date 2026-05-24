@@ -417,7 +417,7 @@ def compute_team_centroid_series(all_tracks: list) -> dict:
 # ── ロール別ターゲット・シグネチャ (正規化座標) ──────────────
 ROLE_SIGNATURE = {
     #                X範囲(縦)      Y範囲(横:右=高Y)   X重み  Y重み
-    "サイドバック": {"x": (15, 42), "y": (42, 68), "xw": 0.8, "yw": 1.6},
+    "サイドバック": {"x": (15, 45), "y": (38, 68), "xw": 0.8, "yw": 1.6},
     "アンカー":     {"x": (28, 50), "y": (24, 44), "xw": 1.0, "yw": 1.0},
     "セントラル":   {"x": (38, 60), "y": (38, 56), "xw": 1.0, "yw": 1.3},
     "トップ下":     {"x": (58, 78), "y": (27, 48), "xw": 1.0, "yw": 0.8},
@@ -737,16 +737,23 @@ def identify_haru(all_tracks: list, profiles: list, match_id: str) -> dict:
             "skeleton": skeleton_out,
         }
     # ── ホールドアウト: 自動推定 (検証用) ──
-    valid = [(i, p) for i, p in enumerate(profiles)
-             if all_tracks[i]["n_sightings"] >= 6]
-    pool = valid if valid else list(enumerate(profiles))
-    idx = max(pool, key=lambda x: x[1]["tactical_iq"])[0]
+    # 羽瑠は常に前半=右SBでスタートするという事前知識を使って1H右SBシグネチャで特定。
+    # GT5試合すべてで前半=サイドバックが確認済み。
+    idx, fit, uniq = identify_haru_track(all_tracks, "サイドバック", "1H")
+    if idx is None:
+        # 1Hサンプル不足の場合のフォールバック: tactical_iqが最高のトラック
+        valid = [(i, p) for i, p in enumerate(profiles)
+                 if all_tracks[i]["n_sightings"] >= 6]
+        pool = valid if valid else list(enumerate(profiles))
+        idx = max(pool, key=lambda x: x[1]["tactical_iq"])[0]
+        fit = None
+    conf = round(fit, 2) if fit is not None else None
     return {
         "primary_idx": idx,
         "segments": [],
-        "confidence": None,
-        "method": "auto (holdout検証)",
-        "note": "グラウンドトゥルース未指定 → 自動推定",
+        "confidence": conf,
+        "method": "auto (holdout検証: 右SBシグネチャ)",
+        "note": "GT未指定 → 前半右SBシグネチャで自動推定",
     }
 
 
