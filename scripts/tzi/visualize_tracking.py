@@ -20,7 +20,10 @@ import cv2
 import numpy as np
 
 from track_players_v3 import MATCH_CONFIGS, MATCH_LABELS
-from tactical_intelligence import analyze_match
+from tactical_intelligence import (
+    analyze_match, signature_distance, get_coords,
+    HARU_GROUND_TRUTH, ROLE_SIGNATURE,
+)
 
 # OpenCV putText は日本語非対応のためASCIIラベルを用意
 ASCII_LABELS = {
@@ -120,28 +123,64 @@ def _frame_for(sighting, combined, fps, h1_dur):
     return "h2", int((t - h1_dur) * fps * 60)
 
 
+# ASCII役割ラベル (OpenCV日本語非対応)
+ROLE_ROMAN = {"右SB": "RB", "サイドバック": "RB", "ボランチ": "Volante",
+              "右ボランチ": "R-Volante", "セントラル": "CM",
+              "アンカー": "Anchor", "トップ下": "AM"}
+
+# このゾーン距離(m)を超えるトラックは「羽瑠の役割位置」に該当しない
+# とみなし矢印を描かない (全く別位置の選手を誤って指さないため)
+HARU_FIT_MAX = 26.0
+
+
+def _active_role(match_id, half, rel_t):
+    """指定ハーフ・ハーフ内相対時刻における羽瑠の確定ロールを返す.
+    ground truth が無い試合 (ホールドアウト) は None。"""
+    gt = HARU_GROUND_TRUTH.get(match_id)
+    if not gt:
+        return None, None
+    for seg in gt["segments"]:
+        if seg["half"] != half:
+            continue
+        if "t_rel" in seg:
+            lo, hi = seg["t_rel"]
+            if not (lo <= rel_t < hi):
+                continue
+        return seg["role"], seg.get("label", seg["role"])
+    return None, None
+
+
+def _pick_haru(sample, role, h1_dur, combined):
+    """このフレームで role に最も合致する Waseda トラックを1つ選ぶ.
+    返り値: (pid, sighting) または None。"""
+    if role is None or role not in ROLE_SIGNATURE:
+        return None
+    best, best_d = None, 1e9
+    for pid, s in sample:
+        x, y = get_coords(s)
+        d = signature_distance(np.array([x]), np.array([y]), role)
+        if d < best_d:
+            best_d, best = d, (pid, s)
+    if best is None or best_d > HARU_FIT_MAX:
+        return None
+    return best
+
+
 def build_overlay(match_id, out_fps=3, width=960):
     path = DATA_TZI / f"match_{match_id}" / "players_v3.json"
     data = json.load(open(path))
     tracks = data["players"]
 
-    # 羽瑠の特定トラックID(セグメント別)を取得
-    role_roman = {"右SB": "RB", "ボランチ": "Volante", "右ボランチ": "R-Volante",
-                  "セントラル": "CM", "アンカー": "Anchor"}
+    # ホールドアウト試合用フォールバック: 自動推定の主トラックID
     res = analyze_match(match_id)
-    haru_ids, seg_label = set(), {}
-    for s in res.get("haru_id", {}).get("segments", []):
-        if s.get("player_id"):
-            haru_ids.add(s["player_id"])
-            seg_label[s["player_id"]] = role_roman.get(s["label"], "")
-    primary = res.get("haru_track", {}).get("player_id")
+    fallback_id = res.get("haru_track", {}).get("player_id")
 
     combined, h1p, h2p, fps, h1_dur = _video_geometry(match_id)
     caps = {"h1": cv2.VideoCapture(str(h1p))}
     if h2p:
         caps["h2"] = cv2.VideoCapture(str(h2p))
 
-    # 時刻ごとに (track_id, px, py) を集約
+    # 時刻ごとに (track_id, sighting) を集約
     by_time = defaultdict(list)
     for p in tracks:
         pid = p["player_id"]
@@ -149,8 +188,8 @@ def build_overlay(match_id, out_fps=3, width=960):
             by_time[round(s["time_min"], 2)].append((pid, s))
     times = sorted(by_time.keys())
 
-    # 羽瑠の軌跡(トレイル)をトラックID別に保持 (segment間の混線を防ぐ)
-    haru_trails = defaultdict(list)
+    # 羽瑠の軌跡トレイル (フレーム横断で1本)
+    haru_trail = []
 
     # 出力サイズ決定
     c0 = caps["h1"]
@@ -167,6 +206,7 @@ def build_overlay(match_id, out_fps=3, width=960):
     label = ASCII_LABELS.get(match_id, match_id)
     print(f"  {MATCH_LABELS.get(match_id, match_id)}: {len(times)} samples → {out_path.name}")
 
+    n_arrow = 0
     for t in times:
         sample = by_time[t]
         key, fn = _frame_for(sample[0][1], combined, fps, h1_dur)
@@ -179,31 +219,48 @@ def build_overlay(match_id, out_fps=3, width=960):
             continue
         frame = cv2.resize(frame, (out_w, out_h))
 
-        # 羽瑠トレイル描画 (トラックID別)
-        if STYLE["show_trail"]:
-            for pts in haru_trails.values():
-                for i in range(1, len(pts)):
-                    cv2.line(frame, pts[i - 1], pts[i],
-                             STYLE["trail_color"], STYLE["trail_thickness"])
+        # ── このフレームでの羽瑠ロールを決定 → 最適トラックを選択 ──
+        half = sample[0][1]["half"]
+        rel_t = t if half == "1H" else (t - h1_dur)
+        role, role_label = _active_role(match_id, half, rel_t)
+        haru_pick = _pick_haru(sample, role, h1_dur, combined)
+        # フォールバック (ground truth 無し): 自動推定トラックがこの時刻に
+        # 居れば指す
+        if haru_pick is None and role is None and fallback_id:
+            for pid, s in sample:
+                if pid == fallback_id:
+                    haru_pick = (pid, s)
+                    break
+        haru_pid = haru_pick[0] if haru_pick else None
 
+        # 羽瑠トレイル描画
+        if STYLE["show_trail"]:
+            for i in range(1, len(haru_trail)):
+                cv2.line(frame, haru_trail[i - 1], haru_trail[i],
+                         STYLE["trail_color"], STYLE["trail_thickness"])
+
+        # その他選手 → 羽瑠 の順に描画 (矢印を最前面に)
         for pid, s in sample:
             px, py = s.get("px"), s.get("py")
-            if px is None:
+            if px is None or pid == haru_pid:
                 continue
             x, y = int(px * scale), int(py * scale)
-            if pid in haru_ids:
-                role = seg_label.get(pid, "")
-                draw_haru_marker(frame, x, y, f"#6 {pid} {role}".strip())
-                haru_trails[pid].append((x, y))
-                haru_trails[pid] = haru_trails[pid][-STYLE["trail_len"]:]
-            else:
-                draw_other_marker(frame, x, y, pid)
+            draw_other_marker(frame, x, y, pid)
+
+        if haru_pick:
+            _, s = haru_pick
+            x, y = int(s["px"] * scale), int(s["py"] * scale)
+            rl = ROLE_ROMAN.get(role_label, ROLE_ROMAN.get(role, ""))
+            draw_haru_marker(frame, x, y, f"#6 Haru {rl}".strip())
+            haru_trail.append((x, y))
+            haru_trail = haru_trail[-STYLE["trail_len"]:]
+            n_arrow += 1
 
         # ヘッダー
-        half = sample[0][1]["half"]
+        rl_disp = ROLE_ROMAN.get(role_label, "?") if role else "auto"
         cv2.rectangle(frame, (0, 0), (out_w, 34), (0, 0, 0), -1)
         cv2.putText(frame,
-                    f"{label}  {half} {t:.0f}min  | arrow=#6 Haru ({primary})",
+                    f"{label}  {half} {t:.0f}min  | arrow=#6 Haru ({rl_disp})",
                     (8, 23), FONT, STYLE["header_scale"],
                     STYLE["header_color"], 2, cv2.LINE_AA)
         vw.write(frame)
@@ -211,7 +268,7 @@ def build_overlay(match_id, out_fps=3, width=960):
     vw.release()
     for c in caps.values():
         c.release()
-    print(f"  ✓ {out_path}  ({out_w}x{out_h} @ {out_fps}fps)")
+    print(f"  ✓ {out_path}  ({out_w}x{out_h} @ {out_fps}fps)  arrow in {n_arrow}/{len(times)} frames")
     return out_path
 
 
