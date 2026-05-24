@@ -81,8 +81,8 @@ FONT = cv2.FONT_HERSHEY_SIMPLEX
 
 # ── Match configuration ───────────────────────────────────────────
 MATCH_CONFIGS = {
-    "20260314":        {"h1": "26_03_14_I_TRM vs埼玉大.mp4",         "h2": None},
-    "20260316":        {"h1": "26_03_16_I_vs 岐阜協立.mp4",          "h2": None},
+    "20260314":        {"h1": "26_03_14_I_TRM vs埼玉大.mp4",         "h2": None, "combined": True},
+    "20260316":        {"h1": "26_03_16_I_vs 岐阜協立.mp4",          "h2": None, "combined": True},
     "20260317mid":     {"h1": "26_03_17_I_ vs中京U-19 前半.mp4",     "h2": "26_03_17_I_ vs中京U-19 後半.mp4"},
     "20260317osaka":   {"h1": "26_03_17_I_ vs大阪学院 前半.mp4",     "h2": "26_03_17_I_ vs大阪学院 後半.mp4"},
     "20260318":        {"h1": "26_03_18_I_ vs作新学院 前半.mp4",     "h2": "26_03_18_I_ vs作新学院 後半.mp4"},
@@ -1174,12 +1174,16 @@ TZI v3 — Tactical Zone Intelligence · Indica Labs · 2026</div>
 # ── Half processing ───────────────────────────────────────────────
 
 def process_half(video_path, half_label, t_offset, match_dir, interval_min,
-                  use_ocr, opp_ranges):
+                  use_ocr, opp_ranges, start_f=0, end_f=None):
+    """Process one half. For combined full-match videos, pass start_f/end_f to
+    process only that half's frame range (local time is relative to start_f)."""
     cap     = cv2.VideoCapture(str(video_path))
     fps     = cap.get(cv2.CAP_PROP_FPS) or 30.0
     total_f = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    if end_f is None:
+        end_f = total_f
     sample  = max(1, int(fps * 60 * interval_min))
-    duration_min = total_f / fps / 60
+    duration_min = (end_f - start_f) / fps / 60
 
     frames_dir = match_dir / "frames_v3"
     frames_dir.mkdir(exist_ok=True)
@@ -1190,12 +1194,12 @@ def process_half(video_path, half_label, t_offset, match_dir, interval_min,
 
     # Build list of target frame positions (fast-seek mode)
     target_frames = []
-    fn_cursor = sample
-    while fn_cursor <= total_f:
+    fn_cursor = start_f + sample
+    while fn_cursor <= end_f:
         target_frames.append(fn_cursor)
         fn_cursor += sample
 
-    print(f"\n{half_label}: {total_f}f, {fps:.0f}fps, ~{duration_min:.0f}min  ({len(target_frames)} samples)")
+    print(f"\n{half_label}: frames[{start_f}-{end_f}], {fps:.0f}fps, ~{duration_min:.0f}min  ({len(target_frames)} samples)")
 
     for fn in target_frames:
         cap.set(cv2.CAP_PROP_POS_FRAMES, fn - 1)
@@ -1203,7 +1207,7 @@ def process_half(video_path, half_label, t_offset, match_dir, interval_min,
         if not ret:
             continue
 
-        local_t = fn / fps / 60
+        local_t = (fn - start_f) / fps / 60
         t_min   = local_t + t_offset
         dets_w  = detect_waseda(frame)
         dets_o  = detect_opponents(frame, opp_ranges)
@@ -1277,25 +1281,49 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
     all_tracks, all_frames = [], []
     opp_log_1h, opp_log_2h = [], []
 
-    h1_tracks, h1_frames, opp1 = process_half(
-        h1_path, "1H", 0.0, match_dir, interval_min, use_ocr, opp_ranges)
-    all_tracks.extend(h1_tracks)
-    all_frames.extend(h1_frames)
-    opp_log_1h = opp1
-
-    h2_path = videos_dir / cfg["h2"] if cfg.get("h2") else None
-    if h2_path and h2_path.exists():
+    if cfg.get("combined"):
+        # Single file containing both halves (90min). Split at midpoint.
         cap_tmp = cv2.VideoCapture(str(h1_path))
         fps_tmp = cap_tmp.get(cv2.CAP_PROP_FPS) or 30.0
         nf_tmp  = int(cap_tmp.get(cv2.CAP_PROP_FRAME_COUNT))
         cap_tmp.release()
-        h1_dur = nf_tmp / fps_tmp / 60.0
+        mid_f  = nf_tmp // 2
+        h1_dur = mid_f / fps_tmp / 60.0
+        print(f"  [combined] full-match video {nf_tmp}f → split at frame {mid_f} (~{h1_dur:.0f}min)")
+
+        h1_tracks, h1_frames, opp1 = process_half(
+            h1_path, "1H", 0.0, match_dir, interval_min, use_ocr, opp_ranges,
+            start_f=0, end_f=mid_f)
+        all_tracks.extend(h1_tracks)
+        all_frames.extend(h1_frames)
+        opp_log_1h = opp1
 
         h2_tracks, h2_frames, opp2 = process_half(
-            h2_path, "2H", h1_dur, match_dir, interval_min, use_ocr, opp_ranges)
+            h1_path, "2H", h1_dur, match_dir, interval_min, use_ocr, opp_ranges,
+            start_f=mid_f, end_f=nf_tmp)
         all_tracks.extend(h2_tracks)
         all_frames.extend(h2_frames)
         opp_log_2h = opp2
+    else:
+        h1_tracks, h1_frames, opp1 = process_half(
+            h1_path, "1H", 0.0, match_dir, interval_min, use_ocr, opp_ranges)
+        all_tracks.extend(h1_tracks)
+        all_frames.extend(h1_frames)
+        opp_log_1h = opp1
+
+        h2_path = videos_dir / cfg["h2"] if cfg.get("h2") else None
+        if h2_path and h2_path.exists():
+            cap_tmp = cv2.VideoCapture(str(h1_path))
+            fps_tmp = cap_tmp.get(cv2.CAP_PROP_FPS) or 30.0
+            nf_tmp  = int(cap_tmp.get(cv2.CAP_PROP_FRAME_COUNT))
+            cap_tmp.release()
+            h1_dur = nf_tmp / fps_tmp / 60.0
+
+            h2_tracks, h2_frames, opp2 = process_half(
+                h2_path, "2H", h1_dur, match_dir, interval_min, use_ocr, opp_ranges)
+            all_tracks.extend(h2_tracks)
+            all_frames.extend(h2_frames)
+            opp_log_2h = opp2
 
     print(f"\nBefore merge: {len(all_tracks)} tracks")
     all_tracks = merge_tracks(all_tracks)
