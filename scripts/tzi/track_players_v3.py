@@ -374,11 +374,90 @@ def read_jersey_number(crop, use_ocr=True):
     return None
 
 
+# ── Kalman filter: 2D constant-velocity model ─────────────────────
+# State: [px, py, vx, vy].  Observation: [px, py].
+# Used to predict player position during detection gaps (ByteTrack / OC-SORT).
+
+class KF2D:
+    """Lightweight 2D Kalman filter for pixel-space player tracking."""
+
+    def __init__(self, px: float, py: float):
+        dt = 1.0
+        self.x = np.array([px, py, 0.0, 0.0], dtype=float)
+        self.F = np.array([[1, 0, dt, 0],
+                           [0, 1, 0, dt],
+                           [0, 0, 1,  0],
+                           [0, 0, 0,  1]], dtype=float)
+        self.H = np.array([[1, 0, 0, 0],
+                           [0, 1, 0, 0]], dtype=float)
+        # Process noise: higher on velocity components
+        self.Q = np.diag([10.0, 10.0, 40.0, 40.0])
+        # Measurement noise (pixels²)
+        self.R = np.diag([30.0, 30.0])
+        self.P = np.eye(4) * 100.0
+
+    def predict(self):
+        self.x = self.F @ self.x
+        self.P = self.F @ self.P @ self.F.T + self.Q
+        return float(self.x[0]), float(self.x[1])
+
+    def update(self, px: float, py: float):
+        z = np.array([px, py])
+        y = z - self.H @ self.x
+        S = self.H @ self.P @ self.H.T + self.R
+        K = self.P @ self.H.T @ np.linalg.inv(S)
+        self.x = self.x + K @ y
+        self.P = (np.eye(4) - K @ self.H) @ self.P
+        return float(self.x[0]), float(self.x[1])
+
+    def predicted_pos(self):
+        """Return next-step predicted position without mutating state."""
+        x_next = self.F @ self.x
+        return float(x_next[0]), float(x_next[1])
+
+    def velocity(self):
+        return float(self.x[2]), float(self.x[3])
+
+    def oc_sort_reinit(self, px_new: float, py_new: float, px_last: float, py_last: float, dt: float):
+        """OC-SORT observation-centric re-update: when a track reappears after
+        a gap, recalibrate velocity from the last confirmed obs → new obs rather
+        than trusting the drifted Kalman velocity."""
+        if dt > 0:
+            self.x[2] = (px_new - px_last) / dt
+            self.x[3] = (py_new - py_last) / dt
+        self.x[0], self.x[1] = px_new, py_new
+        self.P = np.eye(4) * 100.0  # reset covariance
+
+
+# ── Expansion IoU helper ──────────────────────────────────────────
+
+def expansion_iou(b1, b2, expand: float = 1.5) -> float:
+    """Compute IoU after expanding both bounding boxes by 'expand' factor.
+    Expansion compensates for slight misalignment of player detections
+    (Deep HM-SORT / EIoU technique, CVPR 2023)."""
+    def expand_box(b, f):
+        x1, y1, x2, y2 = b
+        cx, cy = (x1 + x2) / 2, (y1 + y2) / 2
+        hw, hh = (x2 - x1) * f / 2, (y2 - y1) * f / 2
+        return cx - hw, cy - hh, cx + hw, cy + hh
+
+    a, b = expand_box(b1, expand), expand_box(b2, expand)
+    ix1, iy1 = max(a[0], b[0]), max(a[1], b[1])
+    ix2, iy2 = min(a[2], b[2]), min(a[3], b[3])
+    if ix2 <= ix1 or iy2 <= iy1:
+        return 0.0
+    inter = (ix2 - ix1) * (iy2 - iy1)
+    area_a = (a[2] - a[0]) * (a[3] - a[1])
+    area_b = (b[2] - b[0]) * (b[3] - b[1])
+    return inter / (area_a + area_b - inter + 1e-6)
+
+
 # ── Player track ─────────────────────────────────────────────────
 
 class PlayerTrack:
     __slots__ = ("tid", "sightings", "hist_samples", "disappeared",
-                 "active", "jersey_number", "jersey_votes", "last_px", "last_py")
+                 "active", "jersey_number", "jersey_votes",
+                 "last_px", "last_py", "last_bbox", "kf")
 
     def __init__(self, tid, det):
         self.tid           = tid
@@ -390,6 +469,12 @@ class PlayerTrack:
         self.jersey_votes  = defaultdict(int)
         self.last_px       = det["px"]
         self.last_py       = det["py"]
+        self.last_bbox     = det.get("bbox")
+        self.kf            = KF2D(float(det["px"]), float(det["py"]))
+
+    def predicted_px_py(self):
+        """Kalman-predicted pixel position for next frame."""
+        return self.kf.predicted_pos()
 
     def update(self, det, t_min, half):
         self.sightings.append({
@@ -404,8 +489,11 @@ class PlayerTrack:
         self.hist_samples.append(det["hist"])
         if len(self.hist_samples) > 20:
             self.hist_samples = self.hist_samples[-20:]
+        self.kf.predict()
+        self.kf.update(float(det["px"]), float(det["py"]))
         self.last_px  = det["px"]
         self.last_py  = det["py"]
+        self.last_bbox = det.get("bbox")
         self.disappeared = 0
 
     def mean_hist(self):
@@ -436,20 +524,37 @@ class PlayerTrackerV3:
         return t
 
     def _match(self, dets, tracks):
+        """Two-stage ByteTrack-style matching with Kalman prediction + EIoU.
+
+        Stage 1: Match dets to active tracks using Kalman-predicted positions
+                 and Expansion IoU (handles slight bbox misalignment).
+        Stage 2: Remaining dets matched to recently-suspended tracks via
+                 appearance (histogram) + spatial proximity (Re-ID).
+        """
         if not tracks or not dets:
             return {}, set(range(len(dets)))
+
         tids = list(tracks.keys())
         n, m = len(tids), len(dets)
         cost = np.full((n, m), 9999.0)
+
         for i, tid in enumerate(tids):
             tr = tracks[tid]
             mh = tr.mean_hist()
+            # Use Kalman-predicted position for matching (not last observed)
+            pred_px, pred_py = tr.kf.predicted_pos()
             for j, d in enumerate(dets):
-                dist = np.sqrt((tr.last_px - d["px"])**2 + (tr.last_py - d["py"])**2)
+                dist = np.sqrt((pred_px - d["px"])**2 + (pred_py - d["py"])**2)
                 if dist > MAX_DIST_PIXELS:
                     continue
-                sim  = hist_sim(mh, d["hist"])
-                cost[i, j] = dist * (1.0 - 0.3 * sim)
+                sim = hist_sim(mh, d["hist"])
+                # EIoU bonus: reward spatial overlap with expanded bboxes
+                eiou = 0.0
+                if tr.last_bbox and d.get("bbox"):
+                    eiou = expansion_iou(tr.last_bbox, d["bbox"], expand=1.5)
+                # Combined cost: distance penalized by appearance + EIoU
+                cost[i, j] = dist * (1.0 - 0.3 * sim - 0.2 * eiou)
+
         matched, used_j = {}, set()
         order = np.dstack(np.unravel_index(np.argsort(cost.ravel()), cost.shape))[0]
         for i, j in order:
@@ -471,6 +576,8 @@ class PlayerTrackerV3:
 
         for tid in list(self.active.keys()):
             if tid not in matched:
+                # Advance Kalman prediction even when no detection (predict-only step)
+                self.active[tid].kf.predict()
                 self.active[tid].disappeared += 1
                 if self.active[tid].disappeared > MAX_DISAPPEAR:
                     tr = self.active.pop(tid)
@@ -481,14 +588,23 @@ class PlayerTrackerV3:
             d = dets[j]
             best_tid, best_cost = None, 9999.0
             for tid, tr in self.suspended.items():
-                dist = np.sqrt((tr.last_px - d["px"])**2 + (tr.last_py - d["py"])**2)
+                # Use Kalman-predicted position for Re-ID distance
+                pred_px, pred_py = tr.kf.predicted_pos()
+                dist = np.sqrt((pred_px - d["px"])**2 + (pred_py - d["py"])**2)
                 if dist > RE_ID_DIST: continue
                 sim  = hist_sim(tr.mean_hist(), d["hist"])
-                c    = dist * (1.0 - 0.4 * sim)
+                eiou = expansion_iou(tr.last_bbox, d["bbox"], 1.5) if tr.last_bbox and d.get("bbox") else 0.0
+                c    = dist * (1.0 - 0.4 * sim - 0.15 * eiou)
                 if c < best_cost:
                     best_cost = c; best_tid = tid
             if best_tid is not None and best_cost < RE_ID_DIST * 0.8:
                 tr = self.suspended.pop(best_tid)
+                # OC-SORT: recalibrate velocity from last observed → new observed
+                # rather than trusting drifted Kalman velocity during the gap
+                gap_frames = tr.disappeared + 1
+                tr.kf.oc_sort_reinit(float(d["px"]), float(d["py"]),
+                                     float(tr.last_px), float(tr.last_py),
+                                     float(gap_frames))
                 tr.disappeared = 0
                 tr.update(d, t_min, half)
                 tr.vote_jersey(read_jersey_number(d["crop"], use_ocr))
@@ -521,15 +637,34 @@ class PlayerTrackerV3:
 # ── Track merging ─────────────────────────────────────────────────
 
 def merge_tracks(tracks):
+    """Merge tracklet fragments that likely belong to the same player.
+
+    Improvements over v3:
+    - Velocity consistency check: if gap is short and trajectory direction
+      matches expected movement, boost the merge score (AFLink-inspired).
+    - Symmetric gap handling: either tracklet can be 'earlier'.
+    """
     for t in tracks:
         t.sightings.sort(key=lambda s: s["time_min"])
 
     def info(t):
         s = t.sightings
         if not s: return None
-        return {"t_end": s[-1]["time_min"], "t_start": s[0]["time_min"],
-                "end_fx": s[-1]["fx"], "end_fy": s[-1]["fy"],
-                "start_fx": s[0]["fx"], "start_fy": s[0]["fy"]}
+        return {"t_end":    s[-1]["time_min"],  "t_start": s[0]["time_min"],
+                "end_fx":   s[-1]["fx"],         "end_fy":  s[-1]["fy"],
+                "start_fx": s[0]["fx"],          "start_fy": s[0]["fy"]}
+
+    def _velocity_penalty(ii, ij, gap):
+        """Penalize merges where implied velocity is physically impossible.
+        A player cannot cross >8m/s (sprint ≈7m/s), but interval is minutes.
+        For multi-minute gaps any position is plausible → no penalty."""
+        if gap < 1.0:  # within 1 min: check implied speed
+            dist = np.sqrt((ii["end_fx"] - ij["start_fx"])**2 +
+                           (ii["end_fy"] - ij["start_fy"])**2)
+            speed = dist / (gap * 60)  # m/s
+            if speed > 8.0:
+                return 5.0   # heavy penalty — physically implausible
+        return 1.0            # no penalty
 
     merged = True
     while merged:
@@ -547,17 +682,22 @@ def merge_tracks(tracks):
                 tj = tracks[j]; ij = info(tj)
                 if ij is None: continue
                 if ii["t_end"] < ij["t_start"]:
-                    gap  = ij["t_start"] - ii["t_end"]
-                    dist = np.sqrt((ii["end_fx"] - ij["start_fx"])**2 + (ii["end_fy"] - ij["start_fy"])**2)
+                    earlier, later = ii, ij
+                    gap  = later["t_start"] - earlier["t_end"]
+                    dist = np.sqrt((earlier["end_fx"] - later["start_fx"])**2 +
+                                   (earlier["end_fy"] - later["start_fy"])**2)
                 elif ij["t_end"] < ii["t_start"]:
-                    gap  = ii["t_start"] - ij["t_end"]
-                    dist = np.sqrt((ij["end_fx"] - ii["start_fx"])**2 + (ij["end_fy"] - ii["start_fy"])**2)
+                    earlier, later = ij, ii
+                    gap  = later["t_start"] - earlier["t_end"]
+                    dist = np.sqrt((earlier["end_fx"] - later["start_fx"])**2 +
+                                   (earlier["end_fy"] - later["start_fy"])**2)
                 else:
                     continue
                 if gap > MERGE_GAP_MIN or dist > MERGE_DIST_M: continue
                 sim = hist_sim(ti.mean_hist(), tj.mean_hist())
                 if sim < HIST_SIMILARITY: continue
-                score = gap * dist / (sim + 0.01)
+                v_pen = _velocity_penalty(earlier, later, gap)
+                score = (gap * dist / (sim + 0.01)) * v_pen
                 if score < best_score:
                     best_score = score; best_j = j
             if best_j >= 0:
@@ -578,6 +718,53 @@ def merge_tracks(tracks):
         tracks = result
 
     return [t for t in tracks if len(t.sightings) >= MIN_SIGHTINGS]
+
+
+def smooth_trajectories(tracks):
+    """Apply Savitzky-Golay filter to smooth normalized trajectory positions.
+
+    Ref: StrongSORT++ GSI (Gaussian-Smoothed Interpolation) concept.
+    We use Savitzky-Golay which preserves peaks (sudden direction changes)
+    better than Gaussian — important for realistic soccer movements.
+
+    Adds 'fx_smooth' and 'fy_smooth' fields to each sighting.
+    Tracks with < 5 sightings are left unsmoothed.
+    """
+    try:
+        from scipy.signal import savgol_filter
+    except ImportError:
+        return tracks  # scipy not available
+
+    for tr in tracks:
+        sigs = sorted(tr.sightings, key=lambda s: s["time_min"])
+        n = len(sigs)
+        if n < 5:
+            for s in sigs:
+                s["fx_smooth"] = s.get("fx_norm", s["fx"])
+                s["fy_smooth"] = s.get("fy_norm", s["fy"])
+            continue
+
+        fxs = np.array([s.get("fx_norm", s["fx"]) for s in sigs])
+        fys = np.array([s.get("fy_norm", s["fy"]) for s in sigs])
+
+        # Window must be odd and <= n; polynomial order < window
+        window = min(n, 7) if n >= 7 else (n if n % 2 == 1 else n - 1)
+        if window < 3:
+            for s in sigs:
+                s["fx_smooth"] = s.get("fx_norm", s["fx"])
+                s["fy_smooth"] = s.get("fy_norm", s["fy"])
+            continue
+
+        poly = min(2, window - 1)
+        fxs_s = savgol_filter(fxs, window, poly)
+        fys_s = savgol_filter(fys, window, poly)
+
+        for i, s in enumerate(sigs):
+            s["fx_smooth"] = round(float(np.clip(fxs_s[i], 0, FW)), 2)
+            s["fy_smooth"] = round(float(np.clip(fys_s[i], 0, FH)), 2)
+            s["zone_smooth"] = fx_to_zone(s["fx_smooth"])
+
+    return tracks
 
 
 # ── Substitution detection ────────────────────────────────────────
@@ -842,7 +1029,7 @@ tr:hover td {{background:#161b22}}
 </style></head><body>
 <div class="hero">
   <h1>TZI Player Tracking v3 — match_{match_id}</h1>
-  <p>Dual-Team Detection · Direction Normalization · Y-axis Fix · Re-ID + Jersey OCR</p>
+  <p>Dual-Team Detection · Direction Normalization · Kalman+EIoU · OC-SORT Re-ID · Savitzky-Golay Smoothing</p>
 </div>
 <div class="stats">
   <div class="stat"><div class="v" style="color:#3fb950">{stats['n_players']}</div><div class="l">Unique Players</div></div>
@@ -1029,6 +1216,10 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
             s["fy_norm"] = fy_n
             s["zone_norm"] = fx_to_zone(fx_n)
             s["direction_flipped"] = flip
+
+    # Savitzky-Golay trajectory smoothing (post-normalization)
+    print("  Smoothing trajectories (Savitzky-Golay)...")
+    all_tracks = smooth_trajectories(all_tracks)
 
     # Find jersey #6
     j6 = next((tr for tr in all_tracks if tr.jersey_number == 6), None)
