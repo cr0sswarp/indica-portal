@@ -38,9 +38,59 @@ PROJECT_ROOT = Path(__file__).parent.parent.parent
 DATA_TZI = PROJECT_ROOT / "data" / "tzi"
 VIDEOS = PROJECT_ROOT / "videos"
 
-GREEN = (120, 255, 120)   # 羽瑠 (BGR)
-DIM   = (150, 150, 150)   # その他Waseda
-TRAIL = (90, 220, 90)
+# ════════════════════════════════════════════════════════════════
+#  描画スタイル設定 — ここだけ変えれば見た目を調整できる (色はBGR)
+# ════════════════════════════════════════════════════════════════
+STYLE = {
+    # ── 羽瑠の強調マーカー: 頭上から頭へ向かう下向き矢印 ──
+    "haru_color":        (120, 255, 120),  # 緑
+    "head_offset":       26,    # py(胴中心)から頭頂までの推定上方オフセット(px)
+    "arrow_len":         48,    # 矢印の長さ(px) — 大きいほど目立つ
+    "arrow_thickness":   4,
+    "arrow_tip_ratio":   0.35,  # 矢じりの大きさ(線長に対する比)
+    "haru_label":        True,  # "#6 P05 RB" ラベルを出すか
+    "haru_label_scale":  0.6,
+    "haru_label_thick":  2,
+
+    # ── 軌跡トレイル ──
+    "show_trail":        True,
+    "trail_color":       (90, 220, 90),
+    "trail_len":         10,    # 何サンプル分残すか
+    "trail_thickness":   2,
+
+    # ── その他Waseda選手マーカー ──
+    "other_color":       (150, 150, 150),
+    "other_radius":      6,
+    "other_label":       True,  # トラックID(P12等)を出すか
+    "other_label_scale": 0.34,
+
+    # ── ヘッダー ──
+    "header_color":      (120, 255, 120),
+    "header_scale":      0.55,
+}
+
+FONT = cv2.FONT_HERSHEY_SIMPLEX
+
+
+def draw_haru_marker(frame, x, y, label, st=STYLE):
+    """頭上から頭へ向かう下向き矢印で羽瑠を強調."""
+    head_y = y - st["head_offset"]              # 頭頂の推定位置
+    tail = (x, head_y - st["arrow_len"])         # 矢印の根元(上)
+    tip = (x, head_y)                            # 矢印の先端(頭を指す)
+    cv2.arrowedLine(frame, tail, tip, st["haru_color"], st["arrow_thickness"],
+                    line_type=cv2.LINE_AA, tipLength=st["arrow_tip_ratio"])
+    if st["haru_label"] and label:
+        cv2.putText(frame, label, (x + 8, tail[1] - 6), FONT,
+                    st["haru_label_scale"], st["haru_color"],
+                    st["haru_label_thick"], cv2.LINE_AA)
+
+
+def draw_other_marker(frame, x, y, pid, st=STYLE):
+    """その他選手は小さな点で表示."""
+    cv2.circle(frame, (x, y), st["other_radius"], st["other_color"], 1)
+    if st["other_label"]:
+        cv2.putText(frame, pid, (x + 7, y - 5), FONT,
+                    st["other_label_scale"], st["other_color"], 1, cv2.LINE_AA)
 
 
 def _video_geometry(match_id):
@@ -130,35 +180,32 @@ def build_overlay(match_id, out_fps=3, width=960):
         frame = cv2.resize(frame, (out_w, out_h))
 
         # 羽瑠トレイル描画 (トラックID別)
-        for pts in haru_trails.values():
-            for i in range(1, len(pts)):
-                cv2.line(frame, pts[i - 1], pts[i], TRAIL, 2)
+        if STYLE["show_trail"]:
+            for pts in haru_trails.values():
+                for i in range(1, len(pts)):
+                    cv2.line(frame, pts[i - 1], pts[i],
+                             STYLE["trail_color"], STYLE["trail_thickness"])
 
         for pid, s in sample:
             px, py = s.get("px"), s.get("py")
             if px is None:
                 continue
             x, y = int(px * scale), int(py * scale)
-            is_haru = pid in haru_ids
-            if is_haru:
-                cv2.circle(frame, (x, y), 13, GREEN, 3)
+            if pid in haru_ids:
                 role = seg_label.get(pid, "")
-                cv2.putText(frame, f"#6 {pid} {role}", (x + 16, y - 8),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, GREEN, 2, cv2.LINE_AA)
+                draw_haru_marker(frame, x, y, f"#6 {pid} {role}".strip())
                 haru_trails[pid].append((x, y))
-                haru_trails[pid] = haru_trails[pid][-10:]
+                haru_trails[pid] = haru_trails[pid][-STYLE["trail_len"]:]
             else:
-                cv2.circle(frame, (x, y), 6, DIM, 1)
-                cv2.putText(frame, pid, (x + 7, y - 5),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.34, DIM, 1, cv2.LINE_AA)
+                draw_other_marker(frame, x, y, pid)
 
         # ヘッダー
         half = sample[0][1]["half"]
         cv2.rectangle(frame, (0, 0), (out_w, 34), (0, 0, 0), -1)
         cv2.putText(frame,
-                    f"{label}  {half} {t:.0f}min  | green=#6 Haru ({primary})",
-                    (8, 23), cv2.FONT_HERSHEY_SIMPLEX, 0.55,
-                    (120, 255, 120), 2, cv2.LINE_AA)
+                    f"{label}  {half} {t:.0f}min  | arrow=#6 Haru ({primary})",
+                    (8, 23), FONT, STYLE["header_scale"],
+                    STYLE["header_color"], 2, cv2.LINE_AA)
         vw.write(frame)
 
     vw.release()
