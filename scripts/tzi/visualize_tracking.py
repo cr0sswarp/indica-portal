@@ -76,12 +76,14 @@ def build_overlay(match_id, out_fps=3, width=960):
     tracks = data["players"]
 
     # 羽瑠の特定トラックID(セグメント別)を取得
+    role_roman = {"右SB": "RB", "ボランチ": "Volante", "右ボランチ": "R-Volante",
+                  "セントラル": "CM", "アンカー": "Anchor"}
     res = analyze_match(match_id)
     haru_ids, seg_label = set(), {}
     for s in res.get("haru_id", {}).get("segments", []):
         if s.get("player_id"):
             haru_ids.add(s["player_id"])
-            seg_label[s["player_id"]] = s["label"]
+            seg_label[s["player_id"]] = role_roman.get(s["label"], "")
     primary = res.get("haru_track", {}).get("player_id")
 
     combined, h1p, h2p, fps, h1_dur = _video_geometry(match_id)
@@ -97,8 +99,8 @@ def build_overlay(match_id, out_fps=3, width=960):
             by_time[round(s["time_min"], 2)].append((pid, s))
     times = sorted(by_time.keys())
 
-    # 羽瑠の軌跡(トレイル)を時系列で保持
-    haru_trail = []
+    # 羽瑠の軌跡(トレイル)をトラックID別に保持 (segment間の混線を防ぐ)
+    haru_trails = defaultdict(list)
 
     # 出力サイズ決定
     c0 = caps["h1"]
@@ -127,11 +129,11 @@ def build_overlay(match_id, out_fps=3, width=960):
             continue
         frame = cv2.resize(frame, (out_w, out_h))
 
-        # 羽瑠トレイル描画
-        for i in range(1, len(haru_trail)):
-            cv2.line(frame, haru_trail[i - 1], haru_trail[i], TRAIL, 2)
+        # 羽瑠トレイル描画 (トラックID別)
+        for pts in haru_trails.values():
+            for i in range(1, len(pts)):
+                cv2.line(frame, pts[i - 1], pts[i], TRAIL, 2)
 
-        haru_pt = None
         for pid, s in sample:
             px, py = s.get("px"), s.get("py")
             if px is None:
@@ -139,18 +141,16 @@ def build_overlay(match_id, out_fps=3, width=960):
             x, y = int(px * scale), int(py * scale)
             is_haru = pid in haru_ids
             if is_haru:
-                haru_pt = (x, y)
                 cv2.circle(frame, (x, y), 13, GREEN, 3)
                 role = seg_label.get(pid, "")
                 cv2.putText(frame, f"#6 {pid} {role}", (x + 16, y - 8),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, GREEN, 2, cv2.LINE_AA)
+                haru_trails[pid].append((x, y))
+                haru_trails[pid] = haru_trails[pid][-10:]
             else:
                 cv2.circle(frame, (x, y), 6, DIM, 1)
                 cv2.putText(frame, pid, (x + 7, y - 5),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.34, DIM, 1, cv2.LINE_AA)
-        if haru_pt:
-            haru_trail.append(haru_pt)
-            haru_trail = haru_trail[-12:]
 
         # ヘッダー
         half = sample[0][1]["half"]

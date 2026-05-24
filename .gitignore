@@ -14,6 +14,9 @@ videos/
 data/tzi/match_20260325/*.mp4
 data/tzi/match_20260325/*.mov
 
+# TZI tracking overlay videos (映像から再生成可能な大容量アーティファクト)
+data/tzi/match_*/tracking_overlay.mp4
+
 # Python cache
 __pycache__/
 *.py[cod]
