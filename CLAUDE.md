@@ -152,6 +152,11 @@ python generate_heatmap.py
 
 # 90分マークアップ動画再生成（約7分）
 python generate_video.py
+
+# 位置精度の評価（動画不要・数秒）
+# 正解5試合で#6特定手法を検証し、ホールドアウト3試合の誤検出を定量化。
+# → data/tzi/position_accuracy_report.{json,html} を生成
+python evaluate_position_accuracy.py
 ```
 
 ## 🔧 開発ワークフロー

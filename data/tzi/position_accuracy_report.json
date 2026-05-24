@@ -1,0 +1,419 @@
+{
+  "_README": "動画不要の位置精度評価。正解5試合で右SB特定手法を検証し、ホールドアウト3試合の#6誤検出を定量化。recommended_haru_1H は「前半=右SB」前提の推定で、確定には動画確認が必要。",
+  "field": {
+    "FW": 105.0,
+    "FH": 68.0,
+    "coords": "normalized (Waseda attacks x→105)"
+  },
+  "right_sb_signature": {
+    "x": [
+      15.0,
+      42.0
+    ],
+    "y": [
+      42.0,
+      68.0
+    ],
+    "xw": 0.8,
+    "yw": 1.6
+  },
+  "min_sightings": 4,
+  "matches": [
+    {
+      "match": "20260314",
+      "label": "vs埼玉大 (03/14)",
+      "is_holdout": false,
+      "n_candidate_tracks": 25,
+      "current_pipeline": {
+        "archetype": "サイドバック",
+        "avg_x": 35.7,
+        "avg_y": 40.8,
+        "std_x": 13.9,
+        "ground_truth": true
+      },
+      "best_candidate": {
+        "player_id": "P03",
+        "jersey_number": null,
+        "avg_x": 28.4,
+        "avg_y": 45.9,
+        "std_x": 8.8,
+        "side": "右",
+        "rb_score": 1.0
+      },
+      "top3": [
+        {
+          "player_id": "P03",
+          "avg_x": 28.4,
+          "avg_y": 45.9,
+          "side": "右",
+          "rb_score": 1.0
+        },
+        {
+          "player_id": "P15",
+          "avg_x": 28.8,
+          "avg_y": 45.0,
+          "side": "右",
+          "rb_score": 1.0
+        },
+        {
+          "player_id": "P19",
+          "avg_x": 39.6,
+          "avg_y": 44.3,
+          "side": "右",
+          "rb_score": 1.0
+        }
+      ],
+      "agreement_dist_m": 8.9,
+      "method_consistent": true
+    },
+    {
+      "match": "20260316",
+      "label": "vs岐阜協立 (03/16)",
+      "is_holdout": false,
+      "n_candidate_tracks": 24,
+      "current_pipeline": {
+        "archetype": "サイドバック",
+        "avg_x": 33.3,
+        "avg_y": 51.7,
+        "std_x": 8.8,
+        "ground_truth": true
+      },
+      "best_candidate": {
+        "player_id": "P05",
+        "jersey_number": 76,
+        "avg_x": 28.1,
+        "avg_y": 61.0,
+        "std_x": 3.2,
+        "side": "右",
+        "rb_score": 1.0
+      },
+      "top3": [
+        {
+          "player_id": "P05",
+          "avg_x": 28.1,
+          "avg_y": 61.0,
+          "side": "右",
+          "rb_score": 1.0
+        },
+        {
+          "player_id": "P15",
+          "avg_x": 26.7,
+          "avg_y": 43.0,
+          "side": "右",
+          "rb_score": 1.0
+        },
+        {
+          "player_id": "P13",
+          "avg_x": 27.7,
+          "avg_y": 41.2,
+          "side": "中央",
+          "rb_score": 0.975
+        }
+      ],
+      "agreement_dist_m": 10.6,
+      "method_consistent": true
+    },
+    {
+      "match": "20260317mid",
+      "label": "vs中京U-19 (03/17)",
+      "is_holdout": false,
+      "n_candidate_tracks": 17,
+      "current_pipeline": {
+        "archetype": "サイドバック",
+        "avg_x": 31.4,
+        "avg_y": 55.2,
+        "std_x": 1.5,
+        "ground_truth": true
+      },
+      "best_candidate": {
+        "player_id": "P07",
+        "jersey_number": null,
+        "avg_x": 30.8,
+        "avg_y": 46.0,
+        "std_x": 7.8,
+        "side": "右",
+        "rb_score": 1.0
+      },
+      "top3": [
+        {
+          "player_id": "P07",
+          "avg_x": 30.8,
+          "avg_y": 46.0,
+          "side": "右",
+          "rb_score": 1.0
+        },
+        {
+          "player_id": "P06",
+          "avg_x": 29.9,
+          "avg_y": 46.5,
+          "side": "右",
+          "rb_score": 1.0
+        },
+        {
+          "player_id": "P08",
+          "avg_x": 29.2,
+          "avg_y": 41.3,
+          "side": "中央",
+          "rb_score": 0.979
+        }
+      ],
+      "agreement_dist_m": 9.2,
+      "method_consistent": true
+    },
+    {
+      "match": "20260317osaka",
+      "label": "vs大阪学院 (03/17)",
+      "is_holdout": false,
+      "n_candidate_tracks": 26,
+      "current_pipeline": {
+        "archetype": "サイドバック",
+        "avg_x": 38.7,
+        "avg_y": 41.1,
+        "std_x": 14.0,
+        "ground_truth": true
+      },
+      "best_candidate": {
+        "player_id": "P14",
+        "jersey_number": null,
+        "avg_x": 30.5,
+        "avg_y": 47.1,
+        "std_x": 11.7,
+        "side": "右",
+        "rb_score": 1.0
+      },
+      "top3": [
+        {
+          "player_id": "P14",
+          "avg_x": 30.5,
+          "avg_y": 47.1,
+          "side": "右",
+          "rb_score": 1.0
+        },
+        {
+          "player_id": "P23",
+          "avg_x": 33.2,
+          "avg_y": 41.2,
+          "side": "中央",
+          "rb_score": 0.975
+        },
+        {
+          "player_id": "P07",
+          "avg_x": 43.0,
+          "avg_y": 40.9,
+          "side": "中央",
+          "rb_score": 0.953
+        }
+      ],
+      "agreement_dist_m": 10.1,
+      "method_consistent": true
+    },
+    {
+      "match": "20260318",
+      "label": "vs作新学院 (03/18)",
+      "is_holdout": true,
+      "n_candidate_tracks": 19,
+      "current_pipeline": {
+        "archetype": "アンカー",
+        "avg_x": 50.3,
+        "avg_y": 31.0,
+        "std_x": 29.0,
+        "ground_truth": null
+      },
+      "best_candidate": {
+        "player_id": "P18",
+        "jersey_number": null,
+        "avg_x": 36.8,
+        "avg_y": 40.7,
+        "std_x": 5.6,
+        "side": "中央",
+        "rb_score": 0.96
+      },
+      "top3": [
+        {
+          "player_id": "P18",
+          "avg_x": 36.8,
+          "avg_y": 40.7,
+          "side": "中央",
+          "rb_score": 0.96
+        },
+        {
+          "player_id": "P06",
+          "avg_x": 47.2,
+          "avg_y": 43.7,
+          "side": "右",
+          "rb_score": 0.921
+        },
+        {
+          "player_id": "P07",
+          "avg_x": 39.4,
+          "avg_y": 37.5,
+          "side": "中央",
+          "rb_score": 0.865
+        }
+      ],
+      "flags": [
+        "現行#6が左寄り(avg_y=31.0) — 羽瑠の既知右SBと矛盾",
+        "現行#6のstd_x=29.0が大 — 混線/誤トラックの兆候"
+      ],
+      "recommended_haru_1H": {
+        "player_id": "P18",
+        "avg_x": 36.8,
+        "avg_y": 40.7,
+        "side": "中央",
+        "rb_score": 0.96,
+        "caveat": "前半=右SB前提の推定。確定には動画確認が必要。"
+      }
+    },
+    {
+      "match": "20260325",
+      "label": "vs立教大 (03/25)",
+      "is_holdout": false,
+      "n_candidate_tracks": 30,
+      "current_pipeline": {
+        "archetype": "サイドバック",
+        "avg_x": 25.4,
+        "avg_y": 41.9,
+        "std_x": 3.5,
+        "ground_truth": true
+      },
+      "best_candidate": {
+        "player_id": "P10",
+        "jersey_number": null,
+        "avg_x": 40.8,
+        "avg_y": 43.1,
+        "std_x": 8.0,
+        "side": "右",
+        "rb_score": 1.0
+      },
+      "top3": [
+        {
+          "player_id": "P10",
+          "avg_x": 40.8,
+          "avg_y": 43.1,
+          "side": "右",
+          "rb_score": 1.0
+        },
+        {
+          "player_id": "P24",
+          "avg_x": 29.5,
+          "avg_y": 44.6,
+          "side": "右",
+          "rb_score": 1.0
+        },
+        {
+          "player_id": "P15",
+          "avg_x": 38.2,
+          "avg_y": 42.9,
+          "side": "右",
+          "rb_score": 1.0
+        }
+      ],
+      "agreement_dist_m": 15.5,
+      "method_consistent": true
+    },
+    {
+      "match": "20260329",
+      "label": "vs川崎U-18 (03/29)",
+      "is_holdout": true,
+      "n_candidate_tracks": 2,
+      "current_pipeline": {
+        "archetype": "アンカー",
+        "avg_x": 50.1,
+        "avg_y": 40.3,
+        "std_x": 9.4,
+        "ground_truth": null
+      },
+      "best_candidate": {
+        "player_id": "P01",
+        "jersey_number": null,
+        "avg_x": 33.1,
+        "avg_y": 43.9,
+        "std_x": 3.2,
+        "side": "右",
+        "rb_score": 1.0
+      },
+      "top3": [
+        {
+          "player_id": "P01",
+          "avg_x": 33.1,
+          "avg_y": 43.9,
+          "side": "右",
+          "rb_score": 1.0
+        },
+        {
+          "player_id": "P02",
+          "avg_x": 68.9,
+          "avg_y": 45.5,
+          "side": "右",
+          "rb_score": 0.667
+        }
+      ],
+      "flags": [],
+      "recommended_haru_1H": {
+        "player_id": "P01",
+        "avg_x": 33.1,
+        "avg_y": 43.9,
+        "side": "右",
+        "rb_score": 1.0,
+        "caveat": "前半=右SB前提の推定。確定には動画確認が必要。"
+      }
+    },
+    {
+      "match": "20260405",
+      "label": "vs獨協大 (04/05)",
+      "is_holdout": true,
+      "n_candidate_tracks": 4,
+      "current_pipeline": {
+        "archetype": "セントラル",
+        "avg_x": 63.5,
+        "avg_y": 25.6,
+        "std_x": 34.2,
+        "ground_truth": null
+      },
+      "best_candidate": {
+        "player_id": "P05",
+        "jersey_number": null,
+        "avg_x": 20.6,
+        "avg_y": 44.9,
+        "std_x": 3.4,
+        "side": "右",
+        "rb_score": 1.0
+      },
+      "top3": [
+        {
+          "player_id": "P05",
+          "avg_x": 20.6,
+          "avg_y": 44.9,
+          "side": "右",
+          "rb_score": 1.0
+        },
+        {
+          "player_id": "P03",
+          "avg_x": 85.2,
+          "avg_y": 28.1,
+          "side": "中央",
+          "rb_score": 0.245
+        },
+        {
+          "player_id": "P01",
+          "avg_x": 53.0,
+          "avg_y": 14.1,
+          "side": "左",
+          "rb_score": 0.167
+        }
+      ],
+      "flags": [
+        "現行#6が左寄り(avg_y=25.6) — 羽瑠の既知右SBと矛盾",
+        "現行#6のstd_x=34.2が大 — 混線/誤トラックの兆候"
+      ],
+      "recommended_haru_1H": {
+        "player_id": "P05",
+        "avg_x": 20.6,
+        "avg_y": 44.9,
+        "side": "右",
+        "rb_score": 1.0,
+        "caveat": "前半=右SB前提の推定。確定には動画確認が必要。"
+      }
+    }
+  ]
+}
