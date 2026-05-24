@@ -127,6 +127,48 @@ def _score_color(v):
     return "#f87171"
 
 
+def _identification_block(r: dict) -> str:
+    """羽瑠の特定根拠 (セグメント別トラック) とポジションチェンジ評価."""
+    hid = r.get("haru_id", {})
+    segs = hid.get("segments", [])
+    note = hid.get("note", "")
+    if not segs and hid.get("method") != "ground_truth":
+        return (f'<div class="ident auto-note">グラウンドトゥルース未指定の'
+                f'検証用試合。最も「デ・ヨング的」なトラックを自動推定。</div>')
+
+    seg_html = ""
+    for s in segs:
+        cf = s.get("confidence")
+        cf_txt = f"{int(cf*100)}%" if cf is not None else "—"
+        cf_col = ("#5eead4" if (cf or 0) >= 0.6 else
+                  "#fbbf24" if (cf or 0) >= 0.35 else "#f87171")
+        pid = s.get("player_id") or "特定不可"
+        seg_html += (f'<div class="seg"><span class="seg-h">{s["half"]}</span>'
+                     f'<span class="seg-r">{s["label"]}</span>'
+                     f'<span class="seg-p">{pid}</span>'
+                     f'<span class="seg-c" style="color:{cf_col}">信頼度{cf_txt}</span></div>')
+
+    pc = r.get("position_change")
+    pc_html = ""
+    if pc:
+        for c in pc["changes"]:
+            verdict_col = "#f87171" if c["hole"] else "#5eead4"
+            adv = (f'{c["advance_m"]:+.0f}m前進' if c["advance_m"] is not None else "")
+            pc_html += (
+                f'<div class="pchg">'
+                f'<div class="pchg-head"><b>{c["from"]} → {c["to"]}</b> '
+                f'<span style="color:{verdict_col}">{c["verdict"]}</span></div>'
+                f'<div class="pchg-body">空けた空間 {c["vacated_zone"]} → '
+                f'移動先 {c["new_zone"]} ({adv})<br>'
+                f'カバー: {("、".join(c["covered_by"]) if c["covered_by"] else "なし")} '
+                f'· 根拠サンプル {c["evidence_n"]}点 (信頼度 {int(c["confidence"]*100)}%)</div>'
+                f'</div>')
+
+    note_html = f'<div class="ident-note">📋 {note}</div>' if note else ""
+    return (f'<div class="ident">{note_html}'
+            f'<div class="seg-list">{seg_html}</div>{pc_html}</div>')
+
+
 def _match_card(r: dict) -> str:
     haru = r.get("haru")
     if not haru:
@@ -150,8 +192,15 @@ def _match_card(r: dict) -> str:
     })
     grid = _grid_svg(r["haru_track"])
 
-    hint = (f'<span class="hint">手動指定: {r["hint_used"]}</span>'
-            if r.get("hint_used") else '<span class="hint auto">自動推定</span>')
+    hid = r.get("haru_id", {})
+    method = hid.get("method", "")
+    conf = hid.get("confidence")
+    if method == "ground_truth":
+        conf_pct = f"{int(conf*100)}%" if conf is not None else "—"
+        hint = (f'<span class="hint gt">確定ポジション (背番号6) · '
+                f'特定信頼度 {conf_pct}</span>')
+    else:
+        hint = '<span class="hint auto">ホールドアウト検証 (自動推定)</span>'
 
     return f'''<div class="match-card">
       <div class="mc-head">
@@ -159,6 +208,7 @@ def _match_card(r: dict) -> str:
         <div class="pos-badge">{pos["archetype"]} <small>{pos["desc"]}</small></div>
         {hint}
       </div>
+      {_identification_block(r)}
       <div class="mc-body">
         <div class="radar-wrap">
           {radar}
@@ -325,6 +375,19 @@ h2{{font-size:1.2rem;margin:36px 0 16px;padding-bottom:10px;border-bottom:1px so
 .pos-badge small{{font-weight:400;color:#7dd3c0;font-size:.75rem}}
 .hint{{font-size:.72rem;padding:3px 10px;border-radius:12px;background:#1e2740;color:#9fb3d9}}
 .hint.auto{{background:#2d2438;color:#d8b4fe}}
+.hint.gt{{background:#10331f;color:#86efac}}
+.ident{{background:#0c1322;border:1px solid #1a2238;border-radius:10px;padding:12px 14px;margin-bottom:16px}}
+.ident-note{{font-size:.8rem;color:#9fb3d9;margin-bottom:8px}}
+.ident.auto-note{{font-size:.8rem;color:#d8b4fe}}
+.seg-list{{display:flex;flex-direction:column;gap:4px}}
+.seg{{display:flex;gap:10px;align-items:center;font-size:.8rem}}
+.seg-h{{background:#1e2740;color:#9fb3d9;padding:1px 8px;border-radius:8px;font-size:.7rem;min-width:30px;text-align:center}}
+.seg-r{{color:#a7f3d0;font-weight:700;min-width:80px}}
+.seg-p{{color:#cbd5e1;min-width:48px}}
+.seg-c{{font-size:.74rem}}
+.pchg{{margin-top:10px;padding:10px 12px;background:#11192b;border-left:3px solid #5eead4;border-radius:0 8px 8px 0}}
+.pchg-head{{font-size:.86rem;margin-bottom:4px}}
+.pchg-body{{font-size:.76rem;color:#9fb3d9}}
 .mc-body{{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-bottom:18px}}
 .radar-wrap{{position:relative}}
 .tiq{{position:absolute;bottom:6px;right:6px;text-align:center;font-size:.7rem;color:#9fb3d9}}
@@ -361,7 +424,8 @@ footer{{text-align:center;padding:30px;color:#3f4a63;font-size:.78rem;border-top
 <footer>
   TZI Tactical Intelligence Engine · 認知→創造性スコアリング ·
   スペイン式ポジショナルプレー (5レーン×6ゾーン) 基盤<br>
-  ※ 現状は3分間隔サンプリング。1分間隔への高密度化 + ボール追跡導入で精度は飛躍的に向上する。
+  ※ 羽瑠(背番号6)の試合別・時間帯別確定ポジションに基づきトラックを特定。
+  動画のある4試合は1分間隔サンプリング。特定信頼度・根拠サンプル数を各カードに明示。
 </footer>
 </body></html>'''
 
@@ -372,7 +436,8 @@ footer{{text-align:center;padding:30px;color:#3f4a63;font-size:.78rem;border-top
     profile = {
         "matches": [{
             "match": r["match"], "label": r["label"],
-            "haru": r["haru"], "hint_used": r.get("hint_used"),
+            "haru": r["haru"], "haru_id": r.get("haru_id"),
+            "position_change": r.get("position_change"),
         } for r in results if r.get("haru")]
     }
     (DATA_TZI / "haru_tactical_profile.json").write_text(

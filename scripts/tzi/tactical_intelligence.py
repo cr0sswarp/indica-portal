@@ -406,36 +406,200 @@ def compute_team_centroid_series(all_tracks: list) -> dict:
 
 
 # ── 羽瑠トラック特定 ─────────────────────────────────────────
-# 牧野羽瑠は試合ごとにポジションが異なる。OCRは機能しないため、
-# Makino氏が試合ごとの「想定ポジション」を指定できる設定を用意。
-# 未指定の場合は「最もデ・ヨング的シグネチャ」(原理原則+創造性)を自動選択。
+# 牧野羽瑠は試合ごと・試合中にポジションを変える (背番号6)。OCRは機能しない
+# ため、Makino氏から得た「試合別・時間帯別の確定ポジション」を
+# グラウンドトゥルースとして用い、位置シグネチャでトラックを特定する。
+#
+# 設計判断 (track_players_v3.py の作者注に基づく):
+#   正規化座標 (Wasedaは常に x→105 へ攻撃, Yは反転しない) において
+#   「右サイドバック」は X=15-40m(自陣寄り), Y=42-68m(右タッチライン側)。
+#
+# ── ロール別ターゲット・シグネチャ (正規化座標) ──────────────
+ROLE_SIGNATURE = {
+    #                X範囲(縦)      Y範囲(横:右=高Y)   X重み  Y重み
+    "サイドバック": {"x": (15, 42), "y": (42, 68), "xw": 0.8, "yw": 1.6},
+    "アンカー":     {"x": (28, 50), "y": (24, 44), "xw": 1.0, "yw": 1.0},
+    "セントラル":   {"x": (38, 60), "y": (38, 56), "xw": 1.0, "yw": 1.3},
+    "トップ下":     {"x": (58, 78), "y": (27, 48), "xw": 1.0, "yw": 0.8},
+    "トップ":       {"x": (72, 98), "y": (24, 48), "xw": 1.2, "yw": 0.6},
+    "センターバック": {"x": (10, 35), "y": (24, 44), "xw": 1.0, "yw": 1.0},
+}
 
-HARU_POSITION_HINT = {
-    # "20260325": "サイドバック",   # 例: この試合は右SB
-    # "20260318": "アンカー",       # 例: この試合はアンカー
-    # 未記入の試合は自動推定 (最高総合スコアのトラックを羽瑠と仮定)
+# 試合別・時間帯別の確定ポジション (Makino氏ヒアリング)。
+# 5試合で実装/チューニング、残り3試合 (20260318/20260329/20260405) は
+# 「ホールドアウト検証用」として意図的に未記入 → 自動推定にフォールバック。
+HARU_GROUND_TRUTH = {
+    "20260314": {  # 埼玉大 ※後半動画なし (前半のみ解析可)
+        "note": "前半=右SB / 後半21:35〜ボランチ(6番) ※後半動画欠落",
+        "segments": [
+            {"half": "1H", "role": "サイドバック", "label": "右SB"},
+        ],
+    },
+    "20260316": {  # 岐阜協立 ※後半動画なし
+        "note": "90分通して右SB ※後半動画欠落 (前半のみ解析可)",
+        "segments": [
+            {"half": "1H", "role": "サイドバック", "label": "右SB"},
+        ],
+    },
+    "20260317mid": {  # 中京U-19
+        "note": "前半22:15〜右SB(6番) / 後半ボランチスタート〜23:15頃",
+        "segments": [
+            {"half": "1H", "role": "サイドバック", "label": "右SB"},
+            {"half": "2H", "role": "アンカー",     "label": "ボランチ"},
+        ],
+    },
+    "20260317osaka": {  # 大阪学院
+        "note": "前後半とも右SB(6番) ※後半14:50は交代の出入り",
+        "segments": [
+            {"half": "1H", "role": "サイドバック", "label": "右SB"},
+            {"half": "2H", "role": "サイドバック", "label": "右SB"},
+        ],
+    },
+    "20260325": {  # 立教 ※動画なし・既存3分データ
+        "note": "前半=右SB / 後半29:30〜右ボランチ (ポジションチェンジ)",
+        "segments": [
+            {"half": "1H", "role": "サイドバック", "label": "右SB"},
+            {"half": "2H", "role": "サイドバック", "label": "右SB",
+             "t_rel": (0.0, 29.5)},
+            {"half": "2H", "role": "セントラル",   "label": "右ボランチ",
+             "t_rel": (29.5, 999.0)},
+        ],
+    },
 }
 
 
-def identify_haru(all_tracks: list, profiles: list, hint: str | None) -> int:
-    """羽瑠と思われるトラックのインデックスを返す."""
-    if hint:
-        # ヒント一致 + 高スコアのトラックを選択
-        candidates = [(i, p) for i, p in enumerate(profiles)
-                      if p["position"]["archetype"] == hint]
-        if candidates:
-            return max(candidates, key=lambda x: x[1]["tactical_iq"])[0]
-    # 自動: 総合タクティカルIQ最高 (十分なサンプル数を持つもの)
+def _range_dist(v: float, lo: float, hi: float) -> float:
+    """値が[lo,hi]外なら最近端までの距離, 内なら0."""
+    if v < lo:
+        return lo - v
+    if v > hi:
+        return v - hi
+    return 0.0
+
+
+def signature_distance(xs: np.ndarray, ys: np.ndarray, role: str) -> float:
+    """トラックの平均位置と、ロール理想シグネチャとの重み付き距離 (m)."""
+    sig = ROLE_SIGNATURE.get(role)
+    if not sig or len(xs) == 0:
+        return 999.0
+    ax, ay = float(np.mean(xs)), float(np.mean(ys))
+    dx = _range_dist(ax, *sig["x"])
+    dy = _range_dist(ay, *sig["y"])
+    return sig["xw"] * dx + sig["yw"] * dy
+
+
+def _half_rel_times(track: dict, half: str):
+    """指定ハーフのsightingsを (相対時刻, sighting) で返す.
+    相対時刻 = time_min - そのトラックの当該ハーフ最小time_min。"""
+    hs = [s for s in track["sightings"] if s.get("half") == half]
+    if not hs:
+        return []
+    t0 = min(s["time_min"] for s in hs)
+    return [(s["time_min"] - t0, s) for s in hs]
+
+
+def _segment_sightings(track: dict, seg: dict) -> list:
+    """グラウンドトゥルース・セグメントに該当するsightingsを抽出."""
+    if "t_rel" in seg:
+        rel = _half_rel_times(track, seg["half"])
+        lo, hi = seg["t_rel"]
+        return [s for (tr, s) in rel if lo <= tr < hi]
+    return [s for s in track["sightings"] if s.get("half") == seg["half"]]
+
+
+def identify_haru_track(all_tracks: list, role: str, half: str | None,
+                        min_n: int = 4):
+    """指定ロール・ハーフに最も合致するトラックを返す.
+    返り値: (best_idx, fit_conf, uniqueness). best_idx=Noneなら該当なし。
+
+    - fit_conf: 選ばれたトラックのゾーン適合度 (0-1)
+    - uniqueness: 2位候補との分離度 (0-1)。複数トラックが同ゾーンに
+      該当すると低下 → 「これが羽瑠だ」の確実性を正直に反映。
+    """
+    scored = []
+    for i, t in enumerate(all_tracks):
+        sigs = ([s for s in t["sightings"] if s.get("half") == half]
+                if half else t["sightings"])
+        if len(sigs) < min_n:
+            continue
+        xs = np.array([get_coords(s)[0] for s in sigs])
+        ys = np.array([get_coords(s)[1] for s in sigs])
+        d = signature_distance(xs, ys, role)
+        d_adj = d - min(len(sigs), 20) * 0.15  # サンプル数で僅かに優遇
+        scored.append((d_adj, d, i))
+    if not scored:
+        return None, None, None
+    scored.sort(key=lambda x: x[0])
+    best_d_adj, best_d, best_i = scored[0]
+    fit_conf = max(0.0, 1.0 - best_d / 40.0)
+    # uniqueness: 2位とのゾーン距離差 (10m差で完全分離とみなす)
+    if len(scored) > 1:
+        margin = scored[1][0] - best_d_adj
+        uniqueness = min(1.0, margin / 10.0)
+    else:
+        uniqueness = 1.0
+    return best_i, round(fit_conf, 2), round(uniqueness, 2)
+
+
+def identify_haru(all_tracks: list, profiles: list, match_id: str) -> dict:
+    """羽瑠を特定する。
+    グラウンドトゥルースがあれば各セグメントのロール・シグネチャで特定。
+    無ければ (ホールドアウト3試合) 従来の自動推定にフォールバック。
+
+    返り値: {"primary_idx", "segments":[...], "confidence", "method"}
+    """
+    gt = HARU_GROUND_TRUTH.get(match_id)
+    if gt:
+        seg_results = []
+        for seg in gt["segments"]:
+            idx, fit, uniq = identify_haru_track(all_tracks, seg["role"], seg["half"])
+            # 総合信頼度 = ゾーン適合度 × 一意性 (どちらも高い時のみ高信頼)
+            conf = (round(fit * (0.5 + 0.5 * uniq), 2)
+                    if (fit is not None and uniq is not None) else None)
+            seg_results.append({
+                "half": seg["half"], "role": seg["role"],
+                "label": seg.get("label", seg["role"]),
+                "t_rel": seg.get("t_rel"),
+                "track_idx": idx,
+                "player_id": all_tracks[idx]["player_id"] if idx is not None else None,
+                "confidence": conf,
+                "fit": fit, "uniqueness": uniq,
+            })
+        # primary = 最初のセグメント (常に1H右SB) のトラック
+        primary = next((s["track_idx"] for s in seg_results
+                        if s["track_idx"] is not None), None)
+        confs = [s["confidence"] for s in seg_results if s["confidence"] is not None]
+        return {
+            "primary_idx": primary,
+            "segments": seg_results,
+            "confidence": round(float(np.mean(confs)), 2) if confs else None,
+            "method": "ground_truth",
+            "note": gt.get("note", ""),
+        }
+    # ── ホールドアウト: 自動推定 (検証用) ──
     valid = [(i, p) for i, p in enumerate(profiles)
              if all_tracks[i]["n_sightings"] >= 6]
     pool = valid if valid else list(enumerate(profiles))
-    return max(pool, key=lambda x: x[1]["tactical_iq"])[0]
+    idx = max(pool, key=lambda x: x[1]["tactical_iq"])[0]
+    return {
+        "primary_idx": idx,
+        "segments": [],
+        "confidence": None,
+        "method": "auto (holdout検証)",
+        "note": "グラウンドトゥルース未指定 → 自動推定",
+    }
 
 
 # ── トラック総合分析 ─────────────────────────────────────────
 
-def analyze_track(track: dict, all_tracks: list, team_series: dict) -> dict:
+def analyze_track(track: dict, all_tracks: list, team_series: dict,
+                  role_override: str | None = None) -> dict:
     pos = detect_position(track)
+    if role_override and role_override in POSITION_ARCHETYPES:
+        # グラウンドトゥルースのロールで上書き (原則・創造性スコアを正しく評価)
+        pos["archetype"] = role_override
+        pos["desc"] = POSITION_ARCHETYPES[role_override]["desc"]
+        pos["ground_truth"] = True
     cog = cognition_score(track, team_series)
     pri = principle_score(track, pos)
     cre = creativity_score(track, pos)
@@ -461,6 +625,66 @@ def analyze_track(track: dict, all_tracks: list, team_series: dict) -> dict:
     }
 
 
+# ── ポジションチェンジ & 「穴」分析 ──────────────────────────
+
+def position_change_analysis(haru_res: dict, all_tracks: list) -> dict | None:
+    """ロールが変わるセグメント境界で「効果的な移動か / 穴を開けたか」を評価.
+
+    羽瑠が元ポジション(例:右SB)を離れた後、その空間を味方が
+    カバーしたか(=チームとして機能)、空いたまま(=穴)かを測る。
+    データが疎なため confidence を必ず併記する。
+    """
+    def _seg_sights(track, seg):
+        tr = seg.get("t_rel")
+        if tr:
+            rel = _half_rel_times(track, seg["half"])
+            lo, hi = tr
+            return [s for (t, s) in rel if lo <= t < hi]
+        return [s for s in track["sightings"] if s.get("half") == seg["half"]]
+
+    segs = haru_res.get("segments", [])
+    changes = []
+    for a, b in zip(segs, segs[1:]):
+        if a["role"] == b["role"] or a["track_idx"] is None or b["track_idx"] is None:
+            continue
+        ta, tb = all_tracks[a["track_idx"]], all_tracks[b["track_idx"]]
+        # 元ロール(a)での羽瑠の占有ゾーン重心
+        sa = _seg_sights(ta, a)
+        if not sa:
+            continue
+        vac_x = float(np.mean([get_coords(s)[0] for s in sa]))
+        vac_y = float(np.mean([get_coords(s)[1] for s in sa]))
+        # 移動後(b)の時間帯に、空いた空間(vac)を誰かがカバーしたか
+        b_sigs = _seg_sights(tb, b)
+        b_times = {round(s["time_min"], 1) for s in b_sigs}
+        cover = []
+        for t in all_tracks:
+            if t is ta or t is tb:
+                continue
+            for s in t["sightings"]:
+                if round(s["time_min"], 1) in b_times:
+                    cx, cy = get_coords(s)
+                    if math.hypot(cx - vac_x, cy - vac_y) <= 12.0:
+                        cover.append(t["player_id"])
+                        break
+        new_x = float(np.mean([get_coords(s)[0] for s in b_sigs])) if b_sigs else None
+        new_y = float(np.mean([get_coords(s)[1] for s in b_sigs])) if b_sigs else None
+        n_evid = len(sa) + len(b_sigs)
+        changes.append({
+            "from": a["label"], "to": b["label"],
+            "vacated_zone": f"X={vac_x:.0f}m Y={vac_y:.0f}m",
+            "new_zone": (f"X={new_x:.0f}m Y={new_y:.0f}m" if new_x else "不明"),
+            "advance_m": round(new_x - vac_x, 1) if new_x else None,
+            "covered_by": sorted(set(cover)),
+            "hole": len(cover) == 0,
+            "evidence_n": n_evid,
+            "confidence": round(min(1.0, n_evid / 12.0), 2),
+            "verdict": ("味方がカバー(構造維持)" if cover
+                        else "カバー無し(穴の可能性)"),
+        })
+    return {"changes": changes} if changes else None
+
+
 # ── 試合分析 ─────────────────────────────────────────────────
 
 def analyze_match(match_id: str) -> dict | None:
@@ -477,16 +701,29 @@ def analyze_match(match_id: str) -> dict | None:
     team_series = compute_team_centroid_series(tracks)
     profiles = [analyze_track(t, tracks, team_series) for t in tracks]
 
-    hint = HARU_POSITION_HINT.get(match_id)
-    haru_idx = identify_haru(tracks, profiles, hint)
+    haru_res = identify_haru(tracks, profiles, match_id)
+    haru_idx = haru_res["primary_idx"]
+    if haru_idx is None:
+        return {"match": match_id, "label": data.get("label", match_id),
+                "haru": None, "all_profiles": profiles, "haru_id": haru_res}
+
+    # primaryロールでグラウンドトゥルース上書き再計算
+    primary_role = None
+    if haru_res["segments"]:
+        primary_role = haru_res["segments"][0]["role"]
+    haru_profile = analyze_track(tracks[haru_idx], tracks, team_series,
+                                 role_override=primary_role)
+
+    pos_change = position_change_analysis(haru_res, tracks)
 
     return {
         "match": match_id,
         "label": data.get("label", match_id),
-        "haru": profiles[haru_idx],
+        "haru": haru_profile,
         "haru_track": tracks[haru_idx],
+        "haru_id": haru_res,
+        "position_change": pos_change,
         "all_profiles": profiles,
-        "hint_used": hint,
     }
 
 
@@ -507,17 +744,30 @@ if __name__ == "__main__":
         if r:
             results.append(r)
             haru = r.get("haru")
+            hid = r.get("haru_id", {})
             if haru:
-                print(f"\n{r['label']}:")
-                print(f"  羽瑠候補: {haru['player_id']} "
+                method = hid.get("method", "?")
+                conf = hid.get("confidence")
+                print(f"\n{r['label']}  [{method}"
+                      f"{f' conf={conf}' if conf is not None else ''}]:")
+                print(f"  羽瑠: {haru['player_id']} "
                       f"[{haru['position']['archetype']}]  "
                       f"TacticalIQ={haru['tactical_iq']}")
                 print(f"    認知={haru['cognition']['score']} "
                       f"原則={haru['principle']['score']} "
                       f"創造={haru['creativity']['score']} "
                       f"主役={haru['protagonist'].get('score')}")
+                for s in hid.get("segments", []):
+                    print(f"    └ {s['half']} {s['label']}: "
+                          f"{s['player_id']} (conf={s['confidence']})")
+                pc = r.get("position_change")
+                if pc:
+                    for c in pc["changes"]:
+                        print(f"    ⇄ {c['from']}→{c['to']}: {c['verdict']} "
+                              f"前進{c['advance_m']}m "
+                              f"(evid={c['evidence_n']}, conf={c['confidence']})")
             else:
-                print(f"\n{r['label']}: データ不足")
+                print(f"\n{r['label']}: データ不足 (羽瑠特定できず)")
 
     out = generate_report(results)
     print(f"\n✓ レポート生成: {out}")
