@@ -22,380 +22,224 @@ tr:hover td {background:#161b22}
   <p>Dual-Team Detection · Direction Normalization · Kalman+EIoU · OC-SORT Re-ID · Savitzky-Golay Smoothing</p>
 </div>
 <div class="stats">
-  <div class="stat"><div class="v" style="color:#3fb950">58</div><div class="l">Unique Players</div></div>
+  <div class="stat"><div class="v" style="color:#3fb950">32</div><div class="l">Unique Players</div></div>
   <div class="stat"><div class="v" style="color:#58a6ff">90</div><div class="l">Frames Sampled</div></div>
-  <div class="stat"><div class="v" style="color:#f0883e">0</div><div class="l">Jersey # Found</div></div>
+  <div class="stat"><div class="v" style="color:#f0883e">7</div><div class="l">Jersey # Found</div></div>
   <div class="stat"><div class="v" style="color:#d2a8ff">1</div><div class="l">Substitutions</div></div>
-  <div class="stat"><div class="v" style="color:#79c0ff">9.1</div><div class="l">Avg/Frame</div></div>
+  <div class="stat"><div class="v" style="color:#79c0ff">6.6</div><div class="l">Avg/Frame</div></div>
   <div class="stat">
     <div class="l" style="margin-bottom:4px">Direction Normalization</div>
-    <span class="badge" style="background:#f85149;color:#fff">1H: FLIP</span>
-    <span class="badge" style="background:#3fb950;color:#fff;margin-left:4px">2H: KEEP</span>
+    <span class="badge" style="background:#3fb950;color:#fff">1H: KEEP</span>
+    <span class="badge" style="background:#f85149;color:#fff;margin-left:4px">2H: FLIP</span>
   </div>
 </div>
 <div class="content">
   <h2>Opponent Color Detection</h2>
   <p style="font-size:12px;color:#8b949e;margin-bottom:8px">Auto-detected opponent jersey HSV clusters used as spatial augmentation:</p>
-  <div style="margin-bottom:16px"><span style='background:hsl(40deg,60%,40%);color:white;padding:2px 8px;border-radius:4px;font-size:11px;margin:2px'>H:5-35 S:25-125</span> <span style='background:hsl(42deg,60%,40%);color:white;padding:2px 8px;border-radius:4px;font-size:11px;margin:2px'>H:6-36 S:0-92</span> <span style='background:hsl(232deg,60%,40%);color:white;padding:2px 8px;border-radius:4px;font-size:11px;margin:2px'>H:101-131 S:35-135</span> </div>
+  <div style="margin-bottom:16px">auto-detected</div>
 
-  <h2>Player List (58名 · Normalized Coordinates)</h2>
+  <h2>Player List (32名 · Normalized Coordinates)</h2>
   <table><thead><tr><th>Track ID</th><th>Jersey #</th><th>Sightings</th><th>Active Period</th><th>Primary Zone</th></tr></thead>
   <tbody><tr>
-          <td style="font-weight:700;color:#58a6ff">P10</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>34</td>
-          <td>3–86 min</td>
-          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
+          <td style="font-weight:700;color:#58a6ff">P21</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#1</td>
+          <td>26</td>
+          <td>15–88 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
         </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P22</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>14</td>
-          <td>8–57 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+          <td style="font-weight:700;color:#58a6ff">P25</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#1</td>
+          <td>15</td>
+          <td>54–87 min</td>
+          <td><span style="background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A1</span></td>
         </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P15</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>19</td>
-          <td>4–59 min</td>
+          <td style="font-weight:700;color:#58a6ff">P28</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#2</td>
+          <td>11</td>
+          <td>61–88 min</td>
           <td><span style="background:#1abc9c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D3</span></td>
         </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P04</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>18</td>
-          <td>2–88 min</td>
+          <td style="font-weight:700;color:#58a6ff">P12</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#3</td>
+          <td>31</td>
+          <td>4–65 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P03</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#4</td>
+          <td>35</td>
+          <td>1–80 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P11</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#8</td>
+          <td>19</td>
+          <td>4–41 min</td>
           <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
         </tr><tr>
           <td style="font-weight:700;color:#58a6ff">P05</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#76</td>
+          <td>6</td>
+          <td>2–12 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P09</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>18</td>
-          <td>2–80 min</td>
+          <td>27</td>
+          <td>3–81 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P22</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>27</td>
+          <td>20–88 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P18</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>25</td>
+          <td>10–90 min</td>
           <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
         </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P37</td>
+          <td style="font-weight:700;color:#58a6ff">P24</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>20</td>
-          <td>22–86 min</td>
+          <td>24</td>
+          <td>30–77 min</td>
           <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P01</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>22</td>
+          <td>1–90 min</td>
+          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P13</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>24</td>
+          <td>5–63 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P14</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>18</td>
+          <td>5–74 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P19</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>18</td>
+          <td>11–80 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P02</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>27</td>
+          <td>1–63 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P15</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>22</td>
+          <td>5–88 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
         </tr><tr>
           <td style="font-weight:700;color:#58a6ff">P23</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
           <td>13</td>
-          <td>8–73 min</td>
-          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P34</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>17</td>
-          <td>14–63 min</td>
+          <td>20–90 min</td>
           <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P18</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>31</td>
-          <td>5–89 min</td>
-          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
         </tr><tr>
           <td style="font-weight:700;color:#58a6ff">P06</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>20</td>
-          <td>2–83 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P11</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>23</td>
-          <td>3–63 min</td>
-          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P40</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>7</td>
-          <td>35–45 min</td>
-          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P01</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>25</td>
-          <td>1–65 min</td>
-          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P24</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>6</td>
-          <td>8–16 min</td>
-          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
+          <td>14</td>
+          <td>2–31 min</td>
+          <td><span style="background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A1</span></td>
         </tr><tr>
           <td style="font-weight:700;color:#58a6ff">P07</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>24</td>
-          <td>2–68 min</td>
-          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P02</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>25</td>
-          <td>1–74 min</td>
-          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P12</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>9</td>
-          <td>3–15 min</td>
+          <td>27</td>
+          <td>2–79 min</td>
           <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P03</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>6</td>
-          <td>1–20 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P16</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>23</td>
-          <td>4–88 min</td>
-          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P25</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>13</td>
-          <td>8–42 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P08</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>5</td>
-          <td>2–26 min</td>
-          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P35</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>5</td>
-          <td>14–26 min</td>
-          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P19</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>6</td>
-          <td>5–26 min</td>
-          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
         </tr><tr>
           <td style="font-weight:700;color:#58a6ff">P17</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>19</td>
-          <td>4–69 min</td>
-          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
+          <td>15</td>
+          <td>7–89 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
         </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P13</td>
+          <td style="font-weight:700;color:#58a6ff">P16</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>8</td>
-          <td>3–22 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+          <td>24</td>
+          <td>5–81 min</td>
+          <td><span style="background:#1abc9c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D3</span></td>
         </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P33</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>9</td>
-          <td>11–40 min</td>
-          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P09</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>25</td>
-          <td>2–80 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P26</td>
+          <td style="font-weight:700;color:#58a6ff">P04</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
           <td>22</td>
-          <td>8–79 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+          <td>1–77 min</td>
+          <td><span style="background:#1abc9c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D3</span></td>
         </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P27</td>
+          <td style="font-weight:700;color:#58a6ff">P08</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>12</td>
-          <td>8–68 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+          <td>13</td>
+          <td>2–86 min</td>
+          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
         </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P28</td>
+          <td style="font-weight:700;color:#58a6ff">P10</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>8</td>
-          <td>8–30 min</td>
-          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P31</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>19</td>
-          <td>9–86 min</td>
-          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P29</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>21</td>
-          <td>8–62 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+          <td>27</td>
+          <td>3–90 min</td>
+          <td><span style="background:#1abc9c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D3</span></td>
         </tr><tr>
           <td style="font-weight:700;color:#58a6ff">P20</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>12</td>
-          <td>6–31 min</td>
+          <td>20</td>
+          <td>11–90 min</td>
+          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P31</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>6</td>
+          <td>79–90 min</td>
           <td><span style="background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A1</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P14</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>21</td>
-          <td>3–88 min</td>
-          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P39</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>18</td>
-          <td>31–88 min</td>
-          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
         </tr><tr>
           <td style="font-weight:700;color:#58a6ff">P32</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>19</td>
-          <td>10–76 min</td>
+          <td>9</td>
+          <td>80–89 min</td>
           <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
         </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P36</td>
+          <td style="font-weight:700;color:#58a6ff">P29</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>8</td>
-          <td>14–41 min</td>
-          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
+          <td>9</td>
+          <td>65–89 min</td>
+          <td><span style="background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A1</span></td>
         </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P21</td>
+          <td style="font-weight:700;color:#58a6ff">P26</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>13</td>
-          <td>7–36 min</td>
+          <td>9</td>
+          <td>54–85 min</td>
           <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
         </tr><tr>
           <td style="font-weight:700;color:#58a6ff">P30</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>27</td>
-          <td>8–89 min</td>
-          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P41</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>12</td>
-          <td>35–82 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P38</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>17</td>
-          <td>28–67 min</td>
+          <td>7</td>
+          <td>71–90 min</td>
           <td><span style="background:#1abc9c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D3</span></td>
         </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P49</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>11</td>
-          <td>60–89 min</td>
-          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P52</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>10</td>
-          <td>61–90 min</td>
-          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P50</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>10</td>
-          <td>60–90 min</td>
-          <td><span style="background:#1abc9c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D3</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P45</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>14</td>
-          <td>56–88 min</td>
-          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P42</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>14</td>
-          <td>48–89 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P54</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>7</td>
-          <td>68–90 min</td>
-          <td><span style="background:#1abc9c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D3</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P43</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>7</td>
-          <td>52–89 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P46</td>
+          <td style="font-weight:700;color:#58a6ff">P27</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
           <td>6</td>
-          <td>56–61 min</td>
-          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P47</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>12</td>
-          <td>57–90 min</td>
-          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P44</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>9</td>
-          <td>54–72 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P56</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>6</td>
-          <td>70–83 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P48</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>8</td>
-          <td>57–78 min</td>
-          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P57</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>6</td>
-          <td>70–86 min</td>
-          <td><span style="background:#e67e22;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P51</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>7</td>
-          <td>60–86 min</td>
-          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P58</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>5</td>
-          <td>77–89 min</td>
-          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P55</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>6</td>
-          <td>68–90 min</td>
-          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
-        </tr><tr>
-          <td style="font-weight:700;color:#58a6ff">P53</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>7</td>
-          <td>64–88 min</td>
+          <td>54–77 min</td>
           <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
         </tr></tbody></table>
 
   <h2>Substitutions (1件)</h2>
   <table><thead><tr><th>Time</th><th>Player Out</th><th>Player In</th><th>Zone</th><th>Confidence</th></tr></thead><tbody><tr>
-      <td>66.9min</td>
-      <td style="color:#f85149">OUT: P002 #?</td>
-      <td style="color:#3fb950">IN: P048 #?</td>
-      <td>D1</td><td>5%</td>
+      <td>79.9min</td>
+      <td style="color:#f85149">OUT: P006 #?</td>
+      <td style="color:#3fb950">IN: P050 #?</td>
+      <td>D3</td><td>4%</td>
     </tr></tbody></table>
 </div>
 <div style="text-align:center;padding:20px;color:#8b949e;font-size:11px">

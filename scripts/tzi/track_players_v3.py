@@ -68,6 +68,17 @@ BL_LO, BL_HI = np.array([100, 60, 40]),  np.array([130, 255, 220])
 
 KNL = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
 
+# ── YOLO model (lazy-loaded singleton) ───────────────────────────
+_YOLO_WEIGHTS = Path(__file__).parent / "yolov8n.pt"
+_yolo_model   = None
+
+def _get_yolo():
+    global _yolo_model
+    if _yolo_model is None:
+        from ultralytics import YOLO
+        _yolo_model = YOLO(str(_YOLO_WEIGHTS))
+    return _yolo_model
+
 # ── Tracking parameters ───────────────────────────────────────────
 MAX_DIST_PIXELS   = 100
 MAX_DISAPPEAR     = 6
@@ -130,72 +141,82 @@ def normalize_pos(fx, fy, flip):
 
 
 # ── Detection functions ───────────────────────────────────────────
+# YOLO-based detection: persons detected by YOLOv8, then classified
+# by jersey color (Waseda maroon vs. opponent).
 
-def _build_base_mask(frame_h):
-    """Returns slice params for valid detection region.
-    Near touchline is at pixel Y≈705, so don't cut before 715."""
-    return 60, min(frame_h, 720)   # (top_cutoff, bottom_cutoff)
-
-
-def detect_waseda(frame):
-    """Detect Waseda (maroon) players. Returns list of detection dicts."""
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    m   = cv2.bitwise_or(cv2.inRange(hsv, W_LO1, W_HI1),
-                          cv2.inRange(hsv, W_LO2, W_HI2))
-    top, bot = _build_base_mask(frame.shape[0])
-    m[:top, :] = 0
-    m[bot:, :] = 0
-    m = cv2.morphologyEx(m, cv2.MORPH_OPEN,  KNL)
-    m = cv2.morphologyEx(m, cv2.MORPH_CLOSE, KNL, iterations=2)
-    return _extract_dets(m, frame)
+# Minimum maroon pixel ratio in torso region to classify as Waseda
+_WASEDA_RATIO_THRESH = 0.07
+# YOLO person confidence threshold
+_YOLO_CONF = 0.30
+# Vertical pixel range to accept detections (scoreboard top / near touchline)
+_ROW_TOP, _ROW_BOT = 55, 730
 
 
-def detect_opponents(frame, opp_hsv_ranges):
-    """Detect opponent players using pre-determined HSV ranges."""
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    # Start with all non-green, non-maroon blobs
-    field_mask = cv2.inRange(hsv, G_LO, G_HI)
-    waseda_m   = cv2.bitwise_or(cv2.inRange(hsv, W_LO1, W_HI1),
-                                 cv2.inRange(hsv, W_LO2, W_HI2))
+def detect_players_yolo(frame):
+    """Detect all players using YOLOv8, classify by jersey color.
 
-    opp_m = np.zeros(field_mask.shape, dtype=np.uint8)
-    for (lo, hi) in opp_hsv_ranges:
-        opp_m = cv2.bitwise_or(opp_m, cv2.inRange(hsv, lo, hi))
+    Returns (waseda_dets, opp_dets) in the same dict format used by
+    the rest of the pipeline (px, py, fx, fy, bbox, area, zone, hist, crop).
+    """
+    model  = _get_yolo()
+    h_fr   = frame.shape[0]
+    hsv    = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    # Exclude field and Waseda
-    opp_m = cv2.bitwise_and(opp_m, cv2.bitwise_not(field_mask))
-    opp_m = cv2.bitwise_and(opp_m, cv2.bitwise_not(waseda_m))
+    results = model(frame, classes=[0], conf=_YOLO_CONF, verbose=False)[0]
 
-    top, bot = _build_base_mask(frame.shape[0])
-    opp_m[:top, :] = 0
-    opp_m[bot:, :]  = 0
-    opp_m = cv2.morphologyEx(opp_m, cv2.MORPH_OPEN,  KNL)
-    opp_m = cv2.morphologyEx(opp_m, cv2.MORPH_CLOSE, KNL, iterations=2)
-    return _extract_dets(opp_m, frame)
+    waseda_dets, opp_dets = [], []
 
+    for box in results.boxes:
+        x1, y1, x2, y2 = map(int, box.xyxy[0].tolist())
+        # Clamp to image boundaries
+        x1, y1 = max(0, x1), max(0, y1)
+        x2, y2 = min(frame.shape[1] - 1, x2), min(h_fr - 1, y2)
+        if x2 <= x1 or y2 <= y1:
+            continue
 
-def _extract_dets(mask, frame):
-    cnts, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    out = []
-    for c in cnts:
-        a = cv2.contourArea(c)
-        # Raise min area to 150 to filter small noise/shadow blobs
-        if not (150 < a < 3500): continue
-        x, y, w, h = cv2.boundingRect(c)
-        # Require taller-than-wide blobs (players are vertical); reject wide bench artifacts
-        if h / (w + 1e-5) < 0.65 or h / (w + 1e-5) > 9: continue
-        cx, cy = x + w // 2, y + h
-        fx, fy = p2f(cx, cy)
-        crop = frame[max(0, y):y+h, max(0, x):x+w]
-        hist = _color_hist(crop)
-        out.append({
-            "px": cx, "py": cy - h // 2,
-            "fx": round(fx, 2), "fy": round(fy, 2),
-            "bbox": (x, y, x+w, y+h),
-            "area": round(a, 1), "zone": fx_to_zone(fx),
-            "hist": hist, "crop": crop,
-        })
-    return out
+        cy_center = (y1 + y2) // 2
+        # Skip scoreboard area (top) and below field (bottom)
+        if cy_center < _ROW_TOP or cy_center > _ROW_BOT:
+            continue
+
+        # Torso crop: upper 60% of bbox → jersey color
+        jy2   = y1 + max(1, int((y2 - y1) * 0.60))
+        crop  = frame[y1:jy2, x1:x2]
+        c_hsv = hsv[y1:jy2, x1:x2]
+        if crop.size == 0:
+            continue
+
+        # Waseda maroon ratio within torso
+        w_mask = cv2.bitwise_or(
+            cv2.inRange(c_hsv, W_LO1, W_HI1),
+            cv2.inRange(c_hsv, W_LO2, W_HI2),
+        )
+        n_pix    = c_hsv.shape[0] * c_hsv.shape[1]
+        w_ratio  = cv2.countNonZero(w_mask) / (n_pix + 1e-6)
+
+        cx      = (x1 + x2) // 2
+        py_disp = (y1 + y2) // 2          # display center
+        fx, fy  = p2f(cx, float(y2))      # map feet position → field coords
+        hist    = _color_hist(crop)
+
+        det = {
+            "px":   cx,
+            "py":   py_disp,
+            "fx":   round(fx, 2),
+            "fy":   round(fy, 2),
+            "bbox": (x1, y1, x2, y2),
+            "area": float((x2 - x1) * (y2 - y1)),
+            "zone": fx_to_zone(fx),
+            "hist": hist,
+            "crop": crop,
+        }
+
+        if w_ratio >= _WASEDA_RATIO_THRESH:
+            waseda_dets.append(det)
+        else:
+            opp_dets.append(det)
+
+    return waseda_dets, opp_dets
 
 
 def _color_hist(crop):
@@ -1174,7 +1195,7 @@ TZI v3 — Tactical Zone Intelligence · Indica Labs · 2026</div>
 # ── Half processing ───────────────────────────────────────────────
 
 def process_half(video_path, half_label, t_offset, match_dir, interval_min,
-                  use_ocr, opp_ranges, start_f=0, end_f=None):
+                  use_ocr, start_f=0, end_f=None):
     """Process one half. For combined full-match videos, pass start_f/end_f to
     process only that half's frame range (local time is relative to start_f)."""
     cap     = cv2.VideoCapture(str(video_path))
@@ -1209,8 +1230,7 @@ def process_half(video_path, half_label, t_offset, match_dir, interval_min,
 
         local_t = (fn - start_f) / fps / 60
         t_min   = local_t + t_offset
-        dets_w  = detect_waseda(frame)
-        dets_o  = detect_opponents(frame, opp_ranges)
+        dets_w, dets_o = detect_players_yolo(frame)
 
         active = tracker.update(dets_w, t_min, half_label, use_ocr)
 
@@ -1274,10 +1294,6 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
 
     t0 = time.time()
 
-    # Auto-detect opponent color from first half
-    print("  Auto-detecting opponent jersey colors...")
-    opp_ranges = auto_detect_opponent_color(h1_path)
-
     all_tracks, all_frames = [], []
     opp_log_1h, opp_log_2h = [], []
 
@@ -1292,21 +1308,21 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
         print(f"  [combined] full-match video {nf_tmp}f → split at frame {mid_f} (~{h1_dur:.0f}min)")
 
         h1_tracks, h1_frames, opp1 = process_half(
-            h1_path, "1H", 0.0, match_dir, interval_min, use_ocr, opp_ranges,
+            h1_path, "1H", 0.0, match_dir, interval_min, use_ocr,
             start_f=0, end_f=mid_f)
         all_tracks.extend(h1_tracks)
         all_frames.extend(h1_frames)
         opp_log_1h = opp1
 
         h2_tracks, h2_frames, opp2 = process_half(
-            h1_path, "2H", h1_dur, match_dir, interval_min, use_ocr, opp_ranges,
+            h1_path, "2H", h1_dur, match_dir, interval_min, use_ocr,
             start_f=mid_f, end_f=nf_tmp)
         all_tracks.extend(h2_tracks)
         all_frames.extend(h2_frames)
         opp_log_2h = opp2
     else:
         h1_tracks, h1_frames, opp1 = process_half(
-            h1_path, "1H", 0.0, match_dir, interval_min, use_ocr, opp_ranges)
+            h1_path, "1H", 0.0, match_dir, interval_min, use_ocr)
         all_tracks.extend(h1_tracks)
         all_frames.extend(h1_frames)
         opp_log_1h = opp1
@@ -1320,7 +1336,7 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
             h1_dur = nf_tmp / fps_tmp / 60.0
 
             h2_tracks, h2_frames, opp2 = process_half(
-                h2_path, "2H", h1_dur, match_dir, interval_min, use_ocr, opp_ranges)
+                h2_path, "2H", h1_dur, match_dir, interval_min, use_ocr)
             all_tracks.extend(h2_tracks)
             all_frames.extend(h2_frames)
             opp_log_2h = opp2
@@ -1411,7 +1427,7 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
             "label":           MATCH_LABELS.get(match_id, match_id),
             "stats":           stats,
             "direction":       {"flip_1h": flip_1h, "flip_2h": flip_2h},
-            "opponent_colors": [[lo.tolist(), hi.tolist()] for lo, hi in opp_ranges],
+            "detector":        "yolov8n",
             "players":         out_players,
         }, f, ensure_ascii=False, indent=2)
 
@@ -1419,8 +1435,7 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
         json.dump(subs, f, ensure_ascii=False, indent=2)
 
     # ── HTML report ──────────────────────────────────────────────
-    opp_np = [(np.array(lo), np.array(hi)) for lo, hi in opp_ranges] if opp_ranges else []
-    report = build_report(match_id, all_tracks, subs, stats, flip_1h, flip_2h, opp_np)
+    report = build_report(match_id, all_tracks, subs, stats, flip_1h, flip_2h, [])
     (match_dir / "tracking_report_v3.html").write_text(report, encoding="utf-8")
 
     print(f"\n  Players: {len(all_tracks)}  Jersey#: {n_with_jersey}  Subs: {len(subs)}")

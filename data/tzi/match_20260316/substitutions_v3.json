@@ -1,11 +1,11 @@
 [
   {
-    "time_min": 66.9,
-    "player_out": "P002",
+    "time_min": 79.9,
+    "player_out": "P006",
     "player_out_jersey": null,
-    "player_in": "P048",
+    "player_in": "P050",
     "player_in_jersey": null,
-    "zone": "D1",
-    "confidence": 0.05
+    "zone": "D3",
+    "confidence": 0.04
   }
 ]
