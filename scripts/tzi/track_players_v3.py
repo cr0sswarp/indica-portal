@@ -467,7 +467,12 @@ def _get_ocr():
     return _ocr_reader
 
 
-def read_jersey_number(crop, use_ocr=True):
+def read_jersey_number(crop, use_ocr=True, allowed=None):
+    """Read jersey number from crop.
+
+    allowed: set of int — if provided, only return numbers in this set
+             (roster constraint). Eliminates false positives from opponent numbers.
+    """
     if not use_ocr or crop is None or crop.size == 0:
         return None
     reader = _get_ocr()
@@ -479,13 +484,19 @@ def read_jersey_number(crop, use_ocr=True):
         return None
     roi  = cv2.resize(roi, (roi.shape[1] * 3, roi.shape[0] * 3))
     gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
-    _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+    # Try both inverse and normal thresholds — jersey numbers may be
+    # light-on-dark (maroon) or dark-on-light depending on jersey design
+    _, thresh_inv  = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+    _, thresh_norm = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY     + cv2.THRESH_OTSU)
     try:
-        results = reader.readtext(thresh, allowlist="0123456789", detail=0, paragraph=False)
-        for r in results:
-            r = r.strip()
-            if r.isdigit() and 1 <= int(r) <= 99:
-                return int(r)
+        for thresh in (thresh_inv, thresh_norm):
+            results = reader.readtext(thresh, allowlist="0123456789", detail=0, paragraph=False)
+            for r in results:
+                r = r.strip()
+                if r.isdigit() and 1 <= int(r) <= 99:
+                    n = int(r)
+                    if allowed is None or n in allowed:
+                        return n
     except Exception:
         pass
     return None
@@ -683,13 +694,13 @@ class PlayerTrackerV3:
         unmatched = {j for j in range(m) if j not in used_j}
         return matched, unmatched
 
-    def update(self, dets, t_min, half, use_ocr=True):
+    def update(self, dets, t_min, half, use_ocr=True, allowed=None):
         matched, unmatched = self._match(dets, self.active)
 
         for tid, j in matched.items():
             d = dets[j]
             self.active[tid].update(d, t_min, half)
-            self.active[tid].vote_jersey(read_jersey_number(d["crop"], use_ocr))
+            self.active[tid].vote_jersey(read_jersey_number(d["crop"], use_ocr, allowed))
 
         for tid in list(self.active.keys()):
             if tid not in matched:
@@ -724,7 +735,7 @@ class PlayerTrackerV3:
                                      float(gap_frames))
                 tr.disappeared = 0
                 tr.update(d, t_min, half)
-                tr.vote_jersey(read_jersey_number(d["crop"], use_ocr))
+                tr.vote_jersey(read_jersey_number(d["crop"], use_ocr, allowed))
                 self.active[best_tid] = tr
             else:
                 still_unmatched.add(j)
@@ -738,7 +749,7 @@ class PlayerTrackerV3:
             d  = dets[j]
             tr = self._new_track(d)
             tr.update(d, t_min, half)
-            tr.vote_jersey(read_jersey_number(d["crop"], use_ocr))
+            tr.vote_jersey(read_jersey_number(d["crop"], use_ocr, allowed))
             self.active[self.nid - 1] = tr
 
         return list(self.active.values())
@@ -826,7 +837,9 @@ def merge_tracks(tracks):
                 for num, cnt in tj.jersey_votes.items():
                     ti.jersey_votes[num] += cnt
                 if ti.jersey_votes:
-                    ti.jersey_number = max(ti.jersey_votes, key=ti.jersey_votes.get)
+                    top = max(ti.jersey_votes, key=ti.jersey_votes.get)
+                    if ti.jersey_votes[top] >= 2:
+                        ti.jersey_number = top
                 used[best_j] = True
                 merged = True
             if not used[i]:
@@ -1198,7 +1211,7 @@ TZI v3 — Tactical Zone Intelligence · Indica Labs · 2026</div>
 # ── Half processing ───────────────────────────────────────────────
 
 def process_half(video_path, half_label, t_offset, match_dir, interval_min,
-                  use_ocr, start_f=0, end_f=None):
+                  use_ocr, start_f=0, end_f=None, allowed_numbers=None):
     """Process one half. For combined full-match videos, pass start_f/end_f to
     process only that half's frame range (local time is relative to start_f)."""
     cap     = cv2.VideoCapture(str(video_path))
@@ -1235,7 +1248,7 @@ def process_half(video_path, half_label, t_offset, match_dir, interval_min,
         t_min   = local_t + t_offset
         dets_w, dets_o = detect_players_yolo(frame)
 
-        active = tracker.update(dets_w, t_min, half_label, use_ocr)
+        active = tracker.update(dets_w, t_min, half_label, use_ocr, allowed_numbers)
 
         # Record opponent centroid for direction inference
         if dets_o:
@@ -1277,6 +1290,73 @@ def process_half(video_path, half_label, t_offset, match_dir, interval_min,
 
 # ── Main ──────────────────────────────────────────────────────────
 
+def _load_rosters():
+    """Load per-match roster from data/tzi/rosters.json."""
+    roster_path = DATA_TZI / "rosters.json"
+    try:
+        with open(roster_path, encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("matches", {})
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def assign_jersey_numbers_hungarian(tracks, known_numbers):
+    """Assign jersey numbers to tracks using Hungarian algorithm.
+
+    For each (track, jersey) pair, build a cost matrix:
+      - 0.0  if track already voted for that number (confident OCR read)
+      - 0.5  if track voted for it once (weak read)
+      - 1.0  otherwise (no OCR evidence, positional fallback only)
+    Unassigned tracks keep whatever jersey_number they had (or None).
+    """
+    if not known_numbers or not tracks:
+        return tracks
+    try:
+        from scipy.optimize import linear_sum_assignment
+    except ImportError:
+        print("  [hungarian] scipy not available — skipping assignment")
+        return tracks
+
+    # Only consider tracks that appear in enough frames to be reliable
+    candidates = [t for t in tracks if len(t.sightings) >= 3]
+    if not candidates:
+        return tracks
+
+    nums = sorted(known_numbers)
+    n_t, n_j = len(candidates), len(nums)
+    size = max(n_t, n_j)
+
+    # Cost matrix (padded to square with high cost)
+    # votes=0 → cost=2.0 (won't be assigned — no OCR evidence)
+    # votes=1 → cost=0.5 (weak read, assign if no conflict)
+    # votes≥2 → cost=0.0 (confident read, always assign)
+    cost = np.full((size, size), 2.0)
+    for i, tr in enumerate(candidates):
+        for jj, num in enumerate(nums):
+            votes = tr.jersey_votes.get(num, 0)
+            if votes >= 2:
+                cost[i, jj] = 0.0
+            elif votes == 1:
+                cost[i, jj] = 0.5
+
+    row_ind, col_ind = linear_sum_assignment(cost)
+
+    assigned = set()
+    for i, jj in zip(row_ind, col_ind):
+        if i >= n_t or jj >= n_j:
+            continue
+        c = cost[i, jj]
+        # Only assign when there is actual OCR evidence (cost < 2.0)
+        if c < 2.0:
+            candidates[i].jersey_number = nums[jj]
+            assigned.add(nums[jj])
+
+    assigned_str = ", ".join(f"#{n}" for n in sorted(assigned))
+    print(f"  [hungarian] Assigned {len(assigned)}/{n_j} numbers: {assigned_str}")
+    return tracks
+
+
 def process_match(match_id, interval_min, use_ocr, videos_dir):
     match_dir = DATA_TZI / f"match_{match_id}"
     match_dir.mkdir(parents=True, exist_ok=True)
@@ -1290,6 +1370,16 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
     if not h1_path.exists():
         print(f"  [{match_id}] Video not found: {h1_path} — skip")
         return False
+
+    # Load roster for this match
+    all_rosters = _load_rosters()
+    match_roster = all_rosters.get(match_id, {}).get("waseda", {})
+    starters = match_roster.get("starters", [])
+    allowed_numbers = set(starters) if starters else None
+    if allowed_numbers:
+        print(f"\n  [roster] Waseda starters: {sorted(allowed_numbers)}")
+    else:
+        print(f"\n  [roster] No roster found for {match_id} — unconstrained OCR")
 
     print(f"\n{'='*60}")
     print(f"  match_{match_id}  {MATCH_LABELS.get(match_id, match_id)}")
@@ -1312,20 +1402,21 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
 
         h1_tracks, h1_frames, opp1 = process_half(
             h1_path, "1H", 0.0, match_dir, interval_min, use_ocr,
-            start_f=0, end_f=mid_f)
+            start_f=0, end_f=mid_f, allowed_numbers=allowed_numbers)
         all_tracks.extend(h1_tracks)
         all_frames.extend(h1_frames)
         opp_log_1h = opp1
 
         h2_tracks, h2_frames, opp2 = process_half(
             h1_path, "2H", h1_dur, match_dir, interval_min, use_ocr,
-            start_f=mid_f, end_f=nf_tmp)
+            start_f=mid_f, end_f=nf_tmp, allowed_numbers=allowed_numbers)
         all_tracks.extend(h2_tracks)
         all_frames.extend(h2_frames)
         opp_log_2h = opp2
     else:
         h1_tracks, h1_frames, opp1 = process_half(
-            h1_path, "1H", 0.0, match_dir, interval_min, use_ocr)
+            h1_path, "1H", 0.0, match_dir, interval_min, use_ocr,
+            allowed_numbers=allowed_numbers)
         all_tracks.extend(h1_tracks)
         all_frames.extend(h1_frames)
         opp_log_1h = opp1
@@ -1339,7 +1430,8 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
             h1_dur = nf_tmp / fps_tmp / 60.0
 
             h2_tracks, h2_frames, opp2 = process_half(
-                h2_path, "2H", h1_dur, match_dir, interval_min, use_ocr)
+                h2_path, "2H", h1_dur, match_dir, interval_min, use_ocr,
+                allowed_numbers=allowed_numbers)
             all_tracks.extend(h2_tracks)
             all_frames.extend(h2_frames)
             opp_log_2h = opp2
@@ -1349,6 +1441,11 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
     n_frames_total = len(all_frames)
     all_tracks = filter_by_min_sightings(all_tracks, n_frames_total)
     print(f"After  merge: {len(all_tracks)} tracks ({n_frames_total} frames)")
+
+    # Hungarian assignment: map persistent tracks → known jersey numbers
+    if allowed_numbers:
+        print("  Running Hungarian jersey assignment...")
+        all_tracks = assign_jersey_numbers_hungarian(all_tracks, allowed_numbers)
 
     subs = detect_substitutions(all_tracks)
     print(f"Substitutions: {len(subs)}")
@@ -1416,7 +1513,9 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
             zones_n[s.get("zone_norm", s["zone"])] += 1
         out_players.append({
             "player_id":     tr.tid,
+            "team":          "waseda",
             "jersey_number": tr.jersey_number,
+            "jersey_votes":  dict(tr.jersey_votes),
             "n_sightings":   len(tr.sightings),
             "zone_dist":     dict(zones),
             "zone_dist_norm": dict(zones_n),
