@@ -48,3 +48,4 @@ data/tzi/*/validation/
 data/tzi/*/manual_id/
 data/tzi/*/frames_v2/
 data/tzi/*/frames_annotated/
+data/tzi/*/diag_*.jpg
