@@ -1,0 +1,391 @@
+{
+  "matches": [
+    {
+      "match": "20260314",
+      "label": "vs埼玉大 (03/14)",
+      "haru": {
+        "player_id": "P10",
+        "n_sightings": 8,
+        "position": {
+          "archetype": "アンカー",
+          "desc": "守備的MF / ピボーテ",
+          "avg_x": 48.2,
+          "avg_y": 34.5,
+          "std_x": 14.5,
+          "std_y": 6.0,
+          "primary_lane": "中央",
+          "lane_group": "C",
+          "confidence": 0.81
+        },
+        "cognition": {
+          "score": 86,
+          "lead": 0.65,
+          "sync": 0.36,
+          "lag": -0.38,
+          "note": "フェーズ先読み型 (先に動く)"
+        },
+        "principle": {
+          "score": 86,
+          "halfspace_occ": 0.38,
+          "width_occ": 0.0,
+          "central_occ": 0.62,
+          "detail": [
+            "中央安定 62%",
+            "ポジション規律◎"
+          ]
+        },
+        "creativity": {
+          "score": 59,
+          "entropy": 0.44,
+          "value_intrusion": 0.5,
+          "line_break": 0.25,
+          "creative_hotspot": "中央 × 敵陣中盤"
+        },
+        "protagonist": {
+          "score": 50,
+          "avg_links": 2.0
+        },
+        "tactical_iq": 72
+      },
+      "hint_used": null
+    },
+    {
+      "match": "20260316",
+      "label": "vs岐阜協立 (03/16)",
+      "haru": {
+        "player_id": "P08",
+        "n_sightings": 12,
+        "position": {
+          "archetype": "アンカー",
+          "desc": "守備的MF / ピボーテ",
+          "avg_x": 57.7,
+          "avg_y": 33.8,
+          "std_x": 13.9,
+          "std_y": 9.0,
+          "primary_lane": "中央",
+          "lane_group": "C",
+          "confidence": 0.88
+        },
+        "cognition": {
+          "score": 45,
+          "lead": -0.06,
+          "sync": -0.04,
+          "lag": 0.08,
+          "note": "反応型 (ボールに反応)"
+        },
+        "principle": {
+          "score": 84,
+          "halfspace_occ": 0.33,
+          "width_occ": 0.08,
+          "central_occ": 0.58,
+          "detail": [
+            "中央安定 58%",
+            "ポジション規律◎"
+          ]
+        },
+        "creativity": {
+          "score": 74,
+          "entropy": 0.51,
+          "value_intrusion": 0.57,
+          "line_break": 0.42,
+          "creative_hotspot": "中央 × 敵陣中盤"
+        },
+        "protagonist": {
+          "score": 85,
+          "avg_links": 3.4
+        },
+        "tactical_iq": 71
+      },
+      "hint_used": null
+    },
+    {
+      "match": "20260317mid",
+      "label": "vs中京U-19 (03/17)",
+      "haru": {
+        "player_id": "P05",
+        "n_sightings": 8,
+        "position": {
+          "archetype": "セントラル",
+          "desc": "中央MF / インテリオール",
+          "avg_x": 52.4,
+          "avg_y": 15.2,
+          "std_x": 40.0,
+          "std_y": 2.5,
+          "primary_lane": "左ハーフスペース",
+          "lane_group": "H",
+          "confidence": 0.81
+        },
+        "cognition": {
+          "score": 72,
+          "lead": 0.06,
+          "sync": 0.45,
+          "lag": -0.59,
+          "note": "同期型 (チームと連動)"
+        },
+        "principle": {
+          "score": 87,
+          "halfspace_occ": 0.75,
+          "width_occ": 0.25,
+          "central_occ": 0.0,
+          "detail": [
+            "ライン間占有 75%"
+          ]
+        },
+        "creativity": {
+          "score": 72,
+          "entropy": 0.51,
+          "value_intrusion": 0.54,
+          "line_break": 0.5,
+          "creative_hotspot": "左ハーフスペース × 敵陣深部"
+        },
+        "protagonist": {
+          "score": 15,
+          "avg_links": 0.6
+        },
+        "tactical_iq": 67
+      },
+      "hint_used": null
+    },
+    {
+      "match": "20260317osaka",
+      "label": "vs大阪学院 (03/17)",
+      "haru": {
+        "player_id": "P07",
+        "n_sightings": 7,
+        "position": {
+          "archetype": "セントラル",
+          "desc": "中央MF / インテリオール",
+          "avg_x": 54.3,
+          "avg_y": 50.0,
+          "std_x": 10.7,
+          "std_y": 7.1,
+          "primary_lane": "右ハーフスペース",
+          "lane_group": "H",
+          "confidence": 1.0
+        },
+        "cognition": {
+          "score": 88,
+          "lead": 0.53,
+          "sync": 0.03,
+          "lag": -0.56,
+          "note": "フェーズ先読み型 (先に動く)"
+        },
+        "principle": {
+          "score": 85,
+          "halfspace_occ": 0.71,
+          "width_occ": 0.29,
+          "central_occ": 0.0,
+          "detail": [
+            "ライン間占有 71%"
+          ]
+        },
+        "creativity": {
+          "score": 65,
+          "entropy": 0.43,
+          "value_intrusion": 0.6,
+          "line_break": 0.29,
+          "creative_hotspot": "右ハーフスペース × 自陣前"
+        },
+        "protagonist": {
+          "score": 75,
+          "avg_links": 3.0
+        },
+        "tactical_iq": 78
+      },
+      "hint_used": null
+    },
+    {
+      "match": "20260318",
+      "label": "vs作新学院 (03/18)",
+      "haru": {
+        "player_id": "P13",
+        "n_sightings": 8,
+        "position": {
+          "archetype": "アンカー",
+          "desc": "守備的MF / ピボーテ",
+          "avg_x": 50.3,
+          "avg_y": 31.0,
+          "std_x": 29.0,
+          "std_y": 9.0,
+          "primary_lane": "中央",
+          "lane_group": "C",
+          "confidence": 0.81
+        },
+        "cognition": {
+          "score": 96,
+          "lead": 0.68,
+          "sync": -0.4,
+          "lag": -0.64,
+          "note": "フェーズ先読み型 (先に動く)"
+        },
+        "principle": {
+          "score": 76,
+          "halfspace_occ": 0.38,
+          "width_occ": 0.0,
+          "central_occ": 0.62,
+          "detail": [
+            "中央安定 62%"
+          ]
+        },
+        "creativity": {
+          "score": 74,
+          "entropy": 0.56,
+          "value_intrusion": 0.53,
+          "line_break": 0.38,
+          "creative_hotspot": "中央 × 敵陣中盤"
+        },
+        "protagonist": {
+          "score": 100,
+          "avg_links": 4.5
+        },
+        "tactical_iq": 84
+      },
+      "hint_used": null
+    },
+    {
+      "match": "20260325",
+      "label": "vs立教大 (03/25)",
+      "haru": {
+        "player_id": "P06",
+        "n_sightings": 9,
+        "position": {
+          "archetype": "セントラル",
+          "desc": "中央MF / インテリオール",
+          "avg_x": 39.8,
+          "avg_y": 22.0,
+          "std_x": 27.7,
+          "std_y": 9.9,
+          "primary_lane": "左ハーフスペース",
+          "lane_group": "H",
+          "confidence": 0.81
+        },
+        "cognition": {
+          "score": 71,
+          "lead": 0.45,
+          "sync": 0.1,
+          "lag": -0.16,
+          "note": "フェーズ先読み型 (先に動く)"
+        },
+        "principle": {
+          "score": 94,
+          "halfspace_occ": 0.89,
+          "width_occ": 0.0,
+          "central_occ": 0.11,
+          "detail": [
+            "ライン間占有 89%"
+          ]
+        },
+        "creativity": {
+          "score": 66,
+          "entropy": 0.46,
+          "value_intrusion": 0.46,
+          "line_break": 0.44,
+          "creative_hotspot": "左ハーフスペース × 敵陣中盤"
+        },
+        "protagonist": {
+          "score": 19,
+          "avg_links": 0.8
+        },
+        "tactical_iq": 68
+      },
+      "hint_used": null
+    },
+    {
+      "match": "20260329",
+      "label": "vs川崎U-18 (03/29)",
+      "haru": {
+        "player_id": "P04",
+        "n_sightings": 5,
+        "position": {
+          "archetype": "アンカー",
+          "desc": "守備的MF / ピボーテ",
+          "avg_x": 50.1,
+          "avg_y": 40.3,
+          "std_x": 9.4,
+          "std_y": 1.4,
+          "primary_lane": "中央",
+          "lane_group": "C",
+          "confidence": 1.0
+        },
+        "cognition": {
+          "score": 93,
+          "lead": 0.32,
+          "sync": -0.04,
+          "lag": -0.94,
+          "note": "フェーズ先読み型 (先に動く)"
+        },
+        "principle": {
+          "score": 86,
+          "halfspace_occ": 0.4,
+          "width_occ": 0.0,
+          "central_occ": 0.6,
+          "detail": [
+            "中央安定 60%",
+            "ポジション規律◎"
+          ]
+        },
+        "creativity": {
+          "score": 56,
+          "entropy": 0.39,
+          "value_intrusion": 0.54,
+          "line_break": 0.2,
+          "creative_hotspot": "中央 × 自陣前"
+        },
+        "protagonist": {
+          "score": 5,
+          "avg_links": 0.2
+        },
+        "tactical_iq": 66
+      },
+      "hint_used": null
+    },
+    {
+      "match": "20260405",
+      "label": "vs獨協大 (04/05)",
+      "haru": {
+        "player_id": "P03",
+        "n_sightings": 6,
+        "position": {
+          "archetype": "セントラル",
+          "desc": "中央MF / インテリオール",
+          "avg_x": 63.5,
+          "avg_y": 25.6,
+          "std_x": 34.2,
+          "std_y": 6.2,
+          "primary_lane": "左ハーフスペース",
+          "lane_group": "H",
+          "confidence": 0.79
+        },
+        "cognition": {
+          "score": 27,
+          "lead": -0.23,
+          "sync": 0.53,
+          "lag": 0.42,
+          "note": "同期型 (チームと連動)"
+        },
+        "principle": {
+          "score": 66,
+          "halfspace_occ": 0.33,
+          "width_occ": 0.0,
+          "central_occ": 0.67,
+          "detail": [
+            "ライン間占有 33%"
+          ]
+        },
+        "creativity": {
+          "score": 71,
+          "entropy": 0.46,
+          "value_intrusion": 0.63,
+          "line_break": 0.33,
+          "creative_hotspot": "中央 × 敵陣深部"
+        },
+        "protagonist": {
+          "score": 16,
+          "avg_links": 0.7
+        },
+        "tactical_iq": 50
+      },
+      "hint_used": null
+    }
+  ]
+}
