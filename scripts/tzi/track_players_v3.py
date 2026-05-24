@@ -132,11 +132,14 @@ def fx_to_zone(fx):
 
 def normalize_pos(fx, fy, flip):
     """Normalize field coordinates so Waseda always attacks right (x→105).
-    Only X is flipped — 'right touchline' stays the same side all game.
-    Teams swap ENDS (goals) at HT, not their wing assignments.
+
+    Switching ends at half-time is a 180° rotation about the pitch center
+    as seen by the fixed camera, so BOTH axes flip: (x,y) → (FW-x, FH-y).
+    Flipping X only would be a mirror image, which swaps left/right wings
+    between halves and makes a left-back look like a right-back.
     """
     if flip:
-        return round(FW - fx, 2), round(fy, 2)
+        return round(FW - fx, 2), round(FH - fy, 2)
     return round(fx, 2), round(fy, 2)
 
 
