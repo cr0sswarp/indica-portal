@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "time_min": 34.5,
+    "player_out": "P019",
+    "player_out_jersey": null,
+    "player_in": "P035",
+    "player_in_jersey": null,
+    "zone": "A2",
+    "confidence": 0.03
+  }
+]

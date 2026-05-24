@@ -19,14 +19,14 @@ tr:hover td {background:#161b22}
 </style></head><body>
 <div class="hero">
   <h1>TZI Player Tracking v3 — match_20260405</h1>
-  <p>Dual-Team Detection · Direction Normalization · Y-axis Fix · Re-ID + Jersey OCR</p>
+  <p>Dual-Team Detection · Direction Normalization · Kalman+EIoU · OC-SORT Re-ID · Savitzky-Golay Smoothing</p>
 </div>
 <div class="stats">
-  <div class="stat"><div class="v" style="color:#3fb950">2</div><div class="l">Unique Players</div></div>
+  <div class="stat"><div class="v" style="color:#3fb950">6</div><div class="l">Unique Players</div></div>
   <div class="stat"><div class="v" style="color:#58a6ff">26</div><div class="l">Frames Sampled</div></div>
   <div class="stat"><div class="v" style="color:#f0883e">0</div><div class="l">Jersey # Found</div></div>
   <div class="stat"><div class="v" style="color:#d2a8ff">0</div><div class="l">Substitutions</div></div>
-  <div class="stat"><div class="v" style="color:#79c0ff">0.2</div><div class="l">Avg/Frame</div></div>
+  <div class="stat"><div class="v" style="color:#79c0ff">1.0</div><div class="l">Avg/Frame</div></div>
   <div class="stat">
     <div class="l" style="margin-bottom:4px">Direction Normalization</div>
     <span class="badge" style="background:#f85149;color:#fff">1H: FLIP</span>
@@ -36,22 +36,46 @@ tr:hover td {background:#161b22}
 <div class="content">
   <h2>Opponent Color Detection</h2>
   <p style="font-size:12px;color:#8b949e;margin-bottom:8px">Auto-detected opponent jersey HSV clusters used as spatial augmentation:</p>
-  <div style="margin-bottom:16px"><span style='background:hsl(58deg,60%,40%);color:white;padding:2px 8px;border-radius:4px;font-size:11px;margin:2px'>H:14-44 S:96-196</span> <span style='background:hsl(36deg,60%,40%);color:white;padding:2px 8px;border-radius:4px;font-size:11px;margin:2px'>H:3-33 S:0-87</span> <span style='background:hsl(242deg,60%,40%);color:white;padding:2px 8px;border-radius:4px;font-size:11px;margin:2px'>H:106-136 S:0-71</span> </div>
+  <div style="margin-bottom:16px"><span style='background:hsl(42deg,60%,40%);color:white;padding:2px 8px;border-radius:4px;font-size:11px;margin:2px'>H:6-36 S:0-85</span> <span style='background:hsl(62deg,60%,40%);color:white;padding:2px 8px;border-radius:4px;font-size:11px;margin:2px'>H:16-46 S:103-203</span> <span style='background:hsl(244deg,60%,40%);color:white;padding:2px 8px;border-radius:4px;font-size:11px;margin:2px'>H:107-137 S:0-72</span> </div>
 
-  <h2>Player List (2名 · Normalized Coordinates)</h2>
+  <h2>Player List (6名 · Normalized Coordinates)</h2>
   <table><thead><tr><th>Track ID</th><th>Jersey #</th><th>Sightings</th><th>Active Period</th><th>Primary Zone</th></tr></thead>
   <tbody><tr>
-          <td style="font-weight:700;color:#58a6ff">P02</td>
-          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>3</td>
-          <td>12–36 min</td>
-          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
-        </tr><tr>
           <td style="font-weight:700;color:#58a6ff">P01</td>
           <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
-          <td>3</td>
-          <td>6–18 min</td>
+          <td>4</td>
+          <td>3–27 min</td>
           <td><span style="background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A1</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P03</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>6</td>
+          <td>9–61 min</td>
+          <td><span style="background:#3498db;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D1</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P04</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>4</td>
+          <td>9–36 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P05</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>4</td>
+          <td>12–39 min</td>
+          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P02</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>5</td>
+          <td>6–64 min</td>
+          <td><span style="background:#f1c40f;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">A3</span></td>
+        </tr><tr>
+          <td style="font-weight:700;color:#58a6ff">P06</td>
+          <td style="font-size:1.2rem;font-weight:700;color:#f0883e">#?</td>
+          <td>4</td>
+          <td>52–64 min</td>
+          <td><span style="background:#2980b9;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px">D2</span></td>
         </tr></tbody></table>
 
   <h2>Substitutions (0件)</h2>
