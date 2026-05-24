@@ -473,8 +473,68 @@ HARU_GROUND_TRUTH = {
 }
 
 
-def _range_dist(v: float, lo: float, hi: float) -> float:
+# ── 消去法サポート: GK・CB先特定 ─────────────────────────────
+# GK・CBを先に識別して候補から除外することで、羽瑠(右SB)への
+# 一意特定精度を高める。
+#
+# 根拠:
+#   正規化座標でWasedaは常に x→105 へ攻撃。
+#   GK = X最小 (2-15m), Y中央, 移動量(std_x)極小
+#   CB = X低め (10-30m), Y中央 (20-48m), std_x 小さい
+#   → 3トラックを除外後、右フランク(Y=42-68, X=15-42)の最有力候補が羽瑠
+
+def identify_gk_cbs(all_tracks: list, half: str | None = None,
+                    min_n: int = 4) -> set[int]:
+    """GK(1) + CB(2) のトラックindexセットを返す. 消去法に使用."""
+    candidates = []
+    for i, t in enumerate(all_tracks):
+        sigs = ([s for s in t["sightings"] if s.get("half") == half]
+                if half else t["sightings"])
+        if len(sigs) < min_n:
+            continue
+        xs = np.array([get_coords(s)[0] for s in sigs])
+        ys = np.array([get_coords(s)[1] for s in sigs])
+        candidates.append({
+            "idx": i,
+            "ax": float(np.mean(xs)),
+            "ay": float(np.mean(ys)),
+            "sx": float(np.std(xs)),
+            "sy": float(np.std(ys)),
+            "n": len(sigs),
+        })
+    if not candidates:
+        return set()
+
+    # GK: X最小 かつ std_x が最小グループから選択
+    # (GKは自陣ゴール前でほぼ動かない)
+    cands_sorted_x = sorted(candidates, key=lambda c: c["ax"])
+    gk_pool = cands_sorted_x[:max(3, len(cands_sorted_x) // 4)]
+    gk = min(gk_pool, key=lambda c: c["sx"])  # std_x最小=最も動かない
+    excluded = {gk["idx"]}
+
+    # CB×2: GK除外後, X低め (10-40m), Y中央 (20-50m) で安定した2トラック
+    cb_cands = [c for c in candidates
+                if c["idx"] not in excluded
+                and 10 <= c["ax"] <= 40
+                and 20 <= c["ay"] <= 50
+                and c["sx"] < 18]
+    cb_cands.sort(key=lambda c: (c["ax"], c["sx"]))  # X低め・安定順
+    for cb in cb_cands[:2]:
+        excluded.add(cb["idx"])
+
+    return excluded
+
+
     """値が[lo,hi]外なら最近端までの距離, 内なら0."""
+    if v < lo:
+        return lo - v
+    if v > hi:
+        return v - hi
+    return 0.0
+
+
+def _range_dist(v: float, lo: float, hi: float) -> float:
+    """値が[lo,hi]外なら最近端までの距離、内なら0."""
     if v < lo:
         return lo - v
     if v > hi:
@@ -513,16 +573,19 @@ def _segment_sightings(track: dict, seg: dict) -> list:
 
 
 def identify_haru_track(all_tracks: list, role: str, half: str | None,
-                        min_n: int = 4):
+                        min_n: int = 4, exclude: set | None = None):
     """指定ロール・ハーフに最も合致するトラックを返す.
-    返り値: (best_idx, fit_conf, uniqueness). best_idx=Noneなら該当なし。
+    返り値: (best_idx, fit_conf, uniqueness).
 
-    - fit_conf: 選ばれたトラックのゾーン適合度 (0-1)
-    - uniqueness: 2位候補との分離度 (0-1)。複数トラックが同ゾーンに
-      該当すると低下 → 「これが羽瑠だ」の確実性を正直に反映。
+    exclude: GK/CBなど除外済みトラックのindexセット (消去法)。
+    - fit_conf: ゾーン適合度 (0-1)
+    - uniqueness: 2位候補との分離度 (0-1)。消去法でさらに改善する。
     """
+    exclude = exclude or set()
     scored = []
     for i, t in enumerate(all_tracks):
+        if i in exclude:
+            continue
         sigs = ([s for s in t["sightings"] if s.get("half") == half]
                 if half else t["sightings"])
         if len(sigs) < min_n:
@@ -555,14 +618,24 @@ def identify_haru(all_tracks: list, profiles: list, match_id: str) -> dict:
     """
     gt = HARU_GROUND_TRUTH.get(match_id)
     if gt:
+        # 消去法: 各ハーフのGK+CBを先特定して除外
+        excluded_by_half: dict[str | None, set] = {}
+        for half_key in (None, "1H", "2H"):
+            excl = identify_gk_cbs(all_tracks, half=half_key)
+            excluded_by_half[half_key] = excl
+
         seg_results = []
+        running_exclude: set[int] = set()  # 既に確定したHaruトラックも除外
         for seg in gt["segments"]:
-            idx, fit, uniq = identify_haru_track(all_tracks, seg["role"], seg["half"])
-            # 総合信頼度 = ゾーン適合度 × 一意性 (どちらも高い時のみ高信頼)
+            h = seg["half"]
+            exclude = excluded_by_half.get(h, set()) | running_exclude
+            idx, fit, uniq = identify_haru_track(
+                all_tracks, seg["role"], h, exclude=exclude)
+            # 総合信頼度 = ゾーン適合度 × 一意性 (消去法で一意性が改善)
             conf = (round(fit * (0.5 + 0.5 * uniq), 2)
                     if (fit is not None and uniq is not None) else None)
             seg_results.append({
-                "half": seg["half"], "role": seg["role"],
+                "half": h, "role": seg["role"],
                 "label": seg.get("label", seg["role"]),
                 "t_rel": seg.get("t_rel"),
                 "track_idx": idx,
@@ -570,6 +643,9 @@ def identify_haru(all_tracks: list, profiles: list, match_id: str) -> dict:
                 "confidence": conf,
                 "fit": fit, "uniqueness": uniq,
             })
+            # 確定したトラックを後続セグメントの除外リストに追加
+            if idx is not None:
+                running_exclude.add(idx)
         # primary = 最初のセグメント (常に1H右SB) のトラック
         primary = next((s["track_idx"] for s in seg_results
                         if s["track_idx"] is not None), None)

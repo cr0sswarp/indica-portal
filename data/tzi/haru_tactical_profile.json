@@ -4,137 +4,196 @@
       "match": "20260314",
       "label": "vs埼玉大 (03/14)",
       "haru": {
-        "player_id": "P23",
-        "n_sightings": 16,
+        "player_id": "P05",
+        "n_sightings": 9,
         "position": {
           "archetype": "サイドバック",
           "desc": "SB / ラテラル",
-          "avg_x": 35.4,
-          "avg_y": 44.5,
-          "std_x": 6.4,
-          "std_y": 14.0,
-          "primary_lane": "右ハーフスペース",
-          "lane_group": "H",
-          "confidence": 0.93,
+          "avg_x": 35.7,
+          "avg_y": 40.8,
+          "std_x": 13.9,
+          "std_y": 4.4,
+          "primary_lane": "中央",
+          "lane_group": "C",
+          "confidence": 1.0,
           "ground_truth": true
         },
         "cognition": {
-          "score": 39,
-          "lead": -0.28,
+          "score": 37,
+          "lead": -0.29,
           "sync": -0.19,
-          "lag": 0.01,
+          "lag": 0.08,
           "note": "反応型 (ボールに反応)"
         },
         "principle": {
-          "score": 72,
-          "halfspace_occ": 0.38,
-          "width_occ": 0.31,
-          "central_occ": 0.31,
+          "score": 50,
+          "halfspace_occ": 0.22,
+          "width_occ": 0.0,
+          "central_occ": 0.78,
           "detail": [
-            "幅の提供 31%",
-            "内側レーン進入(偽SB的)"
+            "幅の提供 0%"
           ]
         },
         "creativity": {
-          "score": 41,
-          "entropy": 0.5,
-          "value_intrusion": 0.31,
-          "line_break": 0.0,
+          "score": 54,
+          "entropy": 0.37,
+          "value_intrusion": 0.37,
+          "line_break": 0.33,
           "creative_hotspot": "中央 × 自陣中盤"
         },
         "protagonist": {
-          "score": 59,
-          "avg_links": 2.4
+          "score": 58,
+          "avg_links": 2.3
         },
-        "tactical_iq": 52
+        "tactical_iq": 49
       },
       "haru_id": {
-        "primary_idx": 30,
+        "primary_idx": 20,
         "segments": [
           {
             "half": "1H",
             "role": "サイドバック",
             "label": "右SB",
             "t_rel": null,
-            "track_idx": 30,
-            "player_id": "P23",
+            "track_idx": 20,
+            "player_id": "P05",
+            "confidence": 0.72,
+            "fit": 0.95,
+            "uniqueness": 0.51
+          },
+          {
+            "half": "2H",
+            "role": "サイドバック",
+            "label": "右SB",
+            "t_rel": [
+              0.0,
+              21.58
+            ],
+            "track_idx": 21,
+            "player_id": "P17",
             "confidence": 0.53,
             "fit": 1.0,
-            "uniqueness": 0.05
+            "uniqueness": 0.06
+          },
+          {
+            "half": "2H",
+            "role": "アンカー",
+            "label": "ボランチ",
+            "t_rel": [
+              21.58,
+              999.0
+            ],
+            "track_idx": 7,
+            "player_id": "P02",
+            "confidence": 0.52,
+            "fit": 1.0,
+            "uniqueness": 0.04
           }
         ],
-        "confidence": 0.53,
+        "confidence": 0.59,
         "method": "ground_truth",
-        "note": "前半=右SB / 後半21:35〜ボランチ(6番) ※後半動画欠落"
+        "note": "前半=右SB / 後半21:35〜ボランチ(6番)・試合終了まで"
       },
-      "position_change": null
+      "position_change": {
+        "changes": [
+          {
+            "from": "右SB",
+            "to": "ボランチ",
+            "vacated_zone": "X=30m Y=41m",
+            "new_zone": "X=39m Y=43m",
+            "advance_m": 9.6,
+            "covered_by": [
+              "P07",
+              "P16",
+              "P27",
+              "P33",
+              "P34"
+            ],
+            "hole": false,
+            "evidence_n": 15,
+            "confidence": 1.0,
+            "verdict": "味方がカバー(構造維持)"
+          }
+        ]
+      }
     },
     {
       "match": "20260316",
       "label": "vs岐阜協立 (03/16)",
       "haru": {
-        "player_id": "P47",
-        "n_sightings": 12,
+        "player_id": "P03",
+        "n_sightings": 6,
         "position": {
           "archetype": "サイドバック",
           "desc": "SB / ラテラル",
-          "avg_x": 32.7,
-          "avg_y": 46.2,
-          "std_x": 13.6,
-          "std_y": 8.3,
+          "avg_x": 33.3,
+          "avg_y": 51.7,
+          "std_x": 8.8,
+          "std_y": 11.1,
           "primary_lane": "右ハーフスペース",
           "lane_group": "H",
-          "confidence": 0.89,
+          "confidence": 0.9,
           "ground_truth": true
         },
         "cognition": {
-          "score": 47,
-          "lead": -0.19,
-          "sync": -0.18,
-          "lag": -0.12,
+          "score": 31,
+          "lead": -0.24,
+          "sync": 0.2,
+          "lag": 0.27,
           "note": "反応型 (ボールに反応)"
         },
         "principle": {
-          "score": 66,
-          "halfspace_occ": 0.58,
-          "width_occ": 0.17,
-          "central_occ": 0.25,
+          "score": 80,
+          "halfspace_occ": 0.33,
+          "width_occ": 0.5,
+          "central_occ": 0.17,
           "detail": [
-            "幅の提供 17%",
+            "幅の提供 50%",
             "内側レーン進入(偽SB的)"
           ]
         },
         "creativity": {
-          "score": 53,
-          "entropy": 0.43,
-          "value_intrusion": 0.37,
-          "line_break": 0.25,
-          "creative_hotspot": "右ハーフスペース × 自陣中盤"
+          "score": 37,
+          "entropy": 0.3,
+          "value_intrusion": 0.28,
+          "line_break": 0.17,
+          "creative_hotspot": "右ウイング × 自陣中盤"
         },
         "protagonist": {
-          "score": 60,
-          "avg_links": 2.4
+          "score": 25,
+          "avg_links": 1.0
         },
-        "tactical_iq": 56
+        "tactical_iq": 46
       },
       "haru_id": {
-        "primary_idx": 1,
+        "primary_idx": 17,
         "segments": [
           {
             "half": "1H",
             "role": "サイドバック",
             "label": "右SB",
             "t_rel": null,
-            "track_idx": 1,
-            "player_id": "P47",
-            "confidence": 0.53,
+            "track_idx": 17,
+            "player_id": "P03",
+            "confidence": 0.7,
             "fit": 1.0,
-            "uniqueness": 0.06
+            "uniqueness": 0.41
+          },
+          {
+            "half": "2H",
+            "role": "サイドバック",
+            "label": "右SB",
+            "t_rel": null,
+            "track_idx": 5,
+            "player_id": "P37",
+            "confidence": 0.62,
+            "fit": 1.0,
+            "uniqueness": 0.25
           }
         ],
-        "confidence": 0.53,
+        "confidence": 0.66,
         "method": "ground_truth",
-        "note": "90分通して右SB ※後半動画欠落 (前半のみ解析可)"
+        "note": "90分通して右SB"
       },
       "position_change": null
     },
@@ -206,12 +265,12 @@
             "t_rel": null,
             "track_idx": 29,
             "player_id": "P26",
-            "confidence": 0.56,
+            "confidence": 0.78,
             "fit": 0.98,
-            "uniqueness": 0.15
+            "uniqueness": 0.6
           }
         ],
-        "confidence": 0.54,
+        "confidence": 0.65,
         "method": "ground_truth",
         "note": "前半22:15〜右SB(6番) / 後半ボランチスタート〜23:15頃"
       },
@@ -301,14 +360,14 @@
             "role": "サイドバック",
             "label": "右SB",
             "t_rel": null,
-            "track_idx": 7,
-            "player_id": "P02",
-            "confidence": 0.52,
+            "track_idx": 9,
+            "player_id": "P23",
+            "confidence": 0.54,
             "fit": 1.0,
-            "uniqueness": 0.03
+            "uniqueness": 0.07
           }
         ],
-        "confidence": 0.55,
+        "confidence": 0.56,
         "method": "ground_truth",
         "note": "前後半とも右SB(6番) ※後半14:50は交代の出入り"
       },
@@ -373,25 +432,25 @@
       "match": "20260325",
       "label": "vs立教大 (03/25)",
       "haru": {
-        "player_id": "P10",
+        "player_id": "P03",
         "n_sightings": 5,
         "position": {
           "archetype": "サイドバック",
           "desc": "SB / ラテラル",
-          "avg_x": 25.4,
-          "avg_y": 41.9,
-          "std_x": 3.5,
-          "std_y": 5.4,
+          "avg_x": 46.1,
+          "avg_y": 41.6,
+          "std_x": 6.3,
+          "std_y": 3.7,
           "primary_lane": "右ハーフスペース",
           "lane_group": "H",
-          "confidence": 0.88,
+          "confidence": 1.0,
           "ground_truth": true
         },
         "cognition": {
-          "score": 7,
-          "lead": -0.6,
-          "sync": 0.59,
-          "lag": 0.62,
+          "score": 0,
+          "lead": -0.84,
+          "sync": -0.27,
+          "lag": 0.91,
           "note": "反応型 (ボールに反応)"
         },
         "principle": {
@@ -405,31 +464,31 @@
           ]
         },
         "creativity": {
-          "score": 25,
-          "entropy": 0.2,
-          "value_intrusion": 0.32,
+          "score": 42,
+          "entropy": 0.39,
+          "value_intrusion": 0.45,
           "line_break": 0.0,
-          "creative_hotspot": "右ハーフスペース × 自陣中盤"
+          "creative_hotspot": "右ハーフスペース × 自陣前"
         },
         "protagonist": {
-          "score": 45,
-          "avg_links": 1.8
+          "score": 20,
+          "avg_links": 0.8
         },
-        "tactical_iq": 34
+        "tactical_iq": 33
       },
       "haru_id": {
-        "primary_idx": 8,
+        "primary_idx": 0,
         "segments": [
           {
             "half": "1H",
             "role": "サイドバック",
             "label": "右SB",
             "t_rel": null,
-            "track_idx": 8,
-            "player_id": "P10",
-            "confidence": 0.66,
-            "fit": 0.99,
-            "uniqueness": 0.33
+            "track_idx": 0,
+            "player_id": "P03",
+            "confidence": 0.45,
+            "fit": 0.9,
+            "uniqueness": 0.0
           },
           {
             "half": "2H",
@@ -453,14 +512,14 @@
               29.5,
               999.0
             ],
-            "track_idx": 10,
-            "player_id": "P08",
-            "confidence": 0.91,
-            "fit": 1.0,
-            "uniqueness": 0.81
+            "track_idx": 3,
+            "player_id": "P07",
+            "confidence": 0.51,
+            "fit": 0.79,
+            "uniqueness": 0.28
           }
         ],
-        "confidence": 0.76,
+        "confidence": 0.56,
         "method": "ground_truth",
         "note": "前半=右SB / 後半29:30〜右ボランチ (ポジションチェンジ)"
       },
@@ -470,8 +529,8 @@
             "from": "右SB",
             "to": "右ボランチ",
             "vacated_zone": "X=50m Y=37m",
-            "new_zone": "X=43m Y=45m",
-            "advance_m": -7.1,
+            "new_zone": "X=69m Y=23m",
+            "advance_m": 19.1,
             "covered_by": [],
             "hole": true,
             "evidence_n": 8,
