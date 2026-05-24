@@ -1,0 +1,135 @@
+{
+  "match": "vs川崎U-18",
+  "jersey": "6",
+  "note": "auto-generated — please verify and correct manually",
+  "confirmed_positions": [
+    {
+      "frame": 9000,
+      "fx": 24.0,
+      "fy": 35.1,
+      "time_min": 5.0,
+      "half": "1H",
+      "note": "auto: player_idx=2"
+    },
+    {
+      "frame": 18000,
+      "fx": 46.8,
+      "fy": 39.8,
+      "time_min": 10.0,
+      "half": "1H",
+      "note": "auto: player_idx=1"
+    },
+    {
+      "frame": 27000,
+      "fx": 41.6,
+      "fy": 36.5,
+      "time_min": 15.0,
+      "half": "1H",
+      "note": "auto: player_idx=3"
+    },
+    {
+      "frame": 36000,
+      "fx": 32.3,
+      "fy": 46.4,
+      "time_min": 20.0,
+      "half": "1H",
+      "note": "auto: player_idx=3"
+    },
+    {
+      "frame": 45000,
+      "fx": 29.7,
+      "fy": 45.4,
+      "time_min": 25.0,
+      "half": "1H",
+      "note": "auto: player_idx=1"
+    },
+    {
+      "frame": 54000,
+      "fx": 27.2,
+      "fy": 41.6,
+      "time_min": 30.0,
+      "half": "1H",
+      "note": "auto: player_idx=2"
+    },
+    {
+      "frame": 63000,
+      "fx": 14.1,
+      "fy": 29.2,
+      "time_min": 35.0,
+      "half": "1H",
+      "note": "auto: player_idx=1"
+    },
+    {
+      "frame": 90000,
+      "fx": 50.7,
+      "fy": 60.6,
+      "time_min": 50.0,
+      "half": "2H",
+      "note": "auto: player_idx=1"
+    },
+    {
+      "frame": 99000,
+      "fx": 41.6,
+      "fy": 37.0,
+      "time_min": 55.0,
+      "half": "2H",
+      "note": "auto: player_idx=1"
+    },
+    {
+      "frame": 108000,
+      "fx": 36.7,
+      "fy": 38.0,
+      "time_min": 60.0,
+      "half": "2H",
+      "note": "auto: player_idx=3"
+    },
+    {
+      "frame": 117000,
+      "fx": 30.7,
+      "fy": 60.4,
+      "time_min": 65.0,
+      "half": "2H",
+      "note": "auto: player_idx=1"
+    },
+    {
+      "frame": 126000,
+      "fx": 38.2,
+      "fy": 53.0,
+      "time_min": 70.0,
+      "half": "2H",
+      "note": "auto: player_idx=1"
+    },
+    {
+      "frame": 135000,
+      "fx": 81.3,
+      "fy": 65.0,
+      "time_min": 75.0,
+      "half": "2H",
+      "note": "auto: player_idx=1"
+    },
+    {
+      "frame": 144000,
+      "fx": 39.8,
+      "fy": 61.3,
+      "time_min": 80.0,
+      "half": "2H",
+      "note": "auto: player_idx=1"
+    },
+    {
+      "frame": 153000,
+      "fx": 21.1,
+      "fy": 46.2,
+      "time_min": 85.0,
+      "half": "2H",
+      "note": "auto: player_idx=1"
+    },
+    {
+      "frame": 162000,
+      "fx": 29.9,
+      "fy": 40.1,
+      "time_min": 90.0,
+      "half": "2H",
+      "note": "auto: player_idx=1"
+    }
+  ]
+}

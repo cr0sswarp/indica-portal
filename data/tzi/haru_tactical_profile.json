@@ -1,0 +1,1609 @@
+{
+  "matches": [
+    {
+      "match": "20260314",
+      "label": "vs埼玉大 (03/14)",
+      "haru": {
+        "player_id": "P05",
+        "n_sightings": 9,
+        "position": {
+          "archetype": "サイドバック",
+          "desc": "SB / ラテラル",
+          "avg_x": 35.7,
+          "avg_y": 40.8,
+          "std_x": 13.9,
+          "std_y": 4.4,
+          "primary_lane": "中央",
+          "lane_group": "C",
+          "confidence": 1.0,
+          "ground_truth": true
+        },
+        "cognition": {
+          "score": 37,
+          "lead": -0.29,
+          "sync": -0.19,
+          "lag": 0.08,
+          "note": "反応型 (ボールに反応)"
+        },
+        "principle": {
+          "score": 50,
+          "halfspace_occ": 0.22,
+          "width_occ": 0.0,
+          "central_occ": 0.78,
+          "detail": [
+            "幅の提供 0%"
+          ]
+        },
+        "creativity": {
+          "score": 54,
+          "entropy": 0.37,
+          "value_intrusion": 0.37,
+          "line_break": 0.33,
+          "creative_hotspot": "中央 × 自陣中盤"
+        },
+        "protagonist": {
+          "score": 58,
+          "avg_links": 2.3
+        },
+        "tactical_iq": 49
+      },
+      "haru_id": {
+        "primary_idx": 20,
+        "segments": [
+          {
+            "half": "1H",
+            "role": "サイドバック",
+            "label": "右SB",
+            "t_rel": null,
+            "track_idx": 20,
+            "player_id": "P05",
+            "confidence": 0.53,
+            "fit": 0.95,
+            "uniqueness": 0.11,
+            "slot": "RB"
+          },
+          {
+            "half": "2H",
+            "role": "サイドバック",
+            "label": "右SB",
+            "t_rel": [
+              0.0,
+              21.58
+            ],
+            "track_idx": 21,
+            "player_id": "P17",
+            "confidence": 0.53,
+            "fit": 1.0,
+            "uniqueness": 0.06,
+            "slot": "RB"
+          },
+          {
+            "half": "2H",
+            "role": "アンカー",
+            "label": "ボランチ",
+            "t_rel": [
+              21.58,
+              999.0
+            ],
+            "track_idx": 7,
+            "player_id": "P02",
+            "confidence": 0.52,
+            "fit": 1.0,
+            "uniqueness": 0.04,
+            "slot": "DM"
+          }
+        ],
+        "confidence": 0.53,
+        "method": "ground_truth",
+        "note": "前半=右SB / 後半21:35〜ボランチ(6番)・試合終了まで",
+        "skeleton": {
+          "RW": {
+            "idx": 4,
+            "label": "右WG",
+            "dist": 3.3,
+            "ax": 75.3,
+            "ay": 59.5,
+            "runner_up": 4.7,
+            "player_id": "P21"
+          },
+          "RCM": {
+            "idx": 22,
+            "label": "右IH",
+            "dist": 3.4,
+            "ax": 54.2,
+            "ay": 41.2,
+            "runner_up": 4.3,
+            "player_id": "P06"
+          },
+          "RCB": {
+            "idx": 12,
+            "label": "右CB",
+            "dist": 3.8,
+            "ax": 22.4,
+            "ay": 39.6,
+            "runner_up": 13.5,
+            "player_id": "P15"
+          },
+          "LCM": {
+            "idx": 1,
+            "label": "左IH",
+            "dist": 4.3,
+            "ax": 51.8,
+            "ay": 27.1,
+            "runner_up": 6.9,
+            "player_id": "P07"
+          },
+          "LCB": {
+            "idx": 11,
+            "label": "左CB",
+            "dist": 5.7,
+            "ax": 25.6,
+            "ay": 26.9,
+            "runner_up": 13.2,
+            "player_id": "P03"
+          },
+          "DM": {
+            "idx": 8,
+            "label": "アンカー",
+            "dist": 6.2,
+            "ax": 35.9,
+            "ay": 33.5,
+            "runner_up": 6.6,
+            "player_id": "P19"
+          },
+          "CF": {
+            "idx": 6,
+            "label": "CF",
+            "dist": 13.9,
+            "ax": 73.1,
+            "ay": 33.6,
+            "runner_up": 14.1,
+            "player_id": "P24"
+          },
+          "LW": {
+            "idx": 10,
+            "label": "左WG",
+            "dist": 21.7,
+            "ax": 68.7,
+            "ay": 26.9,
+            "runner_up": 22.2,
+            "player_id": "P10"
+          },
+          "LB": {
+            "idx": 15,
+            "label": "左SB",
+            "dist": 22.2,
+            "ax": 47.9,
+            "ay": 21.3,
+            "runner_up": 22.9,
+            "player_id": "P11"
+          },
+          "RB": {
+            "idx": 20,
+            "label": "右SB",
+            "dist": 23.2,
+            "ax": 35.7,
+            "ay": 40.8,
+            "runner_up": 24.3,
+            "player_id": "P05"
+          },
+          "GK": {
+            "idx": 9,
+            "label": "GK",
+            "dist": 30.9,
+            "ax": 29.3,
+            "ay": 33.8,
+            "runner_up": 35.1,
+            "player_id": "P09"
+          }
+        }
+      },
+      "skeleton": {
+        "RW": {
+          "idx": 4,
+          "label": "右WG",
+          "dist": 3.3,
+          "ax": 75.3,
+          "ay": 59.5,
+          "runner_up": 4.7,
+          "player_id": "P21"
+        },
+        "RCM": {
+          "idx": 22,
+          "label": "右IH",
+          "dist": 3.4,
+          "ax": 54.2,
+          "ay": 41.2,
+          "runner_up": 4.3,
+          "player_id": "P06"
+        },
+        "RCB": {
+          "idx": 12,
+          "label": "右CB",
+          "dist": 3.8,
+          "ax": 22.4,
+          "ay": 39.6,
+          "runner_up": 13.5,
+          "player_id": "P15"
+        },
+        "LCM": {
+          "idx": 1,
+          "label": "左IH",
+          "dist": 4.3,
+          "ax": 51.8,
+          "ay": 27.1,
+          "runner_up": 6.9,
+          "player_id": "P07"
+        },
+        "LCB": {
+          "idx": 11,
+          "label": "左CB",
+          "dist": 5.7,
+          "ax": 25.6,
+          "ay": 26.9,
+          "runner_up": 13.2,
+          "player_id": "P03"
+        },
+        "DM": {
+          "idx": 8,
+          "label": "アンカー",
+          "dist": 6.2,
+          "ax": 35.9,
+          "ay": 33.5,
+          "runner_up": 6.6,
+          "player_id": "P19"
+        },
+        "CF": {
+          "idx": 6,
+          "label": "CF",
+          "dist": 13.9,
+          "ax": 73.1,
+          "ay": 33.6,
+          "runner_up": 14.1,
+          "player_id": "P24"
+        },
+        "LW": {
+          "idx": 10,
+          "label": "左WG",
+          "dist": 21.7,
+          "ax": 68.7,
+          "ay": 26.9,
+          "runner_up": 22.2,
+          "player_id": "P10"
+        },
+        "LB": {
+          "idx": 15,
+          "label": "左SB",
+          "dist": 22.2,
+          "ax": 47.9,
+          "ay": 21.3,
+          "runner_up": 22.9,
+          "player_id": "P11"
+        },
+        "RB": {
+          "idx": 20,
+          "label": "右SB",
+          "dist": 23.2,
+          "ax": 35.7,
+          "ay": 40.8,
+          "runner_up": 24.3,
+          "player_id": "P05"
+        },
+        "GK": {
+          "idx": 9,
+          "label": "GK",
+          "dist": 30.9,
+          "ax": 29.3,
+          "ay": 33.8,
+          "runner_up": 35.1,
+          "player_id": "P09"
+        }
+      },
+      "position_change": {
+        "changes": [
+          {
+            "from": "右SB",
+            "to": "ボランチ",
+            "vacated_zone": "X=30m Y=41m",
+            "new_zone": "X=39m Y=43m",
+            "advance_m": 9.6,
+            "covered_by": [
+              "P07",
+              "P16",
+              "P27",
+              "P33",
+              "P34"
+            ],
+            "hole": false,
+            "evidence_n": 15,
+            "confidence": 1.0,
+            "verdict": "味方がカバー(構造維持)"
+          }
+        ]
+      }
+    },
+    {
+      "match": "20260316",
+      "label": "vs岐阜協立 (03/16)",
+      "haru": {
+        "player_id": "P03",
+        "n_sightings": 6,
+        "position": {
+          "archetype": "サイドバック",
+          "desc": "SB / ラテラル",
+          "avg_x": 33.3,
+          "avg_y": 51.7,
+          "std_x": 8.8,
+          "std_y": 11.1,
+          "primary_lane": "右ハーフスペース",
+          "lane_group": "H",
+          "confidence": 0.9,
+          "ground_truth": true
+        },
+        "cognition": {
+          "score": 31,
+          "lead": -0.24,
+          "sync": 0.2,
+          "lag": 0.27,
+          "note": "反応型 (ボールに反応)"
+        },
+        "principle": {
+          "score": 80,
+          "halfspace_occ": 0.33,
+          "width_occ": 0.5,
+          "central_occ": 0.17,
+          "detail": [
+            "幅の提供 50%",
+            "内側レーン進入(偽SB的)"
+          ]
+        },
+        "creativity": {
+          "score": 37,
+          "entropy": 0.3,
+          "value_intrusion": 0.28,
+          "line_break": 0.17,
+          "creative_hotspot": "右ウイング × 自陣中盤"
+        },
+        "protagonist": {
+          "score": 25,
+          "avg_links": 1.0
+        },
+        "tactical_iq": 46
+      },
+      "haru_id": {
+        "primary_idx": 17,
+        "segments": [
+          {
+            "half": "1H",
+            "role": "サイドバック",
+            "label": "右SB",
+            "t_rel": null,
+            "track_idx": 17,
+            "player_id": "P03",
+            "confidence": 0.98,
+            "fit": 1.0,
+            "uniqueness": 0.96,
+            "slot": "RB"
+          },
+          {
+            "half": "2H",
+            "role": "サイドバック",
+            "label": "右SB",
+            "t_rel": null,
+            "track_idx": 5,
+            "player_id": "P37",
+            "confidence": 0.53,
+            "fit": 1.0,
+            "uniqueness": 0.05,
+            "slot": "RB"
+          }
+        ],
+        "confidence": 0.76,
+        "method": "ground_truth",
+        "note": "90分通して右SB",
+        "skeleton": {
+          "CF": {
+            "idx": 21,
+            "label": "CF",
+            "dist": 1.6,
+            "ax": 88.6,
+            "ay": 33.7,
+            "runner_up": 1.8,
+            "player_id": "P35"
+          },
+          "LCM": {
+            "idx": 32,
+            "label": "左IH",
+            "dist": 1.7,
+            "ax": 52.8,
+            "ay": 23.0,
+            "runner_up": 2.2,
+            "player_id": "P20"
+          },
+          "LCB": {
+            "idx": 9,
+            "label": "左CB",
+            "dist": 2.1,
+            "ax": 22.1,
+            "ay": 26.3,
+            "runner_up": 5.1,
+            "player_id": "P06"
+          },
+          "DM": {
+            "idx": 26,
+            "label": "アンカー",
+            "dist": 4.9,
+            "ax": 40.1,
+            "ay": 29.9,
+            "runner_up": 5.9,
+            "player_id": "P09"
+          },
+          "RCM": {
+            "idx": 5,
+            "label": "右IH",
+            "dist": 6.1,
+            "ax": 48.4,
+            "ay": 42.0,
+            "runner_up": 8.9,
+            "player_id": "P37"
+          },
+          "LW": {
+            "idx": 34,
+            "label": "左WG",
+            "dist": 7.5,
+            "ax": 71.4,
+            "ay": 16.0,
+            "runner_up": 10.7,
+            "player_id": "P39"
+          },
+          "RW": {
+            "idx": 20,
+            "label": "右WG",
+            "dist": 7.5,
+            "ax": 78.8,
+            "ay": 62.0,
+            "runner_up": 20.6,
+            "player_id": "P08"
+          },
+          "RB": {
+            "idx": 17,
+            "label": "右SB",
+            "dist": 7.8,
+            "ax": 33.3,
+            "ay": 51.7,
+            "runner_up": 27.2,
+            "player_id": "P03"
+          },
+          "GK": {
+            "idx": 36,
+            "label": "GK",
+            "dist": 8.5,
+            "ax": 12.1,
+            "ay": 30.5,
+            "runner_up": 27.2,
+            "player_id": "P36"
+          },
+          "LB": {
+            "idx": 7,
+            "label": "左SB",
+            "dist": 13.6,
+            "ax": 21.4,
+            "ay": 17.9,
+            "runner_up": 15.2,
+            "player_id": "P34"
+          },
+          "RCB": {
+            "idx": 4,
+            "label": "右CB",
+            "dist": 18.1,
+            "ax": 36.3,
+            "ay": 35.4,
+            "runner_up": 19.0,
+            "player_id": "P05"
+          }
+        }
+      },
+      "skeleton": {
+        "CF": {
+          "idx": 21,
+          "label": "CF",
+          "dist": 1.6,
+          "ax": 88.6,
+          "ay": 33.7,
+          "runner_up": 1.8,
+          "player_id": "P35"
+        },
+        "LCM": {
+          "idx": 32,
+          "label": "左IH",
+          "dist": 1.7,
+          "ax": 52.8,
+          "ay": 23.0,
+          "runner_up": 2.2,
+          "player_id": "P20"
+        },
+        "LCB": {
+          "idx": 9,
+          "label": "左CB",
+          "dist": 2.1,
+          "ax": 22.1,
+          "ay": 26.3,
+          "runner_up": 5.1,
+          "player_id": "P06"
+        },
+        "DM": {
+          "idx": 26,
+          "label": "アンカー",
+          "dist": 4.9,
+          "ax": 40.1,
+          "ay": 29.9,
+          "runner_up": 5.9,
+          "player_id": "P09"
+        },
+        "RCM": {
+          "idx": 5,
+          "label": "右IH",
+          "dist": 6.1,
+          "ax": 48.4,
+          "ay": 42.0,
+          "runner_up": 8.9,
+          "player_id": "P37"
+        },
+        "LW": {
+          "idx": 34,
+          "label": "左WG",
+          "dist": 7.5,
+          "ax": 71.4,
+          "ay": 16.0,
+          "runner_up": 10.7,
+          "player_id": "P39"
+        },
+        "RW": {
+          "idx": 20,
+          "label": "右WG",
+          "dist": 7.5,
+          "ax": 78.8,
+          "ay": 62.0,
+          "runner_up": 20.6,
+          "player_id": "P08"
+        },
+        "RB": {
+          "idx": 17,
+          "label": "右SB",
+          "dist": 7.8,
+          "ax": 33.3,
+          "ay": 51.7,
+          "runner_up": 27.2,
+          "player_id": "P03"
+        },
+        "GK": {
+          "idx": 36,
+          "label": "GK",
+          "dist": 8.5,
+          "ax": 12.1,
+          "ay": 30.5,
+          "runner_up": 27.2,
+          "player_id": "P36"
+        },
+        "LB": {
+          "idx": 7,
+          "label": "左SB",
+          "dist": 13.6,
+          "ax": 21.4,
+          "ay": 17.9,
+          "runner_up": 15.2,
+          "player_id": "P34"
+        },
+        "RCB": {
+          "idx": 4,
+          "label": "右CB",
+          "dist": 18.1,
+          "ax": 36.3,
+          "ay": 35.4,
+          "runner_up": 19.0,
+          "player_id": "P05"
+        }
+      },
+      "position_change": null
+    },
+    {
+      "match": "20260317mid",
+      "label": "vs中京U-19 (03/17)",
+      "haru": {
+        "player_id": "P05",
+        "n_sightings": 5,
+        "position": {
+          "archetype": "サイドバック",
+          "desc": "SB / ラテラル",
+          "avg_x": 31.4,
+          "avg_y": 55.2,
+          "std_x": 1.5,
+          "std_y": 1.7,
+          "primary_lane": "右ウイング",
+          "lane_group": "W",
+          "confidence": 1.0,
+          "ground_truth": true
+        },
+        "cognition": {
+          "score": 12,
+          "lead": -0.81,
+          "sync": 0.13,
+          "lag": 0.27,
+          "note": "反応型 (ボールに反応)"
+        },
+        "principle": {
+          "score": 84,
+          "halfspace_occ": 0.4,
+          "width_occ": 0.6,
+          "central_occ": 0.0,
+          "detail": [
+            "幅の提供 60%",
+            "内側レーン進入(偽SB的)"
+          ]
+        },
+        "creativity": {
+          "score": 21,
+          "entropy": 0.2,
+          "value_intrusion": 0.24,
+          "line_break": 0.0,
+          "creative_hotspot": "右ウイング × 自陣中盤"
+        },
+        "protagonist": {
+          "score": 25,
+          "avg_links": 1.0
+        },
+        "tactical_iq": 38
+      },
+      "haru_id": {
+        "primary_idx": 11,
+        "segments": [
+          {
+            "half": "1H",
+            "role": "サイドバック",
+            "label": "右SB",
+            "t_rel": null,
+            "track_idx": 11,
+            "player_id": "P05",
+            "confidence": 0.5,
+            "fit": 1.0,
+            "uniqueness": 0.0,
+            "slot": "RB"
+          },
+          {
+            "half": "2H",
+            "role": "アンカー",
+            "label": "ボランチ",
+            "t_rel": null,
+            "track_idx": 29,
+            "player_id": "P26",
+            "confidence": 0.56,
+            "fit": 0.98,
+            "uniqueness": 0.15,
+            "slot": "DM"
+          }
+        ],
+        "confidence": 0.53,
+        "method": "ground_truth",
+        "note": "前半22:15〜右SB(6番) / 後半ボランチスタート〜23:15頃",
+        "skeleton": {
+          "LB": {
+            "idx": 18,
+            "label": "左SB",
+            "dist": 0.8,
+            "ax": 30.6,
+            "ay": 10.5,
+            "runner_up": 13.0,
+            "player_id": "P21"
+          },
+          "RB": {
+            "idx": 11,
+            "label": "右SB",
+            "dist": 2.6,
+            "ax": 31.4,
+            "ay": 55.2,
+            "runner_up": 5.5,
+            "player_id": "P05"
+          },
+          "LW": {
+            "idx": 1,
+            "label": "左WG",
+            "dist": 7.8,
+            "ax": 67.9,
+            "ay": 13.6,
+            "runner_up": 9.3,
+            "player_id": "P23"
+          },
+          "RCM": {
+            "idx": 5,
+            "label": "右IH",
+            "dist": 8.7,
+            "ax": 54.3,
+            "ay": 51.2,
+            "runner_up": 25.1,
+            "player_id": "P11"
+          },
+          "LCM": {
+            "idx": 15,
+            "label": "左IH",
+            "dist": 9.2,
+            "ax": 46.8,
+            "ay": 19.2,
+            "runner_up": 16.2,
+            "player_id": "P19"
+          },
+          "LCB": {
+            "idx": 13,
+            "label": "左CB",
+            "dist": 10.1,
+            "ax": 16.5,
+            "ay": 18.1,
+            "runner_up": 10.3,
+            "player_id": "P08"
+          },
+          "RCB": {
+            "idx": 16,
+            "label": "右CB",
+            "dist": 10.4,
+            "ax": 29.0,
+            "ay": 46.3,
+            "runner_up": 18.7,
+            "player_id": "P06"
+          },
+          "DM": {
+            "idx": 10,
+            "label": "アンカー",
+            "dist": 12.2,
+            "ax": 35.0,
+            "ay": 24.8,
+            "runner_up": 17.0,
+            "player_id": "P18"
+          },
+          "CF": {
+            "idx": 19,
+            "label": "CF",
+            "dist": 16.0,
+            "ax": 91.3,
+            "ay": 18.6,
+            "runner_up": 18.2,
+            "player_id": "P10"
+          },
+          "GK": {
+            "idx": 4,
+            "label": "GK",
+            "dist": 25.6,
+            "ax": 13.4,
+            "ay": 19.4,
+            "runner_up": 29.8,
+            "player_id": "P02"
+          },
+          "RW": {
+            "idx": 6,
+            "label": "右WG",
+            "dist": 49.1,
+            "ax": 25.9,
+            "ay": 58.5,
+            "runner_up": 49.8,
+            "player_id": "P03"
+          }
+        }
+      },
+      "skeleton": {
+        "LB": {
+          "idx": 18,
+          "label": "左SB",
+          "dist": 0.8,
+          "ax": 30.6,
+          "ay": 10.5,
+          "runner_up": 13.0,
+          "player_id": "P21"
+        },
+        "RB": {
+          "idx": 11,
+          "label": "右SB",
+          "dist": 2.6,
+          "ax": 31.4,
+          "ay": 55.2,
+          "runner_up": 5.5,
+          "player_id": "P05"
+        },
+        "LW": {
+          "idx": 1,
+          "label": "左WG",
+          "dist": 7.8,
+          "ax": 67.9,
+          "ay": 13.6,
+          "runner_up": 9.3,
+          "player_id": "P23"
+        },
+        "RCM": {
+          "idx": 5,
+          "label": "右IH",
+          "dist": 8.7,
+          "ax": 54.3,
+          "ay": 51.2,
+          "runner_up": 25.1,
+          "player_id": "P11"
+        },
+        "LCM": {
+          "idx": 15,
+          "label": "左IH",
+          "dist": 9.2,
+          "ax": 46.8,
+          "ay": 19.2,
+          "runner_up": 16.2,
+          "player_id": "P19"
+        },
+        "LCB": {
+          "idx": 13,
+          "label": "左CB",
+          "dist": 10.1,
+          "ax": 16.5,
+          "ay": 18.1,
+          "runner_up": 10.3,
+          "player_id": "P08"
+        },
+        "RCB": {
+          "idx": 16,
+          "label": "右CB",
+          "dist": 10.4,
+          "ax": 29.0,
+          "ay": 46.3,
+          "runner_up": 18.7,
+          "player_id": "P06"
+        },
+        "DM": {
+          "idx": 10,
+          "label": "アンカー",
+          "dist": 12.2,
+          "ax": 35.0,
+          "ay": 24.8,
+          "runner_up": 17.0,
+          "player_id": "P18"
+        },
+        "CF": {
+          "idx": 19,
+          "label": "CF",
+          "dist": 16.0,
+          "ax": 91.3,
+          "ay": 18.6,
+          "runner_up": 18.2,
+          "player_id": "P10"
+        },
+        "GK": {
+          "idx": 4,
+          "label": "GK",
+          "dist": 25.6,
+          "ax": 13.4,
+          "ay": 19.4,
+          "runner_up": 29.8,
+          "player_id": "P02"
+        },
+        "RW": {
+          "idx": 6,
+          "label": "右WG",
+          "dist": 49.1,
+          "ax": 25.9,
+          "ay": 58.5,
+          "runner_up": 49.8,
+          "player_id": "P03"
+        }
+      },
+      "position_change": {
+        "changes": [
+          {
+            "from": "右SB",
+            "to": "ボランチ",
+            "vacated_zone": "X=31m Y=55m",
+            "new_zone": "X=34m Y=23m",
+            "advance_m": 2.8,
+            "covered_by": [
+              "P14"
+            ],
+            "hole": false,
+            "evidence_n": 13,
+            "confidence": 1.0,
+            "verdict": "味方がカバー(構造維持)"
+          }
+        ]
+      }
+    },
+    {
+      "match": "20260317osaka",
+      "label": "vs大阪学院 (03/17)",
+      "haru": {
+        "player_id": "P16",
+        "n_sightings": 7,
+        "position": {
+          "archetype": "サイドバック",
+          "desc": "SB / ラテラル",
+          "avg_x": 38.7,
+          "avg_y": 41.1,
+          "std_x": 14.0,
+          "std_y": 14.9,
+          "primary_lane": "右ハーフスペース",
+          "lane_group": "H",
+          "confidence": 0.98,
+          "ground_truth": true
+        },
+        "cognition": {
+          "score": 42,
+          "lead": -0.21,
+          "sync": -0.11,
+          "lag": 0.0,
+          "note": "反応型 (ボールに反応)"
+        },
+        "principle": {
+          "score": 71,
+          "halfspace_occ": 0.43,
+          "width_occ": 0.29,
+          "central_occ": 0.29,
+          "detail": [
+            "幅の提供 29%",
+            "内側レーン進入(偽SB的)"
+          ]
+        },
+        "creativity": {
+          "score": 57,
+          "entropy": 0.46,
+          "value_intrusion": 0.39,
+          "line_break": 0.29,
+          "creative_hotspot": "右ウイング × 敵陣入口"
+        },
+        "protagonist": {
+          "score": 89,
+          "avg_links": 3.6
+        },
+        "tactical_iq": 62
+      },
+      "haru_id": {
+        "primary_idx": 31,
+        "segments": [
+          {
+            "half": "1H",
+            "role": "サイドバック",
+            "label": "右SB",
+            "t_rel": null,
+            "track_idx": 31,
+            "player_id": "P16",
+            "confidence": 0.59,
+            "fit": 0.96,
+            "uniqueness": 0.23,
+            "slot": "RB"
+          },
+          {
+            "half": "2H",
+            "role": "サイドバック",
+            "label": "右SB",
+            "t_rel": null,
+            "track_idx": 7,
+            "player_id": "P02",
+            "confidence": 0.52,
+            "fit": 1.0,
+            "uniqueness": 0.03,
+            "slot": "RB"
+          }
+        ],
+        "confidence": 0.55,
+        "method": "ground_truth",
+        "note": "前後半とも右SB(6番) ※後半14:50は交代の出入り",
+        "skeleton": {
+          "RCM": {
+            "idx": 22,
+            "label": "右IH",
+            "dist": 1.5,
+            "ax": 53.9,
+            "ay": 45.2,
+            "runner_up": 6.7,
+            "player_id": "P14"
+          },
+          "DM": {
+            "idx": 14,
+            "label": "アンカー",
+            "dist": 3.8,
+            "ax": 45.4,
+            "ay": 35.5,
+            "runner_up": 4.4,
+            "player_id": "P20"
+          },
+          "LCB": {
+            "idx": 6,
+            "label": "左CB",
+            "dist": 4.1,
+            "ax": 17.1,
+            "ay": 28.3,
+            "runner_up": 4.5,
+            "player_id": "P12"
+          },
+          "CF": {
+            "idx": 28,
+            "label": "CF",
+            "dist": 4.7,
+            "ax": 85.0,
+            "ay": 38.3,
+            "runner_up": 5.7,
+            "player_id": "P06"
+          },
+          "LCM": {
+            "idx": 27,
+            "label": "左IH",
+            "dist": 5.6,
+            "ax": 52.9,
+            "ay": 28.6,
+            "runner_up": 7.1,
+            "player_id": "P15"
+          },
+          "RCB": {
+            "idx": 4,
+            "label": "右CB",
+            "dist": 8.3,
+            "ax": 24.2,
+            "ay": 36.0,
+            "runner_up": 8.6,
+            "player_id": "P10"
+          },
+          "RW": {
+            "idx": 25,
+            "label": "右WG",
+            "dist": 18.0,
+            "ax": 72.9,
+            "ay": 43.3,
+            "runner_up": 18.5,
+            "player_id": "P26"
+          },
+          "RB": {
+            "idx": 5,
+            "label": "右SB",
+            "dist": 22.4,
+            "ax": 49.7,
+            "ay": 48.2,
+            "runner_up": 23.5,
+            "player_id": "P11"
+          },
+          "LB": {
+            "idx": 32,
+            "label": "左SB",
+            "dist": 24.4,
+            "ax": 24.0,
+            "ay": 27.7,
+            "runner_up": 28.0,
+            "player_id": "P33"
+          },
+          "GK": {
+            "idx": 10,
+            "label": "GK",
+            "dist": 27.4,
+            "ax": 24.7,
+            "ay": 35.3,
+            "runner_up": 28.7,
+            "player_id": "P32"
+          },
+          "LW": {
+            "idx": 12,
+            "label": "左WG",
+            "dist": 27.8,
+            "ax": 72.0,
+            "ay": 32.3,
+            "runner_up": 28.6,
+            "player_id": "P19"
+          }
+        }
+      },
+      "skeleton": {
+        "RCM": {
+          "idx": 22,
+          "label": "右IH",
+          "dist": 1.5,
+          "ax": 53.9,
+          "ay": 45.2,
+          "runner_up": 6.7,
+          "player_id": "P14"
+        },
+        "DM": {
+          "idx": 14,
+          "label": "アンカー",
+          "dist": 3.8,
+          "ax": 45.4,
+          "ay": 35.5,
+          "runner_up": 4.4,
+          "player_id": "P20"
+        },
+        "LCB": {
+          "idx": 6,
+          "label": "左CB",
+          "dist": 4.1,
+          "ax": 17.1,
+          "ay": 28.3,
+          "runner_up": 4.5,
+          "player_id": "P12"
+        },
+        "CF": {
+          "idx": 28,
+          "label": "CF",
+          "dist": 4.7,
+          "ax": 85.0,
+          "ay": 38.3,
+          "runner_up": 5.7,
+          "player_id": "P06"
+        },
+        "LCM": {
+          "idx": 27,
+          "label": "左IH",
+          "dist": 5.6,
+          "ax": 52.9,
+          "ay": 28.6,
+          "runner_up": 7.1,
+          "player_id": "P15"
+        },
+        "RCB": {
+          "idx": 4,
+          "label": "右CB",
+          "dist": 8.3,
+          "ax": 24.2,
+          "ay": 36.0,
+          "runner_up": 8.6,
+          "player_id": "P10"
+        },
+        "RW": {
+          "idx": 25,
+          "label": "右WG",
+          "dist": 18.0,
+          "ax": 72.9,
+          "ay": 43.3,
+          "runner_up": 18.5,
+          "player_id": "P26"
+        },
+        "RB": {
+          "idx": 5,
+          "label": "右SB",
+          "dist": 22.4,
+          "ax": 49.7,
+          "ay": 48.2,
+          "runner_up": 23.5,
+          "player_id": "P11"
+        },
+        "LB": {
+          "idx": 32,
+          "label": "左SB",
+          "dist": 24.4,
+          "ax": 24.0,
+          "ay": 27.7,
+          "runner_up": 28.0,
+          "player_id": "P33"
+        },
+        "GK": {
+          "idx": 10,
+          "label": "GK",
+          "dist": 27.4,
+          "ax": 24.7,
+          "ay": 35.3,
+          "runner_up": 28.7,
+          "player_id": "P32"
+        },
+        "LW": {
+          "idx": 12,
+          "label": "左WG",
+          "dist": 27.8,
+          "ax": 72.0,
+          "ay": 32.3,
+          "runner_up": 28.6,
+          "player_id": "P19"
+        }
+      },
+      "position_change": null
+    },
+    {
+      "match": "20260318",
+      "label": "vs作新学院 (03/18)",
+      "haru": {
+        "player_id": "P13",
+        "n_sightings": 8,
+        "position": {
+          "archetype": "アンカー",
+          "desc": "守備的MF / ピボーテ",
+          "avg_x": 50.3,
+          "avg_y": 31.0,
+          "std_x": 29.0,
+          "std_y": 9.0,
+          "primary_lane": "中央",
+          "lane_group": "C",
+          "confidence": 0.81
+        },
+        "cognition": {
+          "score": 96,
+          "lead": 0.68,
+          "sync": -0.4,
+          "lag": -0.64,
+          "note": "フェーズ先読み型 (先に動く)"
+        },
+        "principle": {
+          "score": 76,
+          "halfspace_occ": 0.38,
+          "width_occ": 0.0,
+          "central_occ": 0.62,
+          "detail": [
+            "中央安定 62%"
+          ]
+        },
+        "creativity": {
+          "score": 74,
+          "entropy": 0.56,
+          "value_intrusion": 0.53,
+          "line_break": 0.38,
+          "creative_hotspot": "中央 × 敵陣中盤"
+        },
+        "protagonist": {
+          "score": 100,
+          "avg_links": 4.5
+        },
+        "tactical_iq": 84
+      },
+      "haru_id": {
+        "primary_idx": 14,
+        "segments": [],
+        "confidence": null,
+        "method": "auto (holdout検証)",
+        "note": "グラウンドトゥルース未指定 → 自動推定"
+      },
+      "skeleton": null,
+      "position_change": null
+    },
+    {
+      "match": "20260325",
+      "label": "vs立教大 (03/25)",
+      "haru": {
+        "player_id": "P10",
+        "n_sightings": 5,
+        "position": {
+          "archetype": "サイドバック",
+          "desc": "SB / ラテラル",
+          "avg_x": 25.4,
+          "avg_y": 41.9,
+          "std_x": 3.5,
+          "std_y": 5.4,
+          "primary_lane": "右ハーフスペース",
+          "lane_group": "H",
+          "confidence": 0.88,
+          "ground_truth": true
+        },
+        "cognition": {
+          "score": 7,
+          "lead": -0.6,
+          "sync": 0.59,
+          "lag": 0.62,
+          "note": "反応型 (ボールに反応)"
+        },
+        "principle": {
+          "score": 60,
+          "halfspace_occ": 0.6,
+          "width_occ": 0.0,
+          "central_occ": 0.4,
+          "detail": [
+            "幅の提供 0%",
+            "内側レーン進入(偽SB的)"
+          ]
+        },
+        "creativity": {
+          "score": 25,
+          "entropy": 0.2,
+          "value_intrusion": 0.32,
+          "line_break": 0.0,
+          "creative_hotspot": "右ハーフスペース × 自陣中盤"
+        },
+        "protagonist": {
+          "score": 45,
+          "avg_links": 1.8
+        },
+        "tactical_iq": 34
+      },
+      "haru_id": {
+        "primary_idx": 8,
+        "segments": [
+          {
+            "half": "1H",
+            "role": "サイドバック",
+            "label": "右SB",
+            "t_rel": null,
+            "track_idx": 8,
+            "player_id": "P10",
+            "confidence": 0.99,
+            "fit": 0.99,
+            "uniqueness": 1.0,
+            "slot": "RB"
+          },
+          {
+            "half": "2H",
+            "role": "サイドバック",
+            "label": "右SB",
+            "t_rel": [
+              0.0,
+              29.5
+            ],
+            "track_idx": 12,
+            "player_id": "P13",
+            "confidence": 0.35,
+            "fit": 0.35,
+            "uniqueness": 1.0,
+            "slot": "RB"
+          },
+          {
+            "half": "2H",
+            "role": "セントラル",
+            "label": "右ボランチ",
+            "t_rel": [
+              29.5,
+              999.0
+            ],
+            "track_idx": 10,
+            "player_id": "P08",
+            "confidence": 0.91,
+            "fit": 1.0,
+            "uniqueness": 0.81,
+            "slot": "RCM"
+          }
+        ],
+        "confidence": 0.75,
+        "method": "ground_truth",
+        "note": "前半=右SB / 後半29:30〜右ボランチ (ポジションチェンジ)",
+        "skeleton": {
+          "RCB": {
+            "idx": 8,
+            "label": "右CB",
+            "dist": 5.4,
+            "ax": 25.4,
+            "ay": 41.9,
+            "runner_up": 13.3,
+            "player_id": "P10"
+          },
+          "RCM": {
+            "idx": 3,
+            "label": "右IH",
+            "dist": 7.3,
+            "ax": 47.0,
+            "ay": 42.3,
+            "runner_up": 8.4,
+            "player_id": "P07"
+          },
+          "DM": {
+            "idx": 0,
+            "label": "アンカー",
+            "dist": 9.3,
+            "ax": 46.1,
+            "ay": 41.6,
+            "runner_up": 10.4,
+            "player_id": "P03"
+          },
+          "CF": {
+            "idx": 4,
+            "label": "CF",
+            "dist": 11.6,
+            "ax": 76.1,
+            "ay": 37.8,
+            "runner_up": 13.6,
+            "player_id": "P04"
+          },
+          "LCM": {
+            "idx": 1,
+            "label": "左IH",
+            "dist": 16.3,
+            "ax": 68.7,
+            "ay": 29.8,
+            "runner_up": 22.5,
+            "player_id": "P06"
+          },
+          "RW": {
+            "idx": 9,
+            "label": "右WG",
+            "dist": 17.7,
+            "ax": 77.3,
+            "ay": 43.5,
+            "runner_up": 24.9,
+            "player_id": "P02"
+          },
+          "LCB": {
+            "idx": 2,
+            "label": "左CB",
+            "dist": 20.7,
+            "ax": 32.9,
+            "ay": 39.5,
+            "runner_up": 32.1,
+            "player_id": "P01"
+          }
+        }
+      },
+      "skeleton": {
+        "RCB": {
+          "idx": 8,
+          "label": "右CB",
+          "dist": 5.4,
+          "ax": 25.4,
+          "ay": 41.9,
+          "runner_up": 13.3,
+          "player_id": "P10"
+        },
+        "RCM": {
+          "idx": 3,
+          "label": "右IH",
+          "dist": 7.3,
+          "ax": 47.0,
+          "ay": 42.3,
+          "runner_up": 8.4,
+          "player_id": "P07"
+        },
+        "DM": {
+          "idx": 0,
+          "label": "アンカー",
+          "dist": 9.3,
+          "ax": 46.1,
+          "ay": 41.6,
+          "runner_up": 10.4,
+          "player_id": "P03"
+        },
+        "CF": {
+          "idx": 4,
+          "label": "CF",
+          "dist": 11.6,
+          "ax": 76.1,
+          "ay": 37.8,
+          "runner_up": 13.6,
+          "player_id": "P04"
+        },
+        "LCM": {
+          "idx": 1,
+          "label": "左IH",
+          "dist": 16.3,
+          "ax": 68.7,
+          "ay": 29.8,
+          "runner_up": 22.5,
+          "player_id": "P06"
+        },
+        "RW": {
+          "idx": 9,
+          "label": "右WG",
+          "dist": 17.7,
+          "ax": 77.3,
+          "ay": 43.5,
+          "runner_up": 24.9,
+          "player_id": "P02"
+        },
+        "LCB": {
+          "idx": 2,
+          "label": "左CB",
+          "dist": 20.7,
+          "ax": 32.9,
+          "ay": 39.5,
+          "runner_up": 32.1,
+          "player_id": "P01"
+        }
+      },
+      "position_change": {
+        "changes": [
+          {
+            "from": "右SB",
+            "to": "右ボランチ",
+            "vacated_zone": "X=30m Y=33m",
+            "new_zone": "X=43m Y=45m",
+            "advance_m": 13.0,
+            "covered_by": [],
+            "hole": true,
+            "evidence_n": 5,
+            "confidence": 0.42,
+            "verdict": "カバー無し(穴の可能性)"
+          }
+        ]
+      }
+    },
+    {
+      "match": "20260329",
+      "label": "vs川崎U-18 (03/29)",
+      "haru": {
+        "player_id": "P04",
+        "n_sightings": 5,
+        "position": {
+          "archetype": "アンカー",
+          "desc": "守備的MF / ピボーテ",
+          "avg_x": 50.1,
+          "avg_y": 40.3,
+          "std_x": 9.4,
+          "std_y": 1.4,
+          "primary_lane": "中央",
+          "lane_group": "C",
+          "confidence": 1.0
+        },
+        "cognition": {
+          "score": 93,
+          "lead": 0.32,
+          "sync": -0.04,
+          "lag": -0.94,
+          "note": "フェーズ先読み型 (先に動く)"
+        },
+        "principle": {
+          "score": 86,
+          "halfspace_occ": 0.4,
+          "width_occ": 0.0,
+          "central_occ": 0.6,
+          "detail": [
+            "中央安定 60%",
+            "ポジション規律◎"
+          ]
+        },
+        "creativity": {
+          "score": 56,
+          "entropy": 0.39,
+          "value_intrusion": 0.54,
+          "line_break": 0.2,
+          "creative_hotspot": "中央 × 自陣前"
+        },
+        "protagonist": {
+          "score": 5,
+          "avg_links": 0.2
+        },
+        "tactical_iq": 66
+      },
+      "haru_id": {
+        "primary_idx": 3,
+        "segments": [],
+        "confidence": null,
+        "method": "auto (holdout検証)",
+        "note": "グラウンドトゥルース未指定 → 自動推定"
+      },
+      "skeleton": null,
+      "position_change": null
+    },
+    {
+      "match": "20260405",
+      "label": "vs獨協大 (04/05)",
+      "haru": {
+        "player_id": "P03",
+        "n_sightings": 6,
+        "position": {
+          "archetype": "セントラル",
+          "desc": "中央MF / インテリオール",
+          "avg_x": 63.5,
+          "avg_y": 25.6,
+          "std_x": 34.2,
+          "std_y": 6.2,
+          "primary_lane": "左ハーフスペース",
+          "lane_group": "H",
+          "confidence": 0.79
+        },
+        "cognition": {
+          "score": 27,
+          "lead": -0.23,
+          "sync": 0.53,
+          "lag": 0.42,
+          "note": "同期型 (チームと連動)"
+        },
+        "principle": {
+          "score": 66,
+          "halfspace_occ": 0.33,
+          "width_occ": 0.0,
+          "central_occ": 0.67,
+          "detail": [
+            "ライン間占有 33%"
+          ]
+        },
+        "creativity": {
+          "score": 71,
+          "entropy": 0.46,
+          "value_intrusion": 0.63,
+          "line_break": 0.33,
+          "creative_hotspot": "中央 × 敵陣深部"
+        },
+        "protagonist": {
+          "score": 16,
+          "avg_links": 0.7
+        },
+        "tactical_iq": 50
+      },
+      "haru_id": {
+        "primary_idx": 1,
+        "segments": [],
+        "confidence": null,
+        "method": "auto (holdout検証)",
+        "note": "グラウンドトゥルース未指定 → 自動推定"
+      },
+      "skeleton": null,
+      "position_change": null
+    }
+  ]
+}

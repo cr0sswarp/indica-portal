@@ -1,0 +1,17 @@
+# Core CV & analysis
+opencv-python
+numpy
+scipy
+matplotlib
+
+# ML / OCR
+easyocr
+
+# Web app
+streamlit>=1.57
+
+# Utilities
+reportlab
+notion-client
+anthropic
+pandas

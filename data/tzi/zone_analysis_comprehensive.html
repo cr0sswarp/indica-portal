@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<title>TZI 総合ゾーン分析 — 牧野羽瑠 #6 トレーニング素材</title>
+<style>
+* {box-sizing:border-box;margin:0;padding:0}
+body {background:#0d1117;color:#e6edf3;font-family:'Segoe UI',system-ui,sans-serif;
+       line-height:1.6}
+.hero {background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+        padding:28px 36px;border-bottom:1px solid #30363d}
+.hero h1 {font-size:1.4rem;color:#58a6ff}
+.hero p  {font-size:.85rem;color:#8b949e;margin-top:4px}
+.content {max-width:1300px;margin:0 auto;padding:28px 24px}
+h2 {font-size:1rem;border-bottom:1px solid #30363d;padding-bottom:8px;
+     margin:28px 0 16px;color:#e6edf3}
+h3 {font-size:.9rem;color:#58a6ff;margin:16px 0 8px}
+table {width:100%;border-collapse:collapse;font-size:12px}
+th {background:#21262d;padding:9px 10px;text-align:left;color:#8b949e;
+     font-weight:500}
+td {padding:8px 10px;border-bottom:1px solid #21262d}
+tr:hover td {background:#161b22}
+.cards {display:flex;flex-wrap:wrap;gap:16px;margin-top:16px}
+.badge {display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px}
+.green  {background:#1f4d2a;color:#3fb950}
+.blue   {background:#1a2e50;color:#58a6ff}
+.orange {background:#4d2c1a;color:#f0883e}
+.insight {background:#21262d;border-left:3px solid #3fb950;padding:12px 16px;
+           border-radius:0 6px 6px 0;margin:12px 0;font-size:13px}
+</style></head><body>
+<div class="hero">
+  <h1>TZI 総合ゾーン分析 — 牧野羽瑠 #6 トレーニング素材</h1>
+  <p>2026年春季 早稲田大学 全8試合 · 早稲田の攻撃方向に統一した正規化座標</p>
+  <p style="margin-top:4px">目的: 試合中に常にゾーンに入れる状況を作る · 右サイドバックの活用エリア分析</p>
+</div>
+<div class="content">
+
+  
+    <div style="background:#21262d;border:1px solid #f0883e;border-radius:8px;
+                padding:16px 20px;margin-bottom:24px">
+      <h3 style="color:#f0883e;font-size:14px;margin-bottom:8px">
+        ⚠ 分析精度についての注記</h3>
+      <ul style="color:#8b949e;font-size:12px;line-height:1.8;padding-left:16px">
+        <li><strong style="color:#e6edf3">カメラ制限:</strong>
+            ボール追尾の単一パン・ズームカメラに<strong>固定ホモグラフィ</strong>を適用しているため、
+            フレームごとに座標精度が変動します。ゾーンレベルの傾向は参考値としてご利用ください。</li>
+        <li><strong style="color:#e6edf3">OCR精度:</strong>
+            小さなブロブからの背番号読み取りは信頼性が低く、#6の個人同定は2試合のみ・精度未検証です。
+            本レポートは主にチーム全体のゾーン分布を示します。</li>
+        <li><strong style="color:#e6edf3">幻影検出:</strong>
+            ベンチや影などが選手として誤検出される場合があります。</li>
+        <li><strong style="color:#e6edf3">改善への道:</strong>
+            広角固定カメラ + フィールドライン検出によるフレームごとのホモグラフィが正確な個人追跡には必要です。</li>
+      </ul>
+    </div>
+
+  <h2>📊 全試合サマリー</h2>
+  <table><thead><tr>
+    <th>試合ID</th><th>相手</th><th>選手数</th><th>サイティング</th>
+    <th>重心X</th><th>重心Y</th>
+    <th>攻撃ゾーン率</th><th>右サイド率</th>
+    <th>右守備ゾーン率</th><th>方向</th>
+  </tr></thead><tbody><tr>
+          <td style="color:#58a6ff;font-weight:600">20260314</td>
+          <td>vs埼玉大 (03/14)</td>
+          <td style="text-align:center">12</td>
+          <td style="text-align:center">74</td>
+          <td style="text-align:center">48m</td>
+          <td style="text-align:center">44m</td>
+          <td style="text-align:center;color:#58a6ff;font-weight:700">39%</td>
+          <td style="text-align:center">92%</td>
+          <td style="text-align:center;color:#3fb950;font-weight:700">93%</td>
+          <td style="font-size:11px;color:#8b949e">1H:↔ 2H:→</td>
+        </tr><tr>
+          <td style="color:#58a6ff;font-weight:600">20260316</td>
+          <td>vs岐阜協立 (03/16)</td>
+          <td style="text-align:center">28</td>
+          <td style="text-align:center">204</td>
+          <td style="text-align:center">51m</td>
+          <td style="text-align:center">30m</td>
+          <td style="text-align:center;color:#58a6ff;font-weight:700">50%</td>
+          <td style="text-align:center">51%</td>
+          <td style="text-align:center;color:#3fb950;font-weight:700">40%</td>
+          <td style="font-size:11px;color:#8b949e">1H:↔ 2H:→</td>
+        </tr><tr>
+          <td style="color:#58a6ff;font-weight:600">20260317mid</td>
+          <td>vs中京U-19 (03/17)</td>
+          <td style="text-align:center">10</td>
+          <td style="text-align:center">50</td>
+          <td style="text-align:center">51m</td>
+          <td style="text-align:center">31m</td>
+          <td style="text-align:center;color:#58a6ff;font-weight:700">52%</td>
+          <td style="text-align:center">22%</td>
+          <td style="text-align:center;color:#f0883e;font-weight:700">12%</td>
+          <td style="font-size:11px;color:#8b949e">1H:→ 2H:↔</td>
+        </tr><tr>
+          <td style="color:#58a6ff;font-weight:600">20260317osaka</td>
+          <td>vs大阪学院 (03/17)</td>
+          <td style="text-align:center">25</td>
+          <td style="text-align:center">150</td>
+          <td style="text-align:center">47m</td>
+          <td style="text-align:center">36m</td>
+          <td style="text-align:center;color:#58a6ff;font-weight:700">41%</td>
+          <td style="text-align:center">66%</td>
+          <td style="text-align:center;color:#3fb950;font-weight:700">68%</td>
+          <td style="font-size:11px;color:#8b949e">1H:→ 2H:↔</td>
+        </tr><tr>
+          <td style="color:#58a6ff;font-weight:600">20260318</td>
+          <td>vs作新学院 (03/18)</td>
+          <td style="text-align:center">19</td>
+          <td style="text-align:center">147</td>
+          <td style="text-align:center">50m</td>
+          <td style="text-align:center">36m</td>
+          <td style="text-align:center;color:#58a6ff;font-weight:700">42%</td>
+          <td style="text-align:center">68%</td>
+          <td style="text-align:center;color:#3fb950;font-weight:700">74%</td>
+          <td style="font-size:11px;color:#8b949e">1H:↔ 2H:→</td>
+        </tr><tr>
+          <td style="color:#58a6ff;font-weight:600">20260325</td>
+          <td>vs立教大 (03/25)</td>
+          <td style="text-align:center">16</td>
+          <td style="text-align:center">68</td>
+          <td style="text-align:center">52m</td>
+          <td style="text-align:center">41m</td>
+          <td style="text-align:center;color:#58a6ff;font-weight:700">52%</td>
+          <td style="text-align:center">90%</td>
+          <td style="text-align:center;color:#3fb950;font-weight:700">91%</td>
+          <td style="font-size:11px;color:#8b949e">1H:→ 2H:↔</td>
+        </tr><tr>
+          <td style="color:#58a6ff;font-weight:600">20260329</td>
+          <td>vs川崎U-18 (03/29)</td>
+          <td style="text-align:center">5</td>
+          <td style="text-align:center">15</td>
+          <td style="text-align:center">42m</td>
+          <td style="text-align:center">41m</td>
+          <td style="text-align:center;color:#58a6ff;font-weight:700">27%</td>
+          <td style="text-align:center">100%</td>
+          <td style="text-align:center;color:#3fb950;font-weight:700">100%</td>
+          <td style="font-size:11px;color:#8b949e">1H:↔ 2H:→</td>
+        </tr><tr>
+          <td style="color:#58a6ff;font-weight:600">20260405</td>
+          <td>vs獨協大 (04/05)</td>
+          <td style="text-align:center">2</td>
+          <td style="text-align:center">6</td>
+          <td style="text-align:center">33m</td>
+          <td style="text-align:center">35m</td>
+          <td style="text-align:center;color:#58a6ff;font-weight:700">0%</td>
+          <td style="text-align:center">50%</td>
+          <td style="text-align:center;color:#3fb950;font-weight:700">50%</td>
+          <td style="font-size:11px;color:#8b949e">1H:↔ 2H:→</td>
+        </tr></tbody></table>
+
+  <div style="margin-top:12px;font-size:11px;color:#8b949e">
+    攻撃ゾーン率: A1+A2+A3の占有% | 右サイド率: Y>34m(右タッチライン側)の% |
+    右守備ゾーン率: 守備ハーフ(X<52.5)かつY>34mの% (右サイドバックの活動域)
+  </div>
+
+  <h2>🗺 試合別ゾーン分布</h2>
+  <div class="cards">
+        <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;
+                    padding:16px;flex:1;min-width:240px;max-width:320px">
+          <div style="font-weight:700;color:#58a6ff;font-size:13px">20260314</div>
+          <div style="color:#8b949e;font-size:12px;margin-bottom:10px">vs埼玉大 (03/14)</div>
+          <div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:6.8%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">7%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:36.5%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">36%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:17.6%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">18%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:10.8%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">11%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:27.0%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">27%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:1.4%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">1%</span></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#58a6ff">
+              攻撃 39%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#e6edf3">
+              右側 92%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#3fb950;font-weight:700">
+              右守備 93%</span>
+          </div>
+          
+          <div style="margin-top:8px;font-size:10px;color:#8b949e">
+            n=74 | players=12 |
+            1H:74pt 2H:0pt
+          </div>
+        </div>
+        <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;
+                    padding:16px;flex:1;min-width:240px;max-width:320px">
+          <div style="font-weight:700;color:#58a6ff;font-size:13px">20260316</div>
+          <div style="color:#8b949e;font-size:12px;margin-bottom:10px">vs岐阜協立 (03/16)</div>
+          <div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:17.2%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">17%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:22.1%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">22%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:10.8%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">11%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:11.8%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">12%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:26.0%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">26%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:12.3%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">12%</span></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#58a6ff">
+              攻撃 50%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#e6edf3">
+              右側 51%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#3fb950;font-weight:700">
+              右守備 40%</span>
+          </div>
+          
+          <div style="margin-top:8px;font-size:10px;color:#8b949e">
+            n=204 | players=28 |
+            1H:204pt 2H:0pt
+          </div>
+        </div>
+        <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;
+                    padding:16px;flex:1;min-width:240px;max-width:320px">
+          <div style="font-weight:700;color:#58a6ff;font-size:13px">20260317mid</div>
+          <div style="color:#8b949e;font-size:12px;margin-bottom:10px">vs中京U-19 (03/17)</div>
+          <div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:22.0%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">22%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:26.0%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">26%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:0.0%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">0%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:4.0%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">4%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:32.0%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">32%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:16.0%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">16%</span></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#58a6ff">
+              攻撃 52%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#e6edf3">
+              右側 22%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#f0883e;font-weight:700">
+              右守備 12%</span>
+          </div>
+          
+          <div style="margin-top:8px;font-size:10px;color:#8b949e">
+            n=50 | players=10 |
+            1H:27pt 2H:23pt
+          </div>
+        </div>
+        <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;
+                    padding:16px;flex:1;min-width:240px;max-width:320px">
+          <div style="font-weight:700;color:#58a6ff;font-size:13px">20260317osaka</div>
+          <div style="color:#8b949e;font-size:12px;margin-bottom:10px">vs大阪学院 (03/17)</div>
+          <div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:9.3%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">9%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:30.0%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">30%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:19.3%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">19%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:24.7%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">25%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:14.0%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">14%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:2.7%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">3%</span></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#58a6ff">
+              攻撃 41%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#e6edf3">
+              右側 66%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#3fb950;font-weight:700">
+              右守備 68%</span>
+          </div>
+          
+          <div style="margin-top:8px;font-size:10px;color:#8b949e">
+            n=150 | players=25 |
+            1H:91pt 2H:59pt
+          </div>
+        </div>
+        <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;
+                    padding:16px;flex:1;min-width:240px;max-width:320px">
+          <div style="font-weight:700;color:#58a6ff;font-size:13px">20260318</div>
+          <div style="color:#8b949e;font-size:12px;margin-bottom:10px">vs作新学院 (03/18)</div>
+          <div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:9.5%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">10%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:30.6%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">31%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:18.4%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">18%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:10.9%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">11%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:22.4%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">22%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:8.2%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">8%</span></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#58a6ff">
+              攻撃 42%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#e6edf3">
+              右側 68%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#3fb950;font-weight:700">
+              右守備 74%</span>
+          </div>
+          
+          <div style="margin-top:8px;font-size:10px;color:#8b949e">
+            n=147 | players=19 |
+            1H:72pt 2H:75pt
+          </div>
+        </div>
+        <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;
+                    padding:16px;flex:1;min-width:240px;max-width:320px">
+          <div style="font-weight:700;color:#58a6ff;font-size:13px">20260325</div>
+          <div style="color:#8b949e;font-size:12px;margin-bottom:10px">vs立教大 (03/25)</div>
+          <div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:5.9%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">6%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:29.4%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">29%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:13.2%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">13%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:17.6%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">18%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:27.9%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">28%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:5.9%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">6%</span></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#58a6ff">
+              攻撃 52%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#e6edf3">
+              右側 90%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#3fb950;font-weight:700">
+              右守備 91%</span>
+          </div>
+          <div style="margin-top:8px;padding:6px;background:#161b22;border-radius:4px;font-size:10px;color:#f0883e">OCR識別 #6=P05 n=6 Xmean=60m Ymean=44m ⚠精度未検証</div>
+          <div style="margin-top:8px;font-size:10px;color:#8b949e">
+            n=68 | players=16 |
+            1H:41pt 2H:27pt
+          </div>
+        </div>
+        <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;
+                    padding:16px;flex:1;min-width:240px;max-width:320px">
+          <div style="font-weight:700;color:#58a6ff;font-size:13px">20260329</div>
+          <div style="color:#8b949e;font-size:12px;margin-bottom:10px">vs川崎U-18 (03/29)</div>
+          <div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:6.7%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">7%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:53.3%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">53%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:13.3%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">13%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:6.7%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">7%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:20.0%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">20%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:0.0%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">0%</span></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#58a6ff">
+              攻撃 27%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#e6edf3">
+              右側 100%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#3fb950;font-weight:700">
+              右守備 100%</span>
+          </div>
+          
+          <div style="margin-top:8px;font-size:10px;color:#8b949e">
+            n=15 | players=5 |
+            1H:9pt 2H:6pt
+          </div>
+        </div>
+        <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;
+                    padding:16px;flex:1;min-width:240px;max-width:320px">
+          <div style="font-weight:700;color:#58a6ff;font-size:13px">20260405</div>
+          <div style="color:#8b949e;font-size:12px;margin-bottom:10px">vs獨協大 (04/05)</div>
+          <div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:33.3%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">33%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:33.3%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">33%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">D3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:33.3%;background:#58a6ff;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">33%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A1</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:0.0%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">0%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A2</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:0.0%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">0%</span></div><div style="display:flex;align-items:center;margin:2px 0"><span style="width:30px;font-size:11px;color:#8b949e">A3</span><div style="flex:1;background:#21262d;border-radius:3px;height:14px"><div style="width:0.0%;background:#3fb950;height:100%;border-radius:3px"></div></div><span style="width:40px;text-align:right;font-size:11px;color:#e6edf3">0%</span></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#58a6ff">
+              攻撃 0%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#e6edf3">
+              右側 50%</span>
+            <span style="font-size:11px;background:#21262d;padding:3px 8px;
+                         border-radius:4px;color:#3fb950;font-weight:700">
+              右守備 50%</span>
+          </div>
+          
+          <div style="margin-top:8px;font-size:10px;color:#8b949e">
+            n=6 | players=2 |
+            1H:6pt 2H:0pt
+          </div>
+        </div></div>
+
+  <h2>💡 戦術的インサイト</h2>
+
+  <h3>右チャンネルカバレッジ</h3>
+  <div class="insight">
+    右サイドバック(#6)が「常にゾーンに入れる状況」を作るには、
+    <strong>守備側右チャンネル(D1-D3 × Y>34m)</strong>の
+    カバレッジが30%以上であることが目安。
+    現在のデータではチームレベルの右側占有率を追跡しており、
+    右守備ゾーン率の低い試合では中央に集中する傾向が見られます。
+  </div>
+
+  <h3>攻守バランス</h3>
+  <div class="insight">
+    攻撃ゾーン(A1-A3)が55%以上 = 早稲田が主導権を持つ試合。
+    このとき右SBはオーバーラップ頻度が高くなり、A2-A3ゾーンへの
+    侵入が増えます。守備的な試合(攻撃率<45%)では深いポジションで
+    スタートする回数が増えます。
+  </div>
+
+  <h3>Training Focus — #6 牧野羽瑠</h3>
+  <div class="insight">
+    <strong>【守備時】</strong> D1-D2 × Y>34m をデフォルトポジションとして維持。
+    ボールが逆サイド(Y<34)にある時もY>34のゾーンを確保し、
+    カウンターアタックに対して幅を保つ。<br><br>
+    <strong>【攻撃時】</strong> ボール保持時に A2(Y>34)へのオーバーラップを
+    タイミングよく実行。ハーフスペース(A1-A2境界)へのランが
+    相手の守備ブロックを広げる効果的なアクション。<br><br>
+    <strong>【切り替え】</strong> ロスト直後の即時ネガトランジション:
+    D2 × Y>34m へのリトリートを3秒以内に完了するのが目標値。
+  </div>
+
+  <h2>🗓 試合分析注記</h2>
+  <p style="font-size:12px;color:#8b949e;margin-top:8px">
+    各試合のより詳細な分析は match_*/tracking_report_v3.html を参照。<br>
+    クロスマッチ検証: cross_match_validation.html | 多試合比較: multi_match_report (準備中)
+  </p>
+
+  <h2>🔧 技術改善ロードマップ</h2>
+  <table><thead><tr>
+    <th>優先度</th><th>課題</th><th>改善案</th><th>工数</th>
+  </tr></thead><tbody>
+    <tr><td><span class="badge orange">HIGH</span></td>
+        <td>固定ホモグラフィ → パンカメラで座標ずれ</td>
+        <td>フィールドライン検出によるフレームごとホモグラフィ</td>
+        <td>2-3日</td></tr>
+    <tr><td><span class="badge orange">HIGH</span></td>
+        <td>OCRによる#6識別が2/8試合のみ</td>
+        <td>広角固定カメラ + 高解像度録画で番号視認性向上</td>
+        <td>撮影改善</td></tr>
+    <tr><td><span class="badge blue">MED</span></td>
+        <td>幻影検出(ベンチ・影)</td>
+        <td>グリーン芝マスクによる検出バリデーション</td>
+        <td>4時間</td></tr>
+    <tr><td><span class="badge blue">MED</span></td>
+        <td>20260316: 選手数51→28(まだ多い)</td>
+        <td>Re-IDの類似度閾値・マージ距離の調整</td>
+        <td>2時間</td></tr>
+    <tr><td><span class="badge green">LOW</span></td>
+        <td>方向判定の精度</td>
+        <td>GK(#1)位置活用 + メジアンX使用</td>
+        <td>1時間</td></tr>
+  </tbody></table>
+
+</div>
+<div style="text-align:center;padding:20px;color:#8b949e;font-size:11px">
+TZI v3 総合ゾーン分析 · Indica Labs / 牧野羽瑠 Development Project · 2026</div>
+</body></html>

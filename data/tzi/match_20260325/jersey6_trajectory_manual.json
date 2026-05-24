@@ -1,0 +1,219 @@
+{
+  "match": "vs立教大 (03/25)",
+  "player": "牧野羽瑠 #6",
+  "auto_generated": true,
+  "normalized_coords": true,
+  "direction": {
+    "flip_1h": false,
+    "flip_2h": true
+  },
+  "confirmed_positions": [
+    {
+      "frame": 1200,
+      "fx": 29.8,
+      "fy": 36.6,
+      "time_min": 0.75,
+      "half": "1H",
+      "note": "手動修正: 0:45sec時点の最左選手（元値fx=34.5,fy=35.7は誤検出）"
+    },
+    {
+      "frame": 9000,
+      "fx": 30.9,
+      "fy": 52.1,
+      "time_min": 5.0,
+      "half": "1H"
+    },
+    {
+      "frame": 9600,
+      "fx": 25.1,
+      "fy": 54.3,
+      "time_min": 5.3,
+      "half": "1H",
+      "note": "手動修正: [1]番の選手 (元: X=32.9Y=44.0)"
+    },
+    {
+      "frame": 9630,
+      "fx": 25.1,
+      "fy": 54.3,
+      "time_min": 5.3,
+      "half": "1H",
+      "note": "手動修正: [1]番の選手 (元: X=30.1Y=34.0)"
+    },
+    {
+      "frame": 13800,
+      "fx": 30.6,
+      "fy": 37.6,
+      "time_min": 7.7,
+      "half": "1H"
+    },
+    {
+      "frame": 14700,
+      "fx": 22.4,
+      "fy": 33.4,
+      "time_min": 8.2,
+      "half": "1H"
+    },
+    {
+      "time_min": 12.0,
+      "half": "1H",
+      "fx": 69.22,
+      "fy": 52.04,
+      "zone": "A2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": false
+    },
+    {
+      "frame": 29700,
+      "fx": 18.7,
+      "fy": 37.3,
+      "time_min": 16.5,
+      "half": "1H"
+    },
+    {
+      "frame": 33240,
+      "fx": 19.9,
+      "fy": 44.5,
+      "time_min": 18.5,
+      "half": "1H",
+      "note": "手動修正: 左下の早稲田カラー選手 (元: X=29.7Y=42.4)"
+    },
+    {
+      "frame": 33600,
+      "fx": 33.4,
+      "fy": 34.7,
+      "time_min": 18.7,
+      "half": "1H"
+    },
+    {
+      "frame": 35400,
+      "fx": 19.3,
+      "fy": 50.0,
+      "time_min": 19.7,
+      "half": "1H"
+    },
+    {
+      "frame": 41100,
+      "fx": 31.5,
+      "fy": 48.4,
+      "time_min": 22.8,
+      "half": "1H",
+      "note": "手動修正: [4]番の選手 (元: X=32.4Y=43.0)"
+    },
+    {
+      "frame": 46500,
+      "fx": 27.0,
+      "fy": 45.7,
+      "time_min": 25.8,
+      "half": "1H",
+      "note": "手動修正: [1]番の選手 (元: X=29.7Y=39.9)"
+    },
+    {
+      "time_min": 27.0,
+      "half": "1H",
+      "fx": 70.65,
+      "fy": 49.97,
+      "zone": "A2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": false
+    },
+    {
+      "frame": 64800,
+      "fx": 29.7,
+      "fy": 35.7,
+      "time_min": 36.0,
+      "half": "1H"
+    },
+    {
+      "frame": 67200,
+      "fx": 32.8,
+      "fy": 36.0,
+      "time_min": 37.3,
+      "half": "1H"
+    },
+    {
+      "time_min": 39.0,
+      "half": "1H",
+      "fx": 77.01,
+      "fy": 36.18,
+      "zone": "A2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": false
+    },
+    {
+      "time_min": 42.0,
+      "half": "1H",
+      "fx": 72.99,
+      "fy": 44.42,
+      "zone": "A2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": false
+    },
+    {
+      "time_min": 45.0,
+      "half": "1H",
+      "fx": 74.09,
+      "fy": 34.86,
+      "zone": "A2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": false
+    },
+    {
+      "time_min": 48.47,
+      "half": "2H",
+      "fx": 35.45,
+      "fy": 42.28,
+      "zone": "D2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": true
+    },
+    {
+      "frame": 14100,
+      "fx": 66.1,
+      "fy": 40.4,
+      "time_min": 52.8,
+      "half": "2H",
+      "note": "手動修正: [14]番の選手 (元: X=62.6Y=37.6)"
+    },
+    {
+      "time_min": 69.47,
+      "half": "2H",
+      "fx": 30.8,
+      "fy": 45.4,
+      "zone": "D2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": true
+    },
+    {
+      "time_min": 81.47,
+      "half": "2H",
+      "fx": 26.54,
+      "fy": 40.47,
+      "zone": "D2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": true
+    },
+    {
+      "time_min": 84.47,
+      "half": "2H",
+      "fx": 27.33,
+      "fy": 38.82,
+      "zone": "D2",
+      "note": "auto_v3_normalized",
+      "direction_flipped": true
+    },
+    {
+      "frame": 78300,
+      "fx": 71.0,
+      "fy": 52.5,
+      "time_min": 88.5,
+      "half": "2H"
+    },
+    {
+      "frame": 78300,
+      "fx": 38.9,
+      "fy": 37.6,
+      "time_min": 88.5,
+      "half": "2H"
+    }
+  ]
+}

@@ -1,0 +1,565 @@
+{
+  "match": "20260405",
+  "label": "vs獨協大 (04/05)",
+  "stats": {
+    "n_players": 6,
+    "n_frames": 26,
+    "n_with_jersey": 0,
+    "avg_per_frame": 1.0384615384615385,
+    "elapsed_sec": 5.9,
+    "flip_1h": true,
+    "flip_2h": false
+  },
+  "direction": {
+    "flip_1h": true,
+    "flip_2h": false
+  },
+  "opponent_colors": [
+    [
+      [
+        6,
+        0,
+        74
+      ],
+      [
+        36,
+        85,
+        194
+      ]
+    ],
+    [
+      [
+        16,
+        103,
+        30
+      ],
+      [
+        46,
+        203,
+        144
+      ]
+    ],
+    [
+      [
+        107,
+        0,
+        57
+      ],
+      [
+        137,
+        72,
+        177
+      ]
+    ]
+  ],
+  "players": [
+    {
+      "player_id": "P01",
+      "jersey_number": null,
+      "n_sightings": 4,
+      "zone_dist": {
+        "A1": 2,
+        "D3": 2
+      },
+      "zone_dist_norm": {
+        "D3": 2,
+        "A1": 2
+      },
+      "sightings": [
+        {
+          "time_min": 3.0,
+          "half": "1H",
+          "fx": 57.36,
+          "fy": 20.39,
+          "px": 702,
+          "py": 181,
+          "zone": "A1",
+          "fx_norm": 47.64,
+          "fy_norm": 20.39,
+          "zone_norm": "D3",
+          "direction_flipped": true,
+          "fx_smooth": 47.64,
+          "fy_smooth": 20.39
+        },
+        {
+          "time_min": 18.0,
+          "half": "1H",
+          "fx": 53.32,
+          "fy": 16.83,
+          "px": 646,
+          "py": 154,
+          "zone": "A1",
+          "fx_norm": 51.68,
+          "fy_norm": 16.83,
+          "zone_norm": "D3",
+          "direction_flipped": true,
+          "fx_smooth": 51.68,
+          "fy_smooth": 16.83
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 50.4,
+          "fy": 12.16,
+          "px": 608,
+          "py": 132,
+          "zone": "D3",
+          "fx_norm": 54.6,
+          "fy_norm": 12.16,
+          "zone_norm": "A1",
+          "direction_flipped": true,
+          "fx_smooth": 54.6,
+          "fy_smooth": 12.16
+        },
+        {
+          "time_min": 27.0,
+          "half": "1H",
+          "fx": 47.0,
+          "fy": 6.93,
+          "px": 567,
+          "py": 110,
+          "zone": "D3",
+          "fx_norm": 58.0,
+          "fy_norm": 6.93,
+          "zone_norm": "A1",
+          "direction_flipped": true,
+          "fx_smooth": 58.0,
+          "fy_smooth": 6.93
+        }
+      ]
+    },
+    {
+      "player_id": "P03",
+      "jersey_number": null,
+      "n_sightings": 6,
+      "zone_dist": {
+        "D1": 5,
+        "D2": 1
+      },
+      "zone_dist_norm": {
+        "A3": 3,
+        "A2": 1,
+        "D1": 2
+      },
+      "sightings": [
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 20.98,
+          "fy": 26.73,
+          "px": 178,
+          "py": 234,
+          "zone": "D1",
+          "fx_norm": 84.02,
+          "fy_norm": 26.73,
+          "zone_norm": "A3",
+          "direction_flipped": true,
+          "fx_smooth": 76.13,
+          "fy_smooth": 21.13,
+          "zone_smooth": "A2"
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 21.3,
+          "fy": 15.92,
+          "px": 222,
+          "py": 163,
+          "zone": "D2",
+          "fx_norm": 83.7,
+          "fy_norm": 15.92,
+          "zone_norm": "A2",
+          "direction_flipped": true,
+          "fx_smooth": 98.03,
+          "fy_smooth": 28.22,
+          "zone_smooth": "A3"
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 13.48,
+          "fy": 33.98,
+          "px": 31,
+          "py": 278,
+          "zone": "D1",
+          "fx_norm": 91.52,
+          "fy_norm": 33.98,
+          "zone_norm": "A3",
+          "direction_flipped": true,
+          "fx_smooth": 95.89,
+          "fy_smooth": 30.67,
+          "zone_smooth": "A3"
+        },
+        {
+          "time_min": 39.0,
+          "half": "1H",
+          "fx": 15.13,
+          "fy": 36.4,
+          "px": 43,
+          "py": 259,
+          "zone": "D1",
+          "fx_norm": 89.87,
+          "fy_norm": 36.4,
+          "zone_norm": "A3",
+          "direction_flipped": true,
+          "fx_smooth": 70.74,
+          "fy_smooth": 32.28,
+          "zone_smooth": "A2"
+        },
+        {
+          "time_min": 51.69,
+          "half": "2H",
+          "fx": 10.15,
+          "fy": 17.23,
+          "px": 69,
+          "py": 151,
+          "zone": "D1",
+          "fx_norm": 10.15,
+          "fy_norm": 17.23,
+          "zone_norm": "D1",
+          "direction_flipped": false,
+          "fx_smooth": 40.09,
+          "fy_smooth": 27.2,
+          "zone_smooth": "D2"
+        },
+        {
+          "time_min": 60.69,
+          "half": "2H",
+          "fx": 6.89,
+          "fy": 18.53,
+          "px": 19,
+          "py": 174,
+          "zone": "D1",
+          "fx_norm": 6.89,
+          "fy_norm": 18.53,
+          "zone_norm": "D1",
+          "direction_flipped": false,
+          "fx_smooth": 0.0,
+          "fy_smooth": 14.23,
+          "zone_smooth": "D1"
+        }
+      ]
+    },
+    {
+      "player_id": "P04",
+      "jersey_number": null,
+      "n_sightings": 4,
+      "zone_dist": {
+        "D2": 2,
+        "D1": 2
+      },
+      "zone_dist_norm": {
+        "A2": 2,
+        "A3": 2
+      },
+      "sightings": [
+        {
+          "time_min": 9.0,
+          "half": "1H",
+          "fx": 27.09,
+          "fy": 23.7,
+          "px": 276,
+          "py": 197,
+          "zone": "D2",
+          "fx_norm": 77.91,
+          "fy_norm": 23.7,
+          "zone_norm": "A2",
+          "direction_flipped": true,
+          "fx_smooth": 77.91,
+          "fy_smooth": 23.7
+        },
+        {
+          "time_min": 15.0,
+          "half": "1H",
+          "fx": 23.75,
+          "fy": 23.39,
+          "px": 230,
+          "py": 206,
+          "zone": "D2",
+          "fx_norm": 81.25,
+          "fy_norm": 23.39,
+          "zone_norm": "A2",
+          "direction_flipped": true,
+          "fx_smooth": 81.25,
+          "fy_smooth": 23.39
+        },
+        {
+          "time_min": 21.0,
+          "half": "1H",
+          "fx": 18.57,
+          "fy": 18.88,
+          "px": 175,
+          "py": 180,
+          "zone": "D1",
+          "fx_norm": 86.43,
+          "fy_norm": 18.88,
+          "zone_norm": "A3",
+          "direction_flipped": true,
+          "fx_smooth": 86.43,
+          "fy_smooth": 18.88
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 11.86,
+          "fy": 26.01,
+          "px": 50,
+          "py": 197,
+          "zone": "D1",
+          "fx_norm": 93.14,
+          "fy_norm": 26.01,
+          "zone_norm": "A3",
+          "direction_flipped": true,
+          "fx_smooth": 93.14,
+          "fy_smooth": 26.01
+        }
+      ]
+    },
+    {
+      "player_id": "P05",
+      "jersey_number": null,
+      "n_sightings": 4,
+      "zone_dist": {
+        "A3": 2,
+        "A2": 2
+      },
+      "zone_dist_norm": {
+        "D1": 2,
+        "D2": 2
+      },
+      "sightings": [
+        {
+          "time_min": 12.0,
+          "half": "1H",
+          "fx": 85.6,
+          "fy": 46.55,
+          "px": 1221,
+          "py": 403,
+          "zone": "A3",
+          "fx_norm": 19.4,
+          "fy_norm": 46.55,
+          "zone_norm": "D1",
+          "direction_flipped": true,
+          "fx_smooth": 19.4,
+          "fy_smooth": 46.55
+        },
+        {
+          "time_min": 30.0,
+          "half": "1H",
+          "fx": 83.45,
+          "fy": 49.86,
+          "px": 1203,
+          "py": 435,
+          "zone": "A2",
+          "fx_norm": 21.55,
+          "fy_norm": 49.86,
+          "zone_norm": "D2",
+          "direction_flipped": true,
+          "fx_smooth": 21.55,
+          "fy_smooth": 49.86
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 88.9,
+          "fy": 45.3,
+          "px": 1271,
+          "py": 389,
+          "zone": "A3",
+          "fx_norm": 16.1,
+          "fy_norm": 45.3,
+          "zone_norm": "D1",
+          "direction_flipped": true,
+          "fx_smooth": 16.1,
+          "fy_smooth": 45.3
+        },
+        {
+          "time_min": 39.0,
+          "half": "1H",
+          "fx": 79.5,
+          "fy": 37.91,
+          "px": 1072,
+          "py": 322,
+          "zone": "A2",
+          "fx_norm": 25.5,
+          "fy_norm": 37.91,
+          "zone_norm": "D2",
+          "direction_flipped": true,
+          "fx_smooth": 25.5,
+          "fy_smooth": 37.91
+        }
+      ]
+    },
+    {
+      "player_id": "P02",
+      "jersey_number": null,
+      "n_sightings": 5,
+      "zone_dist": {
+        "A3": 2,
+        "A2": 2,
+        "A1": 1
+      },
+      "zone_dist_norm": {
+        "D1": 2,
+        "D2": 1,
+        "A2": 1,
+        "A1": 1
+      },
+      "sightings": [
+        {
+          "time_min": 6.0,
+          "half": "1H",
+          "fx": 93.39,
+          "fy": 24.82,
+          "px": 1222,
+          "py": 218,
+          "zone": "A3",
+          "fx_norm": 11.61,
+          "fy_norm": 24.82,
+          "zone_norm": "D1",
+          "direction_flipped": true,
+          "fx_smooth": 9.29,
+          "fy_smooth": 25.52,
+          "zone_smooth": "D1"
+        },
+        {
+          "time_min": 36.0,
+          "half": "1H",
+          "fx": 85.14,
+          "fy": 23.79,
+          "px": 1099,
+          "py": 214,
+          "zone": "A3",
+          "fx_norm": 19.86,
+          "fy_norm": 23.79,
+          "zone_norm": "D1",
+          "direction_flipped": true,
+          "fx_smooth": 21.09,
+          "fy_smooth": 23.19,
+          "zone_smooth": "D2"
+        },
+        {
+          "time_min": 39.0,
+          "half": "1H",
+          "fx": 80.72,
+          "fy": 23.78,
+          "px": 1036,
+          "py": 211,
+          "zone": "A2",
+          "fx_norm": 24.28,
+          "fy_norm": 23.78,
+          "zone_norm": "D2",
+          "direction_flipped": true,
+          "fx_smooth": 34.53,
+          "fy_smooth": 21.36,
+          "zone_smooth": "D2"
+        },
+        {
+          "time_min": 51.69,
+          "half": "2H",
+          "fx": 64.52,
+          "fy": 16.19,
+          "px": 795,
+          "py": 161,
+          "zone": "A2",
+          "fx_norm": 64.52,
+          "fy_norm": 16.19,
+          "zone_norm": "A2",
+          "direction_flipped": false,
+          "fx_smooth": 49.62,
+          "fy_smooth": 20.02,
+          "zone_smooth": "D3"
+        },
+        {
+          "time_min": 63.69,
+          "half": "2H",
+          "fx": 60.61,
+          "fy": 20.71,
+          "px": 747,
+          "py": 189,
+          "zone": "A1",
+          "fx_norm": 60.61,
+          "fy_norm": 20.71,
+          "zone_norm": "A1",
+          "direction_flipped": false,
+          "fx_smooth": 66.35,
+          "fy_smooth": 19.2,
+          "zone_smooth": "A2"
+        }
+      ]
+    },
+    {
+      "player_id": "P06",
+      "jersey_number": null,
+      "n_sightings": 4,
+      "zone_dist": {
+        "D2": 4
+      },
+      "zone_dist_norm": {
+        "D2": 4
+      },
+      "sightings": [
+        {
+          "time_min": 51.69,
+          "half": "2H",
+          "fx": 27.53,
+          "fy": 16.77,
+          "px": 302,
+          "py": 163,
+          "zone": "D2",
+          "fx_norm": 27.53,
+          "fy_norm": 16.77,
+          "zone_norm": "D2",
+          "direction_flipped": false,
+          "fx_smooth": 27.53,
+          "fy_smooth": 16.77
+        },
+        {
+          "time_min": 57.69,
+          "half": "2H",
+          "fx": 29.57,
+          "fy": 22.2,
+          "px": 315,
+          "py": 201,
+          "zone": "D2",
+          "fx_norm": 29.57,
+          "fy_norm": 22.2,
+          "zone_norm": "D2",
+          "direction_flipped": false,
+          "fx_smooth": 29.57,
+          "fy_smooth": 22.2
+        },
+        {
+          "time_min": 60.69,
+          "half": "2H",
+          "fx": 25.49,
+          "fy": 11.37,
+          "px": 290,
+          "py": 138,
+          "zone": "D2",
+          "fx_norm": 25.49,
+          "fy_norm": 11.37,
+          "zone_norm": "D2",
+          "direction_flipped": false,
+          "fx_smooth": 25.49,
+          "fy_smooth": 11.37
+        },
+        {
+          "time_min": 63.69,
+          "half": "2H",
+          "fx": 27.47,
+          "fy": 19.38,
+          "px": 294,
+          "py": 168,
+          "zone": "D2",
+          "fx_norm": 27.47,
+          "fy_norm": 19.38,
+          "zone_norm": "D2",
+          "direction_flipped": false,
+          "fx_smooth": 27.47,
+          "fy_smooth": 19.38
+        }
+      ]
+    }
+  ]
+}

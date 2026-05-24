@@ -1,0 +1,55 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Output files
+output/
+*.pdf
+
+# Downloaded videos (use rclone to fetch)
+videos/
+
+# TZI large files
+data/tzi/match_20260325/*.mp4
+data/tzi/match_20260325/*.mov
+
+# TZI tracking overlay videos (映像から再生成可能な大容量アーティファクト)
+data/tzi/match_*/tracking_overlay.mp4
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# rclone
+.rclone-config/
+
+# Misc
+*.log
+*.pot
+*~
+.tmp/
+data/tzi/*/frames_v3/
+data/tzi/*/validation/
+data/tzi/*/manual_id/
+data/tzi/*/frames_v2/
+data/tzi/*/frames_annotated/
+data/tzi/*/diag_*.jpg
+scripts/tzi/yolov8n.pt
