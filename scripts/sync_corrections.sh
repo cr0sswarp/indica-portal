@@ -1,10 +1,10 @@
 #!/bin/bash
 # sync_corrections.sh
-# Google Drive の TZI/corrections/ を data/tzi/corrections/ に同期する
+# Google Drive の TZI/corrections/ を同期し、テキストを JSON 化して適用
 #
 # 使い方:
-#   bash scripts/sync_corrections.sh          # 同期のみ
-#   bash scripts/sync_corrections.sh --apply  # 同期後に apply_corrections.py も実行
+#   bash scripts/sync_corrections.sh           # 同期のみ
+#   bash scripts/sync_corrections.sh --apply   # 同期 + JSON化 + ground_truth 更新
 
 set -e
 
@@ -12,35 +12,35 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 CORR_DIR="$PROJECT_ROOT/data/tzi/corrections"
 RCLONE_REMOTE="gdrive"
-RCLONE_PATH="TZI/corrections"
+DRIVE_CORRECTIONS="TZI/corrections"
 
-echo "=== TZI 修正ファイル同期 ==="
+echo "=== 修正ファイル同期 ==="
 
 if ! command -v rclone &> /dev/null; then
-    echo "❌ rclone がインストールされていません"
-    exit 1
+    echo "❌ rclone がインストールされていません"; exit 1
 fi
-
 if ! rclone listremotes | grep -q "^${RCLONE_REMOTE}:$"; then
-    echo "❌ rclone リモート '${RCLONE_REMOTE}' が設定されていません"
-    exit 1
+    echo "❌ rclone リモート '${RCLONE_REMOTE}' が設定されていません"; exit 1
 fi
 
 mkdir -p "$CORR_DIR"
 
-echo "📥 Drive (${RCLONE_REMOTE}:${RCLONE_PATH}) → ${CORR_DIR}"
-rclone sync "${RCLONE_REMOTE}:${RCLONE_PATH}" "$CORR_DIR" \
-    --include="corrections_*.json" \
+echo "📥 Drive (${RCLONE_REMOTE}:${DRIVE_CORRECTIONS}) → $CORR_DIR"
+rclone sync "${RCLONE_REMOTE}:${DRIVE_CORRECTIONS}" "$CORR_DIR" \
+    --include="*/corrections.txt" \
     --verbose
 
 echo ""
-echo "同期済みファイル:"
-ls -lh "$CORR_DIR"/corrections_*.json 2>/dev/null || echo "  (まだ修正ファイルなし)"
+echo "同期済み corrections.txt:"
+find "$CORR_DIR" -name "corrections.txt" | sort | while read f; do
+    lines=$(wc -l < "$f")
+    echo "  ${f#$CORR_DIR/}  (${lines}行)"
+done
 
 if [[ "$1" == "--apply" ]]; then
     echo ""
-    echo "=== 修正を適用中 ==="
-    python3 "$SCRIPT_DIR/tzi/apply_corrections.py"
+    echo "=== テキスト → JSON 化 + 適用 ==="
+    python3 "$SCRIPT_DIR/tzi/parse_corrections.py"
 fi
 
 echo ""
