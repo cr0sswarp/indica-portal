@@ -1,19 +1,17 @@
-# VALIENTE Portal - 自動化スクリプト依存パッケージ
+# Core CV & analysis
+opencv-python
+numpy
+scipy
+matplotlib
 
-# 基本パッケージ
-anthropic>=0.25.0
-notion-client>=2.2.0
-requests>=2.31.0
+# ML / OCR
+easyocr
 
-# PDF生成（nakajima.py用）
-reportlab>=4.0.0
+# Web app
+streamlit>=1.57
 
-# TZI動画分析（TZI_prototype用）
-opencv-python>=4.8.0
-numpy>=1.24.0
-scipy>=1.11.0
-matplotlib>=3.7.0
-pandas>=2.0.0
-pyyaml>=6.0
-ultralytics>=8.0.0
-mediapipe>=0.10.0
+# Utilities
+reportlab
+notion-client
+anthropic
+pandas
