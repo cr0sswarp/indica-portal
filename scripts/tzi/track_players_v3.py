@@ -52,9 +52,13 @@ DST = np.float32([[0, 0],   [105, 0],  [52.5, 34], [52.5, 68]])
 H_MAT, _ = cv2.findHomography(SRC, DST, cv2.RANSAC, 3.0)
 
 # ── HSV ranges ───────────────────────────────────────────────────
-# Waseda maroon (dark red)
-W_LO1, W_HI1 = np.array([0,   50, 40]),  np.array([12,  255, 220])
-W_LO2, W_HI2 = np.array([165, 50, 40]),  np.array([180, 255, 220])
+# Waseda maroon (dark red).
+# Saturation lowered to 25 (from 50): matches with lower-contrast lighting
+# (e.g., vs獨協大 20260405) showed S≈27 average → S≥50 rejected all detections.
+# Hue extended to 0-15 (from 0-12) / 160-180 (from 165-180) for slight
+# orange-shift that occurs under warm stadium lighting.
+W_LO1, W_HI1 = np.array([0,   35, 35]),  np.array([15,  255, 220])
+W_LO2, W_HI2 = np.array([160, 35, 35]),  np.array([180, 255, 220])
 # Field green (excluded from opponent detection)
 G_LO,  G_HI  = np.array([35,  40, 40]),  np.array([85,  255, 200])
 # White/light players
@@ -72,7 +76,7 @@ HIST_SIMILARITY   = 0.35
 MAX_PLAYERS_FIELD = 11
 MERGE_GAP_MIN     = 15.0
 MERGE_DIST_M      = 22.0
-MIN_SIGHTINGS     = 3
+MIN_SIGHTINGS     = 4
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 
 # ── Match configuration ───────────────────────────────────────────
@@ -206,6 +210,95 @@ def _color_hist(crop):
 
 def hist_sim(a, b):
     return float(np.dot(a, b))
+
+
+# ── Auto-calibrate Waseda jersey color per match ─────────────────
+# Waseda wears maroon (dark red), but lighting changes the apparent HSV.
+# We sample frames, find the dominant red-ish cluster, and build a per-match
+# HSV range. This prevents the fixed global range from missing players in
+# matches with different lighting or camera exposure.
+
+def auto_calibrate_waseda_color(video_path, n_sample=8):
+    """
+    Sample frames from a video, extract red-ish (maroon) pixels in the
+    player zone, use K-means to find the dominant cluster, and return
+    (lo1, hi1, lo2, hi2) tuples for the two Hue wrap-around ranges.
+    Falls back to the hardcoded global constants on failure.
+    """
+    cap = cv2.VideoCapture(str(video_path))
+    fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+    total_f = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    # Sample evenly from 10% to 70% of the video (avoid intro/outro)
+    step = max(1, int(total_f * 0.6 / n_sample))
+    sample_frames = [int(total_f * 0.1) + i * step for i in range(n_sample)]
+
+    # Broad red search window (covers H=0-30 and H=150-180 in HSV wrap-around)
+    RED_LO1 = np.array([0,   20, 30])
+    RED_HI1 = np.array([25, 255, 230])
+    RED_LO2 = np.array([150, 20, 30])
+    RED_HI2 = np.array([180, 255, 230])
+
+    all_px = []
+    for fn in sample_frames:
+        cap.set(cv2.CAP_PROP_POS_FRAMES, fn)
+        ret, frame = cap.read()
+        if not ret:
+            continue
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        h = frame.shape[0]
+        # Player zone only
+        roi_mask = np.zeros(hsv.shape[:2], dtype=np.uint8)
+        roi_mask[60:min(h, 720), :] = 255
+        field_mask = cv2.inRange(hsv, G_LO, G_HI)
+        red_mask = cv2.bitwise_or(cv2.inRange(hsv, RED_LO1, RED_HI1),
+                                   cv2.inRange(hsv, RED_LO2, RED_HI2))
+        valid = cv2.bitwise_and(red_mask, cv2.bitwise_not(field_mask))
+        valid = cv2.bitwise_and(valid, roi_mask)
+        px = hsv[valid > 0]
+        if len(px) > 50:
+            idx = np.random.choice(len(px), min(300, len(px)), replace=False)
+            all_px.append(px[idx])
+
+    cap.release()
+
+    if not all_px:
+        print("  [calibrate_waseda] No red pixels found — using global defaults")
+        return W_LO1, W_HI1, W_LO2, W_HI2
+
+    all_px = np.vstack(all_px).astype(np.float32)
+
+    # K-means: find dominant red cluster
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 20, 0.5)
+    k = min(3, len(all_px))
+    _, labels, centers = cv2.kmeans(all_px, k, None, criteria, 5,
+                                     cv2.KMEANS_PP_CENTERS)
+
+    # Pick the largest cluster
+    counts = [int(np.sum(labels == i)) for i in range(k)]
+    best = int(np.argmax(counts))
+    h_c, s_c, v_c = int(centers[best][0]), int(centers[best][1]), int(centers[best][2])
+
+    # Build ranges with adaptive margins
+    H_MARGIN, S_MARGIN, V_MARGIN = 18, 60, 70
+    lo1 = np.array([max(0,   h_c - H_MARGIN), max(15,  s_c - S_MARGIN), max(25, v_c - V_MARGIN)])
+    hi1 = np.array([min(25,  h_c + H_MARGIN), min(255, s_c + S_MARGIN), min(240, v_c + V_MARGIN)])
+
+    # Wrap-around range for H>150
+    lo2 = np.array([max(150, 180 - (H_MARGIN - max(0, h_c))), lo1[1], lo1[2]])
+    hi2 = np.array([180, hi1[1], hi1[2]])
+
+    # If center hue is already in wrap range (>150), swap primary/secondary
+    if h_c > 150:
+        lo1b = np.array([0, lo1[1], lo1[2]])
+        hi1b = np.array([min(20, 180 - h_c + H_MARGIN), hi1[1], hi1[2]])
+        lo2b = np.array([max(150, h_c - H_MARGIN), lo1[1], lo1[2]])
+        hi2b = np.array([180, hi1[1], hi1[2]])
+        lo1, hi1, lo2, hi2 = lo2b, hi2b, lo1b, hi1b
+
+    print(f"  [calibrate_waseda] Center H={h_c} S={s_c} V={v_c} (cluster size={counts[best]})")
+    print(f"  [calibrate_waseda] Range1: H={lo1[0]}-{hi1[0]} S={lo1[1]}-{hi1[1]} V={lo1[2]}-{hi1[2]}")
+    print(f"  [calibrate_waseda] Range2: H={lo2[0]}-{hi2[0]} S={lo2[1]}-{hi2[1]} V={lo2[2]}-{hi2[2]}")
+    return lo1, hi1, lo2, hi2
 
 
 # ── Auto-detect opponent color from first 10 frames of a video ───
@@ -720,6 +813,24 @@ def merge_tracks(tracks):
     return [t for t in tracks if len(t.sightings) >= MIN_SIGHTINGS]
 
 
+def filter_by_min_sightings(tracks, n_frames: int) -> list:
+    """Dynamic minimum sightings threshold based on total frames sampled.
+    Longer matches accumulate more frames, so genuine players should appear
+    more often. This prevents ghost tracks from persisting in long matches
+    while keeping genuine tracks in short matches.
+      n_frames ≥ 25 (90-min): min = 5
+      n_frames ≥ 15 (45-min): min = 4
+      n_frames <  15 (40-min): min = 3
+    """
+    if n_frames >= 28:
+        thresh = 5
+    elif n_frames >= 18:
+        thresh = 4
+    else:
+        thresh = 3
+    return [t for t in tracks if len(t.sightings) >= thresh]
+
+
 def smooth_trajectories(tracks):
     """Apply Savitzky-Golay filter to smooth normalized trajectory positions.
 
@@ -1188,7 +1299,9 @@ def process_match(match_id, interval_min, use_ocr, videos_dir):
 
     print(f"\nBefore merge: {len(all_tracks)} tracks")
     all_tracks = merge_tracks(all_tracks)
-    print(f"After  merge: {len(all_tracks)} tracks")
+    n_frames_total = len(all_frames)
+    all_tracks = filter_by_min_sightings(all_tracks, n_frames_total)
+    print(f"After  merge: {len(all_tracks)} tracks ({n_frames_total} frames)")
 
     subs = detect_substitutions(all_tracks)
     print(f"Substitutions: {len(subs)}")
