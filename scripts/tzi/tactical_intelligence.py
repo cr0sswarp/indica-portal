@@ -428,8 +428,15 @@ ROLE_SIGNATURE = {
 # 試合別・時間帯別の確定ポジション (Makino氏ヒアリング)。
 # 5試合で実装/チューニング、残り3試合 (20260318/20260329/20260405) は
 # 「ホールドアウト検証用」として意図的に未記入 → 自動推定にフォールバック。
-HARU_GROUND_TRUTH = {
-    "20260314": {  # 埼玉大 (前後半1本の結合動画)
+#
+# 正解データは data/tzi/ground_truth.json に外出ししている。動画を見ながら
+# 判定を更新する人(牧野氏など)が Python を触らず JSON だけ編集できるように
+# するため。JSON が無い/壊れている場合は下記の組み込み既定値を使う。
+
+_GROUND_TRUTH_JSON = DATA_TZI / "ground_truth.json"
+
+_HARU_GROUND_TRUTH_DEFAULT = {
+    "20260314": {
         "note": "前半=右SB / 後半21:35〜ボランチ(6番)・試合終了まで",
         "segments": [
             {"half": "1H", "role": "サイドバック", "label": "右SB"},
@@ -439,28 +446,28 @@ HARU_GROUND_TRUTH = {
              "t_rel": (21.58, 999.0)},
         ],
     },
-    "20260316": {  # 岐阜協立 (前後半1本の結合動画)
+    "20260316": {
         "note": "90分通して右SB",
         "segments": [
             {"half": "1H", "role": "サイドバック", "label": "右SB"},
             {"half": "2H", "role": "サイドバック", "label": "右SB"},
         ],
     },
-    "20260317mid": {  # 中京U-19
+    "20260317mid": {
         "note": "前半22:15〜右SB(6番) / 後半ボランチスタート〜23:15頃",
         "segments": [
             {"half": "1H", "role": "サイドバック", "label": "右SB"},
             {"half": "2H", "role": "アンカー",     "label": "ボランチ"},
         ],
     },
-    "20260317osaka": {  # 大阪学院
+    "20260317osaka": {
         "note": "前後半とも右SB(6番) ※後半14:50は交代の出入り",
         "segments": [
             {"half": "1H", "role": "サイドバック", "label": "右SB"},
             {"half": "2H", "role": "サイドバック", "label": "右SB"},
         ],
     },
-    "20260325": {  # 立教 ※動画なし・既存3分データ
+    "20260325": {
         "note": "前半=右SB / 後半29:30〜右ボランチ (ポジションチェンジ)",
         "segments": [
             {"half": "1H", "role": "サイドバック", "label": "右SB"},
@@ -471,6 +478,23 @@ HARU_GROUND_TRUTH = {
         ],
     },
 }
+
+
+def _load_ground_truth():
+    """data/tzi/ground_truth.json を読み、{match_id: {note, segments}} を返す。
+    t_rel は JSON では [lo, hi] 配列。ファイルが無い/壊れている場合は組み込み
+    既定値を返す。"""
+    try:
+        with open(_GROUND_TRUTH_JSON, encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("matches", {}) or _HARU_GROUND_TRUTH_DEFAULT
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        print(f"  [ground_truth] {_GROUND_TRUTH_JSON.name} 読込不可 ({e}) "
+              f"→ 組み込み既定値を使用")
+        return _HARU_GROUND_TRUTH_DEFAULT
+
+
+HARU_GROUND_TRUTH = _load_ground_truth()
 
 
 # ── 消去法サポート: GK・CB先特定 ─────────────────────────────

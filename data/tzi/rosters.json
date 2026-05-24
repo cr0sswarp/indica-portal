@@ -1,0 +1,25 @@
+{
+  "_README": "試合ごとの出場選手・背番号。OCR読み取りのロスター制約(既知番号以外を棄却)と、トラック→番号の割当に使う。動画を見て確認した番号をここに記入する。waseda/opponent それぞれ {背番号: ポジション or 選手名} 。GK番号が分かれば 'gk' に記入。羽瑠は常に #6。",
+  "matches": {
+    "20260325": {
+      "label": "vs立教大 (03/25)",
+      "waseda": {
+        "starters": [3, 4, 5, 6, 7, 10, 11, 12, 13, 14],
+        "gk": null,
+        "notes": {
+          "6": "牧野羽瑠 (前半右SB / 後半29:30〜右ボランチ)",
+          "14": "前半 左SB"
+        }
+      },
+      "opponent": {
+        "starters": [],
+        "gk": null,
+        "notes": {}
+      }
+    },
+    "20260314": {"label": "vs埼玉大 (03/14)", "waseda": {"starters": [], "gk": null, "notes": {"6": "牧野羽瑠"}}, "opponent": {"starters": [], "gk": null, "notes": {}}},
+    "20260316": {"label": "vs岐阜協立 (03/16)", "waseda": {"starters": [], "gk": null, "notes": {"6": "牧野羽瑠"}}, "opponent": {"starters": [], "gk": null, "notes": {}}},
+    "20260317mid": {"label": "vs中京U-19 (03/17)", "waseda": {"starters": [], "gk": null, "notes": {"6": "牧野羽瑠"}}, "opponent": {"starters": [], "gk": null, "notes": {}}},
+    "20260317osaka": {"label": "vs大阪学院 (03/17)", "waseda": {"starters": [], "gk": null, "notes": {"6": "牧野羽瑠"}}, "opponent": {"starters": [], "gk": null, "notes": {}}}
+  }
+}
