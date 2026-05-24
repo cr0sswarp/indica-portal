@@ -165,8 +165,53 @@ def _identification_block(r: dict) -> str:
                 f'</div>')
 
     note_html = f'<div class="ident-note">📋 {note}</div>' if note else ""
+    skel_html = _skeleton_pitch(hid.get("skeleton", {}),
+                                {s.get("player_id") for s in segs})
     return (f'<div class="ident">{note_html}'
-            f'<div class="seg-list">{seg_html}</div>{pc_html}</div>')
+            f'<div class="seg-list">{seg_html}</div>{pc_html}{skel_html}</div>')
+
+
+# 標準ロールのピッチ上相対座標 (x:0-105→0-100%, y:0-68→0-100%)
+_SKEL_LAYOUT = {
+    "GK": (5, 50), "LCB": (19, 70), "RCB": (19, 30), "LB": (29, 90),
+    "RB": (29, 10), "DM": (40, 50), "LCM": (52, 65), "RCM": (52, 35),
+    "LW": (72, 88), "RW": (72, 12), "CF": (85, 50),
+}
+
+
+def _skeleton_pitch(skeleton: dict, haru_pids: set) -> str:
+    """復元したチーム骨格をミニピッチ上に描画 (羽瑠枠を強調)."""
+    if not skeleton:
+        return ""
+    W, H = 360, 150
+    dots = []
+    for rk, info in skeleton.items():
+        if rk not in _SKEL_LAYOUT:
+            continue
+        gx, gy = _SKEL_LAYOUT[rk]
+        x, y = gx / 100 * W, gy / 100 * H
+        pid = info.get("player_id", "")
+        is_haru = pid in haru_pids
+        col = "#5eead4" if is_haru else "#3b557f"
+        rcol = "#0a0e1a"
+        dots.append(
+            f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{9 if is_haru else 7}" '
+            f'fill="{col}" stroke="{rcol}" stroke-width="1.5"/>'
+            f'<text x="{x:.0f}" y="{y+3:.0f}" font-size="8" fill="#0a0e1a" '
+            f'font-weight="700" text-anchor="middle">{info["label"]}</text>'
+            f'<text x="{x:.0f}" y="{y-12:.0f}" font-size="7.5" '
+            f'fill="{"#5eead4" if is_haru else "#6b7a99"}" '
+            f'text-anchor="middle">{pid}</text>')
+    return (
+        f'<div class="skel"><div class="skel-title">復元ラインアップ '
+        f'(消去法スケルトン · <span style="color:#5eead4">緑=羽瑠枠</span>) '
+        f'攻撃方向→</div>'
+        f'<svg viewBox="0 0 {W} {H}" width="100%" style="max-width:{W}px">'
+        f'<rect x="0" y="0" width="{W}" height="{H}" fill="#0d1f17" rx="6"/>'
+        f'<line x1="{W/2}" y1="0" x2="{W/2}" y2="{H}" stroke="#1e3a2e" '
+        f'stroke-width="1.5"/>'
+        f'<circle cx="{W/2}" cy="{H/2}" r="20" fill="none" stroke="#1e3a2e" '
+        f'stroke-width="1.5"/>{"".join(dots)}</svg></div>')
 
 
 def _match_card(r: dict) -> str:
@@ -388,6 +433,8 @@ h2{{font-size:1.2rem;margin:36px 0 16px;padding-bottom:10px;border-bottom:1px so
 .pchg{{margin-top:10px;padding:10px 12px;background:#11192b;border-left:3px solid #5eead4;border-radius:0 8px 8px 0}}
 .pchg-head{{font-size:.86rem;margin-bottom:4px}}
 .pchg-body{{font-size:.76rem;color:#9fb3d9}}
+.skel{{margin-top:12px}}
+.skel-title{{font-size:.76rem;color:#9fb3d9;margin-bottom:6px}}
 .mc-body{{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-bottom:18px}}
 .radar-wrap{{position:relative}}
 .tiq{{position:absolute;bottom:6px;right:6px;text-align:center;font-size:.7rem;color:#9fb3d9}}
@@ -437,6 +484,7 @@ footer{{text-align:center;padding:30px;color:#3f4a63;font-size:.78rem;border-top
         "matches": [{
             "match": r["match"], "label": r["label"],
             "haru": r["haru"], "haru_id": r.get("haru_id"),
+            "skeleton": r.get("haru_id", {}).get("skeleton"),
             "position_change": r.get("position_change"),
         } for r in results if r.get("haru")]
     }

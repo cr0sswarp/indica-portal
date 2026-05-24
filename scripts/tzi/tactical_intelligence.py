@@ -483,10 +483,36 @@ HARU_GROUND_TRUTH = {
 #   CB = X低め (10-30m), Y中央 (20-48m), std_x 小さい
 #   → 3トラックを除外後、右フランク(Y=42-68, X=15-42)の最有力候補が羽瑠
 
-def identify_gk_cbs(all_tracks: list, half: str | None = None,
-                    min_n: int = 4) -> set[int]:
-    """GK(1) + CB(2) のトラックindexセットを返す. 消去法に使用."""
-    candidates = []
+# 標準スケルトン (4-3-3ベース)。正規化座標 (Wasedaは x→105 へ攻撃) での
+# 各ロールの理想重心。守備陣形(右SB=羽瑠)を起点に攻撃方向へ展開。
+# yw=Y方向の重み (フランク/中央の左右弁別を強める), is_gk=静的判定を加味。
+SKELETON_ROLES = [
+    # role_key, label,       tx,   ty,  yw,  is_gk
+    ("GK",  "GK",            6.0, 34.0, 1.0, True),
+    ("LCB", "左CB",         20.0, 26.0, 1.2, False),
+    ("RCB", "右CB",         20.0, 42.0, 1.2, False),
+    ("LB",  "左SB",         31.0, 11.0, 1.4, False),
+    ("RB",  "右SB",         31.0, 57.0, 1.4, False),   # ← 羽瑠(右SB)候補
+    ("DM",  "アンカー",      42.0, 34.0, 1.1, False),
+    ("LCM", "左IH",         54.0, 24.0, 1.2, False),
+    ("RCM", "右IH",         54.0, 44.0, 1.2, False),   # ← 右ボランチ候補
+    ("LW",  "左WG",         75.0, 11.0, 1.3, False),
+    ("RW",  "右WG",         75.0, 57.0, 1.3, False),
+    ("CF",  "CF",           87.0, 34.0, 1.0, False),
+]
+
+# 羽瑠のロール(グラウンドトゥルース)→ スケルトン枠 のマッピング
+HARU_ROLE_TO_SLOT = {
+    "サイドバック": "RB",   # 右SB
+    "アンカー":     "DM",   # ボランチ(単独)
+    "セントラル":   "RCM",  # 右ボランチ/右IH
+    "センターバック": "RCB",
+}
+
+
+def _track_signatures(all_tracks, half=None, min_n=4):
+    """各トラックの平均位置シグネチャを抽出 (スケルトン割当用)."""
+    cands = []
     for i, t in enumerate(all_tracks):
         sigs = ([s for s in t["sightings"] if s.get("half") == half]
                 if half else t["sightings"])
@@ -494,43 +520,53 @@ def identify_gk_cbs(all_tracks: list, half: str | None = None,
             continue
         xs = np.array([get_coords(s)[0] for s in sigs])
         ys = np.array([get_coords(s)[1] for s in sigs])
-        candidates.append({
-            "idx": i,
-            "ax": float(np.mean(xs)),
-            "ay": float(np.mean(ys)),
-            "sx": float(np.std(xs)),
-            "sy": float(np.std(ys)),
-            "n": len(sigs),
+        cands.append({
+            "idx": i, "ax": float(np.mean(xs)), "ay": float(np.mean(ys)),
+            "sx": float(np.std(xs)), "n": len(sigs),
         })
-    if not candidates:
-        return set()
-
-    # GK: X最小 かつ std_x が最小グループから選択
-    # (GKは自陣ゴール前でほぼ動かない)
-    cands_sorted_x = sorted(candidates, key=lambda c: c["ax"])
-    gk_pool = cands_sorted_x[:max(3, len(cands_sorted_x) // 4)]
-    gk = min(gk_pool, key=lambda c: c["sx"])  # std_x最小=最も動かない
-    excluded = {gk["idx"]}
-
-    # CB×2: GK除外後, X低め (10-40m), Y中央 (20-50m) で安定した2トラック
-    cb_cands = [c for c in candidates
-                if c["idx"] not in excluded
-                and 10 <= c["ax"] <= 40
-                and 20 <= c["ay"] <= 50
-                and c["sx"] < 18]
-    cb_cands.sort(key=lambda c: (c["ax"], c["sx"]))  # X低め・安定順
-    for cb in cb_cands[:2]:
-        excluded.add(cb["idx"])
-
-    return excluded
+    return cands
 
 
-    """値が[lo,hi]外なら最近端までの距離, 内なら0."""
-    if v < lo:
-        return lo - v
-    if v > hi:
-        return v - hi
-    return 0.0
+def assign_skeleton(all_tracks, half=None, min_n=4):
+    """チーム骨格を復元: 各標準ロールに最良トラックをgreedy競合割当。
+    返り値: {role_key: {"idx", "label", "dist", "ax", "ay", "runner_up"}}.
+
+    距離 = 重み付きユークリッド(X, Y×yw)。GKは静的さ(std_x)も加味。
+    最も曖昧でない (距離最小) ペアから確定し、各トラック/ロールは一度だけ。"""
+    cands = _track_signatures(all_tracks, half, min_n)
+    if not cands:
+        return {}
+
+    pairs = []  # (dist, role_key, cand)
+    for (rk, label, tx, ty, yw, is_gk) in SKELETON_ROLES:
+        for c in cands:
+            d = math.hypot(c["ax"] - tx, (c["ay"] - ty) * yw)
+            if is_gk:
+                d += c["sx"] * 1.2          # GKは動かないほど良い
+            else:
+                d += max(0, c["sx"] - 30) * 0.3  # 過剰可動を僅かに減点
+            pairs.append((d, rk, c))
+    pairs.sort(key=lambda p: p[0])
+
+    role_meta = {r[0]: r[1] for r in SKELETON_ROLES}
+    assigned, used_tracks, used_roles = {}, set(), set()
+    # 2位候補(同ロールの次点)を一意性評価のため記録
+    second_best = defaultdict(list)
+    for d, rk, c in pairs:
+        if rk not in used_roles:
+            second_best[rk].append(d)
+    for d, rk, c in pairs:
+        if rk in used_roles or c["idx"] in used_tracks:
+            continue
+        ru = next((dd for dd in second_best[rk] if dd > d), None)
+        assigned[rk] = {
+            "idx": c["idx"], "label": role_meta[rk], "dist": round(d, 1),
+            "ax": round(c["ax"], 1), "ay": round(c["ay"], 1),
+            "runner_up": round(ru, 1) if ru else None,
+        }
+        used_roles.add(rk)
+        used_tracks.add(c["idx"])
+    return assigned
 
 
 def _range_dist(v: float, lo: float, hi: float) -> float:
@@ -618,20 +654,32 @@ def identify_haru(all_tracks: list, profiles: list, match_id: str) -> dict:
     """
     gt = HARU_GROUND_TRUTH.get(match_id)
     if gt:
-        # 消去法: 各ハーフのGK+CBを先特定して除外
-        excluded_by_half: dict[str | None, set] = {}
+        # チーム骨格(スケルトン)を各ハーフで復元 → 羽瑠枠以外を全除外
+        skeleton_by_half: dict[str | None, dict] = {}
         for half_key in (None, "1H", "2H"):
-            excl = identify_gk_cbs(all_tracks, half=half_key)
-            excluded_by_half[half_key] = excl
+            skeleton_by_half[half_key] = assign_skeleton(all_tracks, half=half_key)
 
+        slot_pos = {r[0]: (r[2], r[3]) for r in SKELETON_ROLES}
         seg_results = []
         running_exclude: set[int] = set()  # 既に確定したHaruトラックも除外
         for seg in gt["segments"]:
             h = seg["half"]
-            exclude = excluded_by_half.get(h, set()) | running_exclude
+            skel = skeleton_by_half.get(h, {})
+            slot = HARU_ROLE_TO_SLOT.get(seg["role"])
+            # 羽瑠枠から「遠い」ロールのみ除外 (GK/FW/左サイド等)。
+            # 近接ロール(右CB等)は残し、本人を誤って除外しないようにする。
+            sx_t, sy_t = slot_pos.get(slot, (31.0, 57.0))
+            exclude = set()
+            for k, v in skel.items():
+                if k == slot:
+                    continue
+                kx, ky = slot_pos[k]
+                if math.hypot(kx - sx_t, ky - sy_t) > 22.0:
+                    exclude.add(v["idx"])
+            exclude |= running_exclude
             idx, fit, uniq = identify_haru_track(
                 all_tracks, seg["role"], h, exclude=exclude)
-            # 総合信頼度 = ゾーン適合度 × 一意性 (消去法で一意性が改善)
+            # 総合信頼度 = ゾーン適合度 × 一意性 (スケルトン除外で改善)
             conf = (round(fit * (0.5 + 0.5 * uniq), 2)
                     if (fit is not None and uniq is not None) else None)
             seg_results.append({
@@ -642,20 +690,27 @@ def identify_haru(all_tracks: list, profiles: list, match_id: str) -> dict:
                 "player_id": all_tracks[idx]["player_id"] if idx is not None else None,
                 "confidence": conf,
                 "fit": fit, "uniqueness": uniq,
+                "slot": slot,
             })
-            # 確定したトラックを後続セグメントの除外リストに追加
             if idx is not None:
                 running_exclude.add(idx)
         # primary = 最初のセグメント (常に1H右SB) のトラック
         primary = next((s["track_idx"] for s in seg_results
                         if s["track_idx"] is not None), None)
         confs = [s["confidence"] for s in seg_results if s["confidence"] is not None]
+        # レポート用: 代表ハーフ(1H優先)のスケルトンを player_id 付きで返す
+        rep_skel = skeleton_by_half.get("1H") or skeleton_by_half.get(None) or {}
+        skeleton_out = {
+            rk: {**v, "player_id": all_tracks[v["idx"]]["player_id"]}
+            for rk, v in rep_skel.items()
+        }
         return {
             "primary_idx": primary,
             "segments": seg_results,
             "confidence": round(float(np.mean(confs)), 2) if confs else None,
             "method": "ground_truth",
             "note": gt.get("note", ""),
+            "skeleton": skeleton_out,
         }
     # ── ホールドアウト: 自動推定 (検証用) ──
     valid = [(i, p) for i, p in enumerate(profiles)
