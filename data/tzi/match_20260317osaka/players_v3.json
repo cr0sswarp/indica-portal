@@ -6,7 +6,7 @@
     "n_frames": 90,
     "n_with_jersey": 8,
     "avg_per_frame": 6.9,
-    "elapsed_sec": 228.9,
+    "elapsed_sec": 54.6,
     "flip_1h": false,
     "flip_2h": true
   },
@@ -237,7 +237,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 32.01,
-          "fy_smooth": 44.08,
+          "fy_smooth": 44.7,
           "zone_smooth": "D2"
         },
         {
@@ -253,7 +253,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 33.1,
-          "fy_smooth": 46.69,
+          "fy_smooth": 45.5,
           "zone_smooth": "D2"
         },
         {
@@ -269,7 +269,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 40.21,
-          "fy_smooth": 44.68,
+          "fy_smooth": 43.72,
           "zone_smooth": "D2"
         },
         {
@@ -281,11 +281,11 @@
           "py": 303,
           "zone": "D3",
           "fx_norm": 60.24,
-          "fy_norm": 37.22,
+          "fy_norm": 30.78,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 50.47,
-          "fy_smooth": 40.36,
+          "fy_smooth": 38.67,
           "zone_smooth": "D3"
         },
         {
@@ -297,11 +297,11 @@
           "py": 263,
           "zone": "D3",
           "fx_norm": 60.98,
-          "fy_norm": 32.62,
+          "fy_norm": 35.38,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 60.93,
-          "fy_smooth": 34.09,
+          "fy_smooth": 33.83,
           "zone_smooth": "A1"
         },
         {
@@ -313,11 +313,11 @@
           "py": 299,
           "zone": "D3",
           "fx_norm": 59.92,
-          "fy_norm": 36.52,
+          "fy_norm": 31.48,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 62.86,
-          "fy_smooth": 34.86,
+          "fy_smooth": 30.81,
           "zone_smooth": "A1"
         },
         {
@@ -329,11 +329,11 @@
           "py": 301,
           "zone": "D3",
           "fx_norm": 61.4,
-          "fy_norm": 36.05,
+          "fy_norm": 31.95,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 59.87,
-          "fy_smooth": 39.98,
+          "fy_smooth": 28.02,
           "zone_smooth": "A1"
         },
         {
@@ -345,11 +345,11 @@
           "py": 394,
           "zone": "D3",
           "fx_norm": 58.08,
-          "fy_norm": 48.09,
+          "fy_norm": 19.91,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 59.24,
-          "fy_smooth": 44.29,
+          "fy_smooth": 23.71,
           "zone_smooth": "A1"
         },
         {
@@ -361,11 +361,11 @@
           "py": 423,
           "zone": "D3",
           "fx_norm": 57.77,
-          "fy_norm": 49.55,
+          "fy_norm": 18.45,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 58.6,
-          "fy_smooth": 47.53,
+          "fy_smooth": 20.47,
           "zone_smooth": "A1"
         },
         {
@@ -377,11 +377,11 @@
           "py": 380,
           "zone": "D3",
           "fx_norm": 58.14,
-          "fy_norm": 46.2,
+          "fy_norm": 21.8,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 57.13,
-          "fy_smooth": 50.69,
+          "fy_smooth": 17.31,
           "zone_smooth": "A1"
         },
         {
@@ -393,11 +393,11 @@
           "py": 435,
           "zone": "D3",
           "fx_norm": 54.92,
-          "fy_norm": 51.48,
+          "fy_norm": 16.52,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 54.61,
-          "fy_smooth": 50.7,
+          "fy_smooth": 17.3,
           "zone_smooth": "A1"
         },
         {
@@ -409,11 +409,11 @@
           "py": 445,
           "zone": "A1",
           "fx_norm": 50.1,
-          "fy_norm": 51.98,
+          "fy_norm": 16.02,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 49.63,
-          "fy_smooth": 49.55,
+          "fy_smooth": 18.45,
           "zone_smooth": "D3"
         },
         {
@@ -425,11 +425,11 @@
           "py": 384,
           "zone": "A1",
           "fx_norm": 42.53,
-          "fy_norm": 46.57,
+          "fy_norm": 21.43,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 42.33,
-          "fy_smooth": 46.02,
+          "fy_smooth": 21.98,
           "zone_smooth": "D3"
         },
         {
@@ -441,11 +441,11 @@
           "py": 319,
           "zone": "A2",
           "fx_norm": 35.95,
-          "fy_norm": 38.48,
+          "fy_norm": 29.52,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 36.02,
-          "fy_smooth": 40.32,
+          "fy_smooth": 27.68,
           "zone_smooth": "D2"
         },
         {
@@ -457,11 +457,11 @@
           "py": 276,
           "zone": "A2",
           "fx_norm": 29.94,
-          "fy_norm": 33.27,
+          "fy_norm": 34.73,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 32.41,
-          "fy_smooth": 33.75,
+          "fy_smooth": 34.25,
           "zone_smooth": "D2"
         },
         {
@@ -473,11 +473,11 @@
           "py": 263,
           "zone": "A2",
           "fx_norm": 31.72,
-          "fy_norm": 32.13,
+          "fy_norm": 35.87,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 30.71,
-          "fy_smooth": 28.92,
+          "fy_smooth": 39.08,
           "zone_smooth": "D2"
         },
         {
@@ -489,11 +489,11 @@
           "py": 193,
           "zone": "A2",
           "fx_norm": 32.87,
-          "fy_norm": 25.51,
+          "fy_norm": 42.49,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 30.25,
-          "fy_smooth": 28.96,
+          "fy_smooth": 39.04,
           "zone_smooth": "D2"
         },
         {
@@ -505,11 +505,11 @@
           "py": 254,
           "zone": "A2",
           "fx_norm": 30.46,
-          "fy_norm": 30.06,
+          "fy_norm": 37.94,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 32.57,
-          "fy_smooth": 33.21,
+          "fy_smooth": 34.79,
           "zone_smooth": "D2"
         },
         {
@@ -521,11 +521,11 @@
           "py": 341,
           "zone": "A2",
           "fx_norm": 34.03,
-          "fy_norm": 41.33,
+          "fy_norm": 26.67,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 36.56,
-          "fy_smooth": 37.79,
+          "fy_smooth": 30.21,
           "zone_smooth": "D2"
         },
         {
@@ -537,11 +537,11 @@
           "py": 370,
           "zone": "A1",
           "fx_norm": 44.0,
-          "fy_norm": 45.22,
+          "fy_norm": 22.78,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 41.51,
-          "fy_smooth": 42.07,
+          "fy_smooth": 25.93,
           "zone_smooth": "D2"
         },
         {
@@ -553,11 +553,11 @@
           "py": 329,
           "zone": "A1",
           "fx_norm": 48.97,
-          "fy_norm": 39.82,
+          "fy_norm": 28.18,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 46.83,
-          "fy_smooth": 42.59,
+          "fy_smooth": 25.41,
           "zone_smooth": "D3"
         },
         {
@@ -569,11 +569,11 @@
           "py": 321,
           "zone": "A1",
           "fx_norm": 49.64,
-          "fy_norm": 39.6,
+          "fy_norm": 28.4,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 51.82,
-          "fy_smooth": 42.02,
+          "fy_smooth": 25.98,
           "zone_smooth": "D3"
         },
         {
@@ -585,11 +585,11 @@
           "py": 325,
           "zone": "D3",
           "fx_norm": 54.4,
-          "fy_norm": 38.93,
+          "fy_norm": 29.07,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 56.56,
-          "fy_smooth": 39.59,
+          "fy_smooth": 28.41,
           "zone_smooth": "A1"
         },
         {
@@ -601,11 +601,11 @@
           "py": 305,
           "zone": "D3",
           "fx_norm": 62.76,
-          "fy_norm": 36.99,
+          "fy_norm": 31.01,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 61.04,
-          "fy_smooth": 35.29,
+          "fy_smooth": 32.71,
           "zone_smooth": "A1"
         }
       ]
@@ -782,7 +782,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 76.11,
-          "fy_smooth": 42.41,
+          "fy_smooth": 40.82,
           "zone_smooth": "A2"
         },
         {
@@ -798,7 +798,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 73.23,
-          "fy_smooth": 38.96,
+          "fy_smooth": 43.04,
           "zone_smooth": "A2"
         },
         {
@@ -814,7 +814,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 62.49,
-          "fy_smooth": 35.93,
+          "fy_smooth": 40.65,
           "zone_smooth": "A1"
         },
         {
@@ -826,11 +826,11 @@
           "py": 219,
           "zone": "A2",
           "fx_norm": 24.19,
-          "fy_norm": 25.67,
+          "fy_norm": 42.33,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 47.62,
-          "fy_smooth": 34.3,
+          "fy_smooth": 36.13,
           "zone_smooth": "D3"
         },
         {
@@ -842,11 +842,11 @@
           "py": 365,
           "zone": "A2",
           "fx_norm": 34.5,
-          "fy_norm": 42.9,
+          "fy_norm": 25.1,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 34.38,
-          "fy_smooth": 39.34,
+          "fy_smooth": 27.68,
           "zone_smooth": "D2"
         },
         {
@@ -858,11 +858,11 @@
           "py": 394,
           "zone": "A2",
           "fx_norm": 35.8,
-          "fy_norm": 47.14,
+          "fy_norm": 20.86,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 30.55,
-          "fy_smooth": 48.25,
+          "fy_smooth": 19.24,
           "zone_smooth": "D2"
         },
         {
@@ -874,11 +874,11 @@
           "py": 547,
           "zone": "A2",
           "fx_norm": 38.51,
-          "fy_norm": 60.87,
+          "fy_norm": 7.13,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 31.19,
-          "fy_smooth": 53.48,
+          "fy_smooth": 13.76,
           "zone_smooth": "D2"
         },
         {
@@ -890,11 +890,11 @@
           "py": 516,
           "zone": "A1",
           "fx_norm": 44.91,
-          "fy_norm": 58.7,
+          "fy_norm": 9.3,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 38.34,
-          "fy_smooth": 58.27,
+          "fy_smooth": 9.35,
           "zone_smooth": "D2"
         },
         {
@@ -906,11 +906,11 @@
           "py": 513,
           "zone": "A1",
           "fx_norm": 43.78,
-          "fy_norm": 59.56,
+          "fy_norm": 8.44,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 52.01,
-          "fy_smooth": 62.6,
+          "fy_smooth": 6.03,
           "zone_smooth": "D3"
         }
       ]
@@ -1123,7 +1123,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 37.02,
-          "fy_smooth": 44.83,
+          "fy_smooth": 44.73,
           "zone_smooth": "D2"
         },
         {
@@ -1139,7 +1139,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 36.77,
-          "fy_smooth": 40.94,
+          "fy_smooth": 43.13,
           "zone_smooth": "D2"
         },
         {
@@ -1155,7 +1155,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 44.48,
-          "fy_smooth": 37.89,
+          "fy_smooth": 38.08,
           "zone_smooth": "D3"
         },
         {
@@ -1167,11 +1167,11 @@
           "py": 268,
           "zone": "D2",
           "fx_norm": 75.5,
-          "fy_norm": 33.49,
+          "fy_norm": 34.51,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 55.04,
-          "fy_smooth": 38.62,
+          "fy_smooth": 31.88,
           "zone_smooth": "A1"
         },
         {
@@ -1183,11 +1183,11 @@
           "py": 384,
           "zone": "D2",
           "fx_norm": 67.44,
-          "fy_norm": 44.74,
+          "fy_norm": 23.26,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 64.36,
-          "fy_smooth": 42.78,
+          "fy_smooth": 24.53,
           "zone_smooth": "A2"
         },
         {
@@ -1199,11 +1199,11 @@
           "py": 416,
           "zone": "D3",
           "fx_norm": 58.21,
-          "fy_norm": 49.55,
+          "fy_norm": 18.45,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 65.6,
-          "fy_smooth": 47.68,
+          "fy_smooth": 19.67,
           "zone_smooth": "A2"
         },
         {
@@ -1215,11 +1215,11 @@
           "py": 438,
           "zone": "D3",
           "fx_norm": 54.73,
-          "fy_norm": 52.41,
+          "fy_norm": 15.59,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 52.1,
-          "fy_smooth": 51.06,
+          "fy_smooth": 16.94,
           "zone_smooth": "D3"
         },
         {
@@ -1231,11 +1231,11 @@
           "py": 420,
           "zone": "A1",
           "fx_norm": 44.85,
-          "fy_norm": 48.54,
+          "fy_norm": 19.46,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 45.0,
-          "fy_smooth": 50.87,
+          "fy_smooth": 17.13,
           "zone_smooth": "D3"
         },
         {
@@ -1247,11 +1247,11 @@
           "py": 419,
           "zone": "A2",
           "fx_norm": 38.36,
-          "fy_norm": 49.88,
+          "fy_norm": 18.12,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 40.46,
-          "fy_smooth": 49.96,
+          "fy_smooth": 18.04,
           "zone_smooth": "D2"
         },
         {
@@ -1263,11 +1263,11 @@
           "py": 428,
           "zone": "A2",
           "fx_norm": 36.87,
-          "fy_norm": 50.06,
+          "fy_norm": 17.94,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 37.26,
-          "fy_smooth": 48.62,
+          "fy_smooth": 19.38,
           "zone_smooth": "D2"
         },
         {
@@ -1279,11 +1279,11 @@
           "py": 397,
           "zone": "A2",
           "fx_norm": 38.91,
-          "fy_norm": 47.33,
+          "fy_norm": 20.67,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 37.09,
-          "fy_smooth": 47.87,
+          "fy_smooth": 20.13,
           "zone_smooth": "D2"
         },
         {
@@ -1295,11 +1295,11 @@
           "py": 383,
           "zone": "A2",
           "fx_norm": 36.88,
-          "fy_norm": 45.9,
+          "fy_norm": 22.1,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 37.58,
-          "fy_smooth": 46.65,
+          "fy_smooth": 21.35,
           "zone_smooth": "D2"
         },
         {
@@ -1311,11 +1311,11 @@
           "py": 371,
           "zone": "A2",
           "fx_norm": 37.52,
-          "fy_norm": 45.61,
+          "fy_norm": 22.39,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 37.26,
-          "fy_smooth": 45.6,
+          "fy_smooth": 22.4,
           "zone_smooth": "D2"
         },
         {
@@ -1327,11 +1327,11 @@
           "py": 367,
           "zone": "A2",
           "fx_norm": 37.0,
-          "fy_norm": 45.6,
+          "fy_norm": 22.4,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 36.85,
-          "fy_smooth": 44.61,
+          "fy_smooth": 23.39,
           "zone_smooth": "D2"
         },
         {
@@ -1343,11 +1343,11 @@
           "py": 355,
           "zone": "A2",
           "fx_norm": 36.2,
-          "fy_norm": 43.21,
+          "fy_norm": 24.79,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 36.34,
-          "fy_smooth": 43.7,
+          "fy_smooth": 24.3,
           "zone_smooth": "D2"
         }
       ]
@@ -1464,7 +1464,7 @@
           "zone_norm": "D1",
           "direction_flipped": false,
           "fx_smooth": 12.96,
-          "fy_smooth": 45.21,
+          "fy_smooth": 45.02,
           "zone_smooth": "D1"
         },
         {
@@ -1480,7 +1480,7 @@
           "zone_norm": "D1",
           "direction_flipped": false,
           "fx_smooth": 18.92,
-          "fy_smooth": 42.27,
+          "fy_smooth": 41.95,
           "zone_smooth": "D1"
         },
         {
@@ -1496,7 +1496,7 @@
           "zone_norm": "D1",
           "direction_flipped": false,
           "fx_smooth": 34.55,
-          "fy_smooth": 38.26,
+          "fy_smooth": 39.28,
           "zone_smooth": "D2"
         },
         {
@@ -1508,11 +1508,11 @@
           "py": 267,
           "zone": "D2",
           "fx_norm": 67.53,
-          "fy_norm": 33.0,
+          "fy_norm": 35.0,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 51.39,
-          "fy_smooth": 33.99,
+          "fy_smooth": 39.17,
           "zone_smooth": "D3"
         },
         {
@@ -1524,11 +1524,11 @@
           "py": 253,
           "zone": "D2",
           "fx_norm": 66.57,
-          "fy_norm": 30.82,
+          "fy_norm": 37.18,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 64.71,
-          "fy_smooth": 33.64,
+          "fy_smooth": 35.99,
           "zone_smooth": "A2"
         },
         {
@@ -1540,11 +1540,11 @@
           "py": 264,
           "zone": "D2",
           "fx_norm": 66.14,
-          "fy_norm": 31.6,
+          "fy_norm": 36.4,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 69.52,
-          "fy_smooth": 34.29,
+          "fy_smooth": 31.92,
           "zone_smooth": "A2"
         },
         {
@@ -1556,11 +1556,11 @@
           "py": 364,
           "zone": "D3",
           "fx_norm": 61.72,
-          "fy_norm": 44.54,
+          "fy_norm": 23.46,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 62.1,
-          "fy_smooth": 39.15,
+          "fy_smooth": 28.85,
           "zone_smooth": "A1"
         },
         {
@@ -1572,11 +1572,11 @@
           "py": 341,
           "zone": "D3",
           "fx_norm": 58.71,
-          "fy_norm": 40.8,
+          "fy_norm": 27.2,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 59.29,
-          "fy_smooth": 42.68,
+          "fy_smooth": 25.32,
           "zone_smooth": "A1"
         },
         {
@@ -1588,11 +1588,11 @@
           "py": 359,
           "zone": "D3",
           "fx_norm": 56.58,
-          "fy_norm": 43.93,
+          "fy_norm": 24.07,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 56.84,
-          "fy_smooth": 42.43,
+          "fy_smooth": 25.57,
           "zone_smooth": "A1"
         },
         {
@@ -1604,11 +1604,11 @@
           "py": 334,
           "zone": "D3",
           "fx_norm": 55.68,
-          "fy_norm": 41.12,
+          "fy_norm": 26.88,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 55.37,
-          "fy_smooth": 41.85,
+          "fy_smooth": 26.15,
           "zone_smooth": "A1"
         },
         {
@@ -1620,11 +1620,11 @@
           "py": 324,
           "zone": "D3",
           "fx_norm": 54.04,
-          "fy_norm": 38.37,
+          "fy_norm": 29.63,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 53.94,
-          "fy_smooth": 43.34,
+          "fy_smooth": 24.66,
           "zone_smooth": "A1"
         },
         {
@@ -1636,11 +1636,11 @@
           "py": 377,
           "zone": "A1",
           "fx_norm": 51.88,
-          "fy_norm": 46.77,
+          "fy_norm": 21.23,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 51.88,
-          "fy_smooth": 39.66,
+          "fy_smooth": 28.34,
           "zone_smooth": "D3"
         },
         {
@@ -1652,11 +1652,11 @@
           "py": 314,
           "zone": "A1",
           "fx_norm": 49.48,
-          "fy_norm": 38.25,
+          "fy_norm": 29.75,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 49.06,
-          "fy_smooth": 35.97,
+          "fy_smooth": 32.03,
           "zone_smooth": "D3"
         },
         {
@@ -1668,11 +1668,11 @@
           "py": 212,
           "zone": "A1",
           "fx_norm": 45.82,
-          "fy_norm": 25.35,
+          "fy_norm": 42.65,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 45.72,
-          "fy_smooth": 34.1,
+          "fy_smooth": 33.9,
           "zone_smooth": "D3"
         },
         {
@@ -1684,11 +1684,11 @@
           "py": 270,
           "zone": "A1",
           "fx_norm": 43.08,
-          "fy_norm": 32.89,
+          "fy_norm": 35.11,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 42.88,
-          "fy_smooth": 31.41,
+          "fy_smooth": 36.59,
           "zone_smooth": "D3"
         },
         {
@@ -1700,11 +1700,11 @@
           "py": 306,
           "zone": "A2",
           "fx_norm": 41.1,
-          "fy_norm": 38.37,
+          "fy_norm": 29.63,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 42.3,
-          "fy_smooth": 33.6,
+          "fy_smooth": 34.4,
           "zone_smooth": "D3"
         },
         {
@@ -1716,11 +1716,11 @@
           "py": 278,
           "zone": "A1",
           "fx_norm": 43.38,
-          "fy_norm": 33.39,
+          "fy_norm": 34.61,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 43.73,
-          "fy_smooth": 37.78,
+          "fy_smooth": 30.22,
           "zone_smooth": "D3"
         },
         {
@@ -1732,11 +1732,11 @@
           "py": 293,
           "zone": "A1",
           "fx_norm": 48.75,
-          "fy_norm": 37.11,
+          "fy_norm": 30.89,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 46.84,
-          "fy_smooth": 36.51,
+          "fy_smooth": 31.49,
           "zone_smooth": "D3"
         },
         {
@@ -1748,11 +1748,11 @@
           "py": 288,
           "zone": "A1",
           "fx_norm": 51.43,
-          "fy_norm": 35.82,
+          "fy_norm": 32.18,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 51.78,
-          "fy_smooth": 32.57,
+          "fy_smooth": 35.43,
           "zone_smooth": "D3"
         },
         {
@@ -1764,11 +1764,11 @@
           "py": 213,
           "zone": "D3",
           "fx_norm": 58.19,
-          "fy_norm": 24.32,
+          "fy_norm": 43.68,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 58.56,
-          "fy_smooth": 25.98,
+          "fy_smooth": 42.02,
           "zone_smooth": "A1"
         }
       ]
@@ -1932,7 +1932,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 77.38,
-          "fy_smooth": 48.35,
+          "fy_smooth": 50.16,
           "zone_smooth": "A2"
         },
         {
@@ -1948,7 +1948,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 75.66,
-          "fy_smooth": 45.96,
+          "fy_smooth": 44.59,
           "zone_smooth": "A2"
         },
         {
@@ -1964,7 +1964,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 63.33,
-          "fy_smooth": 42.57,
+          "fy_smooth": 37.6,
           "zone_smooth": "A2"
         },
         {
@@ -1976,11 +1976,11 @@
           "py": 348,
           "zone": "A2",
           "fx_norm": 23.49,
-          "fy_norm": 43.51,
+          "fy_norm": 24.49,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 44.45,
-          "fy_smooth": 40.29,
+          "fy_smooth": 29.33,
           "zone_smooth": "D3"
         },
         {
@@ -1992,11 +1992,11 @@
           "py": 342,
           "zone": "A2",
           "fx_norm": 25.75,
-          "fy_norm": 41.11,
+          "fy_norm": 26.89,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 27.98,
-          "fy_smooth": 44.51,
+          "fy_smooth": 22.81,
           "zone_smooth": "D2"
         },
         {
@@ -2008,11 +2008,11 @@
           "py": 401,
           "zone": "A2",
           "fx_norm": 25.2,
-          "fy_norm": 47.13,
+          "fy_norm": 20.87,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 20.77,
-          "fy_smooth": 46.18,
+          "fy_smooth": 20.97,
           "zone_smooth": "D1"
         },
         {
@@ -2024,11 +2024,11 @@
           "py": 428,
           "zone": "A2",
           "fx_norm": 28.96,
-          "fy_norm": 50.75,
+          "fy_norm": 17.25,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 28.36,
-          "fy_smooth": 44.89,
+          "fy_smooth": 23.11,
           "zone_smooth": "D2"
         },
         {
@@ -2040,11 +2040,11 @@
           "py": 322,
           "zone": "A2",
           "fx_norm": 30.03,
-          "fy_norm": 38.03,
+          "fy_norm": 29.97,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 29.83,
-          "fy_smooth": 42.62,
+          "fy_smooth": 25.38,
           "zone_smooth": "D2"
         },
         {
@@ -2056,11 +2056,11 @@
           "py": 320,
           "zone": "A2",
           "fx_norm": 31.26,
-          "fy_norm": 39.48,
+          "fy_norm": 28.52,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 31.41,
-          "fy_smooth": 39.56,
+          "fy_smooth": 28.44,
           "zone_smooth": "D2"
         },
         {
@@ -2072,11 +2072,11 @@
           "py": 322,
           "zone": "A2",
           "fx_norm": 31.31,
-          "fy_norm": 39.15,
+          "fy_norm": 28.85,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 32.25,
-          "fy_smooth": 40.17,
+          "fy_smooth": 27.83,
           "zone_smooth": "D2"
         },
         {
@@ -2088,11 +2088,11 @@
           "py": 368,
           "zone": "A2",
           "fx_norm": 31.54,
-          "fy_norm": 44.62,
+          "fy_norm": 23.38,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 29.68,
-          "fy_smooth": 44.95,
+          "fy_smooth": 23.05,
           "zone_smooth": "D2"
         },
         {
@@ -2104,11 +2104,11 @@
           "py": 426,
           "zone": "A2",
           "fx_norm": 29.17,
-          "fy_norm": 50.31,
+          "fy_norm": 17.69,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 26.6,
-          "fy_smooth": 48.52,
+          "fy_smooth": 19.48,
           "zone_smooth": "D2"
         },
         {
@@ -2120,11 +2120,11 @@
           "py": 420,
           "zone": "A3",
           "fx_norm": 19.24,
-          "fy_norm": 49.32,
+          "fy_norm": 18.68,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 25.24,
-          "fy_smooth": 48.92,
+          "fy_smooth": 19.08,
           "zone_smooth": "D2"
         },
         {
@@ -2136,11 +2136,11 @@
           "py": 399,
           "zone": "A2",
           "fx_norm": 25.89,
-          "fy_norm": 47.78,
+          "fy_norm": 20.22,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 25.21,
-          "fy_smooth": 46.95,
+          "fy_smooth": 21.05,
           "zone_smooth": "D2"
         },
         {
@@ -2152,11 +2152,11 @@
           "py": 320,
           "zone": "A2",
           "fx_norm": 29.71,
-          "fy_norm": 39.37,
+          "fy_norm": 28.63,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 26.66,
-          "fy_smooth": 41.69,
+          "fy_smooth": 26.31,
           "zone_smooth": "D2"
         },
         {
@@ -2168,11 +2168,11 @@
           "py": 327,
           "zone": "A2",
           "fx_norm": 28.11,
-          "fy_norm": 40.03,
+          "fy_norm": 27.97,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 28.62,
-          "fy_smooth": 36.61,
+          "fy_smooth": 31.39,
           "zone_smooth": "D2"
         },
         {
@@ -2184,11 +2184,11 @@
           "py": 262,
           "zone": "A2",
           "fx_norm": 27.15,
-          "fy_norm": 31.24,
+          "fy_norm": 36.76,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 28.9,
-          "fy_smooth": 35.38,
+          "fy_smooth": 32.62,
           "zone_smooth": "D2"
         },
         {
@@ -2200,11 +2200,11 @@
           "py": 276,
           "zone": "A2",
           "fx_norm": 26.45,
-          "fy_norm": 34.01,
+          "fy_norm": 33.99,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 28.04,
-          "fy_smooth": 36.03,
+          "fy_smooth": 31.97,
           "zone_smooth": "D2"
         },
         {
@@ -2216,11 +2216,11 @@
           "py": 342,
           "zone": "A2",
           "fx_norm": 27.73,
-          "fy_norm": 40.9,
+          "fy_norm": 27.1,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 26.03,
-          "fy_smooth": 38.56,
+          "fy_smooth": 29.44,
           "zone_smooth": "D2"
         }
       ]
@@ -2481,7 +2481,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 63.03,
-          "fy_smooth": 42.64,
+          "fy_smooth": 43.64,
           "zone_smooth": "A2"
         },
         {
@@ -2497,7 +2497,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 62.07,
-          "fy_smooth": 43.92,
+          "fy_smooth": 43.25,
           "zone_smooth": "A1"
         },
         {
@@ -2513,7 +2513,7 @@
           "zone_norm": "A1",
           "direction_flipped": false,
           "fx_smooth": 58.46,
-          "fy_smooth": 41.63,
+          "fy_smooth": 39.76,
           "zone_smooth": "A1"
         },
         {
@@ -2525,11 +2525,11 @@
           "py": 311,
           "zone": "A1",
           "fx_norm": 50.61,
-          "fy_norm": 39.26,
+          "fy_norm": 28.74,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 53.47,
-          "fy_smooth": 41.17,
+          "fy_smooth": 33.18,
           "zone_smooth": "A1"
         },
         {
@@ -2541,11 +2541,11 @@
           "py": 309,
           "zone": "A1",
           "fx_norm": 49.66,
-          "fy_norm": 38.37,
+          "fy_norm": 29.63,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 49.93,
-          "fy_smooth": 41.49,
+          "fy_smooth": 26.91,
           "zone_smooth": "D3"
         },
         {
@@ -2557,11 +2557,11 @@
           "py": 386,
           "zone": "A1",
           "fx_norm": 49.38,
-          "fy_norm": 46.48,
+          "fy_norm": 21.52,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 47.74,
-          "fy_smooth": 41.49,
+          "fy_smooth": 24.85,
           "zone_smooth": "D3"
         },
         {
@@ -2573,11 +2573,11 @@
           "py": 350,
           "zone": "A1",
           "fx_norm": 46.04,
-          "fy_norm": 42.28,
+          "fy_norm": 25.72,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 45.27,
-          "fy_smooth": 42.33,
+          "fy_smooth": 25.67,
           "zone_smooth": "D3"
         },
         {
@@ -2589,11 +2589,11 @@
           "py": 326,
           "zone": "A2",
           "fx_norm": 39.87,
-          "fy_norm": 38.37,
+          "fy_norm": 29.63,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 41.17,
-          "fy_smooth": 42.28,
+          "fy_smooth": 25.72,
           "zone_smooth": "D2"
         },
         {
@@ -2605,11 +2605,11 @@
           "py": 355,
           "zone": "A2",
           "fx_norm": 36.64,
-          "fy_norm": 42.69,
+          "fy_norm": 25.31,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 36.68,
-          "fy_smooth": 41.42,
+          "fy_smooth": 26.58,
           "zone_smooth": "D2"
         },
         {
@@ -2621,11 +2621,11 @@
           "py": 329,
           "zone": "A2",
           "fx_norm": 32.35,
-          "fy_norm": 40.36,
+          "fy_norm": 27.64,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 32.11,
-          "fy_smooth": 37.95,
+          "fy_smooth": 30.05,
           "zone_smooth": "D2"
         },
         {
@@ -2637,11 +2637,11 @@
           "py": 302,
           "zone": "A2",
           "fx_norm": 28.27,
-          "fy_norm": 37.11,
+          "fy_norm": 30.89,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 27.37,
-          "fy_smooth": 33.11,
+          "fy_smooth": 34.89,
           "zone_smooth": "D2"
         },
         {
@@ -2653,11 +2653,11 @@
           "py": 197,
           "zone": "A2",
           "fx_norm": 21.85,
-          "fy_norm": 23.34,
+          "fy_norm": 44.66,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 22.46,
-          "fy_smooth": 26.89,
+          "fy_smooth": 41.11,
           "zone_smooth": "D2"
         }
       ]
@@ -2916,7 +2916,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 66.57,
-          "fy_smooth": 37.34,
+          "fy_smooth": 36.12,
           "zone_smooth": "A2"
         },
         {
@@ -2932,7 +2932,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 63.09,
-          "fy_smooth": 36.6,
+          "fy_smooth": 35.72,
           "zone_smooth": "A2"
         },
         {
@@ -2948,7 +2948,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 59.66,
-          "fy_smooth": 33.09,
+          "fy_smooth": 37.87,
           "zone_smooth": "A1"
         },
         {
@@ -2960,11 +2960,11 @@
           "py": 231,
           "zone": "D3",
           "fx_norm": 55.03,
-          "fy_norm": 27.6,
+          "fy_norm": 40.4,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 54.54,
-          "fy_smooth": 27.58,
+          "fy_smooth": 41.41,
           "zone_smooth": "A1"
         },
         {
@@ -2976,11 +2976,11 @@
           "py": 185,
           "zone": "A1",
           "fx_norm": 50.31,
-          "fy_norm": 19.76,
+          "fy_norm": 48.24,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 47.73,
-          "fy_smooth": 20.07,
+          "fy_smooth": 46.34,
           "zone_smooth": "D3"
         }
       ]
@@ -3206,7 +3206,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 32.51,
-          "fy_smooth": 42.54,
+          "fy_smooth": 44.9,
           "zone_smooth": "D2"
         },
         {
@@ -3222,7 +3222,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 38.94,
-          "fy_smooth": 48.9,
+          "fy_smooth": 47.06,
           "zone_smooth": "D2"
         },
         {
@@ -3238,7 +3238,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 45.54,
-          "fy_smooth": 51.92,
+          "fy_smooth": 42.45,
           "zone_smooth": "D3"
         },
         {
@@ -3250,11 +3250,11 @@
           "py": 376,
           "zone": "D3",
           "fx_norm": 55.28,
-          "fy_norm": 46.39,
+          "fy_norm": 21.61,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 52.82,
-          "fy_smooth": 51.37,
+          "fy_smooth": 35.79,
           "zone_smooth": "A1"
         },
         {
@@ -3266,11 +3266,11 @@
           "py": 351,
           "zone": "D3",
           "fx_norm": 54.8,
-          "fy_norm": 42.91,
+          "fy_norm": 25.09,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 58.97,
-          "fy_smooth": 41.88,
+          "fy_smooth": 33.07,
           "zone_smooth": "A1"
         },
         {
@@ -3282,11 +3282,11 @@
           "py": 282,
           "zone": "D2",
           "fx_norm": 63.75,
-          "fy_norm": 34.85,
+          "fy_norm": 33.15,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 60.88,
-          "fy_smooth": 32.97,
+          "fy_smooth": 29.21,
           "zone_smooth": "A1"
         },
         {
@@ -3298,11 +3298,11 @@
           "py": 204,
           "zone": "D2",
           "fx_norm": 63.68,
-          "fy_norm": 23.57,
+          "fy_norm": 44.43,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 62.04,
-          "fy_smooth": 34.72,
+          "fy_smooth": 33.28,
           "zone_smooth": "A1"
         },
         {
@@ -3314,11 +3314,11 @@
           "py": 354,
           "zone": "D3",
           "fx_norm": 60.39,
-          "fy_norm": 43.01,
+          "fy_norm": 24.99,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 64.42,
-          "fy_smooth": 35.57,
+          "fy_smooth": 32.43,
           "zone_smooth": "A2"
         },
         {
@@ -3330,11 +3330,11 @@
           "py": 373,
           "zone": "D2",
           "fx_norm": 65.18,
-          "fy_norm": 44.74,
+          "fy_norm": 23.26,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 64.78,
-          "fy_smooth": 39.57,
+          "fy_smooth": 28.43,
           "zone_smooth": "A2"
         },
         {
@@ -3346,11 +3346,11 @@
           "py": 305,
           "zone": "D2",
           "fx_norm": 68.59,
-          "fy_norm": 36.64,
+          "fy_norm": 31.36,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 65.92,
-          "fy_smooth": 45.1,
+          "fy_smooth": 22.9,
           "zone_smooth": "A2"
         },
         {
@@ -3362,11 +3362,11 @@
           "py": 399,
           "zone": "D2",
           "fx_norm": 65.2,
-          "fy_norm": 46.31,
+          "fy_norm": 21.69,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 66.15,
-          "fy_smooth": 45.33,
+          "fy_smooth": 22.67,
           "zone_smooth": "A2"
         },
         {
@@ -3378,11 +3378,11 @@
           "py": 428,
           "zone": "D2",
           "fx_norm": 64.42,
-          "fy_norm": 50.0,
+          "fy_norm": 18.0,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 64.78,
-          "fy_smooth": 46.07,
+          "fy_smooth": 21.93,
           "zone_smooth": "A2"
         },
         {
@@ -3394,11 +3394,11 @@
           "py": 371,
           "zone": "D3",
           "fx_norm": 62.55,
-          "fy_norm": 43.83,
+          "fy_norm": 24.17,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 61.77,
-          "fy_smooth": 42.12,
+          "fy_smooth": 25.88,
           "zone_smooth": "A1"
         },
         {
@@ -3410,11 +3410,11 @@
           "py": 301,
           "zone": "D2",
           "fx_norm": 63.82,
-          "fy_norm": 35.93,
+          "fy_norm": 32.07,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 63.12,
-          "fy_smooth": 37.25,
+          "fy_smooth": 30.75,
           "zone_smooth": "A2"
         },
         {
@@ -3426,11 +3426,11 @@
           "py": 211,
           "zone": "D3",
           "fx_norm": 62.01,
-          "fy_norm": 25.76,
+          "fy_norm": 42.24,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 67.62,
-          "fy_smooth": 34.39,
+          "fy_smooth": 33.61,
           "zone_smooth": "A2"
         },
         {
@@ -3442,11 +3442,11 @@
           "py": 334,
           "zone": "D2",
           "fx_norm": 77.3,
-          "fy_norm": 40.37,
+          "fy_norm": 27.63,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 72.14,
-          "fy_smooth": 31.19,
+          "fy_smooth": 36.81,
           "zone_smooth": "A2"
         },
         {
@@ -3458,11 +3458,11 @@
           "py": 265,
           "zone": "D2",
           "fx_norm": 81.72,
-          "fy_norm": 32.61,
+          "fy_norm": 35.39,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 78.14,
-          "fy_smooth": 28.73,
+          "fy_smooth": 39.27,
           "zone_smooth": "A2"
         },
         {
@@ -3474,11 +3474,11 @@
           "py": 202,
           "zone": "D2",
           "fx_norm": 82.36,
-          "fy_norm": 22.64,
+          "fy_norm": 45.36,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 85.64,
-          "fy_smooth": 27.02,
+          "fy_smooth": 40.99,
           "zone_smooth": "A3"
         }
       ]
@@ -3897,7 +3897,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 33.81,
-          "fy_smooth": 36.99,
+          "fy_smooth": 36.82,
           "zone_smooth": "D2"
         },
         {
@@ -3913,7 +3913,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 40.18,
-          "fy_smooth": 37.56,
+          "fy_smooth": 36.48,
           "zone_smooth": "D2"
         },
         {
@@ -3929,7 +3929,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 49.27,
-          "fy_smooth": 34.41,
+          "fy_smooth": 36.33,
           "zone_smooth": "D3"
         },
         {
@@ -3941,11 +3941,11 @@
           "py": 267,
           "zone": "D2",
           "fx_norm": 67.83,
-          "fy_norm": 33.12,
+          "fy_norm": 34.88,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 59.22,
-          "fy_smooth": 31.26,
+          "fy_smooth": 37.08,
           "zone_smooth": "A1"
         },
         {
@@ -3957,11 +3957,11 @@
           "py": 230,
           "zone": "D2",
           "fx_norm": 73.39,
-          "fy_norm": 27.02,
+          "fy_norm": 40.98,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 71.81,
-          "fy_smooth": 29.92,
+          "fy_smooth": 37.66,
           "zone_smooth": "A2"
         },
         {
@@ -3973,11 +3973,11 @@
           "py": 253,
           "zone": "D2",
           "fx_norm": 77.32,
-          "fy_norm": 30.94,
+          "fy_norm": 37.06,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 83.67,
-          "fy_smooth": 31.52,
+          "fy_smooth": 36.37,
           "zone_smooth": "A2"
         },
         {
@@ -3989,11 +3989,11 @@
           "py": 299,
           "zone": "D1",
           "fx_norm": 91.32,
-          "fy_norm": 35.92,
+          "fy_norm": 32.08,
           "zone_norm": "A3",
           "direction_flipped": true,
           "fx_smooth": 86.02,
-          "fy_smooth": 36.37,
+          "fy_smooth": 31.63,
           "zone_smooth": "A3"
         },
         {
@@ -4005,11 +4005,11 @@
           "py": 333,
           "zone": "D1",
           "fx_norm": 90.36,
-          "fy_norm": 41.24,
+          "fy_norm": 26.76,
           "zone_norm": "A3",
           "direction_flipped": true,
           "fx_smooth": 88.83,
-          "fy_smooth": 37.44,
+          "fy_smooth": 30.56,
           "zone_smooth": "A3"
         },
         {
@@ -4021,11 +4021,11 @@
           "py": 351,
           "zone": "D1",
           "fx_norm": 85.66,
-          "fy_norm": 43.13,
+          "fy_norm": 24.87,
           "zone_norm": "A3",
           "direction_flipped": true,
           "fx_smooth": 89.79,
-          "fy_smooth": 37.74,
+          "fy_smooth": 30.26,
           "zone_smooth": "A3"
         },
         {
@@ -4037,11 +4037,11 @@
           "py": 273,
           "zone": "D1",
           "fx_norm": 90.24,
-          "fy_norm": 32.48,
+          "fy_norm": 35.52,
           "zone_norm": "A3",
           "direction_flipped": true,
           "fx_smooth": 88.89,
-          "fy_smooth": 37.27,
+          "fy_smooth": 30.73,
           "zone_smooth": "A3"
         }
       ]
@@ -4137,7 +4137,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 28.84,
-          "fy_smooth": 37.84,
+          "fy_smooth": 35.77,
           "zone_smooth": "D2"
         },
         {
@@ -4153,7 +4153,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 34.75,
-          "fy_smooth": 36.27,
+          "fy_smooth": 36.42,
           "zone_smooth": "D2"
         },
         {
@@ -4169,7 +4169,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 46.39,
-          "fy_smooth": 31.33,
+          "fy_smooth": 41.17,
           "zone_smooth": "D3"
         },
         {
@@ -4181,11 +4181,11 @@
           "py": 203,
           "zone": "D2",
           "fx_norm": 69.99,
-          "fy_norm": 23.11,
+          "fy_norm": 44.89,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 59.0,
-          "fy_smooth": 27.68,
+          "fy_smooth": 42.81,
           "zone_smooth": "A1"
         },
         {
@@ -4197,11 +4197,11 @@
           "py": 176,
           "zone": "D2",
           "fx_norm": 71.72,
-          "fy_norm": 18.43,
+          "fy_norm": 49.57,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 68.44,
-          "fy_smooth": 23.9,
+          "fy_smooth": 43.87,
           "zone_smooth": "A2"
         },
         {
@@ -4213,11 +4213,11 @@
           "py": 247,
           "zone": "D2",
           "fx_norm": 68.74,
-          "fy_norm": 29.63,
+          "fy_norm": 38.37,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 71.78,
-          "fy_smooth": 21.3,
+          "fy_smooth": 46.25,
           "zone_smooth": "A2"
         },
         {
@@ -4229,11 +4229,11 @@
           "py": 186,
           "zone": "D2",
           "fx_norm": 65.62,
-          "fy_norm": 22.06,
+          "fy_norm": 45.94,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 66.16,
-          "fy_smooth": 23.05,
+          "fy_smooth": 44.95,
           "zone_smooth": "A2"
         },
         {
@@ -4245,11 +4245,11 @@
           "py": 188,
           "zone": "D2",
           "fx_norm": 64.61,
-          "fy_norm": 20.67,
+          "fy_norm": 47.33,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 64.97,
-          "fy_smooth": 25.75,
+          "fy_smooth": 42.25,
           "zone_smooth": "A2"
         },
         {
@@ -4261,11 +4261,11 @@
           "py": 258,
           "zone": "D2",
           "fx_norm": 66.44,
-          "fy_norm": 30.82,
+          "fy_norm": 37.18,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 67.38,
-          "fy_smooth": 29.82,
+          "fy_smooth": 38.18,
           "zone_smooth": "A2"
         },
         {
@@ -4277,11 +4277,11 @@
           "py": 298,
           "zone": "D2",
           "fx_norm": 72.32,
-          "fy_norm": 36.87,
+          "fy_norm": 31.13,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 72.27,
-          "fy_smooth": 35.34,
+          "fy_smooth": 32.66,
           "zone_smooth": "A2"
         },
         {
@@ -4293,11 +4293,11 @@
           "py": 346,
           "zone": "D2",
           "fx_norm": 80.01,
-          "fy_norm": 41.98,
+          "fy_norm": 26.02,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 79.63,
-          "fy_smooth": 42.31,
+          "fy_smooth": 25.69,
           "zone_smooth": "A2"
         }
       ]
@@ -4571,7 +4571,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 33.44,
-          "fy_smooth": 34.41,
+          "fy_smooth": 34.55,
           "zone_smooth": "D2"
         },
         {
@@ -4587,7 +4587,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 35.07,
-          "fy_smooth": 34.35,
+          "fy_smooth": 34.6,
           "zone_smooth": "D2"
         },
         {
@@ -4603,7 +4603,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 42.04,
-          "fy_smooth": 34.08,
+          "fy_smooth": 34.53,
           "zone_smooth": "D3"
         },
         {
@@ -4615,11 +4615,11 @@
           "py": 275,
           "zone": "D3",
           "fx_norm": 62.93,
-          "fy_norm": 34.73,
+          "fy_norm": 33.27,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 51.46,
-          "fy_smooth": 34.97,
+          "fy_smooth": 32.57,
           "zone_smooth": "D3"
         },
         {
@@ -4631,11 +4631,11 @@
           "py": 293,
           "zone": "D3",
           "fx_norm": 59.86,
-          "fy_norm": 36.4,
+          "fy_norm": 31.6,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 59.25,
-          "fy_smooth": 36.25,
+          "fy_smooth": 29.13,
           "zone_smooth": "A1"
         },
         {
@@ -4647,11 +4647,11 @@
           "py": 349,
           "zone": "D3",
           "fx_norm": 59.21,
-          "fy_norm": 42.18,
+          "fy_norm": 25.82,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 61.66,
-          "fy_smooth": 41.49,
+          "fy_smooth": 27.39,
           "zone_smooth": "A1"
         },
         {
@@ -4663,11 +4663,11 @@
           "py": 370,
           "zone": "D3",
           "fx_norm": 56.19,
-          "fy_norm": 43.42,
+          "fy_norm": 24.58,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 56.27,
-          "fy_smooth": 43.39,
+          "fy_smooth": 24.61,
           "zone_smooth": "A1"
         },
         {
@@ -4679,11 +4679,11 @@
           "py": 381,
           "zone": "D3",
           "fx_norm": 53.53,
-          "fy_norm": 45.91,
+          "fy_norm": 22.09,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 53.42,
-          "fy_smooth": 44.74,
+          "fy_smooth": 23.26,
           "zone_smooth": "A1"
         },
         {
@@ -4695,11 +4695,11 @@
           "py": 358,
           "zone": "A1",
           "fx_norm": 50.91,
-          "fy_norm": 43.01,
+          "fy_norm": 24.99,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 50.55,
-          "fy_smooth": 45.75,
+          "fy_smooth": 22.25,
           "zone_smooth": "D3"
         },
         {
@@ -4711,11 +4711,11 @@
           "py": 367,
           "zone": "A1",
           "fx_norm": 47.32,
-          "fy_norm": 45.02,
+          "fy_norm": 22.98,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 48.71,
-          "fy_smooth": 43.42,
+          "fy_smooth": 24.58,
           "zone_smooth": "D3"
         },
         {
@@ -4727,11 +4727,11 @@
           "py": 364,
           "zone": "A1",
           "fx_norm": 47.7,
-          "fy_norm": 44.63,
+          "fy_norm": 23.37,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 47.12,
-          "fy_smooth": 40.72,
+          "fy_smooth": 27.28,
           "zone_smooth": "D3"
         },
         {
@@ -4743,11 +4743,11 @@
           "py": 273,
           "zone": "A1",
           "fx_norm": 46.59,
-          "fy_norm": 32.88,
+          "fy_norm": 35.12,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 45.6,
-          "fy_smooth": 39.63,
+          "fy_smooth": 28.37,
           "zone_smooth": "D3"
         },
         {
@@ -4759,11 +4759,11 @@
           "py": 333,
           "zone": "A1",
           "fx_norm": 43.96,
-          "fy_norm": 39.37,
+          "fy_norm": 28.63,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 44.66,
-          "fy_smooth": 38.09,
+          "fy_smooth": 29.91,
           "zone_smooth": "D3"
         },
         {
@@ -4775,11 +4775,11 @@
           "py": 330,
           "zone": "A1",
           "fx_norm": 42.74,
-          "fy_norm": 40.03,
+          "fy_norm": 27.97,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 43.74,
-          "fy_smooth": 37.74,
+          "fy_smooth": 30.26,
           "zone_smooth": "D3"
         },
         {
@@ -4791,11 +4791,11 @@
           "py": 301,
           "zone": "A1",
           "fx_norm": 43.45,
-          "fy_norm": 35.58,
+          "fy_norm": 32.42,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 42.42,
-          "fy_smooth": 35.06,
+          "fy_smooth": 32.94,
           "zone_smooth": "D3"
         },
         {
@@ -4807,11 +4807,11 @@
           "py": 257,
           "zone": "A1",
           "fx_norm": 42.34,
-          "fy_norm": 31.87,
+          "fy_norm": 36.13,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 41.1,
-          "fy_smooth": 29.12,
+          "fy_smooth": 38.88,
           "zone_smooth": "D2"
         },
         {
@@ -4823,11 +4823,11 @@
           "py": 186,
           "zone": "A2",
           "fx_norm": 38.24,
-          "fy_norm": 21.19,
+          "fy_norm": 46.81,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 39.24,
-          "fy_smooth": 28.63,
+          "fy_smooth": 39.37,
           "zone_smooth": "D2"
         },
         {
@@ -4839,11 +4839,11 @@
           "py": 256,
           "zone": "A2",
           "fx_norm": 38.64,
-          "fy_norm": 30.05,
+          "fy_norm": 37.95,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 39.15,
-          "fy_smooth": 31.11,
+          "fy_smooth": 36.89,
           "zone_smooth": "D2"
         },
         {
@@ -4855,11 +4855,11 @@
           "py": 339,
           "zone": "A2",
           "fx_norm": 39.77,
-          "fy_norm": 41.86,
+          "fy_norm": 26.14,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 41.53,
-          "fy_smooth": 33.62,
+          "fy_smooth": 34.38,
           "zone_smooth": "D2"
         },
         {
@@ -4871,11 +4871,11 @@
           "py": 297,
           "zone": "A1",
           "fx_norm": 46.86,
-          "fy_norm": 35.46,
+          "fy_norm": 32.54,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 45.04,
-          "fy_smooth": 37.34,
+          "fy_smooth": 30.66,
           "zone_smooth": "D3"
         },
         {
@@ -4887,11 +4887,11 @@
           "py": 268,
           "zone": "A1",
           "fx_norm": 48.54,
-          "fy_norm": 33.13,
+          "fy_norm": 34.87,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 47.52,
-          "fy_smooth": 38.07,
+          "fy_smooth": 29.93,
           "zone_smooth": "D3"
         },
         {
@@ -4903,11 +4903,11 @@
           "py": 326,
           "zone": "A1",
           "fx_norm": 47.51,
-          "fy_norm": 39.6,
+          "fy_norm": 28.4,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 47.48,
-          "fy_smooth": 36.21,
+          "fy_smooth": 31.79,
           "zone_smooth": "D3"
         },
         {
@@ -4919,11 +4919,11 @@
           "py": 337,
           "zone": "A1",
           "fx_norm": 47.05,
-          "fy_norm": 40.25,
+          "fy_norm": 27.75,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 48.67,
-          "fy_smooth": 36.83,
+          "fy_smooth": 31.17,
           "zone_smooth": "D3"
         },
         {
@@ -4935,11 +4935,11 @@
           "py": 286,
           "zone": "A1",
           "fx_norm": 45.59,
-          "fy_norm": 34.49,
+          "fy_norm": 33.51,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 49.61,
-          "fy_smooth": 38.39,
+          "fy_smooth": 29.61,
           "zone_smooth": "D3"
         },
         {
@@ -4951,11 +4951,11 @@
           "py": 343,
           "zone": "D3",
           "fx_norm": 53.46,
-          "fy_norm": 41.65,
+          "fy_norm": 26.35,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 50.3,
-          "fy_smooth": 40.87,
+          "fy_smooth": 27.13,
           "zone_smooth": "D3"
         }
       ]
@@ -5660,7 +5660,7 @@
           "zone_norm": "A1",
           "direction_flipped": false,
           "fx_smooth": 65.14,
-          "fy_smooth": 40.66,
+          "fy_smooth": 40.13,
           "zone_smooth": "A2"
         },
         {
@@ -5676,7 +5676,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 68.15,
-          "fy_smooth": 40.33,
+          "fy_smooth": 42.27,
           "zone_smooth": "A2"
         },
         {
@@ -5692,7 +5692,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 63.17,
-          "fy_smooth": 39.0,
+          "fy_smooth": 39.78,
           "zone_smooth": "A2"
         },
         {
@@ -5704,11 +5704,11 @@
           "py": 258,
           "zone": "A2",
           "fx_norm": 39.05,
-          "fy_norm": 31.23,
+          "fy_norm": 36.77,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 53.37,
-          "fy_smooth": 36.64,
+          "fy_smooth": 37.15,
           "zone_smooth": "A1"
         },
         {
@@ -5720,11 +5720,11 @@
           "py": 318,
           "zone": "A2",
           "fx_norm": 38.26,
-          "fy_norm": 40.03,
+          "fy_norm": 27.97,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 45.01,
-          "fy_smooth": 38.08,
+          "fy_smooth": 30.73,
           "zone_smooth": "D3"
         },
         {
@@ -5736,11 +5736,11 @@
           "py": 318,
           "zone": "A1",
           "fx_norm": 43.11,
-          "fy_norm": 38.82,
+          "fy_norm": 29.18,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 38.57,
-          "fy_smooth": 42.61,
+          "fy_smooth": 23.85,
           "zone_smooth": "D2"
         },
         {
@@ -5752,11 +5752,11 @@
           "py": 453,
           "zone": "A1",
           "fx_norm": 48.51,
-          "fy_norm": 52.32,
+          "fy_norm": 15.68,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 42.28,
-          "fy_smooth": 48.34,
+          "fy_smooth": 19.66,
           "zone_smooth": "D3"
         },
         {
@@ -5768,11 +5768,11 @@
           "py": 412,
           "zone": "A2",
           "fx_norm": 35.14,
-          "fy_norm": 50.14,
+          "fy_norm": 17.86,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 39.51,
-          "fy_smooth": 48.23,
+          "fy_smooth": 19.77,
           "zone_smooth": "D2"
         },
         {
@@ -5784,11 +5784,11 @@
           "py": 384,
           "zone": "A2",
           "fx_norm": 34.93,
-          "fy_norm": 45.51,
+          "fy_norm": 22.49,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 34.79,
-          "fy_smooth": 46.49,
+          "fy_smooth": 21.51,
           "zone_smooth": "D2"
         },
         {
@@ -5800,11 +5800,11 @@
           "py": 314,
           "zone": "A2",
           "fx_norm": 31.38,
-          "fy_norm": 39.48,
+          "fy_norm": 28.52,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 31.67,
-          "fy_smooth": 42.73,
+          "fy_smooth": 25.27,
           "zone_smooth": "D2"
         },
         {
@@ -5816,11 +5816,11 @@
           "py": 326,
           "zone": "A2",
           "fx_norm": 31.98,
-          "fy_norm": 40.03,
+          "fy_norm": 27.97,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 32.74,
-          "fy_smooth": 39.57,
+          "fy_smooth": 28.43,
           "zone_smooth": "D2"
         },
         {
@@ -5832,11 +5832,11 @@
           "py": 331,
           "zone": "A2",
           "fx_norm": 34.15,
-          "fy_norm": 39.7,
+          "fy_norm": 28.3,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 32.56,
-          "fy_smooth": 35.11,
+          "fy_smooth": 32.89,
           "zone_smooth": "D2"
         },
         {
@@ -5848,11 +5848,11 @@
           "py": 240,
           "zone": "A2",
           "fx_norm": 33.46,
-          "fy_norm": 28.58,
+          "fy_norm": 39.42,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 32.67,
-          "fy_smooth": 29.91,
+          "fy_smooth": 38.09,
           "zone_smooth": "D2"
         },
         {
@@ -5864,11 +5864,11 @@
           "py": 202,
           "zone": "A2",
           "fx_norm": 32.18,
-          "fy_norm": 23.17,
+          "fy_norm": 44.83,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 33.07,
-          "fy_smooth": 23.96,
+          "fy_smooth": 44.04,
           "zone_smooth": "D2"
         }
       ]
@@ -6400,7 +6400,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 55.54,
-          "fy_smooth": 42.91,
+          "fy_smooth": 41.21,
           "zone_smooth": "A1"
         },
         {
@@ -6416,7 +6416,7 @@
           "zone_norm": "A1",
           "direction_flipped": false,
           "fx_smooth": 54.35,
-          "fy_smooth": 35.11,
+          "fy_smooth": 39.38,
           "zone_smooth": "A1"
         },
         {
@@ -6432,7 +6432,7 @@
           "zone_norm": "A1",
           "direction_flipped": false,
           "fx_smooth": 54.57,
-          "fy_smooth": 33.08,
+          "fy_smooth": 34.44,
           "zone_smooth": "A1"
         },
         {
@@ -6444,11 +6444,11 @@
           "py": 215,
           "zone": "A1",
           "fx_norm": 46.5,
-          "fy_norm": 25.06,
+          "fy_norm": 42.94,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 52.25,
-          "fy_smooth": 32.29,
+          "fy_smooth": 33.34,
           "zone_smooth": "D3"
         },
         {
@@ -6460,11 +6460,11 @@
           "py": 352,
           "zone": "A1",
           "fx_norm": 51.85,
-          "fy_norm": 43.01,
+          "fy_norm": 24.99,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 49.0,
-          "fy_smooth": 30.92,
+          "fy_smooth": 36.25,
           "zone_smooth": "D3"
         },
         {
@@ -6476,11 +6476,11 @@
           "py": 237,
           "zone": "A1",
           "fx_norm": 49.64,
-          "fy_norm": 27.88,
+          "fy_norm": 40.12,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 52.51,
-          "fy_smooth": 31.51,
+          "fy_smooth": 36.85,
           "zone_smooth": "A1"
         },
         {
@@ -6492,11 +6492,11 @@
           "py": 222,
           "zone": "D3",
           "fx_norm": 59.01,
-          "fy_norm": 26.05,
+          "fy_norm": 41.95,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 63.48,
-          "fy_smooth": 31.78,
+          "fy_smooth": 36.22,
           "zone_smooth": "A2"
         },
         {
@@ -6508,11 +6508,11 @@
           "py": 291,
           "zone": "D2",
           "fx_norm": 78.22,
-          "fy_norm": 36.4,
+          "fy_norm": 31.6,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 71.83,
-          "fy_smooth": 32.38,
+          "fy_smooth": 35.62,
           "zone_smooth": "A2"
         },
         {
@@ -6524,11 +6524,11 @@
           "py": 267,
           "zone": "D2",
           "fx_norm": 81.67,
-          "fy_norm": 33.99,
+          "fy_norm": 34.01,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 76.76,
-          "fy_smooth": 32.25,
+          "fy_smooth": 35.75,
           "zone_smooth": "A2"
         },
         {
@@ -6540,11 +6540,11 @@
           "py": 336,
           "zone": "D2",
           "fx_norm": 77.31,
-          "fy_norm": 40.8,
+          "fy_norm": 27.2,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 79.93,
-          "fy_smooth": 32.78,
+          "fy_smooth": 35.22,
           "zone_smooth": "A2"
         },
         {
@@ -6556,11 +6556,11 @@
           "py": 233,
           "zone": "D2",
           "fx_norm": 80.22,
-          "fy_norm": 27.57,
+          "fy_norm": 40.43,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 81.31,
-          "fy_smooth": 33.95,
+          "fy_smooth": 34.05,
           "zone_smooth": "A2"
         }
       ]
@@ -6805,7 +6805,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 28.5,
-          "fy_smooth": 44.44,
+          "fy_smooth": 46.75,
           "zone_smooth": "D2"
         },
         {
@@ -6821,7 +6821,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 33.35,
-          "fy_smooth": 49.15,
+          "fy_smooth": 47.08,
           "zone_smooth": "D2"
         },
         {
@@ -6837,7 +6837,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 48.82,
-          "fy_smooth": 49.72,
+          "fy_smooth": 42.27,
           "zone_smooth": "D3"
         },
         {
@@ -6849,11 +6849,11 @@
           "py": 392,
           "zone": "D2",
           "fx_norm": 81.65,
-          "fy_norm": 46.13,
+          "fy_norm": 21.87,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 65.96,
-          "fy_smooth": 50.8,
+          "fy_smooth": 34.85,
           "zone_smooth": "A2"
         },
         {
@@ -6865,11 +6865,11 @@
           "py": 343,
           "zone": "D1",
           "fx_norm": 85.25,
-          "fy_norm": 41.34,
+          "fy_norm": 26.66,
           "zone_norm": "A3",
           "direction_flipped": true,
           "fx_smooth": 81.12,
-          "fy_smooth": 44.47,
+          "fy_smooth": 28.57,
           "zone_smooth": "A2"
         },
         {
@@ -6881,11 +6881,11 @@
           "py": 353,
           "zone": "D2",
           "fx_norm": 76.1,
-          "fy_norm": 42.29,
+          "fy_norm": 25.71,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 82.21,
-          "fy_smooth": 35.56,
+          "fy_smooth": 27.48,
           "zone_smooth": "A2"
         },
         {
@@ -6897,11 +6897,11 @@
           "py": 230,
           "zone": "D2",
           "fx_norm": 75.98,
-          "fy_norm": 27.16,
+          "fy_norm": 40.84,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 69.32,
-          "fy_smooth": 31.56,
+          "fy_smooth": 36.44,
           "zone_smooth": "A2"
         },
         {
@@ -6913,11 +6913,11 @@
           "py": 231,
           "zone": "D3",
           "fx_norm": 54.21,
-          "fy_norm": 27.18,
+          "fy_norm": 40.82,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 61.58,
-          "fy_smooth": 29.27,
+          "fy_smooth": 38.73,
           "zone_smooth": "A1"
         },
         {
@@ -6929,11 +6929,11 @@
           "py": 237,
           "zone": "D3",
           "fx_norm": 57.24,
-          "fy_norm": 30.04,
+          "fy_norm": 37.96,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 58.77,
-          "fy_smooth": 29.06,
+          "fy_smooth": 38.94,
           "zone_smooth": "A1"
         },
         {
@@ -6945,11 +6945,11 @@
           "py": 269,
           "zone": "D3",
           "fx_norm": 61.08,
-          "fy_norm": 33.0,
+          "fy_norm": 35.0,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 57.86,
-          "fy_smooth": 31.0,
+          "fy_smooth": 37.0,
           "zone_smooth": "A1"
         },
         {
@@ -6961,11 +6961,11 @@
           "py": 258,
           "zone": "D2",
           "fx_norm": 63.37,
-          "fy_norm": 30.95,
+          "fy_norm": 37.05,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 58.9,
-          "fy_smooth": 30.0,
+          "fy_smooth": 38.01,
           "zone_smooth": "A1"
         },
         {
@@ -6977,11 +6977,11 @@
           "py": 206,
           "zone": "D3",
           "fx_norm": 62.1,
-          "fy_norm": 25.47,
+          "fy_norm": 42.53,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 62.49,
-          "fy_smooth": 27.66,
+          "fy_smooth": 40.34,
           "zone_smooth": "A1"
         },
         {
@@ -6993,11 +6993,11 @@
           "py": 208,
           "zone": "D2",
           "fx_norm": 66.58,
-          "fy_norm": 24.74,
+          "fy_norm": 43.26,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 68.61,
-          "fy_smooth": 24.01,
+          "fy_smooth": 43.99,
           "zone_smooth": "A2"
         }
       ]
@@ -7162,7 +7162,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 44.87,
-          "fy_smooth": 39.4,
+          "fy_smooth": 40.36,
           "zone_smooth": "D3"
         },
         {
@@ -7178,7 +7178,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 41.14,
-          "fy_smooth": 38.92,
+          "fy_smooth": 37.76,
           "zone_smooth": "D2"
         },
         {
@@ -7194,7 +7194,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 42.06,
-          "fy_smooth": 36.68,
+          "fy_smooth": 33.38,
           "zone_smooth": "D3"
         },
         {
@@ -7206,11 +7206,11 @@
           "py": 306,
           "zone": "A1",
           "fx_norm": 51.09,
-          "fy_norm": 39.04,
+          "fy_norm": 28.96,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 45.9,
-          "fy_smooth": 37.21,
+          "fy_smooth": 32.87,
           "zone_smooth": "D3"
         },
         {
@@ -7222,11 +7222,11 @@
           "py": 286,
           "zone": "D3",
           "fx_norm": 56.63,
-          "fy_norm": 35.46,
+          "fy_norm": 32.54,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 53.74,
-          "fy_smooth": 35.94,
+          "fy_smooth": 33.88,
           "zone_smooth": "A1"
         },
         {
@@ -7242,7 +7242,7 @@
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 63.77,
-          "fy_smooth": 34.4,
+          "fy_smooth": 32.51,
           "zone_smooth": "A2"
         },
         {
@@ -7254,11 +7254,11 @@
           "py": 276,
           "zone": "D2",
           "fx_norm": 72.24,
-          "fy_norm": 33.25,
+          "fy_norm": 34.75,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 68.95,
-          "fy_smooth": 36.17,
+          "fy_smooth": 31.83,
           "zone_smooth": "A2"
         },
         {
@@ -7270,11 +7270,11 @@
           "py": 353,
           "zone": "D2",
           "fx_norm": 76.4,
-          "fy_norm": 42.29,
+          "fy_norm": 25.71,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 75.08,
-          "fy_smooth": 41.23,
+          "fy_smooth": 26.77,
           "zone_smooth": "A2"
         },
         {
@@ -7286,11 +7286,11 @@
           "py": 378,
           "zone": "D2",
           "fx_norm": 78.24,
-          "fy_norm": 46.22,
+          "fy_norm": 21.78,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 80.9,
-          "fy_smooth": 44.89,
+          "fy_smooth": 23.11,
           "zone_smooth": "A2"
         },
         {
@@ -7302,11 +7302,11 @@
           "py": 419,
           "zone": "D2",
           "fx_norm": 83.44,
-          "fy_norm": 48.95,
+          "fy_norm": 19.05,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 82.91,
-          "fy_smooth": 46.51,
+          "fy_smooth": 21.49,
           "zone_smooth": "A2"
         },
         {
@@ -7318,11 +7318,11 @@
           "py": 353,
           "zone": "D1",
           "fx_norm": 86.11,
-          "fy_norm": 42.51,
+          "fy_norm": 25.49,
           "zone_norm": "A3",
           "direction_flipped": true,
           "fx_smooth": 83.89,
-          "fy_smooth": 46.14,
+          "fy_smooth": 21.86,
           "zone_smooth": "A2"
         },
         {
@@ -7334,11 +7334,11 @@
           "py": 351,
           "zone": "D2",
           "fx_norm": 83.39,
-          "fy_norm": 43.74,
+          "fy_norm": 24.26,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 84.9,
-          "fy_smooth": 44.47,
+          "fy_smooth": 23.53,
           "zone_smooth": "A3"
         },
         {
@@ -7350,11 +7350,11 @@
           "py": 375,
           "zone": "D2",
           "fx_norm": 81.96,
-          "fy_norm": 44.95,
+          "fy_norm": 23.05,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 83.92,
-          "fy_smooth": 41.29,
+          "fy_smooth": 26.71,
           "zone_smooth": "A2"
         },
         {
@@ -7366,11 +7366,11 @@
           "py": 301,
           "zone": "D1",
           "fx_norm": 84.91,
-          "fy_norm": 36.87,
+          "fy_norm": 31.13,
           "zone_norm": "A3",
           "direction_flipped": true,
           "fx_smooth": 82.04,
-          "fy_smooth": 37.38,
+          "fy_smooth": 30.62,
           "zone_smooth": "A2"
         },
         {
@@ -7382,11 +7382,11 @@
           "py": 261,
           "zone": "D2",
           "fx_norm": 78.95,
-          "fy_norm": 31.07,
+          "fy_norm": 36.93,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 79.16,
-          "fy_smooth": 32.48,
+          "fy_smooth": 35.52,
           "zone_smooth": "A2"
         },
         {
@@ -7398,11 +7398,11 @@
           "py": 226,
           "zone": "D2",
           "fx_norm": 74.77,
-          "fy_norm": 27.02,
+          "fy_norm": 40.98,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 75.29,
-          "fy_smooth": 26.58,
+          "fy_smooth": 41.42,
           "zone_smooth": "A2"
         }
       ]
@@ -7709,7 +7709,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 47.12,
-          "fy_smooth": 36.72,
+          "fy_smooth": 38.24,
           "zone_smooth": "D3"
         },
         {
@@ -7725,7 +7725,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 48.23,
-          "fy_smooth": 37.26,
+          "fy_smooth": 37.56,
           "zone_smooth": "D3"
         },
         {
@@ -7741,7 +7741,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 49.81,
-          "fy_smooth": 40.04,
+          "fy_smooth": 33.43,
           "zone_smooth": "D3"
         },
         {
@@ -7753,11 +7753,11 @@
           "py": 354,
           "zone": "D3",
           "fx_norm": 54.7,
-          "fy_norm": 41.97,
+          "fy_norm": 26.03,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 51.95,
-          "fy_smooth": 41.64,
+          "fy_smooth": 28.18,
           "zone_smooth": "D3"
         },
         {
@@ -7769,11 +7769,11 @@
           "py": 398,
           "zone": "A1",
           "fx_norm": 52.0,
-          "fy_norm": 47.53,
+          "fy_norm": 20.47,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 54.04,
-          "fy_smooth": 44.79,
+          "fy_smooth": 23.73,
           "zone_smooth": "A1"
         },
         {
@@ -7785,11 +7785,11 @@
           "py": 363,
           "zone": "D3",
           "fx_norm": 55.55,
-          "fy_norm": 43.52,
+          "fy_norm": 24.48,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 55.27,
-          "fy_smooth": 46.39,
+          "fy_smooth": 20.91,
           "zone_smooth": "A1"
         },
         {
@@ -7801,11 +7801,11 @@
           "py": 363,
           "zone": "D3",
           "fx_norm": 58.32,
-          "fy_norm": 46.11,
+          "fy_norm": 21.89,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 60.41,
-          "fy_smooth": 45.15,
+          "fy_smooth": 22.85,
           "zone_smooth": "A1"
         },
         {
@@ -7817,11 +7817,11 @@
           "py": 337,
           "zone": "D3",
           "fx_norm": 62.68,
-          "fy_norm": 41.44,
+          "fy_norm": 26.56,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 63.21,
-          "fy_smooth": 38.03,
+          "fy_smooth": 29.97,
           "zone_smooth": "A2"
         },
         {
@@ -7833,11 +7833,11 @@
           "py": 282,
           "zone": "D2",
           "fx_norm": 70.61,
-          "fy_norm": 33.62,
+          "fy_norm": 34.38,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 62.88,
-          "fy_smooth": 33.61,
+          "fy_smooth": 34.39,
           "zone_smooth": "A1"
         },
         {
@@ -7849,11 +7849,11 @@
           "py": 196,
           "zone": "D3",
           "fx_norm": 53.72,
-          "fy_norm": 21.93,
+          "fy_norm": 46.07,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 60.02,
-          "fy_smooth": 29.5,
+          "fy_smooth": 38.5,
           "zone_smooth": "A1"
         },
         {
@@ -7865,11 +7865,11 @@
           "py": 289,
           "zone": "D3",
           "fx_norm": 54.4,
-          "fy_norm": 35.58,
+          "fy_norm": 32.42,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 54.17,
-          "fy_smooth": 31.08,
+          "fy_smooth": 36.92,
           "zone_smooth": "A1"
         },
         {
@@ -7881,11 +7881,11 @@
           "py": 281,
           "zone": "A1",
           "fx_norm": 49.67,
-          "fy_norm": 33.88,
+          "fy_norm": 34.12,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 47.13,
-          "fy_smooth": 35.66,
+          "fy_smooth": 32.34,
           "zone_smooth": "D3"
         },
         {
@@ -7897,11 +7897,11 @@
           "py": 351,
           "zone": "A1",
           "fx_norm": 43.0,
-          "fy_norm": 41.44,
+          "fy_norm": 26.56,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 43.77,
-          "fy_smooth": 38.07,
+          "fy_smooth": 29.93,
           "zone_smooth": "D3"
         },
         {
@@ -7913,11 +7913,11 @@
           "py": 306,
           "zone": "A2",
           "fx_norm": 39.48,
-          "fy_norm": 36.76,
+          "fy_norm": 31.24,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 40.84,
-          "fy_smooth": 34.99,
+          "fy_smooth": 33.01,
           "zone_smooth": "D2"
         },
         {
@@ -7929,11 +7929,11 @@
           "py": 247,
           "zone": "A2",
           "fx_norm": 40.39,
-          "fy_norm": 29.65,
+          "fy_norm": 38.35,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 41.85,
-          "fy_smooth": 34.81,
+          "fy_smooth": 33.19,
           "zone_smooth": "D2"
         },
         {
@@ -7945,11 +7945,11 @@
           "py": 277,
           "zone": "A1",
           "fx_norm": 46.86,
-          "fy_norm": 33.13,
+          "fy_norm": 34.87,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 44.83,
-          "fy_smooth": 34.18,
+          "fy_smooth": 33.82,
           "zone_smooth": "D3"
         },
         {
@@ -7961,11 +7961,11 @@
           "py": 320,
           "zone": "A1",
           "fx_norm": 49.88,
-          "fy_norm": 39.49,
+          "fy_norm": 28.51,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 49.37,
-          "fy_smooth": 34.26,
+          "fy_smooth": 33.74,
           "zone_smooth": "D3"
         },
         {
@@ -7977,11 +7977,11 @@
           "py": 279,
           "zone": "A1",
           "fx_norm": 50.66,
-          "fy_norm": 35.46,
+          "fy_norm": 32.54,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 52.08,
-          "fy_smooth": 35.75,
+          "fy_smooth": 32.25,
           "zone_smooth": "D3"
         },
         {
@@ -7993,11 +7993,11 @@
           "py": 259,
           "zone": "D3",
           "fx_norm": 56.33,
-          "fy_norm": 31.35,
+          "fy_norm": 36.65,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 54.8,
-          "fy_smooth": 36.89,
+          "fy_smooth": 31.11,
           "zone_smooth": "A1"
         },
         {
@@ -8009,11 +8009,11 @@
           "py": 320,
           "zone": "D3",
           "fx_norm": 54.34,
-          "fy_norm": 39.04,
+          "fy_norm": 28.96,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 57.11,
-          "fy_smooth": 37.86,
+          "fy_smooth": 30.14,
           "zone_smooth": "A1"
         },
         {
@@ -8025,11 +8025,11 @@
           "py": 330,
           "zone": "D3",
           "fx_norm": 60.47,
-          "fy_norm": 39.82,
+          "fy_norm": 28.18,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 59.01,
-          "fy_smooth": 38.67,
+          "fy_smooth": 29.33,
           "zone_smooth": "A1"
         }
       ]
@@ -8255,7 +8255,7 @@
           "zone_norm": "A1",
           "direction_flipped": false,
           "fx_smooth": 56.76,
-          "fy_smooth": 36.04,
+          "fy_smooth": 38.27,
           "zone_smooth": "A1"
         },
         {
@@ -8271,7 +8271,7 @@
           "zone_norm": "A1",
           "direction_flipped": false,
           "fx_smooth": 55.05,
-          "fy_smooth": 35.8,
+          "fy_smooth": 34.38,
           "zone_smooth": "A1"
         },
         {
@@ -8287,7 +8287,7 @@
           "zone_norm": "A1",
           "direction_flipped": false,
           "fx_smooth": 53.92,
-          "fy_smooth": 37.22,
+          "fy_smooth": 28.49,
           "zone_smooth": "A1"
         },
         {
@@ -8299,11 +8299,11 @@
           "py": 374,
           "zone": "D3",
           "fx_norm": 53.47,
-          "fy_norm": 45.71,
+          "fy_norm": 22.29,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 52.96,
-          "fy_smooth": 40.95,
+          "fy_smooth": 26.55,
           "zone_smooth": "A1"
         },
         {
@@ -8315,11 +8315,11 @@
           "py": 358,
           "zone": "A1",
           "fx_norm": 50.41,
-          "fy_norm": 44.13,
+          "fy_norm": 23.87,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 51.99,
-          "fy_smooth": 42.85,
+          "fy_smooth": 25.96,
           "zone_smooth": "D3"
         },
         {
@@ -8331,11 +8331,11 @@
           "py": 318,
           "zone": "A1",
           "fx_norm": 51.45,
-          "fy_norm": 38.48,
+          "fy_norm": 29.52,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 51.15,
-          "fy_smooth": 41.35,
+          "fy_smooth": 26.44,
           "zone_smooth": "D3"
         },
         {
@@ -8347,11 +8347,11 @@
           "py": 306,
           "zone": "A1",
           "fx_norm": 50.43,
-          "fy_norm": 36.52,
+          "fy_norm": 31.48,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 49.42,
-          "fy_smooth": 36.11,
+          "fy_smooth": 31.89,
           "zone_smooth": "D3"
         },
         {
@@ -8363,11 +8363,11 @@
           "py": 276,
           "zone": "A1",
           "fx_norm": 47.05,
-          "fy_norm": 33.13,
+          "fy_norm": 34.87,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 45.13,
-          "fy_smooth": 29.55,
+          "fy_smooth": 38.45,
           "zone_smooth": "D3"
         },
         {
@@ -8379,11 +8379,11 @@
           "py": 221,
           "zone": "A2",
           "fx_norm": 41.89,
-          "fy_norm": 25.64,
+          "fy_norm": 42.36,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 42.98,
-          "fy_smooth": 27.61,
+          "fy_smooth": 40.39,
           "zone_smooth": "D3"
         },
         {
@@ -8395,11 +8395,11 @@
           "py": 197,
           "zone": "A2",
           "fx_norm": 38.1,
-          "fy_norm": 22.41,
+          "fy_norm": 45.59,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 43.98,
-          "fy_smooth": 28.85,
+          "fy_smooth": 39.15,
           "zone_smooth": "D3"
         },
         {
@@ -8411,11 +8411,11 @@
           "py": 322,
           "zone": "A1",
           "fx_norm": 51.71,
-          "fy_norm": 39.38,
+          "fy_norm": 28.62,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 46.91,
-          "fy_smooth": 35.01,
+          "fy_smooth": 32.99,
           "zone_smooth": "D3"
         },
         {
@@ -8427,11 +8427,11 @@
           "py": 350,
           "zone": "D3",
           "fx_norm": 52.56,
-          "fy_norm": 41.86,
+          "fy_norm": 26.14,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 50.86,
-          "fy_smooth": 41.33,
+          "fy_smooth": 26.67,
           "zone_smooth": "D3"
         },
         {
@@ -8443,11 +8443,11 @@
           "py": 376,
           "zone": "A1",
           "fx_norm": 51.37,
-          "fy_norm": 46.58,
+          "fy_norm": 21.42,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 53.76,
-          "fy_smooth": 43.53,
+          "fy_smooth": 24.47,
           "zone_smooth": "A1"
         },
         {
@@ -8459,11 +8459,11 @@
           "py": 315,
           "zone": "D3",
           "fx_norm": 53.24,
-          "fy_norm": 38.25,
+          "fy_norm": 29.75,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 53.09,
-          "fy_smooth": 39.87,
+          "fy_smooth": 28.13,
           "zone_smooth": "A1"
         },
         {
@@ -8475,11 +8475,11 @@
           "py": 290,
           "zone": "D3",
           "fx_norm": 54.27,
-          "fy_norm": 35.81,
+          "fy_norm": 32.19,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 53.48,
-          "fy_smooth": 36.94,
+          "fy_smooth": 31.06,
           "zone_smooth": "A1"
         },
         {
@@ -8491,11 +8491,11 @@
           "py": 300,
           "zone": "D3",
           "fx_norm": 53.57,
-          "fy_norm": 36.64,
+          "fy_norm": 31.36,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 54.09,
-          "fy_smooth": 38.15,
+          "fy_smooth": 29.85,
           "zone_smooth": "A1"
         },
         {
@@ -8507,11 +8507,11 @@
           "py": 334,
           "zone": "D3",
           "fx_norm": 53.34,
-          "fy_norm": 40.8,
+          "fy_norm": 27.2,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 53.45,
-          "fy_smooth": 42.52,
+          "fy_smooth": 25.48,
           "zone_smooth": "A1"
         },
         {
@@ -8523,11 +8523,11 @@
           "py": 428,
           "zone": "D3",
           "fx_norm": 53.36,
-          "fy_norm": 51.39,
+          "fy_norm": 16.61,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 52.77,
-          "fy_smooth": 44.16,
+          "fy_smooth": 23.84,
           "zone_smooth": "A1"
         },
         {
@@ -8539,11 +8539,11 @@
           "py": 379,
           "zone": "A1",
           "fx_norm": 50.89,
-          "fy_norm": 45.42,
+          "fy_norm": 22.58,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 51.74,
-          "fy_smooth": 45.43,
+          "fy_smooth": 22.57,
           "zone_smooth": "D3"
         },
         {
@@ -8555,11 +8555,11 @@
           "py": 349,
           "zone": "A1",
           "fx_norm": 50.75,
-          "fy_norm": 44.03,
+          "fy_norm": 23.97,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 50.38,
-          "fy_smooth": 46.31,
+          "fy_smooth": 21.69,
           "zone_smooth": "D3"
         }
       ]
@@ -8605,7 +8605,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 53.21,
-          "fy_smooth": 68.0,
+          "fy_smooth": 42.74,
           "zone_smooth": "A1"
         },
         {
@@ -8617,11 +8617,11 @@
           "py": 687,
           "zone": "D2",
           "fx_norm": 76.29,
-          "fy_norm": 68.0,
+          "fy_norm": 0.0,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 65.27,
-          "fy_smooth": 68.0,
+          "fy_smooth": 17.49,
           "zone_smooth": "A2"
         },
         {
@@ -8633,11 +8633,11 @@
           "py": 678,
           "zone": "D2",
           "fx_norm": 71.49,
-          "fy_norm": 68.0,
+          "fy_norm": 0.0,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 76.76,
-          "fy_smooth": 68.0,
+          "fy_smooth": 0.0,
           "zone_smooth": "A2"
         },
         {
@@ -8649,11 +8649,11 @@
           "py": 687,
           "zone": "D2",
           "fx_norm": 76.92,
-          "fy_norm": 68.0,
+          "fy_norm": 0.0,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 81.45,
-          "fy_smooth": 65.65,
+          "fy_smooth": 0.0,
           "zone_smooth": "A2"
         },
         {
@@ -8665,11 +8665,11 @@
           "py": 531,
           "zone": "D2",
           "fx_norm": 81.95,
-          "fy_norm": 58.85,
+          "fy_norm": 9.15,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 78.81,
-          "fy_smooth": 59.9,
+          "fy_smooth": 13.93,
           "zone_smooth": "A2"
         }
       ]
@@ -8767,7 +8767,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 79.41,
-          "fy_smooth": 44.97,
+          "fy_smooth": 42.32,
           "zone_smooth": "A2"
         },
         {
@@ -8783,7 +8783,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 74.5,
-          "fy_smooth": 37.85,
+          "fy_smooth": 40.45,
           "zone_smooth": "A2"
         },
         {
@@ -8799,7 +8799,7 @@
           "zone_norm": "A2",
           "direction_flipped": false,
           "fx_smooth": 63.45,
-          "fy_smooth": 28.77,
+          "fy_smooth": 39.18,
           "zone_smooth": "A2"
         },
         {
@@ -8811,11 +8811,11 @@
           "py": 185,
           "zone": "A2",
           "fx_norm": 31.72,
-          "fy_norm": 20.11,
+          "fy_norm": 47.89,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 49.61,
-          "fy_smooth": 26.5,
+          "fy_smooth": 41.03,
           "zone_smooth": "D3"
         },
         {
@@ -8827,11 +8827,11 @@
           "py": 230,
           "zone": "A2",
           "fx_norm": 34.05,
-          "fy_norm": 26.79,
+          "fy_norm": 41.21,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 38.53,
-          "fy_smooth": 28.08,
+          "fy_smooth": 40.1,
           "zone_smooth": "D2"
         },
         {
@@ -8843,11 +8843,11 @@
           "py": 283,
           "zone": "A2",
           "fx_norm": 39.16,
-          "fy_norm": 36.17,
+          "fy_norm": 31.83,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 32.58,
-          "fy_smooth": 35.08,
+          "fy_smooth": 32.66,
           "zone_smooth": "D2"
         },
         {
@@ -8859,11 +8859,11 @@
           "py": 362,
           "zone": "A1",
           "fx_norm": 42.48,
-          "fy_norm": 43.31,
+          "fy_norm": 24.69,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 40.96,
-          "fy_smooth": 42.94,
+          "fy_smooth": 25.06,
           "zone_smooth": "D2"
         },
         {
@@ -8875,11 +8875,11 @@
           "py": 426,
           "zone": "A2",
           "fx_norm": 40.49,
-          "fy_norm": 50.68,
+          "fy_norm": 17.32,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 44.79,
-          "fy_smooth": 44.53,
+          "fy_smooth": 23.47,
           "zone_smooth": "D3"
         },
         {
@@ -8891,11 +8891,11 @@
           "py": 324,
           "zone": "A1",
           "fx_norm": 49.2,
-          "fy_norm": 39.37,
+          "fy_norm": 28.63,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 47.52,
-          "fy_smooth": 44.93,
+          "fy_smooth": 23.07,
           "zone_smooth": "D3"
         },
         {
@@ -8907,11 +8907,11 @@
           "py": 325,
           "zone": "A1",
           "fx_norm": 50.69,
-          "fy_norm": 40.36,
+          "fy_norm": 27.64,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 48.97,
-          "fy_smooth": 42.56,
+          "fy_smooth": 25.44,
           "zone_smooth": "D3"
         },
         {
@@ -8923,11 +8923,11 @@
           "py": 394,
           "zone": "A1",
           "fx_norm": 47.19,
-          "fy_norm": 45.9,
+          "fy_norm": 22.1,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 48.57,
-          "fy_smooth": 38.91,
+          "fy_smooth": 29.09,
           "zone_smooth": "D3"
         },
         {
@@ -8939,11 +8939,11 @@
           "py": 303,
           "zone": "A1",
           "fx_norm": 42.11,
-          "fy_norm": 36.76,
+          "fy_norm": 31.24,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 42.62,
-          "fy_smooth": 39.48,
+          "fy_smooth": 28.52,
           "zone_smooth": "D3"
         },
         {
@@ -8955,11 +8955,11 @@
           "py": 311,
           "zone": "A2",
           "fx_norm": 33.85,
-          "fy_norm": 38.03,
+          "fy_norm": 29.97,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 32.47,
-          "fy_smooth": 42.02,
+          "fy_smooth": 25.98,
           "zone_smooth": "D2"
         },
         {
@@ -8971,11 +8971,11 @@
           "py": 412,
           "zone": "A3",
           "fx_norm": 17.64,
-          "fy_norm": 48.87,
+          "fy_norm": 19.13,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 18.11,
-          "fy_smooth": 46.53,
+          "fy_smooth": 21.47,
           "zone_smooth": "D1"
         }
       ]
@@ -9007,7 +9007,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 47.38,
-          "fy_smooth": 32.62,
+          "fy_smooth": 33.42,
           "zone_smooth": "D3"
         },
         {
@@ -9023,7 +9023,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 36.45,
-          "fy_smooth": 37.6,
+          "fy_smooth": 38.24,
           "zone_smooth": "D2"
         },
         {
@@ -9039,7 +9039,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 31.87,
-          "fy_smooth": 41.21,
+          "fy_smooth": 40.62,
           "zone_smooth": "D2"
         },
         {
@@ -9055,7 +9055,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 33.67,
-          "fy_smooth": 43.45,
+          "fy_smooth": 40.57,
           "zone_smooth": "D2"
         },
         {
@@ -9071,7 +9071,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 44.5,
-          "fy_smooth": 44.91,
+          "fy_smooth": 36.77,
           "zone_smooth": "D3"
         },
         {
@@ -9083,11 +9083,11 @@
           "py": 385,
           "zone": "D2",
           "fx_norm": 71.71,
-          "fy_norm": 47.07,
+          "fy_norm": 20.93,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 57.16,
-          "fy_smooth": 44.3,
+          "fy_smooth": 34.41,
           "zone_smooth": "A1"
         },
         {
@@ -9099,11 +9099,11 @@
           "py": 318,
           "zone": "D2",
           "fx_norm": 72.2,
-          "fy_norm": 38.48,
+          "fy_norm": 29.52,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 67.54,
-          "fy_smooth": 40.87,
+          "fy_smooth": 30.64,
           "zone_smooth": "A2"
         },
         {
@@ -9115,11 +9115,11 @@
           "py": 314,
           "zone": "D2",
           "fx_norm": 66.56,
-          "fy_norm": 37.22,
+          "fy_norm": 30.78,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 72.63,
-          "fy_smooth": 41.05,
+          "fy_smooth": 23.85,
           "zone_smooth": "A2"
         },
         {
@@ -9131,11 +9131,11 @@
           "py": 384,
           "zone": "D2",
           "fx_norm": 66.31,
-          "fy_norm": 46.11,
+          "fy_norm": 21.89,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 74.64,
-          "fy_smooth": 46.59,
+          "fy_smooth": 16.76,
           "zone_smooth": "A2"
         },
         {
@@ -9147,11 +9147,11 @@
           "py": 577,
           "zone": "D2",
           "fx_norm": 71.18,
-          "fy_norm": 63.01,
+          "fy_norm": 4.99,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 72.37,
-          "fy_smooth": 56.6,
+          "fy_smooth": 9.07,
           "zone_smooth": "A2"
         },
         {
@@ -9163,11 +9163,11 @@
           "py": 635,
           "zone": "D2",
           "fx_norm": 70.74,
-          "fy_norm": 67.89,
+          "fy_norm": 0.11,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 65.79,
-          "fy_smooth": 68.0,
+          "fy_smooth": 0.77,
           "zone_smooth": "A2"
         }
       ]
@@ -9200,7 +9200,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 45.06,
-          "fy_smooth": 33.12,
+          "fy_smooth": 31.24,
           "zone_smooth": "D3"
         },
         {
@@ -9216,7 +9216,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 50.91,
-          "fy_smooth": 36.68,
+          "fy_smooth": 37.8,
           "zone_smooth": "D3"
         },
         {
@@ -9232,7 +9232,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 54.0,
-          "fy_smooth": 39.46,
+          "fy_smooth": 41.71,
           "zone_smooth": "A1"
         },
         {
@@ -9248,7 +9248,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 54.33,
-          "fy_smooth": 41.45,
+          "fy_smooth": 42.94,
           "zone_smooth": "A1"
         },
         {
@@ -9264,7 +9264,7 @@
           "zone_norm": "A1",
           "direction_flipped": false,
           "fx_smooth": 52.93,
-          "fy_smooth": 42.07,
+          "fy_smooth": 42.64,
           "zone_smooth": "A1"
         },
         {
@@ -9280,7 +9280,7 @@
           "zone_norm": "A1",
           "direction_flipped": false,
           "fx_smooth": 47.82,
-          "fy_smooth": 43.71,
+          "fy_smooth": 38.04,
           "zone_smooth": "D3"
         },
         {
@@ -9292,11 +9292,11 @@
           "py": 336,
           "zone": "A2",
           "fx_norm": 31.4,
-          "fy_norm": 41.86,
+          "fy_norm": 26.14,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 40.9,
-          "fy_smooth": 45.92,
+          "fy_smooth": 29.88,
           "zone_smooth": "D2"
         },
         {
@@ -9308,11 +9308,11 @@
           "py": 418,
           "zone": "A2",
           "fx_norm": 34.33,
-          "fy_norm": 48.8,
+          "fy_norm": 19.2,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 35.38,
-          "fy_smooth": 47.21,
+          "fy_smooth": 20.81,
           "zone_smooth": "D2"
         },
         {
@@ -9324,11 +9324,11 @@
           "py": 421,
           "zone": "A2",
           "fx_norm": 35.18,
-          "fy_norm": 50.06,
+          "fy_norm": 17.94,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 33.8,
-          "fy_smooth": 48.37,
+          "fy_smooth": 17.98,
           "zone_smooth": "D2"
         },
         {
@@ -9340,11 +9340,11 @@
           "py": 388,
           "zone": "A2",
           "fx_norm": 39.14,
-          "fy_norm": 45.8,
+          "fy_norm": 22.2,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 33.73,
-          "fy_smooth": 44.46,
+          "fy_smooth": 21.05,
           "zone_smooth": "D2"
         },
         {
@@ -9356,11 +9356,11 @@
           "py": 306,
           "zone": "A2",
           "fx_norm": 39.53,
-          "fy_norm": 36.64,
+          "fy_norm": 31.36,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 36.37,
-          "fy_smooth": 37.23,
+          "fy_smooth": 29.52,
           "zone_smooth": "D2"
         },
         {
@@ -9372,11 +9372,11 @@
           "py": 220,
           "zone": "A2",
           "fx_norm": 37.33,
-          "fy_norm": 26.22,
+          "fy_norm": 41.78,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 41.73,
-          "fy_smooth": 26.69,
+          "fy_smooth": 43.38,
           "zone_smooth": "D2"
         }
       ]
@@ -9413,7 +9413,7 @@
           "zone_norm": "D1",
           "direction_flipped": false,
           "fx_smooth": 16.51,
-          "fy_smooth": 25.84,
+          "fy_smooth": 26.81,
           "zone_smooth": "D1"
         },
         {
@@ -9429,7 +9429,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 29.38,
-          "fy_smooth": 33.83,
+          "fy_smooth": 33.25,
           "zone_smooth": "D2"
         },
         {
@@ -9445,7 +9445,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 38.83,
-          "fy_smooth": 39.17,
+          "fy_smooth": 38.01,
           "zone_smooth": "D2"
         },
         {
@@ -9461,7 +9461,7 @@
           "zone_norm": "D2",
           "direction_flipped": false,
           "fx_smooth": 44.86,
-          "fy_smooth": 41.87,
+          "fy_smooth": 41.09,
           "zone_smooth": "D3"
         },
         {
@@ -9477,7 +9477,7 @@
           "zone_norm": "D3",
           "direction_flipped": false,
           "fx_smooth": 49.08,
-          "fy_smooth": 42.41,
+          "fy_smooth": 41.82,
           "zone_smooth": "D3"
         },
         {
@@ -9493,7 +9493,7 @@
           "zone_norm": "A1",
           "direction_flipped": false,
           "fx_smooth": 47.89,
-          "fy_smooth": 41.04,
+          "fy_smooth": 43.91,
           "zone_smooth": "D3"
         },
         {
@@ -9505,11 +9505,11 @@
           "py": 245,
           "zone": "A2",
           "fx_norm": 34.82,
-          "fy_norm": 29.92,
+          "fy_norm": 38.08,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 42.1,
-          "fy_smooth": 32.86,
+          "fy_smooth": 43.48,
           "zone_smooth": "D3"
         },
         {
@@ -9521,11 +9521,11 @@
           "py": 214,
           "zone": "A2",
           "fx_norm": 31.14,
-          "fy_norm": 24.79,
+          "fy_norm": 43.21,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 34.4,
-          "fy_smooth": 26.02,
+          "fy_smooth": 41.54,
           "zone_smooth": "D2"
         },
         {
@@ -9537,11 +9537,11 @@
           "py": 201,
           "zone": "A2",
           "fx_norm": 31.38,
-          "fy_norm": 23.02,
+          "fy_norm": 44.98,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 29.33,
-          "fy_smooth": 25.65,
+          "fy_smooth": 40.7,
           "zone_smooth": "D2"
         },
         {
@@ -9553,11 +9553,11 @@
           "py": 263,
           "zone": "A2",
           "fx_norm": 29.34,
-          "fy_norm": 31.37,
+          "fy_norm": 36.63,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 25.09,
-          "fy_smooth": 26.57,
+          "fy_smooth": 38.94,
           "zone_smooth": "D2"
         },
         {
@@ -9569,11 +9569,11 @@
           "py": 279,
           "zone": "A2",
           "fx_norm": 26.22,
-          "fy_norm": 34.14,
+          "fy_norm": 33.86,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 22.46,
-          "fy_smooth": 30.33,
+          "fy_smooth": 36.43,
           "zone_smooth": "D2"
         },
         {
@@ -9585,11 +9585,11 @@
           "py": 265,
           "zone": "A3",
           "fx_norm": 17.09,
-          "fy_norm": 33.15,
+          "fy_norm": 34.85,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 21.44,
-          "fy_smooth": 36.9,
+          "fy_smooth": 33.17,
           "zone_smooth": "D2"
         }
       ]
@@ -9616,11 +9616,11 @@
           "py": 370,
           "zone": "D3",
           "fx_norm": 57.15,
-          "fy_norm": 46.59,
+          "fy_norm": 21.41,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 56.86,
-          "fy_smooth": 48.6,
+          "fy_smooth": 19.4,
           "zone_smooth": "A1"
         },
         {
@@ -9632,11 +9632,11 @@
           "py": 459,
           "zone": "D3",
           "fx_norm": 56.86,
-          "fy_norm": 53.49,
+          "fy_norm": 14.51,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 58.45,
-          "fy_smooth": 50.39,
+          "fy_smooth": 17.61,
           "zone_smooth": "A1"
         },
         {
@@ -9648,11 +9648,11 @@
           "py": 444,
           "zone": "D3",
           "fx_norm": 61.27,
-          "fy_norm": 50.88,
+          "fy_norm": 17.12,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 59.44,
-          "fy_smooth": 50.74,
+          "fy_smooth": 17.26,
           "zone_smooth": "A1"
         },
         {
@@ -9664,11 +9664,11 @@
           "py": 408,
           "zone": "D3",
           "fx_norm": 60.8,
-          "fy_norm": 48.92,
+          "fy_norm": 19.08,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 59.86,
-          "fy_smooth": 49.65,
+          "fy_smooth": 18.35,
           "zone_smooth": "A1"
         },
         {
@@ -9680,11 +9680,11 @@
           "py": 382,
           "zone": "D3",
           "fx_norm": 57.44,
-          "fy_norm": 47.53,
+          "fy_norm": 20.47,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 59.73,
-          "fy_smooth": 45.71,
+          "fy_smooth": 22.29,
           "zone_smooth": "A1"
         },
         {
@@ -9696,11 +9696,11 @@
           "py": 335,
           "zone": "D3",
           "fx_norm": 59.51,
-          "fy_norm": 40.47,
+          "fy_norm": 27.53,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 58.5,
-          "fy_smooth": 42.65,
+          "fy_smooth": 25.35,
           "zone_smooth": "A1"
         },
         {
@@ -9712,11 +9712,11 @@
           "py": 324,
           "zone": "D3",
           "fx_norm": 57.81,
-          "fy_norm": 39.49,
+          "fy_norm": 28.51,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 57.45,
-          "fy_smooth": 39.08,
+          "fy_smooth": 28.92,
           "zone_smooth": "A1"
         },
         {
@@ -9728,11 +9728,11 @@
           "py": 306,
           "zone": "D3",
           "fx_norm": 56.58,
-          "fy_norm": 36.64,
+          "fy_norm": 31.36,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 56.89,
-          "fy_smooth": 35.37,
+          "fy_smooth": 32.63,
           "zone_smooth": "A1"
         },
         {
@@ -9744,11 +9744,11 @@
           "py": 267,
           "zone": "D3",
           "fx_norm": 54.59,
-          "fy_norm": 32.37,
+          "fy_norm": 35.63,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 55.25,
-          "fy_smooth": 33.32,
+          "fy_smooth": 34.68,
           "zone_smooth": "A1"
         },
         {
@@ -9760,11 +9760,11 @@
           "py": 255,
           "zone": "D3",
           "fx_norm": 54.63,
-          "fy_norm": 30.17,
+          "fy_norm": 37.83,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 53.78,
-          "fy_smooth": 31.14,
+          "fy_smooth": 36.86,
           "zone_smooth": "A1"
         },
         {
@@ -9776,11 +9776,11 @@
           "py": 247,
           "zone": "A1",
           "fx_norm": 51.7,
-          "fy_norm": 30.83,
+          "fy_norm": 37.17,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 50.67,
-          "fy_smooth": 29.04,
+          "fy_smooth": 38.96,
           "zone_smooth": "D3"
         },
         {
@@ -9792,11 +9792,11 @@
           "py": 237,
           "zone": "A1",
           "fx_norm": 49.33,
-          "fy_norm": 28.84,
+          "fy_norm": 39.16,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 49.58,
-          "fy_smooth": 27.6,
+          "fy_smooth": 40.4,
           "zone_smooth": "D3"
         },
         {
@@ -9808,11 +9808,11 @@
           "py": 225,
           "zone": "A1",
           "fx_norm": 46.46,
-          "fy_norm": 26.91,
+          "fy_norm": 41.09,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 50.64,
-          "fy_smooth": 30.23,
+          "fy_smooth": 37.76,
           "zone_smooth": "D3"
         },
         {
@@ -9824,11 +9824,11 @@
           "py": 268,
           "zone": "D3",
           "fx_norm": 55.84,
-          "fy_norm": 32.25,
+          "fy_norm": 35.75,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 53.36,
-          "fy_smooth": 35.28,
+          "fy_smooth": 32.72,
           "zone_smooth": "A1"
         },
         {
@@ -9840,11 +9840,11 @@
           "py": 375,
           "zone": "D3",
           "fx_norm": 57.71,
-          "fy_norm": 45.62,
+          "fy_norm": 22.38,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 57.74,
-          "fy_smooth": 42.75,
+          "fy_smooth": 25.25,
           "zone_smooth": "A1"
         }
       ]
@@ -9873,11 +9873,11 @@
           "py": 316,
           "zone": "A3",
           "fx_norm": 17.71,
-          "fy_norm": 38.7,
+          "fy_norm": 29.3,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 20.68,
-          "fy_smooth": 37.83,
+          "fy_smooth": 30.17,
           "zone_smooth": "D1"
         },
         {
@@ -9889,11 +9889,11 @@
           "py": 350,
           "zone": "A2",
           "fx_norm": 22.64,
-          "fy_norm": 43.0,
+          "fy_norm": 25.0,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 17.58,
-          "fy_smooth": 39.44,
+          "fy_smooth": 28.56,
           "zone_smooth": "D1"
         },
         {
@@ -9905,11 +9905,11 @@
           "py": 247,
           "zone": "A3",
           "fx_norm": 15.07,
-          "fy_norm": 30.47,
+          "fy_norm": 37.53,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 16.51,
-          "fy_smooth": 39.84,
+          "fy_smooth": 28.16,
           "zone_smooth": "D1"
         },
         {
@@ -9921,11 +9921,11 @@
           "py": 314,
           "zone": "A3",
           "fx_norm": 17.94,
-          "fy_norm": 39.37,
+          "fy_norm": 28.63,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 17.47,
-          "fy_smooth": 39.03,
+          "fy_smooth": 28.97,
           "zone_smooth": "D1"
         },
         {
@@ -9937,11 +9937,11 @@
           "py": 341,
           "zone": "A2",
           "fx_norm": 21.57,
-          "fy_norm": 43.51,
+          "fy_norm": 24.49,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 19.1,
-          "fy_smooth": 36.68,
+          "fy_smooth": 31.32,
           "zone_smooth": "D1"
         },
         {
@@ -9953,11 +9953,11 @@
           "py": 283,
           "zone": "A3",
           "fx_norm": 20.07,
-          "fy_norm": 34.26,
+          "fy_norm": 33.74,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 24.26,
-          "fy_smooth": 34.73,
+          "fy_smooth": 33.27,
           "zone_smooth": "D2"
         },
         {
@@ -9969,11 +9969,11 @@
           "py": 227,
           "zone": "A2",
           "fx_norm": 35.66,
-          "fy_norm": 27.07,
+          "fy_norm": 40.93,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 32.39,
-          "fy_smooth": 32.23,
+          "fy_smooth": 35.77,
           "zone_smooth": "D2"
         },
         {
@@ -9985,11 +9985,11 @@
           "py": 264,
           "zone": "A1",
           "fx_norm": 42.42,
-          "fy_norm": 31.36,
+          "fy_norm": 36.64,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 43.49,
-          "fy_smooth": 29.18,
+          "fy_smooth": 38.82,
           "zone_smooth": "D3"
         }
       ]
@@ -10016,11 +10016,11 @@
           "py": 354,
           "zone": "D2",
           "fx_norm": 75.8,
-          "fy_norm": 42.29,
+          "fy_norm": 25.71,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 76.06,
-          "fy_smooth": 41.79,
+          "fy_smooth": 26.21,
           "zone_smooth": "A2"
         },
         {
@@ -10032,11 +10032,11 @@
           "py": 344,
           "zone": "D2",
           "fx_norm": 75.6,
-          "fy_norm": 41.13,
+          "fy_norm": 26.87,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 76.98,
-          "fy_smooth": 39.97,
+          "fy_smooth": 28.03,
           "zone_smooth": "A2"
         },
         {
@@ -10048,11 +10048,11 @@
           "py": 297,
           "zone": "D2",
           "fx_norm": 77.24,
-          "fy_norm": 36.28,
+          "fy_norm": 31.72,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 75.16,
-          "fy_smooth": 38.98,
+          "fy_smooth": 29.02,
           "zone_smooth": "A2"
         },
         {
@@ -10064,11 +10064,11 @@
           "py": 309,
           "zone": "D2",
           "fx_norm": 72.17,
-          "fy_norm": 36.99,
+          "fy_norm": 31.01,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 70.62,
-          "fy_smooth": 38.83,
+          "fy_smooth": 29.17,
           "zone_smooth": "A2"
         },
         {
@@ -10080,11 +10080,11 @@
           "py": 350,
           "zone": "D2",
           "fx_norm": 63.92,
-          "fy_norm": 42.08,
+          "fy_norm": 25.92,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 63.35,
-          "fy_smooth": 39.52,
+          "fy_smooth": 28.48,
           "zone_smooth": "A2"
         },
         {
@@ -10096,11 +10096,11 @@
           "py": 362,
           "zone": "A1",
           "fx_norm": 47.7,
-          "fy_norm": 43.42,
+          "fy_norm": 24.58,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 53.35,
-          "fy_smooth": 41.04,
+          "fy_smooth": 26.96,
           "zone_smooth": "A1"
         },
         {
@@ -10112,11 +10112,11 @@
           "py": 343,
           "zone": "A1",
           "fx_norm": 43.71,
-          "fy_norm": 41.33,
+          "fy_norm": 26.67,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 40.62,
-          "fy_smooth": 43.39,
+          "fy_smooth": 24.61,
           "zone_smooth": "D2"
         }
       ]
@@ -10143,11 +10143,11 @@
           "py": 212,
           "zone": "A3",
           "fx_norm": 16.19,
-          "fy_norm": 24.38,
+          "fy_norm": 43.62,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 17.02,
-          "fy_smooth": 33.01,
+          "fy_smooth": 34.99,
           "zone_smooth": "D1"
         },
         {
@@ -10159,11 +10159,11 @@
           "py": 329,
           "zone": "A3",
           "fx_norm": 20.2,
-          "fy_norm": 41.64,
+          "fy_norm": 26.36,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 19.33,
-          "fy_smooth": 29.0,
+          "fy_smooth": 39.0,
           "zone_smooth": "D1"
         },
         {
@@ -10175,11 +10175,11 @@
           "py": 272,
           "zone": "A2",
           "fx_norm": 22.2,
-          "fy_norm": 34.14,
+          "fy_norm": 33.86,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 21.05,
-          "fy_smooth": 26.8,
+          "fy_smooth": 41.2,
           "zone_smooth": "D2"
         },
         {
@@ -10191,11 +10191,11 @@
           "py": 147,
           "zone": "A2",
           "fx_norm": 22.3,
-          "fy_norm": 14.7,
+          "fy_norm": 53.3,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 22.19,
-          "fy_smooth": 26.39,
+          "fy_smooth": 41.61,
           "zone_smooth": "D2"
         },
         {
@@ -10207,11 +10207,11 @@
           "py": 195,
           "zone": "A3",
           "fx_norm": 19.31,
-          "fy_norm": 21.84,
+          "fy_norm": 46.16,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 22.68,
-          "fy_smooth": 24.98,
+          "fy_smooth": 43.02,
           "zone_smooth": "D2"
         },
         {
@@ -10223,11 +10223,11 @@
           "py": 301,
           "zone": "A2",
           "fx_norm": 25.35,
-          "fy_norm": 37.11,
+          "fy_norm": 30.89,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 22.17,
-          "fy_smooth": 26.59,
+          "fy_smooth": 41.41,
           "zone_smooth": "D2"
         },
         {
@@ -10239,11 +10239,11 @@
           "py": 297,
           "zone": "A2",
           "fx_norm": 21.69,
-          "fy_norm": 36.06,
+          "fy_norm": 31.94,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 20.98,
-          "fy_smooth": 31.34,
+          "fy_smooth": 36.66,
           "zone_smooth": "D1"
         },
         {
@@ -10255,11 +10255,11 @@
           "py": 264,
           "zone": "A3",
           "fx_norm": 18.03,
-          "fy_norm": 33.28,
+          "fy_norm": 34.72,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 19.09,
-          "fy_smooth": 39.22,
+          "fy_smooth": 28.78,
           "zone_smooth": "D1"
         }
       ]
@@ -10286,11 +10286,11 @@
           "py": 362,
           "zone": "A3",
           "fx_norm": 16.7,
-          "fy_norm": 44.01,
+          "fy_norm": 23.99,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 15.98,
-          "fy_smooth": 45.0,
+          "fy_smooth": 23.0,
           "zone_smooth": "D1"
         },
         {
@@ -10302,11 +10302,11 @@
           "py": 384,
           "zone": "A3",
           "fx_norm": 18.52,
-          "fy_norm": 45.69,
+          "fy_norm": 22.31,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 19.11,
-          "fy_smooth": 44.47,
+          "fy_smooth": 23.53,
           "zone_smooth": "D1"
         },
         {
@@ -10318,11 +10318,11 @@
           "py": 365,
           "zone": "A3",
           "fx_norm": 20.45,
-          "fy_norm": 43.81,
+          "fy_norm": 24.19,
           "zone_norm": "D1",
           "direction_flipped": true,
           "fx_smooth": 21.88,
-          "fy_smooth": 43.94,
+          "fy_smooth": 24.06,
           "zone_smooth": "D2"
         },
         {
@@ -10334,11 +10334,11 @@
           "py": 361,
           "zone": "A2",
           "fx_norm": 25.09,
-          "fy_norm": 44.61,
+          "fy_norm": 23.39,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 24.28,
-          "fy_smooth": 43.4,
+          "fy_smooth": 24.6,
           "zone_smooth": "D2"
         },
         {
@@ -10350,11 +10350,11 @@
           "py": 353,
           "zone": "A2",
           "fx_norm": 27.59,
-          "fy_norm": 42.69,
+          "fy_norm": 25.31,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 26.4,
-          "fy_smooth": 42.32,
+          "fy_smooth": 25.68,
           "zone_smooth": "D2"
         },
         {
@@ -10366,11 +10366,11 @@
           "py": 322,
           "zone": "A2",
           "fx_norm": 27.41,
-          "fy_norm": 39.37,
+          "fy_norm": 28.63,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 27.92,
-          "fy_smooth": 41.47,
+          "fy_smooth": 26.53,
           "zone_smooth": "D2"
         },
         {
@@ -10382,11 +10382,11 @@
           "py": 355,
           "zone": "A2",
           "fx_norm": 29.14,
-          "fy_norm": 43.51,
+          "fy_norm": 24.49,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 30.74,
-          "fy_smooth": 42.21,
+          "fy_smooth": 25.79,
           "zone_smooth": "D2"
         },
         {
@@ -10398,11 +10398,11 @@
           "py": 358,
           "zone": "A2",
           "fx_norm": 32.68,
-          "fy_norm": 42.28,
+          "fy_norm": 25.72,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 33.99,
-          "fy_smooth": 43.92,
+          "fy_smooth": 24.08,
           "zone_smooth": "D2"
         },
         {
@@ -10414,11 +10414,11 @@
           "py": 398,
           "zone": "A2",
           "fx_norm": 39.16,
-          "fy_norm": 47.52,
+          "fy_norm": 20.48,
           "zone_norm": "D2",
           "direction_flipped": true,
           "fx_smooth": 37.68,
-          "fy_smooth": 46.59,
+          "fy_smooth": 21.41,
           "zone_smooth": "D2"
         }
       ]
@@ -10447,11 +10447,11 @@
           "py": 406,
           "zone": "D2",
           "fx_norm": 65.16,
-          "fy_norm": 48.65,
+          "fy_norm": 19.35,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 67.15,
-          "fy_smooth": 49.38,
+          "fy_smooth": 18.62,
           "zone_smooth": "A2"
         },
         {
@@ -10463,11 +10463,11 @@
           "py": 325,
           "zone": "D2",
           "fx_norm": 69.96,
-          "fy_norm": 39.6,
+          "fy_norm": 28.4,
           "zone_norm": "A2",
           "direction_flipped": true,
           "fx_smooth": 65.95,
-          "fy_smooth": 36.89,
+          "fy_smooth": 31.11,
           "zone_smooth": "A2"
         },
         {
@@ -10479,11 +10479,11 @@
           "py": 231,
           "zone": "D3",
           "fx_norm": 62.26,
-          "fy_norm": 28.42,
+          "fy_norm": 39.58,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 62.36,
-          "fy_smooth": 32.16,
+          "fy_smooth": 35.84,
           "zone_smooth": "A1"
         },
         {
@@ -10495,11 +10495,11 @@
           "py": 313,
           "zone": "A1",
           "fx_norm": 52.5,
-          "fy_norm": 37.45,
+          "fy_norm": 30.55,
           "zone_norm": "A1",
           "direction_flipped": true,
           "fx_smooth": 53.93,
-          "fy_smooth": 35.91,
+          "fy_smooth": 32.09,
           "zone_smooth": "A1"
         },
         {
@@ -10511,11 +10511,11 @@
           "py": 379,
           "zone": "A1",
           "fx_norm": 49.98,
-          "fy_norm": 45.42,
+          "fy_norm": 22.58,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 49.4,
-          "fy_smooth": 41.53,
+          "fy_smooth": 26.47,
           "zone_smooth": "D3"
         },
         {
@@ -10527,11 +10527,11 @@
           "py": 407,
           "zone": "A1",
           "fx_norm": 47.26,
-          "fy_norm": 49.0,
+          "fy_norm": 19.0,
           "zone_norm": "D3",
           "direction_flipped": true,
           "fx_smooth": 47.31,
-          "fy_smooth": 51.2,
+          "fy_smooth": 16.8,
           "zone_smooth": "D3"
         }
       ]
