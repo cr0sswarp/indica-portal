@@ -150,9 +150,35 @@ def _active_role(match_id, half, rel_t):
     return None, None
 
 
-def _pick_haru(sample, role, h1_dur, combined):
-    """このフレームで role に最も合致する Waseda トラックを1つ選ぶ.
-    返り値: (pid, sighting) または None。"""
+def _find_jersey6_track(tracks):
+    """players_v3.json の tracks から jersey_number=6 の player_id を返す。
+    なければ None。"""
+    for p in tracks:
+        if p.get("jersey_number") == 6:
+            return p["player_id"]
+    return None
+
+
+def _pick_haru(sample, role, h1_dur, combined, confirmed_pid=None):
+    """このフレームで羽瑠を特定する。
+
+    優先順位:
+    1. confirmed_pid (OCRで#6と確定したトラックID) がサンプルにいれば即返す
+    2. jersey_number=6 が付いた別トラックがいれば返す
+    3. ロールシグネチャーで最近接トラックを選ぶ (HARU_FIT_MAX 以内)
+    """
+    # 優先①: 確定トラックIDがこのフレームにいる
+    if confirmed_pid:
+        for pid, s in sample:
+            if pid == confirmed_pid:
+                return (pid, s)
+
+    # 優先②: jersey_number=6 が付いた別トラック
+    for pid, s in sample:
+        if s.get("jersey_number") == 6:
+            return (pid, s)
+
+    # 優先③: ロールシグネチャーで最近接
     if role is None or role not in ROLE_SIGNATURE:
         return None
     best, best_d = None, 1e9
@@ -187,6 +213,11 @@ def build_overlay(match_id, out_fps=3, width=960):
         for s in p["sightings"]:
             by_time[round(s["time_min"], 2)].append((pid, s))
     times = sorted(by_time.keys())
+
+    # jersey_number=6 のトラックIDを確定
+    confirmed_pid = _find_jersey6_track(tracks)
+    if confirmed_pid:
+        print(f"  [haru] confirmed track: {confirmed_pid} (jersey #6)")
 
     # 羽瑠の軌跡トレイル (フレーム横断で1本)
     haru_trail = []
@@ -223,10 +254,10 @@ def build_overlay(match_id, out_fps=3, width=960):
         half = sample[0][1]["half"]
         rel_t = t if half == "1H" else (t - h1_dur)
         role, role_label = _active_role(match_id, half, rel_t)
-        haru_pick = _pick_haru(sample, role, h1_dur, combined)
-        # フォールバック (ground truth 無し): 自動推定トラックがこの時刻に
-        # 居れば指す
-        if haru_pick is None and role is None and fallback_id:
+        haru_pick = _pick_haru(sample, role, h1_dur, combined, confirmed_pid)
+        # フォールバック (ground truth 無し・confirmed_pid 無し):
+        # 自動推定トラックがこの時刻にいれば指す
+        if haru_pick is None and role is None and fallback_id and not confirmed_pid:
             for pid, s in sample:
                 if pid == fallback_id:
                     haru_pick = (pid, s)
