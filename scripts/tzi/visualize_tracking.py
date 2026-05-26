@@ -163,6 +163,51 @@ def _build_assignment_map(tracks):
     return pid_to_jersey, jersey_to_pid
 
 
+def _build_ocr_confirmed_map(tracks):
+    """OCR で実際に読み取られた番号のみを消去法アンカーとして返す。
+
+    信頼度の基準:
+    - Tier 1 (確実): jersey_votes[number] >= 2  (複数回読み取り)
+    - Tier 2 (単一・明確): jersey_votes のキーが1つだけ (競合なし)
+    - 不確実: jersey_votes に複数の異なる番号 → 消去法には使わない
+
+    Returns:
+        confirmed_non6: dict[pid → jersey]  #6以外の確認済みトラック
+        jersey6_pid: str | None             #6確認済みトラックのpid
+    """
+    confirmed_non6 = {}
+    jersey6_pid = None
+
+    for p in tracks:
+        pid = p["player_id"]
+        j = p.get("jersey_number")
+        if j is None:
+            continue
+        votes = p.get("jersey_votes", {})
+        # votes のキーは文字列として保存されている
+        vote_keys = set(votes.keys())
+
+        # Tier 1: 同一番号が2回以上OCR読み取り済み
+        str_j = str(j)
+        if votes.get(str_j, 0) >= 2:
+            if j == 6:
+                jersey6_pid = pid
+            else:
+                confirmed_non6[pid] = j
+            continue
+
+        # Tier 2: OCRで1種類の番号しか読めていない (競合なし)
+        if len(vote_keys) == 1:
+            only_key = int(next(iter(vote_keys)))
+            if only_key == j:
+                if j == 6:
+                    jersey6_pid = pid
+                else:
+                    confirmed_non6[pid] = j
+
+    return confirmed_non6, jersey6_pid
+
+
 def _find_jersey6_track(tracks):
     """players_v3.json の tracks から jersey_number=6 の player_id を返す。
     なければ None。"""
@@ -173,59 +218,63 @@ def _find_jersey6_track(tracks):
 
 
 def _pick_haru(sample, role, h1_dur, combined,
-               confirmed_pid=None, pid_to_jersey=None,
+               confirmed_pid=None, confirmed_non6=None,
                haru_last_pos=None):
     """このフレームで羽瑠(#6)を特定する。
 
     優先順位:
     1. confirmed_pid (#6確定トラック) がサンプルにいれば即返す
-    2. 消去法: 他の確定番号(#3,#4,#5,#7…)をすべて除外し、
+    2. 消去法: OCR確認済みの非#6トラックのみを除外し、
                残り1つなら即返す / 複数なら軌跡予測で絞り込む
-    3. ロールシグネチャーで最近接 (フォールバック)
+       (Hungarian推定のみの不確かな割り当ては消去法に使わない)
+    3. 軌跡予測のみ: 直前位置に最も近い候補 (30m以内)
+    4. ロールシグネチャーで最近接 (絶対最終手段)
+
+    Returns:
+        (pid, sighting, method_str) — method_str は "ocr"|"elim"|"traj"|"role"
     """
-    # 優先①: 確定トラックIDがこのフレームにいる
+    # 優先①: OCR確認済み#6トラックIDがこのフレームにいる
     if confirmed_pid:
         for pid, s in sample:
             if pid == confirmed_pid:
-                return (pid, s)
+                return (pid, s, "ocr")
 
-    # 優先②: 消去法
-    if pid_to_jersey:
-        # 確定番号が付いた他選手を除外（#6は除外しない）
+    # 優先②: OCR確認済み非#6トラックのみで消去法
+    # confirmed_non6 = {pid: jersey} — Tier1/Tier2 OCR確認済みのみ
+    if confirmed_non6:
         candidates = [(pid, s) for pid, s in sample
-                      if pid_to_jersey.get(pid, 6) == 6  # 未割り当て or #6
-                      or pid_to_jersey.get(pid) is None]
-        # さらに絞り込み: jersey_number=0以外の既知番号を全て除外
-        candidates = [(pid, s) for pid, s in sample
-                      if pid_to_jersey.get(pid) in (None, 6)]
+                      if pid not in confirmed_non6]
+    else:
+        candidates = list(sample)
 
-        if len(candidates) == 1:
-            return candidates[0]
+    if len(candidates) == 1:
+        return (candidates[0][0], candidates[0][1], "elim")
 
-        if len(candidates) > 1 and haru_last_pos is not None:
-            # 軌跡予測: 直前位置に最も近い候補を選ぶ
-            lx, ly = haru_last_pos
-            best, best_d = None, 1e9
-            for pid, s in candidates:
-                x, y = get_coords(s)
-                d = ((x - lx) ** 2 + (y - ly) ** 2) ** 0.5
-                if d < best_d:
-                    best_d, best = d, (pid, s)
-            if best and best_d < 30.0:   # 30m以内なら信頼
-                return best
+    # 優先③: 軌跡予測 — 消去後の候補から直前位置最近傍
+    if haru_last_pos is not None and candidates:
+        lx, ly = haru_last_pos
+        best, best_d = None, 1e9
+        for pid, s in candidates:
+            x, y = get_coords(s)
+            d = ((x - lx) ** 2 + (y - ly) ** 2) ** 0.5
+            if d < best_d:
+                best_d, best = d, (pid, s)
+        if best and best_d < 30.0:
+            return (best[0], best[1], "traj")
 
-    # 優先③: ロールシグネチャーで最近接 (フォールバック)
+    # 優先④: ロールシグネチャーで最近接 (絶対最終手段)
     if role is None or role not in ROLE_SIGNATURE:
         return None
     best, best_d = None, 1e9
-    for pid, s in sample:
+    pool = candidates if candidates else sample
+    for pid, s in pool:
         x, y = get_coords(s)
         d = signature_distance(np.array([x]), np.array([y]), role)
         if d < best_d:
             best_d, best = d, (pid, s)
     if best is None or best_d > HARU_FIT_MAX:
         return None
-    return best
+    return (best[0], best[1], "role")
 
 
 def build_overlay(match_id, out_fps=3, width=960):
@@ -250,17 +299,21 @@ def build_overlay(match_id, out_fps=3, width=960):
             by_time[round(s["time_min"], 2)].append((pid, s))
     times = sorted(by_time.keys())
 
-    # 全トラックの番号割り当てマップを構築（消去法用）
+    # 全トラックの番号割り当てマップを構築
     pid_to_jersey, jersey_to_pid = _build_assignment_map(tracks)
-    confirmed_pid = jersey_to_pid.get(6)
+    # OCR確認済みトラックのみ消去法に使う (Hungarian推定は除外)
+    confirmed_non6, ocr_jersey6_pid = _build_ocr_confirmed_map(tracks)
+    # #6トラック: OCR確認済み優先、なければHungarian割り当て
+    confirmed_pid = ocr_jersey6_pid or jersey_to_pid.get(6)
     if confirmed_pid:
-        print(f"  [haru] confirmed track: {confirmed_pid} (jersey #6)")
-    others = {j: p for j, p in jersey_to_pid.items() if j != 6}
-    print(f"  [elimination] confirmed non-#6: {sorted(others.keys())}")
+        tier = "OCR-confirmed" if ocr_jersey6_pid else "Hungarian"
+        print(f"  [haru] confirmed track: {confirmed_pid} (jersey #6, {tier})")
+    print(f"  [elimination] OCR-confirmed non-#6: { {v:k for k,v in confirmed_non6.items()} }")
 
     # 羽瑠の軌跡トレイル (フレーム横断で1本)
-    haru_trail  = []
-    haru_last_pos = None   # 直前フレームのフィールド座標 (消去法軌跡補完用)
+    haru_trail    = []
+    haru_last_pos  = None   # 直前フレームのフィールド座標 (軌跡補完用)
+    haru_last_half = None   # ハーフタイムをまたぐときは位置をリセット
 
     # 出力サイズ決定
     c0 = caps["h1"]
@@ -278,6 +331,7 @@ def build_overlay(match_id, out_fps=3, width=960):
     print(f"  {MATCH_LABELS.get(match_id, match_id)}: {len(times)} samples → {out_path.name}")
 
     n_arrow = 0
+    method_counts = {"ocr": 0, "elim": 0, "traj": 0, "role": 0, "none": 0}
     for t in times:
         sample = by_time[t]
         key, fn = _frame_for(sample[0][1], combined, fps, h1_dur)
@@ -293,18 +347,26 @@ def build_overlay(match_id, out_fps=3, width=960):
         # ── このフレームでの羽瑠ロールを決定 → 最適トラックを選択 ──
         half = sample[0][1]["half"]
         rel_t = t if half == "1H" else (t - h1_dur)
+        # ハーフタイムをまたいだら軌跡をリセット
+        if haru_last_half and haru_last_half != half:
+            haru_last_pos = None
+            haru_trail = []
+        haru_last_half = half
         role, role_label = _active_role(match_id, half, rel_t)
         haru_pick = _pick_haru(sample, role, h1_dur, combined,
                                confirmed_pid=confirmed_pid,
-                               pid_to_jersey=pid_to_jersey,
+                               confirmed_non6=confirmed_non6,
                                haru_last_pos=haru_last_pos)
         # フォールバック (ground truth 無し・confirmed_pid 無し):
         # 自動推定トラックがこの時刻にいれば指す
         if haru_pick is None and role is None and fallback_id and not confirmed_pid:
             for pid, s in sample:
                 if pid == fallback_id:
-                    haru_pick = (pid, s)
+                    haru_pick = (pid, s, "auto")
                     break
+
+        method = haru_pick[2] if haru_pick and len(haru_pick) > 2 else "none"
+        method_counts[method] = method_counts.get(method, 0) + 1
         haru_pid = haru_pick[0] if haru_pick else None
 
         # 羽瑠トレイル描画
@@ -322,7 +384,7 @@ def build_overlay(match_id, out_fps=3, width=960):
             draw_other_marker(frame, x, y, pid)
 
         if haru_pick:
-            _, s = haru_pick
+            _, s = haru_pick[:2]
             x, y = int(s["px"] * scale), int(s["py"] * scale)
             rl = ROLE_ROMAN.get(role_label, ROLE_ROMAN.get(role, ""))
             draw_haru_marker(frame, x, y, f"#6 Haru {rl}".strip())
@@ -336,7 +398,7 @@ def build_overlay(match_id, out_fps=3, width=960):
         rl_disp = ROLE_ROMAN.get(role_label, "?") if role else "auto"
         cv2.rectangle(frame, (0, 0), (out_w, 34), (0, 0, 0), -1)
         cv2.putText(frame,
-                    f"{label}  {half} {t:.0f}min  | arrow=#6 Haru ({rl_disp})",
+                    f"{label}  {half} {t:.0f}min  | arrow=#6 Haru ({rl_disp}) [{method}]",
                     (8, 23), FONT, STYLE["header_scale"],
                     STYLE["header_color"], 2, cv2.LINE_AA)
         vw.write(frame)
@@ -344,7 +406,9 @@ def build_overlay(match_id, out_fps=3, width=960):
     vw.release()
     for c in caps.values():
         c.release()
+    m = method_counts
     print(f"  ✓ {out_path}  ({out_w}x{out_h} @ {out_fps}fps)  arrow in {n_arrow}/{len(times)} frames")
+    print(f"  method breakdown: ocr={m['ocr']} elim={m['elim']} traj={m['traj']} role={m.get('role',0)} none={m['none']}")
     return out_path
 
 
