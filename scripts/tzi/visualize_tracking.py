@@ -390,8 +390,10 @@ def build_overlay(match_id, out_fps=3, width=960):
             draw_haru_marker(frame, x, y, f"#6 Haru {rl}".strip())
             haru_trail.append((x, y))
             haru_trail = haru_trail[-STYLE["trail_len"]:]
-            # 直前位置を更新（軌跡補完用）
-            haru_last_pos = (get_coords(s)[0], get_coords(s)[1])
+            # 高信頼度(ocr/elim)のときのみ直前位置を更新する。
+            # traj/role の推測結果で更新すると誤差が累積するため。
+            if method in ("ocr", "elim"):
+                haru_last_pos = (get_coords(s)[0], get_coords(s)[1])
             n_arrow += 1
 
         # ヘッダー
