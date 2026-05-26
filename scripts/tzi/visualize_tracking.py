@@ -198,10 +198,19 @@ def _build_ocr_confirmed_map(tracks):
     confirmed_non6 = {}
     jersey6_pid = None
 
+    # pid → 総票数マップ (純度計算用)
+    pid_total_votes = {p["player_id"]: sum(p.get("jersey_votes", {}).values())
+                       for p in tracks}
+
     for num, claims in num_claims.items():
         if num == 6:
-            # #6: 最多票のトラックを確定トラックに
-            jersey6_pid = max(claims, key=lambda c: c[1])[0]
+            # #6候補: (票数, 純度) でスコアリング。
+            # 純度 = #6票 / 全票  → 混在読み(P12:3/7=43%)より純粋読み(P25:3/3=100%)を優先
+            def _score6(claim):
+                pid, v = claim
+                total = pid_total_votes.get(pid, 1)
+                return (v, v / max(total, 1))
+            jersey6_pid = max(claims, key=_score6)[0]
             continue
         # 消去法アンカー: ただ1トラックが主張する番号のみ信頼。
         # 複数トラックが同じ番号を主張 → OCR系統誤読 ('5'多発) → 全て不採用。
@@ -222,7 +231,7 @@ def _find_jersey6_track(tracks):
 
 def _pick_haru(sample, role, h1_dur, combined,
                confirmed_pid=None, confirmed_non6=None,
-               haru_last_pos=None):
+               haru_last_pos=None, pid_jersey_votes=None):
     """このフレームで羽瑠(#6)を特定する。
 
     優先順位:
@@ -230,7 +239,7 @@ def _pick_haru(sample, role, h1_dur, combined,
     2. 消去法: OCR確認済みの非#6トラックのみを除外し、
                残り1つなら即返す / 複数なら軌跡予測で絞り込む
        (Hungarian推定のみの不確かな割り当ては消去法に使わない)
-    3. 軌跡予測のみ: 直前位置に最も近い候補 (30m以内)
+    3. 軌跡予測: #6票あり候補を優先、なければ全候補から直前位置最近傍 (30m以内)
     4. ロールシグネチャーで最近接 (絶対最終手段)
 
     Returns:
@@ -253,11 +262,18 @@ def _pick_haru(sample, role, h1_dur, combined,
     if len(candidates) == 1:
         return (candidates[0][0], candidates[0][1], "elim")
 
-    # 優先③: 軌跡予測 — 消去後の候補から直前位置最近傍
+    # 優先③: 軌跡予測 — #6票がある候補を優先してから最近傍
     if haru_last_pos is not None and candidates:
         lx, ly = haru_last_pos
+        # #6票を1票以上持つ候補を抽出して優先プール
+        if pid_jersey_votes:
+            six_pool = [(pid, s) for pid, s in candidates
+                        if pid_jersey_votes.get(pid, {}).get(6, 0) > 0]
+        else:
+            six_pool = []
+        pool = six_pool if six_pool else candidates
         best, best_d = None, 1e9
-        for pid, s in candidates:
+        for pid, s in pool:
             x, y = get_coords(s)
             d = ((x - lx) ** 2 + (y - ly) ** 2) ** 0.5
             if d < best_d:
@@ -306,6 +322,9 @@ def build_overlay(match_id, out_fps=3, width=960):
     pid_to_jersey, jersey_to_pid = _build_assignment_map(tracks)
     # OCR確認済みトラックのみ消去法に使う (Hungarian推定は除外)
     confirmed_non6, ocr_jersey6_pid = _build_ocr_confirmed_map(tracks)
+    # 軌跡フェーズで#6票を持つ候補を優先するための辞書 pid → {jersey: votes}
+    pid_jersey_votes = {p["player_id"]: {int(k): v for k, v in p.get("jersey_votes", {}).items()}
+                        for p in tracks}
     # #6トラック: OCR確認済み優先、なければHungarian割り当て
     confirmed_pid = ocr_jersey6_pid or jersey_to_pid.get(6)
     if confirmed_pid:
@@ -359,7 +378,8 @@ def build_overlay(match_id, out_fps=3, width=960):
         haru_pick = _pick_haru(sample, role, h1_dur, combined,
                                confirmed_pid=confirmed_pid,
                                confirmed_non6=confirmed_non6,
-                               haru_last_pos=haru_last_pos)
+                               haru_last_pos=haru_last_pos,
+                               pid_jersey_votes=pid_jersey_votes)
         # フォールバック (ground truth 無し・confirmed_pid 無し):
         # 自動推定トラックがこの時刻にいれば指す
         if haru_pick is None and role is None and fallback_id and not confirmed_pid:
