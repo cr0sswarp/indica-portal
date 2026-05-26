@@ -296,10 +296,66 @@ def _pick_haru(sample, role, h1_dur, combined,
     return (best[0], best[1], "role")
 
 
+def _load_manual_tags(match_id):
+    """manual_tags.json を読んで時刻→フィールド座標マップを返す。
+    Returns: list of {jersey, time_min, fx, fy, waseda}
+    """
+    path = DATA_TZI / f"match_{match_id}" / "manual_tags.json"
+    if not path.exists():
+        return []
+    raw = json.loads(path.read_text())
+    tags = list(raw.values())
+    print(f"  [manual_tags] loaded {len(tags)} manual tag(s)")
+    return tags
+
+
+def _pick_haru_with_manual(sample, role, h1_dur, combined,
+                           confirmed_pid, confirmed_non6,
+                           haru_last_pos, pid_jersey_votes,
+                           manual_haru_tags, t):
+    """手動タグがある場合はそれを最優先として選手を特定する。
+    手動タグ: tag_tool.py で付与されたフィールド座標ベースの確定情報。
+    """
+    if manual_haru_tags:
+        # この時刻に最近傍の手動タグを探す (±5分以内)
+        best_mt, best_dt = None, 999.0
+        for mt in manual_haru_tags:
+            dt = abs(mt["time_min"] - t)
+            if dt < best_dt:
+                best_dt, best_mt = dt, mt
+        if best_mt and best_dt < 5.0:
+            mx, my = best_mt["fx"], best_mt["fy"]
+            best_pick, best_d = None, 1e9
+            for pid, s in sample:
+                sx, sy = get_coords(s)
+                d = ((sx - mx) ** 2 + (sy - my) ** 2) ** 0.5
+                if d < best_d:
+                    best_d, best_pick = d, (pid, s)
+            if best_pick and best_d < 20.0:
+                return (best_pick[0], best_pick[1], "manual")
+
+    return _pick_haru(sample, role, h1_dur, combined,
+                      confirmed_pid=confirmed_pid,
+                      confirmed_non6=confirmed_non6,
+                      haru_last_pos=haru_last_pos,
+                      pid_jersey_votes=pid_jersey_votes)
+
+
 def build_overlay(match_id, out_fps=3, width=960):
     path = DATA_TZI / f"match_{match_id}" / "players_v3.json"
     data = json.load(open(path))
     tracks = data["players"]
+
+    # 手動タグ (最高優先) — tag_tool.py で付与
+    manual_tags = _load_manual_tags(match_id)
+    # jersey=6 の手動タグをフィールド座標リストとして保持
+    manual_haru_tags = sorted(
+        [t for t in manual_tags if t["jersey"] == 6],
+        key=lambda t: t["time_min"]
+    )
+    if manual_haru_tags:
+        print(f"  [manual_tags] #6 manual tags: {len(manual_haru_tags)} points "
+              f"(t={manual_haru_tags[0]['time_min']:.1f}~{manual_haru_tags[-1]['time_min']:.1f}min)")
 
     # ホールドアウト試合用フォールバック: 自動推定の主トラックID
     res = analyze_match(match_id)
@@ -325,11 +381,16 @@ def build_overlay(match_id, out_fps=3, width=960):
     # 軌跡フェーズで#6票を持つ候補を優先するための辞書 pid → {jersey: votes}
     pid_jersey_votes = {p["player_id"]: {int(k): v for k, v in p.get("jersey_votes", {}).items()}
                         for p in tracks}
-    # #6トラック: OCR確認済み優先、なければHungarian割り当て
-    confirmed_pid = ocr_jersey6_pid or jersey_to_pid.get(6)
-    if confirmed_pid:
-        tier = "OCR-confirmed" if ocr_jersey6_pid else "Hungarian"
-        print(f"  [haru] confirmed track: {confirmed_pid} (jersey #6, {tier})")
+    # #6トラック: 手動タグ優先 → OCR確認済み → Hungarian
+    if manual_haru_tags:
+        # 手動タグがある場合はOCR/Hungarian不要; _pick_haruの軌跡に手動座標を使う
+        confirmed_pid = None  # 手動タグは時刻別フィールド座標で管理
+        print("  [haru] using manual tags as primary #6 source (OCR/Hungarian overridden)")
+    else:
+        confirmed_pid = ocr_jersey6_pid or jersey_to_pid.get(6)
+        if confirmed_pid:
+            tier = "OCR-confirmed" if ocr_jersey6_pid else "Hungarian"
+            print(f"  [haru] confirmed track: {confirmed_pid} (jersey #6, {tier})")
     print(f"  [elimination] OCR-confirmed non-#6: { {v:k for k,v in confirmed_non6.items()} }")
 
     # 羽瑠の軌跡トレイル (フレーム横断で1本)
@@ -375,11 +436,16 @@ def build_overlay(match_id, out_fps=3, width=960):
             haru_trail = []
         haru_last_half = half
         role, role_label = _active_role(match_id, half, rel_t)
-        haru_pick = _pick_haru(sample, role, h1_dur, combined,
-                               confirmed_pid=confirmed_pid,
-                               confirmed_non6=confirmed_non6,
-                               haru_last_pos=haru_last_pos,
-                               pid_jersey_votes=pid_jersey_votes)
+        haru_pick = _pick_haru_with_manual(
+            sample, role, h1_dur, combined,
+            confirmed_pid=confirmed_pid,
+            confirmed_non6=confirmed_non6,
+            haru_last_pos=haru_last_pos,
+            pid_jersey_votes=pid_jersey_votes,
+            manual_haru_tags=manual_haru_tags,
+            t=t,
+        )
+
         # フォールバック (ground truth 無し・confirmed_pid 無し):
         # 自動推定トラックがこの時刻にいれば指す
         if haru_pick is None and role is None and fallback_id and not confirmed_pid:
@@ -413,9 +479,9 @@ def build_overlay(match_id, out_fps=3, width=960):
             draw_haru_marker(frame, x, y, f"#6 Haru {rl}".strip())
             haru_trail.append((x, y))
             haru_trail = haru_trail[-STYLE["trail_len"]:]
-            # 高信頼度(ocr/elim)のときのみ直前位置を更新する。
+            # 高信頼度(ocr/elim/manual)のときのみ直前位置を更新する。
             # traj/role の推測結果で更新すると誤差が累積するため。
-            if method in ("ocr", "elim"):
+            if method in ("ocr", "elim", "manual"):
                 haru_last_pos = (get_coords(s)[0], get_coords(s)[1])
             n_arrow += 1
 
