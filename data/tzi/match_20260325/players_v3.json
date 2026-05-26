@@ -4,9 +4,9 @@
   "stats": {
     "n_players": 38,
     "n_frames": 90,
-    "n_with_jersey": 4,
+    "n_with_jersey": 11,
     "avg_per_frame": 8.188888888888888,
-    "elapsed_sec": 211.9,
+    "elapsed_sec": 74.5,
     "flip_1h": false,
     "flip_2h": true
   },
@@ -19,9 +19,9 @@
     {
       "player_id": "P01",
       "team": "waseda",
-      "jersey_number": 7,
+      "jersey_number": null,
       "jersey_votes": {
-        "7": 1
+        "5": 1
       },
       "n_sightings": 31,
       "zone_dist": {
@@ -538,11 +538,8 @@
     {
       "player_id": "P16",
       "team": "waseda",
-      "jersey_number": 3,
-      "jersey_votes": {
-        "3": 2,
-        "4": 1
-      },
+      "jersey_number": null,
+      "jersey_votes": {},
       "n_sightings": 29,
       "zone_dist": {
         "D1": 4,
@@ -1027,9 +1024,10 @@
     {
       "player_id": "P12",
       "team": "waseda",
-      "jersey_number": null,
+      "jersey_number": 5,
       "jersey_votes": {
-        "3": 1
+        "5": 2,
+        "6": 1
       },
       "n_sightings": 33,
       "zone_dist": {
@@ -1580,8 +1578,10 @@
     {
       "player_id": "P26",
       "team": "waseda",
-      "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_number": 4,
+      "jersey_votes": {
+        "4": 1
+      },
       "n_sightings": 24,
       "zone_dist": {
         "A3": 1,
@@ -1988,10 +1988,9 @@
     {
       "player_id": "P21",
       "team": "waseda",
-      "jersey_number": 4,
+      "jersey_number": 10,
       "jersey_votes": {
-        "4": 1,
-        "7": 1
+        "10": 1
       },
       "n_sightings": 26,
       "zone_dist": {
@@ -3989,7 +3988,10 @@
       "player_id": "P13",
       "team": "waseda",
       "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_votes": {
+        "5": 1,
+        "6": 1
+      },
       "n_sightings": 41,
       "zone_dist": {
         "A1": 10,
@@ -4665,9 +4667,11 @@
     {
       "player_id": "P03",
       "team": "waseda",
-      "jersey_number": 6,
+      "jersey_number": 14,
       "jersey_votes": {
-        "6": 1
+        "5": 1,
+        "6": 1,
+        "14": 1
       },
       "n_sightings": 32,
       "zone_dist": {
@@ -5202,8 +5206,12 @@
     {
       "player_id": "P04",
       "team": "waseda",
-      "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_number": 7,
+      "jersey_votes": {
+        "6": 1,
+        "5": 3,
+        "7": 1
+      },
       "n_sightings": 28,
       "zone_dist": {
         "A1": 7,
@@ -5674,7 +5682,10 @@
       "player_id": "P05",
       "team": "waseda",
       "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_votes": {
+        "7": 1,
+        "5": 1
+      },
       "n_sightings": 30,
       "zone_dist": {
         "D2": 21,
@@ -6175,9 +6186,7 @@
       "player_id": "P20",
       "team": "waseda",
       "jersey_number": null,
-      "jersey_votes": {
-        "3": 1
-      },
+      "jersey_votes": {},
       "n_sightings": 5,
       "zone_dist": {
         "A2": 2,
@@ -6273,8 +6282,10 @@
     {
       "player_id": "P06",
       "team": "waseda",
-      "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_number": 5,
+      "jersey_votes": {
+        "5": 2
+      },
       "n_sightings": 5,
       "zone_dist": {
         "A1": 5
@@ -6368,8 +6379,11 @@
     {
       "player_id": "P07",
       "team": "waseda",
-      "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_number": 11,
+      "jersey_votes": {
+        "5": 2,
+        "11": 1
+      },
       "n_sightings": 18,
       "zone_dist": {
         "D3": 7,
@@ -6678,7 +6692,10 @@
       "player_id": "P08",
       "team": "waseda",
       "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_votes": {
+        "6": 1,
+        "4": 1
+      },
       "n_sightings": 30,
       "zone_dist": {
         "D2": 17,
@@ -7179,8 +7196,10 @@
     {
       "player_id": "P14",
       "team": "waseda",
-      "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_number": 5,
+      "jersey_votes": {
+        "5": 2
+      },
       "n_sightings": 11,
       "zone_dist": {
         "A1": 3,
@@ -7570,10 +7589,7 @@
       "player_id": "P23",
       "team": "waseda",
       "jersey_number": null,
-      "jersey_votes": {
-        "7": 1,
-        "4": 1
-      },
+      "jersey_votes": {},
       "n_sightings": 35,
       "zone_dist": {
         "D2": 6,
@@ -8330,8 +8346,10 @@
     {
       "player_id": "P25",
       "team": "waseda",
-      "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_number": 5,
+      "jersey_votes": {
+        "5": 2
+      },
       "n_sightings": 23,
       "zone_dist": {
         "D3": 7,
@@ -9223,7 +9241,9 @@
       "player_id": "P10",
       "team": "waseda",
       "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_votes": {
+        "6": 1
+      },
       "n_sightings": 7,
       "zone_dist": {
         "D3": 4,
@@ -9952,7 +9972,10 @@
       "player_id": "P24",
       "team": "waseda",
       "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_votes": {
+        "7": 1,
+        "6": 1
+      },
       "n_sightings": 11,
       "zone_dist": {
         "D2": 10,
@@ -10145,8 +10168,10 @@
     {
       "player_id": "P15",
       "team": "waseda",
-      "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_number": 6,
+      "jersey_votes": {
+        "6": 3
+      },
       "n_sightings": 27,
       "zone_dist": {
         "D2": 7,
@@ -10598,8 +10623,11 @@
     {
       "player_id": "P11",
       "team": "waseda",
-      "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_number": 6,
+      "jersey_votes": {
+        "4": 1,
+        "6": 2
+      },
       "n_sightings": 19,
       "zone_dist": {
         "A2": 1,
@@ -11085,7 +11113,9 @@
       "player_id": "P34",
       "team": "waseda",
       "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_votes": {
+        "6": 1
+      },
       "n_sightings": 10,
       "zone_dist": {
         "D2": 5,
@@ -11266,9 +11296,7 @@
       "player_id": "P35",
       "team": "waseda",
       "jersey_number": null,
-      "jersey_votes": {
-        "3": 1
-      },
+      "jersey_votes": {},
       "n_sightings": 13,
       "zone_dist": {
         "A2": 10,
@@ -11493,7 +11521,9 @@
       "player_id": "P32",
       "team": "waseda",
       "jersey_number": null,
-      "jersey_votes": {},
+      "jersey_votes": {
+        "14": 1
+      },
       "n_sightings": 5,
       "zone_dist": {
         "A2": 2,
@@ -11592,9 +11622,7 @@
       "player_id": "P31",
       "team": "waseda",
       "jersey_number": null,
-      "jersey_votes": {
-        "4": 1
-      },
+      "jersey_votes": {},
       "n_sightings": 12,
       "zone_dist": {
         "A3": 3,

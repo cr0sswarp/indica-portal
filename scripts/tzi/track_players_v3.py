@@ -467,39 +467,67 @@ def _get_ocr():
     return _ocr_reader
 
 
-def read_jersey_number(crop, use_ocr=True, allowed=None):
-    """Read jersey number from crop.
+# OCR可読性ゲート: これより小さい胴体クロップは番号が潰れて読めない
+OCR_MIN_TORSO_H = 22   # px (crop高さ。3倍拡大しても潰れる下限)
+OCR_MIN_TORSO_W = 12   # px
+OCR_MIN_CONF    = 0.50 # easyOCR信頼度の下限 (誤読を弾く。0.3だと'5'誤読多発)
 
-    allowed: set of int — if provided, only return numbers in this set
-             (roster constraint). Eliminates false positives from opponent numbers.
+
+def read_jersey_number(crop, use_ocr=True, allowed=None):
+    """胴体クロップから背番号を読む。
+
+    入力 crop は bbox 上部60% (頭〜胴中央)。背番号は背中の中〜下部に位置するため
+    クロップの縦40〜95%・横の中央60% に絞って読む (頭部・背景を除外)。
+
+    Koshkina方式の可読性フィルタ:
+    - 小さすぎるクロップ (遠方選手) はスキップ → 誤読を防ぐ
+    - easyOCR の信頼度が OCR_MIN_CONF 未満は破棄
+
+    allowed: set of int — 与えられればその番号のみ返す (ロスター制約)。
     """
     if not use_ocr or crop is None or crop.size == 0:
+        return None
+    h, w = crop.shape[:2]
+    # 可読性ゲート: 小さすぎる胴体は番号が読めない
+    if h < OCR_MIN_TORSO_H or w < OCR_MIN_TORSO_W:
         return None
     reader = _get_ocr()
     if not reader:
         return None
-    h, w = crop.shape[:2]
-    roi = crop[:int(h * 0.6), :]
+    # 背番号の位置: 縦35〜80% (背中中央)、横は中央60%。
+    # 下げ過ぎるとショーツ番号や背景を拾い '5' 等の誤読が増えるため上限80%。
+    y0, y1 = int(h * 0.35), int(h * 0.80)
+    x0, x1 = int(w * 0.20), int(w * 0.80)
+    roi = crop[y0:y1, x0:x1]
     if roi.size == 0:
         return None
-    roi  = cv2.resize(roi, (roi.shape[1] * 3, roi.shape[0] * 3))
+    # 5倍拡大 (遠方の小さい番号を読みやすく)
+    roi  = cv2.resize(roi, (roi.shape[1] * 5, roi.shape[0] * 5),
+                      interpolation=cv2.INTER_CUBIC)
     gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
-    # Try both inverse and normal thresholds — jersey numbers may be
-    # light-on-dark (maroon) or dark-on-light depending on jersey design
+    # 背番号は明地に暗字／暗地に明字の両方ありうる → 両方の二値化を試す。
+    # 生のグレースケールも試す (二値化で潰れる場合の保険)。
     _, thresh_inv  = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
     _, thresh_norm = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY     + cv2.THRESH_OTSU)
+    best_num, best_conf = None, 0.0
     try:
-        for thresh in (thresh_inv, thresh_norm):
-            results = reader.readtext(thresh, allowlist="0123456789", detail=0, paragraph=False)
-            for r in results:
-                r = r.strip()
-                if r.isdigit() and 1 <= int(r) <= 99:
-                    n = int(r)
-                    if allowed is None or n in allowed:
-                        return n
+        for img in (thresh_inv, thresh_norm, gray):
+            results = reader.readtext(img, allowlist="0123456789",
+                                      detail=1, paragraph=False)
+            for box, txt, conf in results:
+                txt = txt.strip()
+                if not txt.isdigit():
+                    continue
+                n = int(txt)
+                if not (1 <= n <= 99):
+                    continue
+                if allowed is not None and n not in allowed:
+                    continue
+                if conf >= OCR_MIN_CONF and conf > best_conf:
+                    best_num, best_conf = n, conf
     except Exception:
         pass
-    return None
+    return best_num
 
 
 # ── Kalman filter: 2D constant-velocity model ─────────────────────

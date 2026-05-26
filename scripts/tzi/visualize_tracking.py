@@ -175,35 +175,38 @@ def _build_ocr_confirmed_map(tracks):
         confirmed_non6: dict[pid → jersey]  #6以外の確認済みトラック
         jersey6_pid: str | None             #6確認済みトラックのpid
     """
+    # 各トラックの「OCR確信番号」を求める:
+    #   - その番号の票が2票以上 (Tier1) または唯一の読み (Tier2)
+    #   - かつ他の番号より厳密に優勢 (僅差・同票は不採用)
+    track_conf = {}  # pid → (number, votes)
+    for p in tracks:
+        votes = {int(k): v for k, v in p.get("jersey_votes", {}).items()}
+        if not votes:
+            continue
+        top_num = max(votes, key=votes.get)
+        top_v = votes[top_num]
+        second_v = sorted(votes.values(), reverse=True)[1] if len(votes) > 1 else 0
+        # 確信条件: 2票以上で他を上回る、または単一番号のみ
+        if (top_v >= 2 and top_v > second_v) or (len(votes) == 1):
+            track_conf[p["player_id"]] = (top_num, top_v)
+
+    # 番号ごとに何トラックが主張しているか集計
+    num_claims = defaultdict(list)  # number → [(pid, votes), ...]
+    for pid, (num, v) in track_conf.items():
+        num_claims[num].append((pid, v))
+
     confirmed_non6 = {}
     jersey6_pid = None
 
-    for p in tracks:
-        pid = p["player_id"]
-        j = p.get("jersey_number")
-        if j is None:
+    for num, claims in num_claims.items():
+        if num == 6:
+            # #6: 最多票のトラックを確定トラックに
+            jersey6_pid = max(claims, key=lambda c: c[1])[0]
             continue
-        votes = p.get("jersey_votes", {})
-        # votes のキーは文字列として保存されている
-        vote_keys = set(votes.keys())
-
-        # Tier 1: 同一番号が2回以上OCR読み取り済み
-        str_j = str(j)
-        if votes.get(str_j, 0) >= 2:
-            if j == 6:
-                jersey6_pid = pid
-            else:
-                confirmed_non6[pid] = j
-            continue
-
-        # Tier 2: OCRで1種類の番号しか読めていない (競合なし)
-        if len(vote_keys) == 1:
-            only_key = int(next(iter(vote_keys)))
-            if only_key == j:
-                if j == 6:
-                    jersey6_pid = pid
-                else:
-                    confirmed_non6[pid] = j
+        # 消去法アンカー: ただ1トラックが主張する番号のみ信頼。
+        # 複数トラックが同じ番号を主張 → OCR系統誤読 ('5'多発) → 全て不採用。
+        if len(claims) == 1:
+            confirmed_non6[claims[0][0]] = num
 
     return confirmed_non6, jersey6_pid
 
