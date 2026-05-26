@@ -150,6 +150,19 @@ def _active_role(match_id, half, rel_t):
     return None, None
 
 
+def _build_assignment_map(tracks):
+    """jersey_number が確定している全トラックの pid→jersey と
+    jersey→pid の辞書を返す。#6 以外の番号が消去法のキー。"""
+    pid_to_jersey = {}
+    jersey_to_pid = {}
+    for p in tracks:
+        j = p.get("jersey_number")
+        if j is not None:
+            pid_to_jersey[p["player_id"]] = j
+            jersey_to_pid[j] = p["player_id"]
+    return pid_to_jersey, jersey_to_pid
+
+
 def _find_jersey6_track(tracks):
     """players_v3.json の tracks から jersey_number=6 の player_id を返す。
     なければ None。"""
@@ -159,13 +172,16 @@ def _find_jersey6_track(tracks):
     return None
 
 
-def _pick_haru(sample, role, h1_dur, combined, confirmed_pid=None):
-    """このフレームで羽瑠を特定する。
+def _pick_haru(sample, role, h1_dur, combined,
+               confirmed_pid=None, pid_to_jersey=None,
+               haru_last_pos=None):
+    """このフレームで羽瑠(#6)を特定する。
 
     優先順位:
-    1. confirmed_pid (OCRで#6と確定したトラックID) がサンプルにいれば即返す
-    2. jersey_number=6 が付いた別トラックがいれば返す
-    3. ロールシグネチャーで最近接トラックを選ぶ (HARU_FIT_MAX 以内)
+    1. confirmed_pid (#6確定トラック) がサンプルにいれば即返す
+    2. 消去法: 他の確定番号(#3,#4,#5,#7…)をすべて除外し、
+               残り1つなら即返す / 複数なら軌跡予測で絞り込む
+    3. ロールシグネチャーで最近接 (フォールバック)
     """
     # 優先①: 確定トラックIDがこのフレームにいる
     if confirmed_pid:
@@ -173,12 +189,32 @@ def _pick_haru(sample, role, h1_dur, combined, confirmed_pid=None):
             if pid == confirmed_pid:
                 return (pid, s)
 
-    # 優先②: jersey_number=6 が付いた別トラック
-    for pid, s in sample:
-        if s.get("jersey_number") == 6:
-            return (pid, s)
+    # 優先②: 消去法
+    if pid_to_jersey:
+        # 確定番号が付いた他選手を除外（#6は除外しない）
+        candidates = [(pid, s) for pid, s in sample
+                      if pid_to_jersey.get(pid, 6) == 6  # 未割り当て or #6
+                      or pid_to_jersey.get(pid) is None]
+        # さらに絞り込み: jersey_number=0以外の既知番号を全て除外
+        candidates = [(pid, s) for pid, s in sample
+                      if pid_to_jersey.get(pid) in (None, 6)]
 
-    # 優先③: ロールシグネチャーで最近接
+        if len(candidates) == 1:
+            return candidates[0]
+
+        if len(candidates) > 1 and haru_last_pos is not None:
+            # 軌跡予測: 直前位置に最も近い候補を選ぶ
+            lx, ly = haru_last_pos
+            best, best_d = None, 1e9
+            for pid, s in candidates:
+                x, y = get_coords(s)
+                d = ((x - lx) ** 2 + (y - ly) ** 2) ** 0.5
+                if d < best_d:
+                    best_d, best = d, (pid, s)
+            if best and best_d < 30.0:   # 30m以内なら信頼
+                return best
+
+    # 優先③: ロールシグネチャーで最近接 (フォールバック)
     if role is None or role not in ROLE_SIGNATURE:
         return None
     best, best_d = None, 1e9
@@ -214,13 +250,17 @@ def build_overlay(match_id, out_fps=3, width=960):
             by_time[round(s["time_min"], 2)].append((pid, s))
     times = sorted(by_time.keys())
 
-    # jersey_number=6 のトラックIDを確定
-    confirmed_pid = _find_jersey6_track(tracks)
+    # 全トラックの番号割り当てマップを構築（消去法用）
+    pid_to_jersey, jersey_to_pid = _build_assignment_map(tracks)
+    confirmed_pid = jersey_to_pid.get(6)
     if confirmed_pid:
         print(f"  [haru] confirmed track: {confirmed_pid} (jersey #6)")
+    others = {j: p for j, p in jersey_to_pid.items() if j != 6}
+    print(f"  [elimination] confirmed non-#6: {sorted(others.keys())}")
 
     # 羽瑠の軌跡トレイル (フレーム横断で1本)
-    haru_trail = []
+    haru_trail  = []
+    haru_last_pos = None   # 直前フレームのフィールド座標 (消去法軌跡補完用)
 
     # 出力サイズ決定
     c0 = caps["h1"]
@@ -254,7 +294,10 @@ def build_overlay(match_id, out_fps=3, width=960):
         half = sample[0][1]["half"]
         rel_t = t if half == "1H" else (t - h1_dur)
         role, role_label = _active_role(match_id, half, rel_t)
-        haru_pick = _pick_haru(sample, role, h1_dur, combined, confirmed_pid)
+        haru_pick = _pick_haru(sample, role, h1_dur, combined,
+                               confirmed_pid=confirmed_pid,
+                               pid_to_jersey=pid_to_jersey,
+                               haru_last_pos=haru_last_pos)
         # フォールバック (ground truth 無し・confirmed_pid 無し):
         # 自動推定トラックがこの時刻にいれば指す
         if haru_pick is None and role is None and fallback_id and not confirmed_pid:
@@ -285,6 +328,8 @@ def build_overlay(match_id, out_fps=3, width=960):
             draw_haru_marker(frame, x, y, f"#6 Haru {rl}".strip())
             haru_trail.append((x, y))
             haru_trail = haru_trail[-STYLE["trail_len"]:]
+            # 直前位置を更新（軌跡補完用）
+            haru_last_pos = (get_coords(s)[0], get_coords(s)[1])
             n_arrow += 1
 
         # ヘッダー
