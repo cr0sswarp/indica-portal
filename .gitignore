@@ -53,3 +53,8 @@ data/tzi/*/frames_v2/
 data/tzi/*/frames_annotated/
 data/tzi/*/diag_*.jpg
 scripts/tzi/yolov8n.pt
+scripts/tzi/yolo11n-cls.pt
+yolo11n-cls.pt
+data/tzi/*/frame_*_raw.jpg
+data/tzi/*/jersey6_full90.mp4
+data/tzi/*/jersey6_full90_web.mp4
