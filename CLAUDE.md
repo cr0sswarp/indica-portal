@@ -22,6 +22,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### 牧野氏の「クリエイティブ時間」を守る原則
 > 低抽象度の案件処理は全てCXOエージェントに委譲。牧野氏に来るのは「判断と指示」だけ。
 
+### ✅ クローズ済み案件（CXOエージェントは再度フラグを立てないこと）
+
+| 日付 | 案件 | 理由 | 指示者 |
+|---|---|---|---|
+| 2026-05-28 | Indica Labs Japan の**合同会社化** | 不要。G-P EOR継続。バロンデオロは既に株式会社化済み。 | Sevak（Indica Labs CFO） |
+
 ---
 
 ## 🤖 CXO Sub-Agent System（AI-Native Executive Team）
