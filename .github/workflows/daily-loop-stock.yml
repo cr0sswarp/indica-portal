@@ -16,8 +16,8 @@ name: "📈 daily-loop-stock — 自己学習型成長株価予想"
 
 on:
   schedule:
-    # 毎日 午前3:03 JST (= UTC 18:03 前日) に実行
-    - cron: "3 18 * * *"
+    # 毎日 午前8:00 JST (= UTC 前日 23:00) に実行（東京市場オープン1時間前）
+    - cron: "0 23 * * *"
 
   workflow_dispatch:
     inputs:
