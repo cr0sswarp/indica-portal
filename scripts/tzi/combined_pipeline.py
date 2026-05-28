@@ -169,7 +169,6 @@ def bind_anchor(chains, anchor_t, anchor_fx, anchor_fy, tol_min):
             if d < best_d:
                 best_d, best_chain = d, chain
     if best_chain is None:
-        # fallback: longest chain
         best_chain = max(chains, key=lambda c: c[-1]["t_sec"] - c[0]["t_sec"])
         print(f"  STEP3 fallback: 最長チェーンを使用 ({len(best_chain)} sightings)")
     else:
@@ -177,6 +176,63 @@ def bind_anchor(chains, anchor_t, anchor_fx, anchor_fy, tol_min):
         print(f"  STEP3完了: アンカー{best_d:.1f}m, span={span:.1f}s, "
               f"sightings={len(best_chain)}")
     return best_chain
+
+
+def follow_chains(chains, seed_chain, dur_sec,
+                  rebind_gap_sec=5.0, rebind_dist_m=6.0):
+    """
+    seed_chainが途切れた後、最寄りチェーンに繰り返し再バインドして
+    dur_sec 全体を通じた #6 sightings リストを返す。
+    各チェーンを時系列ソート済みの sightings リストとして扱う。
+    """
+    # チェーンの先頭・末尾インデックスを構築
+    chain_map = {id(c): c for c in chains}
+
+    used = set()
+    used.add(id(seed_chain))
+    full_sightings = list(seed_chain)  # コピー
+
+    rebinds = 0
+    while True:
+        last = full_sightings[-1]
+        last_t  = last["t_sec"]
+        last_fx = last["fx"]
+        last_fy = last["fy"]
+
+        if last_t >= dur_sec:
+            break
+
+        # last_t の直後に始まる最寄りチェーンを探す
+        best_next, best_score = None, 1e9
+        for cid, chain in chain_map.items():
+            if cid in used:
+                continue
+            t_start = chain[0]["t_sec"]
+            gap = t_start - last_t
+            if gap < 0 or gap > rebind_gap_sec:
+                continue
+            dist = ((chain[0]["fx"]-last_fx)**2 +
+                    (chain[0]["fy"]-last_fy)**2) ** 0.5
+            if dist > rebind_dist_m:
+                continue
+            # スコア: 距離優先
+            score = dist + gap * 0.5
+            if score < best_score:
+                best_score, best_next = score, cid
+
+        if best_next is None:
+            break  # 近いチェーンなし → 終了
+
+        next_chain = chain_map[best_next]
+        full_sightings.extend(next_chain)
+        used.add(best_next)
+        rebinds += 1
+
+    full_sightings.sort(key=lambda s: s["frame"])
+    span = full_sightings[-1]["t_sec"] - full_sightings[0]["t_sec"]
+    print(f"  STEP3b: チェーン追跡 {rebinds}回再バインド → "
+          f"合計{len(full_sightings)} sightings, span={span:.1f}s")
+    return full_sightings
 
 
 def generate_segment_overlay(video_path, start_min, dur_min, fps_video,
@@ -204,7 +260,8 @@ def generate_segment_overlay(video_path, start_min, dur_min, fps_video,
         stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
     )
 
-    warps = 0; prev_pos = None; trail = []
+    warps = 0; prev_pos = None; trail = []; last_px = last_py = None
+    last_fx = last_fy = None
     fn = start_f
     while fn < end_f:
         ret, frame = cap.read()
@@ -237,15 +294,29 @@ def generate_segment_overlay(video_path, start_min, dur_min, fps_video,
                         cv2.putText(vis, f"WARP! {d:.1f}m",
                                     (px+10, py), FONT, 0.7, (0,0,255), 2)
                 prev_pos = (hs["fx"], hs["fy"])
+                last_px, last_py = px, py
+                last_fx, last_fy = hs["fx"], hs["fy"]
             else:
-                if trail:
-                    cv2.circle(vis, trail[-1], 12, (0,150,80), 1)
+                # 検出なし → 最後の既知位置に "LOST" マーカーを表示
+                if last_px is not None:
+                    # 破線丸＋矢印
+                    for angle in range(0, 360, 20):
+                        a = np.radians(angle)
+                        pt = (int(last_px + 22*np.cos(a)),
+                              int(last_py + 22*np.sin(a)))
+                        cv2.circle(vis, pt, 2, (0,180,80), -1)
+                    cv2.arrowedLine(vis, (last_px, last_py-60),
+                                    (last_px, last_py-26),
+                                    (0,180,80), 2, tipLength=0.4)
+                    cv2.putText(vis, f"#6 LOST ({last_fx:.0f},{last_fy:.0f})m",
+                                (last_px-40, last_py-64),
+                                FONT, 0.55, (0,180,80), 1)
 
             # ヘッダー (ラベル付き)
             cv2.rectangle(vis, (0,0), (W_OUT,40), (0,0,0), -1)
             cv2.putText(vis,
                         f"[{label}]  t={t_sec/60:.2f}min  Warps={warps}  "
-                        f"#6={'TRACKED' if hs else 'interpolating'}",
+                        f"#6={'TRACKED' if hs else 'LOST (last pos shown)'}",
                         (8,28), FONT, 0.55, (0,255,120), 2)
             proc.stdin.write(vis.tobytes())
         fn += 1
@@ -285,9 +356,12 @@ def main():
         tracklets = extract_tracklets(
             seg["video"], seg["start_min"], seg["dur_min"], fps)
         chains    = link_tracklets(tracklets)
-        haru      = bind_anchor(
+        haru_seed = bind_anchor(
             chains, seg["anchor_t"], seg["anchor_fx"], seg["anchor_fy"],
             seg["anchor_tol"])
+        dur_sec = seg["dur_min"] * 60 + seg["start_min"] * 60
+        haru    = follow_chains(chains, haru_seed, dur_sec,
+                               rebind_gap_sec=15.0, rebind_dist_m=8.0)
         generate_segment_overlay(
             seg["video"], seg["start_min"], seg["dur_min"], fps,
             haru, chains, seg["label"], seg["out_raw"])
