@@ -2,6 +2,93 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+---
+
+## 🏛️ 財団設立ビジョン（Foundation Vision）
+
+**INDICA LABS Foundation** — テクノロジーと人間のクリエイティビティが共存する社会基盤の構築
+
+### 代表プロフィール（牧野氏）
+- **所属**: INDICA LABS（インディカラボ）
+- **ルーツ**: Aperio Technologies（デジタルパソロジー領域）のCTO・Ole氏の下で働いた創業者Stevenと牧野氏の関係から生まれた会社
+- **DNA**: PayPal Mafia的な「実行速度・グローバル視点・スケールへの執念」
+- **使命**: 財団設立を通じた社会的レガシーの構築 + AI-Native組織の実証
+
+### 財団設立の3つの柱
+1. **テクノロジー民主化**: AIツールを誰もが使えるインフラ整備
+2. **クリエイター支援**: 創造的な仕事に集中できる環境の提供
+3. **グローバルコミュニティ**: Coworkのような知識共有エコシステムの拡大
+
+### 牧野氏の「クリエイティブ時間」を守る原則
+> 低抽象度の案件処理は全てCXOエージェントに委譲。牧野氏に来るのは「判断と指示」だけ。
+
+---
+
+## 🤖 CXO Sub-Agent System（AI-Native Executive Team）
+
+### 概念
+1つのチャットで `COO` に指示を出すと、関連するCXOエージェントが並列稼働し、統合レポートを返す。
+
+### CXOチーム構成（Archetype C: AI-Native Chief of Staff）
+
+| エージェント | 役割 | 担当領域 |
+|---|---|---|
+| **COO/EA** | 指示受付・ルーティング・統合 | 全領域の調整・代表フィルタリング |
+| **CFO** 💰 | 財務・投資・財団拠出 | 予算・キャッシュ・投資リターン |
+| **CMO** 📡 | ビジョン・コミュニケーション | PR・ブランド・ステークホルダー |
+| **CTO** ⚙️ | 技術・自動化・AI基盤 | Claude API・GitHub Actions・MCP |
+| **CLO** ⚖️ | 法務・財団設立・コンプライアンス | 定款・評議員会・主務官庁認定 |
+| **CPO** 🎯 | 人材・組織・採用 | COO/EAスカウト・AI-Nativeチーム |
+
+### 使い方（Claude Code チャット内）
+
+```bash
+# CXOに一括指示
+python scripts/cxo/dispatch.py "財団設立の現状確認と今週の優先アクションを教えてください"
+
+# 特定ドメインに絞る場合
+python -c "
+from scripts.cxo.dispatch import dispatch, print_report
+report = dispatch('COO/EAの採用基準を設計してください', target_agents=['CPO','CMO'])
+print_report(report)
+"
+```
+
+### COO採用基準スコアカード（Archetype C）
+**必須**:
+- AI tooling自主活用（Claude Code使いこなし）
+- 英日バイリンガル（ビジネスレベル以上）
+- 財団/NPO設立の法務理解またはネットワーク
+- PayPal Mafia的「speed & scale」への共感
+
+**加点**:
+- Aperio / 医療AI / ライフサイエンス業界知識
+- 日本の公益財団法人設立経験
+- VC/エコシステムへの既存アクセス
+
+---
+
+## 🔄 自動化スケジュール（完全版）
+
+| 時刻 | ワークフロー | 内容 |
+|---|---|---|
+| 毎日 7:00 JST | `daily-brief.yml` | Notion優先事項→HTML→メール送信 |
+| 毎日 3:03 JST | `daily-loop-stock.yml` | 株価予想→Notion保存 |
+| 毎週水 8:36 JST | `nakajima.yml` | メルマガ要約→PDF→Notion |
+
+## ♻️ 推奨 /loop スキル（Claude Code セッション内）
+
+セッション中に使えるループコマンド:
+
+```
+/loop 30m  → 30分ごとに「今日の残りタスク確認」を実行
+/loop 1h   → 1時間ごとにCXO統合ブリーフ生成
+```
+
+**注意**: `/loop` はセッション中のみ有効。定期自動化はGitHub Actionsを使う。
+
+---
+
 ## 📍 Project Overview
 
 **VALIENTE Portal** - INDICA LABSのマルチ機能ポータルプロジェクト。HTML ポータルサイト + Claude APIを活用した自動化スクリプトで構成。
@@ -33,9 +120,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 │       ├── heatmap_jersey6_latest.png # ヒートマップ
 │       ├── anchor_checks/ # アンカーポイント確認画像
 │       └── ※動画は.gitignoreで除外
+├── .claude/                # Claude Code 設定
+│   └── settings.json       # セッションフック・パーミッション定義
 ├── .github/workflows/      # GitHub Actions ワークフロー
+│   ├── daily-brief.yml     # 毎朝 7:00 JST 統合ブリーフメール ★NEW
 │   ├── daily-loop-stock.yml
-│   └── nakajima.yml
+│   ├── nakajima.yml
+│   └── foundation-weekly.yml # 毎週月曜 財団進捗レポート ★NEW
+├── scripts/cxo/            # CXO Sub-Agent システム ★NEW
+│   ├── __init__.py
+│   └── dispatch.py         # COO→CXO並列ディスパッチ
 ├── skills/                 # Cowork スキルファイル (.skill)
 ├── videos/                 # rcloneでダウンロード済み動画
 ├── schedules/              # スケジュール定義

@@ -1,0 +1,40 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"\nimport os, sys\ntry:\n    from notion_client import Client\n    notion = Client(auth=os.environ.get('NOTION_TOKEN',''))\n    page_id = os.environ.get('NOTION_PAGE_ID','')\n    if notion and page_id:\n        blocks = notion.blocks.children.list(block_id=page_id)\n        lines = []\n        for b in blocks['results'][:10]:\n            bt = b['type']\n            if bt in ('paragraph','heading_1','heading_2','bulleted_list_item','numbered_list_item'):\n                rich = b[bt].get('rich_text',[])\n                line = ''.join(r.get('plain_text','') for r in rich)\n                if line.strip(): lines.append(line)\n        if lines:\n            print('\\n=== 📌 NOTION 今日の優先事項 ===')\n            for l in lines[:5]: print(f'  • {l}')\n            print('================================\\n')\nexcept Exception as e:\n    pass\n\"\n"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🏛️  VALIENTE セッション終了\n   次のアクションをNotionに記録しましたか？\n   次回: python scripts/cxo/dispatch.py '指示'\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\"\n"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(python*)",
+      "Bash(python3*)",
+      "Bash(pip*)",
+      "Bash(git status)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git branch*)",
+      "Bash(ls*)",
+      "Bash(find*)",
+      "Bash(grep*)"
+    ]
+  }
+}
