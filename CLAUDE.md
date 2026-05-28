@@ -4,6 +4,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
+## 🔴 必須ルール — ファイル出力時の Google Drive アップロード
+
+**動画・画像・PDFなどのバイナリ出力ファイルを生成したら、必ず以下を実行すること:**
+
+```bash
+# アップロード
+rclone copy <生成ファイルのパス> gdrive:TZI/outputs/
+
+# 共有リンクを取得してユーザーに表示
+rclone link gdrive:TZI/outputs/<ファイル名>
+```
+
+- `SendUserFile` でのファイル送信だけでは不十分（ダウンロードできない場合がある）
+- **必ずGoogle Driveリンクをチャットに貼ること**
+- rclone remote名: `gdrive`
+- アップロード先: `gdrive:TZI/outputs/`
+
+---
+
 ## 🏛️ 戦略的背景 — TZI分析ツール開発 (必読・毎セッション)
 
 **牧野ホールディングス CTO として、以下を常に念頭に置くこと:**
