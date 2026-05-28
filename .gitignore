@@ -58,3 +58,4 @@ yolo11n-cls.pt
 data/tzi/*/frame_*_raw.jpg
 data/tzi/*/jersey6_full90.mp4
 data/tzi/*/jersey6_full90_web.mp4
+scripts/tzi/yolov8m.pt
