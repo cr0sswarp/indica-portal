@@ -1,0 +1,75 @@
+# ════════════════════════════════════════════════════════════════
+# foundation-weekly — 財団設立進捗レポート
+# 毎週月曜 8:00 JST に財団進捗をNotionから読み取り → CLO/CFO/CMOで分析 → メール送信
+# ════════════════════════════════════════════════════════════════
+
+name: "🏛️ foundation-weekly — 財団設立週次レポート"
+
+on:
+  schedule:
+    # 毎週月曜日 08:00 JST (= UTC 日曜 23:00)
+    - cron: "0 23 * * 0"
+
+  workflow_dispatch:
+    inputs:
+      note:
+        description: "手動実行メモ（任意）"
+        required: false
+        default: "手動トリガー"
+
+jobs:
+  foundation-report:
+    name: "財団進捗レポート生成・送信"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "📥 リポジトリ取得"
+        uses: actions/checkout@v4
+
+      - name: "🐍 Python セットアップ"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: "📦 ライブラリインストール"
+        run: pip install anthropic notion-client requests
+
+      - name: "🏛️ 財団進捗レポート生成"
+        env:
+          ANTHROPIC_API_KEY:          ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_ADDRESS:              ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD:         ${{ secrets.GMAIL_APP_PASSWORD }}
+          NOTION_TOKEN:               ${{ secrets.NOTION_TOKEN }}
+          NOTION_PAGE_ID:             ${{ secrets.NOTION_PAGE_ID }}
+          NOTION_NAKAJIMA_PAGE_ID:    ${{ secrets.NOTION_NAKAJIMA_PAGE_ID }}
+          NOTION_FOUNDATION_PAGE_ID:  ${{ secrets.NOTION_FOUNDATION_PAGE_ID }}
+          BRIEF_TO:                   ${{ secrets.BRIEF_TO }}
+        run: |
+          python -c "
+          import os, sys
+          sys.path.insert(0, '.')
+          from scripts.cxo.dispatch import dispatch, print_report
+          from scripts.daily_brief import send_email, build_html_email, generate_brief, fetch_notion_text, TODAY_STR
+
+          print('財団週次レポート生成中...')
+          instruction = '財団設立の今週の進捗を確認し、来週の優先アクションを策定してください'
+          report = dispatch(instruction, target_agents=['CLO','CFO','CMO','CPO'])
+          print_report(report)
+
+          # メールも送信
+          brief = generate_brief(
+              fetch_notion_text(os.environ.get('NOTION_PAGE_ID',''), '株価'),
+              fetch_notion_text(os.environ.get('NOTION_NAKAJIMA_PAGE_ID',''), '中嶋'),
+              fetch_notion_text(os.environ.get('NOTION_FOUNDATION_PAGE_ID',''), '財団')
+          )
+          html = build_html_email(brief)
+          from pathlib import Path
+          send_email(html, f'🏛️ 財団週次レポート — {TODAY_STR}')
+          print('完了')
+          "
+
+      - name: "📋 実行サマリー"
+        if: always()
+        run: |
+          echo "## 🏛️ 財団週次レポート完了" >> $GITHUB_STEP_SUMMARY
+          echo "- 実行時刻 (JST): $(TZ='Asia/Tokyo' date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
