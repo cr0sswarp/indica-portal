@@ -102,11 +102,58 @@ def make_botsort(fps, use_reid=True):
                    with_reid=(reid_model is not None), **common)
 
 
-def load_anchor():
-    with open(TRAJ_JSON) as f:
-        traj = json.load(f)
-    return [a for a in traj["confirmed_positions"]
-            if "不明" not in a.get("note", "")]
+TAGS_JSON = Path(__file__).parent / "tags.json"
+
+
+def load_tags():
+    """tags.json から {jersey_str: {bbox, frame_idx}} を返す。なければ空辞書。"""
+    if TAGS_JSON.exists():
+        return json.loads(TAGS_JSON.read_text())
+    return {}
+
+
+def init_tag_map(tracker, model, video_path, tags: dict) -> dict:
+    """
+    tags.json で指定されたフレームを再検出し、各タグbboxに最近傍のtrack_idを紐付ける。
+    戻り値: {track_id(int): jersey_str}
+    """
+    if not tags:
+        return {}
+
+    frame_idx = next(iter(tags.values())).get("frame_idx", 0)
+    cap = cv2.VideoCapture(str(video_path))
+    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
+    ret, frame = cap.read()
+    cap.release()
+    if not ret:
+        return {}
+
+    results = model(frame, classes=[0], imgsz=IMGSZ, conf=CONF,
+                    verbose=False, device=DEVICE)
+    boxes = results[0].boxes
+    if boxes is None or len(boxes) == 0:
+        return {}
+    dets = np.hstack([
+        boxes.xyxy.cpu().numpy(),
+        boxes.conf.cpu().numpy().reshape(-1, 1),
+        boxes.cls.cpu().numpy().reshape(-1, 1),
+    ])
+    tracks = tracker.update(dets, frame)
+
+    tag_map = {}
+    for jersey, info in tags.items():
+        tx1, ty1, tx2, ty2 = info["bbox"]
+        tcx, tcy = (tx1+tx2)/2, (ty1+ty2)/2
+        best_tid, best_d = None, 1e9
+        for tr in tracks:
+            cx, cy = (tr[0]+tr[2])/2, (tr[1]+tr[3])/2
+            d = ((cx-tcx)**2+(cy-tcy)**2)**0.5
+            if d < best_d:
+                best_d, best_tid = d, int(tr[4])
+        if best_tid is not None and best_d < 200:
+            tag_map[best_tid] = jersey
+            print(f"  タグ初期化: #{jersey} → track_id={best_tid} (dist={best_d:.0f}px)")
+    return tag_map
 
 
 def upload_gdrive(out_path):
@@ -141,9 +188,12 @@ def upload_gdrive(out_path):
 
 # ──────────────────────────────────────────────────────────────
 def process_segment(video_path, start_min, dur_min, fps,
-                    anchors, label, out_path,
+                    tag_map, label, out_path,
                     pose_estimator=None, tracker=None, model=None):
-
+    """
+    tag_map: {track_id(int): jersey_str} — 手動タグ初期化後のマッピング
+    タグの付いた全選手を追跡。track_idが消えた場合は近傍trackに再バインド。
+    """
     if model is None:
         model = YOLO(str(Path(__file__).parent / MODEL_NAME))
     if tracker is None:
@@ -165,24 +215,16 @@ def process_segment(video_path, start_min, dur_min, fps,
         stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
     )
 
-    seg_end_min = start_min + dur_min
-    seg_anchors = sorted(
-        [a for a in anchors
-         if start_min - ANCHOR_TOL_MIN <= a["time_min"] <= seg_end_min + ANCHOR_TOL_MIN],
-        key=lambda a: a["time_min"]
-    )
-
-    haru_id     = None
-    haru_pos    = None
-    haru_lost_t = None
-    trail       = []
-    warps       = 0
-    tracked_f   = 0
+    # tag_map は {track_id: jersey_str}。セグメント中に更新される。
+    live_map  = dict(tag_map)           # {track_id: jersey}
+    last_pos  = {}                      # {jersey: (fx,fy)} フィールド座標
+    last_seen = {}                      # {jersey: t_sec}
+    trails    = defaultdict(list)       # {jersey: [(px,py),...]}
+    warps     = 0
+    tracked_f = 0     # メインタグ選手(全員)で1フレームでも追跡できた数
     total_out_f = 0
-    prev_t      = None
-    used_anchors = set()
-    tracks      = []
-    pose_data   = {}  # frame → {angle, conf}
+    tracks    = []
+    pose_data = {}    # frame → {jersey: {angle,...}}
 
     t0 = time.time()
     print(f"  [{label}] 開始 {start_min:.0f}-{start_min+dur_min:.0f}min "
@@ -212,83 +254,61 @@ def process_segment(video_path, start_min, dur_min, fps,
             else:
                 tracks = tracker.update(np.empty((0,6)), frame)
 
-            # ── アンカー確認 (ロスト時のみ) ──────────────────
-            is_lost = (haru_id is None or
-                       (haru_lost_t is not None and
-                        t_sec - haru_lost_t > LOST_THRESH))
-            if is_lost:
-                for ai, anc in enumerate(seg_anchors):
-                    if ai in used_anchors:
-                        continue
-                    if abs(anc["time_min"] - t_min) < ANCHOR_TOL_MIN / 4:
-                        best_tid, best_d = None, 1e9
-                        for tr in tracks:
-                            fx, fy = p2f((tr[0]+tr[2])/2, tr[3])
-                            d = ((fx-anc["fx"])**2+(fy-anc["fy"])**2)**0.5
-                            if d < best_d:
-                                best_d, best_tid = d, int(tr[4])
-                        if best_tid is not None and best_d < 8.0:
-                            haru_id = best_tid
-                            haru_pos = (anc["fx"], anc["fy"])
-                            haru_lost_t = t_sec
-                            used_anchors.add(ai)
+            current_tids = {int(tr[4]) for tr in tracks}
 
-            # ── #6 特定 ──────────────────────────────────────
-            haru_det = next((tr for tr in tracks if int(tr[4]) == haru_id), None)
+            # ── 全タグ選手の位置更新 + 再バインド ────────────
+            for tid, jersey in list(live_map.items()):
+                tr = next((t for t in tracks if int(t[4]) == tid), None)
+                if tr is not None:
+                    x1,y1,x2,y2 = map(int, tr[:4])
+                    fx, fy = p2f((x1+x2)/2, y2)
+                    if jersey in last_pos:
+                        d = ((fx-last_pos[jersey][0])**2+(fy-last_pos[jersey][1])**2)**0.5
+                        if d > WARP_THRESH_M:
+                            warps += 1
+                    last_pos[jersey]  = (fx, fy)
+                    last_seen[jersey] = t_sec
 
-            # 位置ベース再バインド (ロスト + アンカーなし)
-            if haru_det is None and haru_pos is not None and is_lost and len(tracks) > 0:
-                best_tid, best_d = None, 1e9
-                for tr in tracks:
-                    fx, fy = p2f((tr[0]+tr[2])/2, tr[3])
-                    d = ((fx-haru_pos[0])**2+(fy-haru_pos[1])**2)**0.5
-                    if d < best_d:
-                        best_d, best_tid = d, int(tr[4])
-                if best_tid is not None and best_d < REBIND_DIST_M:
-                    haru_id  = best_tid
-                    haru_det = next((tr for tr in tracks if int(tr[4]) == haru_id), None)
-
-            if haru_det is not None:
-                x1,y1,x2,y2 = map(int, haru_det[:4])
-                fx, fy = p2f((x1+x2)/2, y2)
-                if haru_pos is not None and prev_t is not None:
-                    d = ((fx-haru_pos[0])**2+(fy-haru_pos[1])**2)**0.5
-                    if d > WARP_THRESH_M:
-                        warps += 1
-                haru_pos    = (fx, fy)
-                haru_lost_t = t_sec
-                prev_t      = t_sec
-
-                # ── RTMPose 体の向き推定 ──────────────────────
-                if pose_estimator is not None and fn % 3 == 0:
-                    try:
-                        crop = frame[max(0,y1):y2+10, max(0,x1-5):x2+5]
-                        if crop.shape[0] > 20 and crop.shape[1] > 10:
-                            kps, scores = pose_estimator(crop)
-                            if kps is not None and len(kps) > 0:
-                                kp = kps[0]
-                                # 左肩(5), 右肩(6), 左腰(11), 右腰(12)
-                                if len(kp) >= 13:
-                                    # 肩ベクトルから胴体向きを推定
-                                    ls, rs = kp[5][:2], kp[6][:2]
-                                    lh, rh = kp[11][:2], kp[12][:2]
-                                    shoulder_vec = rs - ls
-                                    hip_vec = rh - lh
-                                    # 胴体の正面向き = 肩ベクトルの法線
-                                    body_angle = np.degrees(
-                                        np.arctan2(
-                                            (shoulder_vec[1]+hip_vec[1])/2,
-                                            (shoulder_vec[0]+hip_vec[0])/2
-                                        )
-                                    ) + 90
-                                    pose_data[fn] = {
-                                        "angle": float(body_angle % 360),
-                                        "cx": (x1+x2)//2,
-                                        "cy": (y1+y2)//2,
-                                        "x1":x1,"y1":y1,"x2":x2,"y2":y2
-                                    }
-                    except Exception:
-                        pass
+                    # RTMPose 体の向き推定
+                    if pose_estimator is not None and fn % 3 == 0:
+                        try:
+                            crop = frame[max(0,y1):y2+10, max(0,x1-5):x2+5]
+                            if crop.shape[0] > 20 and crop.shape[1] > 10:
+                                kps, _ = pose_estimator(crop)
+                                if kps is not None and len(kps) > 0:
+                                    kp = kps[0]
+                                    if len(kp) >= 13:
+                                        ls, rs = kp[5][:2], kp[6][:2]
+                                        lh, rh = kp[11][:2], kp[12][:2]
+                                        sv = rs - ls; hv = rh - lh
+                                        angle = np.degrees(np.arctan2(
+                                            (sv[1]+hv[1])/2, (sv[0]+hv[0])/2)) + 90
+                                        if fn not in pose_data:
+                                            pose_data[fn] = {}
+                                        pose_data[fn][jersey] = {
+                                            "angle": float(angle % 360),
+                                            "x1":x1,"y1":y1,"x2":x2,"y2":y2
+                                        }
+                        except Exception:
+                            pass
+                else:
+                    # track_id 消失 → 位置ベース再バインド
+                    lost_sec = t_sec - last_seen.get(jersey, 0)
+                    if lost_sec > LOST_THRESH and jersey in last_pos:
+                        lx, ly = last_pos[jersey]
+                        untagged = [t for t in tracks
+                                    if int(t[4]) not in live_map]
+                        best_tid2, best_d2 = None, 1e9
+                        for t in untagged:
+                            fx, fy = p2f((t[0]+t[2])/2, t[3])
+                            d = ((fx-lx)**2+(fy-ly)**2)**0.5
+                            if d < best_d2:
+                                best_d2, best_tid2 = d, int(t[4])
+                        if best_tid2 is not None and best_d2 < REBIND_DIST_M:
+                            del live_map[tid]
+                            live_map[best_tid2] = jersey
+                            print(f"  再バインド: #{jersey} tid={tid}→{best_tid2} "
+                                  f"({best_d2:.1f}m)")
 
         # ── 出力フレーム生成 ─────────────────────────────────
         if (fn - start_f) % sample == 0:
@@ -297,64 +317,64 @@ def process_segment(video_path, start_min, dur_min, fps,
             sy  = H_OUT / frame.shape[0]
             total_out_f += 1
 
-            # 全選手 (灰点)
+            # タグなし選手 (灰点)
+            tagged_tids = set(live_map.keys())
             for tr in tracks:
-                if int(tr[4]) != haru_id:
+                if int(tr[4]) not in tagged_tids:
                     cv2.circle(vis,
-                               (int(((tr[0]+tr[2])/2)*sx), int(((tr[1]+tr[3])/2)*sy)),
-                               5, (80,80,80), 1)
+                               (int(((tr[0]+tr[2])/2)*sx),
+                                int(((tr[1]+tr[3])/2)*sy)),
+                               4, (70,70,70), 1)
 
-            haru_det_vis = next((tr for tr in tracks if int(tr[4]) == haru_id), None)
+            # タグ付き選手を描画
+            any_tracked = False
+            COLORS = {"6":(0,255,120),"11":(0,180,255),"9":(255,160,0),
+                      "7":(200,0,255),"3":(255,50,50),"5":(0,220,220)}
+            for tid, jersey in live_map.items():
+                col = COLORS.get(jersey, (200,200,200))
+                tr = next((t for t in tracks if int(t[4]) == tid), None)
+                if tr is not None:
+                    any_tracked = True
+                    x1,y1,x2,y2 = [int(v*(sx if i%2==0 else sy))
+                                    for i,v in enumerate(tr[:4])]
+                    px,py = (x1+x2)//2, (y1+y2)//2
+                    trails[jersey].append((px,py))
+                    if len(trails[jersey]) > 40:
+                        trails[jersey].pop(0)
+                    trail = trails[jersey]
+                    for i in range(1, len(trail)):
+                        a = i/len(trail)
+                        cv2.line(vis, trail[i-1], trail[i],
+                                 tuple(int(c*a) for c in col), 2)
+                    cv2.rectangle(vis, (x1,y1), (x2,y2), col, 2)
+                    pos = last_pos.get(jersey, (0,0))
+                    info = f"#{jersey}  ({pos[0]:.0f},{pos[1]:.0f})m"
+                    if fn in pose_data and jersey in pose_data[fn]:
+                        pd = pose_data[fn][jersey]
+                        ar = np.radians(pd["angle"])
+                        ex = int(px + 45*np.cos(ar))
+                        ey = int(py + 45*np.sin(ar))
+                        cv2.arrowedLine(vis, (px,py), (ex,ey),
+                                        (255,210,0), 2, tipLength=0.3)
+                        info += f" {pd['angle']:.0f}°"
+                    cv2.putText(vis, info, (x1, max(y1-6,14)),
+                                FONT, 0.60, col, 2)
+                else:
+                    # LOST表示
+                    trail = trails[jersey]
+                    if trail:
+                        lx,ly = trail[-1]
+                        cv2.putText(vis, f"#{jersey} LOST",
+                                    (lx-20, ly-28), FONT, 0.48, col, 1)
 
-            if haru_det_vis is not None:
+            if any_tracked:
                 tracked_f += 1
-                x1,y1,x2,y2 = [int(v*(sx if i%2==0 else sy))
-                                for i,v in enumerate(haru_det_vis[:4])]
-                px,py = (x1+x2)//2, (y1+y2)//2
-
-                trail.append((px,py))
-                if len(trail) > 30: trail.pop(0)
-                for i in range(1, len(trail)):
-                    a = i/len(trail)
-                    cv2.line(vis, trail[i-1], trail[i],
-                             (int(40*a), int(220*a), int(100*a)), 2)
-
-                cv2.rectangle(vis, (x1,y1), (x2,y2), (0,255,120), 2)
-                cv2.arrowedLine(vis, (px, y1-55), (px, y1-12),
-                                (0,255,120), 3, tipLength=0.35)
-
-                info = f"#6  ({haru_pos[0]:.0f},{haru_pos[1]:.0f})m"
-
-                # 体の向き矢印
-                if fn in pose_data:
-                    pd = pose_data[fn]
-                    angle_rad = np.radians(pd["angle"])
-                    ex = int(px + 45*np.cos(angle_rad))
-                    ey = int(py + 45*np.sin(angle_rad))
-                    cv2.arrowedLine(vis, (px,py), (ex,ey),
-                                    (255,210,0), 3, tipLength=0.3)
-                    info += f"  ⬆{pd['angle']:.0f}°"
-
-                cv2.putText(vis, info, (x1, y1-14), FONT, 0.65, (0,255,120), 2)
-
-            elif haru_pos is not None and trail:
-                lx, ly = trail[-1]
-                for ag in range(0,360,25):
-                    a = np.radians(ag)
-                    cv2.circle(vis, (int(lx+22*np.cos(a)), int(ly+22*np.sin(a))),
-                               2, (0,160,70), -1)
-                cv2.arrowedLine(vis, (lx,ly-58), (lx,ly-26),
-                                (0,160,70), 2, tipLength=0.4)
-                cv2.putText(vis,
-                            f"#6 LOST ({haru_pos[0]:.0f},{haru_pos[1]:.0f})m",
-                            (lx-50, ly-60), FONT, 0.52, (0,160,70), 1)
 
             cov = tracked_f / max(total_out_f,1) * 100
             cv2.rectangle(vis, (0,0), (W_OUT,44), (0,0,0), -1)
             cv2.putText(vis,
                         f"[{label}]  t={t_sec/60:.2f}min  "
-                        f"#6={'OK' if haru_det_vis is not None else 'LOST'}  "
-                        f"cov={cov:.0f}%  warps={warps}",
+                        f"players={len(live_map)}  cov={cov:.0f}%  warps={warps}",
                         (8,30), FONT, 0.62, (0,255,120), 2)
 
             proc.stdin.write(vis.tobytes())
@@ -399,6 +419,8 @@ def main():
                         help="前半+後半 各45分フル処理")
     parser.add_argument("--no-pose",  action="store_true")
     parser.add_argument("--no-reid",  action="store_true")
+    parser.add_argument("--tags",     type=str, default=None,
+                        help="tags.jsonのパス (tag_ui.pyで生成)")
     args = parser.parse_args()
 
     global USE_POSE, USE_REID
@@ -409,7 +431,13 @@ def main():
     fps = cap_tmp.get(cv2.CAP_PROP_FPS) or 30.0
     cap_tmp.release()
 
-    anchors = load_anchor()
+    # タグ読み込み (手動初期化)
+    tags_path = Path(args.tags) if args.tags else TAGS_JSON
+    tags = load_tags() if not args.tags else json.loads(tags_path.read_text())
+    if tags:
+        print(f"タグ読み込み: {list(tags.keys())} 選手")
+    else:
+        print("⚠️  tags.jsonなし — タグなしで実行 (アノテーションなし)")
 
     # RTMPose 初期化
     pose_estimator = None
@@ -452,10 +480,17 @@ def main():
                  f"H{args.half} {args.start:.0f}-{args.start+args.dur:.0f}min",
                  out_path)]
 
+    # YOLO モデル (タグ初期化に再使用)
+    yolo_model = YOLO(str(Path(__file__).parent / MODEL_NAME))
+
     seg_paths = []
     for vid, st, dur, lbl, seg_out in segs:
-        w, c = process_segment(vid, st, dur, fps, anchors,
-                               lbl, seg_out, pose_estimator)
+        # セグメントごとに新規トラッカー + タグ初期化
+        tracker = make_botsort(fps, use_reid=USE_REID)
+        tag_map = init_tag_map(tracker, yolo_model, vid, tags) if tags else {}
+        w, c = process_segment(vid, st, dur, fps, tag_map,
+                               lbl, seg_out, pose_estimator,
+                               tracker=tracker, model=yolo_model)
         seg_paths.append(seg_out)
 
     if len(seg_paths) > 1:
