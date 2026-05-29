@@ -15,6 +15,12 @@ CPU版 tzi_pipeline_v2.py との違い:
   python tzi_pipeline_gpu.py --half 1 --dur 45   # 前半全体 (45分)
   python tzi_pipeline_gpu.py --half 2 --dur 45   # 後半全体
 """
+import os
+# "cuda" は CUDA_VISIBLE_DEVICES の正しい値ではない (GPU番号のみ有効)。
+# select_device が誤って書き込んだ場合に GPU を見失うので除去する。
+if os.environ.get("CUDA_VISIBLE_DEVICES") == "cuda":
+    del os.environ["CUDA_VISIBLE_DEVICES"]
+
 import cv2, json, time, argparse, subprocess, re, numpy as np
 from pathlib import Path
 from collections import defaultdict
@@ -28,7 +34,9 @@ except ImportError:
 from config import VIDEO_H1, VIDEO_H2, TRAJ_JSON, OUTPUT_DIR, p2f, FW, FH
 
 # ── 設定 ──────────────────────────────────────────────────────
-DEVICE     = "cuda"    # GPU使用
+# GPU番号で指定する ("cuda" 文字列は ultralytics/boxmot の select_device で
+# CUDA_VISIBLE_DEVICES="cuda" に化けてGPUを見失うため "0" を使う)
+DEVICE     = "0"       # GPU使用 (1枚目のGPU)
 IMGSZ      = 1280      # 高解像度 (GPU必須)
 CONF       = 0.20
 EVERY_N    = 1         # 全フレーム処理 (GPU必須)
@@ -86,7 +94,7 @@ def make_botsort(fps, use_reid=True):
             from boxmot.reid.auto_backend import ReidAutoBackend
             reid_model = ReidAutoBackend(
                 weights=Path("osnet_x0_25_msmt17.pt"),
-                device="cuda", half=True).model
+                device=DEVICE, half=True).model
             print("Re-ID model (osnet_x0_25) loaded")
         except Exception as e:
             print(f"Re-ID skip: {e}")
