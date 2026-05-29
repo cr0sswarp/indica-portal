@@ -19,7 +19,12 @@ import cv2, json, time, argparse, subprocess, re, numpy as np
 from pathlib import Path
 from collections import defaultdict
 from ultralytics import YOLO
-from boxmot.trackers.botsort.bot_sort import BotSort
+try:
+    # boxmot v18+ (Python 3.9+)
+    from boxmot.trackers.botsort.botsort import BotSort
+except ImportError:
+    # boxmot v10.x (Python 3.8) — クラス名/モジュール名が異なる
+    from boxmot.trackers.botsort.bot_sort import BoTSORT as BotSort
 from config import VIDEO_H1, VIDEO_H2, TRAJ_JSON, OUTPUT_DIR, p2f, FW, FH
 
 # ── 設定 ──────────────────────────────────────────────────────
@@ -43,31 +48,50 @@ USE_REID  = True       # Re-ID モデル使用
 
 # ──────────────────────────────────────────────────────────────
 def make_botsort(fps, use_reid=True):
-    reid_model = None
-    if use_reid:
-        try:
-            # osnet_x0_25: 軽量Re-IDモデル (自動ダウンロード)
-            from boxmot.reid.auto_backend import ReidAutoBackend
-            reid_model = ReidAutoBackend(
-                weights=Path("osnet_x0_25_msmt17.pt"),
-                device="cuda",
-                half=True
-            ).model
-            print("Re-ID model (osnet_x0_25) loaded")
-        except Exception as e:
-            print(f"Re-ID skip: {e}")
+    """boxmot のバージョン差を吸収して BoT-SORT トラッカーを生成する。
 
-    return BotSort(
-        reid_model=reid_model,
-        with_reid=(reid_model is not None),
+    v10.x (Python3.8): BoTSORT(model_weights, device, fp16, ..., with_reid=)
+    v18+ (Python3.9+): BotSort(reid_model=, with_reid=, ...)
+    """
+    import inspect
+    params = inspect.signature(BotSort.__init__).parameters
+    common = dict(
         track_high_thresh=0.25,
         track_low_thresh=0.10,
         new_track_thresh=0.40,
         track_buffer=90,          # 3秒 (全フレーム処理なので短くてOK)
         match_thresh=0.85,
-        cmc_method="ecc",
         frame_rate=int(fps),
     )
+    if "cmc_method" in params:
+        common["cmc_method"] = "ecc"   # カメラ動き補正 (パン/ズーム対応)
+
+    if "model_weights" in params:
+        # ── boxmot v10.x API ──────────────────────────────
+        reid_w = Path("osnet_x0_25_msmt17.pt")
+        try:
+            t = BotSort(model_weights=reid_w, device=DEVICE, fp16=True,
+                        with_reid=use_reid, **common)
+            print(f"BoT-SORT (v10 API) Re-ID={use_reid} loaded")
+            return t
+        except Exception as e:
+            print(f"Re-ID付き生成失敗 ({e}) → Re-IDなしで再試行")
+            return BotSort(model_weights=reid_w, device=DEVICE, fp16=True,
+                           with_reid=False, **common)
+
+    # ── boxmot v18+ API ───────────────────────────────────
+    reid_model = None
+    if use_reid:
+        try:
+            from boxmot.reid.auto_backend import ReidAutoBackend
+            reid_model = ReidAutoBackend(
+                weights=Path("osnet_x0_25_msmt17.pt"),
+                device="cuda", half=True).model
+            print("Re-ID model (osnet_x0_25) loaded")
+        except Exception as e:
+            print(f"Re-ID skip: {e}")
+    return BotSort(reid_model=reid_model,
+                   with_reid=(reid_model is not None), **common)
 
 
 def load_anchor():
