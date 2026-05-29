@@ -19,7 +19,7 @@ import cv2, json, time, argparse, subprocess, re, numpy as np
 from pathlib import Path
 from collections import defaultdict
 from ultralytics import YOLO
-from boxmot.trackers.botsort.botsort import BotSort
+from boxmot.trackers.botsort.bot_sort import BotSort
 from config import VIDEO_H1, VIDEO_H2, TRAJ_JSON, OUTPUT_DIR, p2f, FW, FH
 
 # ── 設定 ──────────────────────────────────────────────────────
