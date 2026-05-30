@@ -95,6 +95,66 @@ print_report(report)
 
 ---
 
+## 💼 本業コンテキスト（Indica Labs Japan）
+
+> ChatGPT / Gemini からの移行コンテキスト統合済み（2026-05-29）
+
+### 役職・ミッション
+- **Hideya Makino** | Director, Japan | Indica Labs
+- **署名**: Hideya Makino, MS | Director, Japan | Indica Labs | makino@indicalab.com | +81-(0)3-4400-0466
+- **ミッション**: HALO / HALO AI / HALO Link / HALO AP を日本の病理・医療画像解析領域の標準へ
+
+### アクティブプロジェクト
+
+| プロジェクト | 現状 | 次のアクション |
+|---|---|---|
+| **Japan市場拡大 / HALO suite** | 病院・研究機関・代理店向け説明継続中 | 経営層向け: TAT短縮・標準化・労働時間削減・診断ばらつき抑制で訴求 |
+| **HALO Link / HALO AP ポジショニング** | HALO AP=臨床グレード/HL7/LIS、HALO Link=RUO/研究/GraphQL で整理済み | 顧客要件ごとにLink/APの線引きを明確化 |
+| **Brain Atlas / AI画像解析** | sagittal対応・bounding box・複数動物処理の課題あり | 学術ニーズ×AI活用を5点に絞り商談資料化 |
+| **Ogura-san採用** | ex-Hamamatsu Photonics、20年超のKOLネットワーク保有。Day-one title・Steven可視化・Adam承認が未決 | Adamへ: Senior IC役割・事業的必然性・Japan信用獲得効果を明確化して承認取得 |
+| **Minori/Ando 人事再編** | MinoriはAPAC reseller支援20%振り分け案。AndoはApps Group配置方針 | EOR移管後にタイトル・職務定義整理。Adam/Haiying/Wangへの開示範囲を慎重に管理 |
+| **Visualix/LBS/Roche チャネル戦略** | Visualix=LBS補完の戦略的パートナー候補。Leica代理店整理中 | LBSへ: Visualixの定量的メリット・販売コミット・既存代理店差別化を提案 |
+| **録音→まとめ→資料化ワークフロー** | 出力形式固定済み | 録音来たら: ①文字起こし②200文字要約③スライド+3行コツ で一貫処理 |
+
+### 未決事項（Pending Decisions）
+1. Ogura-san を Day 1 から Senior title にするか
+2. Ogura-san採用を Steven Hashagen へいつ可視化するか
+3. Minori の APAC reseller支援への正式移管範囲
+4. Minori課題を Wang へどこまで開示するか
+5. Ando の Apps Group への正式移管範囲
+6. HALO Link / HALO AP の RUO vs 臨床用途の顧客別表現方法
+7. Visualix を LBS チャネルに追加するための定量メリット設計
+8. Roche スキャナー前提案件での Leica/Hamamatsu/科研費活用の現実性
+9. HALO Link perpetual/annual 混在のCRM運用方針
+10. 長期データベース化の中心ツール選定（Gemini/NotebookLM/ChatGPT/Claude）
+
+### 重要関係者
+
+| 名前 | 役割 | 重要事項 |
+|---|---|---|
+| **Adam** | 上司・承認者 | Ogura-san採用・Japan strategy・人事タイトル・代理店戦略の最終承認者 |
+| **Steven Hashagen** | Indica Labs CEO | Ogura-san採用・Japan market strategyの上位承認対象 |
+| **Ogura-san** | 採用候補 / ex-Hamamatsu | KOLネットワーク×病理IT理解。once-in-a-career talent |
+| **Minori** | Japan team | コミュニケーション・役割逸脱に課題。APAC reseller支援検討中 |
+| **Ando** | 顧客対応 / Apps Group候補 | 顧客エンゲージメント・リカバリー力が高い。一次情報アクセス位置への配置推奨 |
+| **Wang** | 関係者 | Minori関連。情報開示範囲を慎重に管理 |
+| **Haiying** | APAC reseller支援 | Minori 20%稼働の受け皿候補 |
+| **Visualix** | 戦略的パートナー候補 | HALO Link+HALO APパイプライン創出・LBS補完 |
+| **Leica Biosystems / LBS** | 主要パートナー | HALO suite×スキャナー組み合わせ・代理店整理・annual推進 |
+| **Roche** | 連携/競合 | uPath・navify・DP200/600・胃HER2・ADCモジュール文脈 |
+| **藤井様** | 病院企画課 | 院長カンファレンスでHALO Link/AIの病院内メリット説明が必要 |
+
+### 繰り返しルール（必ず守ること）
+- **録音後の出力形式**: ①文字起こし → ②約200文字の一文要約 → ③スライドファイル形式 → 最後に3行でコツに気づける要点
+- **病院経営層向け**: 専門用語を抑え、ROI・標準化・時間短縮・診断品質・人員不足対策で説明
+- **HALO製品の整理**: HALO Link=研究/RUO/GraphQL/Study権限、HALO AP=臨床診断/HL7/FHIR/LIS/EMR
+- **スキャナー予算の説得**: WSIスキャナーはコモディティ化→HALO suiteを同じ予算に入れるアービトラージ論法
+- **メール文面**: 英日ともに丁寧・相手尊重・事業上の主張を明確に
+- **採用・人事・代理店**: 感情論でなく事業価値・市場浸透・信頼獲得・売上貢献の論理で説明
+- **AIツール役割分担**: Claude Code=戦略・自動化・永続コンテキスト管理（本リポジトリ）
+
+---
+
 ## 📍 Project Overview
 
 **VALIENTE Portal** - INDICA LABSのマルチ機能ポータルプロジェクト。HTML ポータルサイト + Claude APIを活用した自動化スクリプトで構成。
