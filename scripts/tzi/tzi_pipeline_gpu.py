@@ -112,27 +112,31 @@ def load_tags():
     return {}
 
 
-def init_tag_map(tracker, model, video_path, tags: dict) -> dict:
+def init_tag_map(tracker, model, video_path, tags: dict,
+                 start_sec: float = 0.0) -> tuple:
     """
-    tags.json で指定されたフレームを再検出し、各タグbboxに最近傍のtrack_idを紐付ける。
-    戻り値: {track_id(int): jersey_str}
+    セグメント開始フレームでYOLO検出し、タグbboxに最近傍のtrack_idを紐付ける。
+    H2など途中開始セグメントはstart_secで実際の開始位置を指定する。
+    戻り値: (tag_map {track_id: jersey}, init_pos {jersey: (fx,fy)})
     """
     if not tags:
-        return {}
+        return {}, {}
 
-    frame_idx = next(iter(tags.values())).get("frame_idx", 0)
     cap = cv2.VideoCapture(str(video_path))
+    fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+    # タグ初期化はセグメント開始フレームで行う
+    frame_idx = max(0, int(fps * start_sec))
     cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
     ret, frame = cap.read()
     cap.release()
     if not ret:
-        return {}
+        return {}, {}
 
     results = model(frame, classes=[0], imgsz=IMGSZ, conf=CONF,
                     verbose=False, device=DEVICE)
     boxes = results[0].boxes
     if boxes is None or len(boxes) == 0:
-        return {}
+        return {}, {}
     dets = np.hstack([
         boxes.xyxy.cpu().numpy(),
         boxes.conf.cpu().numpy().reshape(-1, 1),
@@ -140,7 +144,8 @@ def init_tag_map(tracker, model, video_path, tags: dict) -> dict:
     ])
     tracks = tracker.update(dets, frame)
 
-    tag_map = {}
+    tag_map  = {}
+    init_pos = {}
     for jersey, info in tags.items():
         tx1, ty1, tx2, ty2 = info["bbox"]
         tcx, tcy = (tx1+tx2)/2, (ty1+ty2)/2
@@ -150,10 +155,12 @@ def init_tag_map(tracker, model, video_path, tags: dict) -> dict:
             d = ((cx-tcx)**2+(cy-tcy)**2)**0.5
             if d < best_d:
                 best_d, best_tid = d, int(tr[4])
-        if best_tid is not None and best_d < 200:
+        if best_tid is not None and best_d < 300:
             tag_map[best_tid] = jersey
+            tr = next(t for t in tracks if int(t[4]) == best_tid)
+            init_pos[jersey] = p2f((tr[0]+tr[2])/2, tr[3])
             print(f"  タグ初期化: #{jersey} → track_id={best_tid} (dist={best_d:.0f}px)")
-    return tag_map
+    return tag_map, init_pos
 
 
 def upload_gdrive(out_path):
@@ -189,9 +196,11 @@ def upload_gdrive(out_path):
 # ──────────────────────────────────────────────────────────────
 def process_segment(video_path, start_min, dur_min, fps,
                     tag_map, label, out_path,
+                    init_pos=None,
                     pose_estimator=None, tracker=None, model=None):
     """
-    tag_map: {track_id(int): jersey_str} — 手動タグ初期化後のマッピング
+    tag_map:  {track_id(int): jersey_str} — 手動タグ初期化後のマッピング
+    init_pos: {jersey_str: (fx,fy)} — セグメント開始時の選手フィールド座標
     タグの付いた全選手を追跡。track_idが消えた場合は近傍trackに再バインド。
     """
     if model is None:
@@ -217,8 +226,8 @@ def process_segment(video_path, start_min, dur_min, fps,
 
     # tag_map は {track_id: jersey_str}。セグメント中に更新される。
     live_map  = dict(tag_map)           # {track_id: jersey}
-    last_pos  = {}                      # {jersey: (fx,fy)} フィールド座標
-    last_seen = {}                      # {jersey: t_sec}
+    last_pos  = dict(init_pos or {})    # {jersey: (fx,fy)} フィールド座標
+    last_seen = {j: start_min*60 for j in (init_pos or {})}  # {jersey: t_sec}
     trails    = defaultdict(list)       # {jersey: [(px,py),...]}
     warps     = 0
     tracked_f = 0     # メインタグ選手(全員)で1フレームでも追跡できた数
@@ -487,9 +496,13 @@ def main():
     for vid, st, dur, lbl, seg_out in segs:
         # セグメントごとに新規トラッカー + タグ初期化
         tracker = make_botsort(fps, use_reid=USE_REID)
-        tag_map = init_tag_map(tracker, yolo_model, vid, tags) if tags else {}
+        tag_map, init_pos = (
+            init_tag_map(tracker, yolo_model, vid, tags, start_sec=st*60)
+            if tags else ({}, {})
+        )
         w, c = process_segment(vid, st, dur, fps, tag_map,
-                               lbl, seg_out, pose_estimator,
+                               lbl, seg_out, init_pos=init_pos,
+                               pose_estimator=pose_estimator,
                                tracker=tracker, model=yolo_model)
         seg_paths.append(seg_out)
 
