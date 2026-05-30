@@ -32,27 +32,61 @@ except ImportError:
     # boxmot v10.x (Python 3.8) — クラス名/モジュール名が異なる
     from boxmot.trackers.botsort.bot_sort import BoTSORT as BotSort
 from config import VIDEO_H1, VIDEO_H2, TRAJ_JSON, OUTPUT_DIR, p2f, FW, FH
+from config import W_LO1, W_HI1, W_LO2, W_HI2, KNL
 
 # ── 設定 ──────────────────────────────────────────────────────
-# GPU番号で指定する ("cuda" 文字列は ultralytics/boxmot の select_device で
-# CUDA_VISIBLE_DEVICES="cuda" に化けてGPUを見失うため "0" を使う)
-DEVICE     = "0"       # GPU使用 (1枚目のGPU)
-IMGSZ      = 1280      # 高解像度 (GPU必須)
+DEVICE     = "0"
+IMGSZ      = 1280
 CONF       = 0.20
-EVERY_N    = 1         # 全フレーム処理 (GPU必須)
-FPS_OUT    = 10        # 出力動画fps (GPU版は10fps)
+EVERY_N    = 1
+FPS_OUT    = 10
 W_OUT      = 1920
 H_OUT      = 1080
 MODEL_NAME = "yolov8m.pt"
 WARP_THRESH_M = 4.0
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 
-ANCHOR_TOL_MIN = 1.5
-LOST_THRESH    = 3.0   # 3秒ロストで再バインド許可 (GPU: 全フレームなので短くできる)
-REBIND_DIST_M  = 6.0   # 位置ベース再バインド距離
+LOST_THRESH   = 3.0    # 3秒ロストで再バインド許可
+REBIND_DIST_M = 12.0   # Re-ID再バインド最大距離 (広め)
+REID_SIM_MIN  = 0.45   # 色ヒストグラム類似度の最低閾値
 
-USE_POSE  = True       # RTMPose による向き推定
-USE_REID  = True       # Re-ID モデル使用
+USE_POSE  = True
+USE_REID  = True
+
+# チームカラー判定閾値 (早稲田マルーン画素比率)
+WASEDA_COLOR_THRESH = 0.03
+
+
+# ── 早稲田チームカラーフィルタ ─────────────────────────────────
+def is_waseda_player(frame, x1, y1, x2, y2):
+    """上半身のHSVで早稲田マルーン比率を判定。"""
+    uy, ly = y1, y1 + (y2 - y1) // 2
+    crop = frame[max(0, uy):max(uy+1, ly), max(0, x1):max(x1+1, x2)]
+    if crop.shape[0] < 5 or crop.shape[1] < 5:
+        return False
+    hsv = cv2.cvtColor(crop, cv2.COLOR_BGR2HSV)
+    m1 = cv2.inRange(hsv, W_LO1, W_HI1)
+    m2 = cv2.inRange(hsv, W_LO2, W_HI2)
+    ratio = (cv2.countNonZero(m1) + cv2.countNonZero(m2)) / max(1, crop.shape[0] * crop.shape[1])
+    return ratio >= WASEDA_COLOR_THRESH
+
+
+# ── 外観特徴量 (色ヒストグラムRe-ID) ─────────────────────────
+def get_appearance(frame, x1, y1, x2, y2):
+    """HSV色ヒストグラムで外観特徴ベクトルを返す。"""
+    crop = frame[max(0, y1):max(y1+1, y2), max(0, x1):max(x1+1, x2)]
+    if crop.shape[0] < 10 or crop.shape[1] < 5:
+        return None
+    hsv = cv2.cvtColor(crop, cv2.COLOR_BGR2HSV)
+    h = cv2.calcHist([hsv], [0], None, [36], [0, 180]).flatten()
+    s = cv2.calcHist([hsv], [1], None, [32], [0, 256]).flatten()
+    emb = np.concatenate([h, s]).astype(np.float32)
+    norm = np.linalg.norm(emb)
+    return emb / (norm + 1e-9) if norm > 0 else emb
+
+
+def cosine_sim(a, b):
+    return float(np.dot(a, b))   # 既にL2正規化済み
 
 # ──────────────────────────────────────────────────────────────
 def make_botsort(fps, use_reid=True):
@@ -225,11 +259,12 @@ def process_segment(video_path, start_min, dur_min, fps,
     )
 
     # tag_map は {track_id: jersey_str}。セグメント中に更新される。
-    live_map  = dict(tag_map)           # {track_id: jersey}
-    last_pos  = dict(init_pos or {})    # {jersey: (fx,fy)} フィールド座標
-    last_seen = {j: start_min*60 for j in (init_pos or {})}  # {jersey: t_sec}
-    trails    = defaultdict(list)       # {jersey: [(px,py),...]}
-    warps     = 0
+    live_map    = dict(tag_map)           # {track_id: jersey}
+    last_pos    = dict(init_pos or {})    # {jersey: (fx,fy)} フィールド座標
+    last_seen   = {j: start_min*60 for j in (init_pos or {})}  # {jersey: t_sec}
+    appearances = {}                      # {jersey: np.array} EMA色ヒストグラム
+    trails      = defaultdict(list)       # {jersey: [(px,py),...]}
+    warps       = 0
     tracked_f = 0     # メインタグ選手(全員)で1フレームでも追跡できた数
     total_out_f = 0
     tracks    = []
@@ -278,6 +313,16 @@ def process_segment(video_path, start_min, dur_min, fps,
                     last_pos[jersey]  = (fx, fy)
                     last_seen[jersey] = t_sec
 
+                    # 外観特徴EMA更新 (α=0.85 保守的)
+                    emb = get_appearance(frame, x1, y1, x2, y2)
+                    if emb is not None:
+                        if jersey in appearances:
+                            merged = 0.85 * appearances[jersey] + 0.15 * emb
+                            n = np.linalg.norm(merged)
+                            appearances[jersey] = merged / n if n > 0 else merged
+                        else:
+                            appearances[jersey] = emb
+
                     # RTMPose 体の向き推定
                     if pose_estimator is not None and fn % 3 == 0:
                         try:
@@ -301,23 +346,65 @@ def process_segment(video_path, start_min, dur_min, fps,
                         except Exception:
                             pass
                 else:
-                    # track_id 消失 → 位置ベース再バインド
+                    # track_id 消失 → Re-ID + チームカラーフィルタ再バインド
                     lost_sec = t_sec - last_seen.get(jersey, 0)
-                    if lost_sec > LOST_THRESH and jersey in last_pos:
+                    if lost_sec <= LOST_THRESH:
+                        continue
+
+                    # Step1: 未タグ + 早稲田カラーのtackのみ候補に
+                    candidates = [t for t in tracks
+                                  if int(t[4]) not in live_map
+                                  and is_waseda_player(
+                                      frame, int(t[0]), int(t[1]),
+                                      int(t[2]), int(t[3]))]
+                    if not candidates:
+                        continue
+
+                    # Step2: 最終既知位置からの距離フィルタ
+                    if jersey in last_pos:
                         lx, ly = last_pos[jersey]
-                        untagged = [t for t in tracks
-                                    if int(t[4]) not in live_map]
-                        best_tid2, best_d2 = None, 1e9
-                        for t in untagged:
+                        filtered = []
+                        for t in candidates:
                             fx, fy = p2f((t[0]+t[2])/2, t[3])
-                            d = ((fx-lx)**2+(fy-ly)**2)**0.5
-                            if d < best_d2:
-                                best_d2, best_tid2 = d, int(t[4])
-                        if best_tid2 is not None and best_d2 < REBIND_DIST_M:
-                            del live_map[tid]
-                            live_map[best_tid2] = jersey
-                            print(f"  再バインド: #{jersey} tid={tid}→{best_tid2} "
-                                  f"({best_d2:.1f}m)")
+                            if ((fx-lx)**2+(fy-ly)**2)**0.5 < REBIND_DIST_M:
+                                filtered.append((t, fx, fy))
+                        if not filtered:
+                            continue
+                    else:
+                        filtered = [(t,
+                                     p2f((t[0]+t[2])/2, t[3])[0],
+                                     p2f((t[0]+t[2])/2, t[3])[1])
+                                    for t in candidates]
+
+                    # Step3: 外観類似度で最良候補を選択
+                    best_tid2, best_score = None, -1.0
+                    for t, fx, fy in filtered:
+                        if jersey in appearances:
+                            emb = get_appearance(frame,
+                                                 int(t[0]), int(t[1]),
+                                                 int(t[2]), int(t[3]))
+                            score = cosine_sim(appearances[jersey], emb) \
+                                if emb is not None else 0.0
+                        else:
+                            # 外観未取得 → 距離スコアで代替
+                            if jersey in last_pos:
+                                d = ((fx-last_pos[jersey][0])**2 +
+                                     (fy-last_pos[jersey][1])**2)**0.5
+                                score = 1.0 - d / REBIND_DIST_M
+                            else:
+                                score = 0.0
+                        if score > best_score:
+                            best_score, best_tid2 = score, int(t[4])
+
+                    # 外観がある場合は閾値チェック、ない場合は最近傍で確定
+                    ok = (best_score >= REID_SIM_MIN
+                          if jersey in appearances
+                          else best_tid2 is not None)
+                    if ok and best_tid2 is not None:
+                        del live_map[tid]
+                        live_map[best_tid2] = jersey
+                        print(f"  Re-ID再バインド: #{jersey} "
+                              f"tid={tid}→{best_tid2} sim={best_score:.2f}")
 
         # ── 出力フレーム生成 ─────────────────────────────────
         if (fn - start_f) % sample == 0:
