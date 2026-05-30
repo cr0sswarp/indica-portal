@@ -97,6 +97,7 @@ print_report(report)
 
 ## 💼 本業コンテキスト（Indica Labs Japan）
 
+> **機密情報取扱注意**: 顧客名・売上・PL・契約内容は外部サービスに送信しない。PE（恒久的施設）リスク回避のため対外資料の住所はAlbuquerque HQ。
 > ChatGPT / Gemini からの移行コンテキスト統合済み（2026-05-29）
 
 ### 役職・ミッション
