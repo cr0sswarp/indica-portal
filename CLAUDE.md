@@ -112,22 +112,38 @@ print_report(report)
 | **Japan市場拡大 / HALO suite** | 病院・研究機関・代理店向け説明継続中 | 経営層向け: TAT短縮・標準化・労働時間削減・診断ばらつき抑制で訴求 |
 | **HALO Link / HALO AP ポジショニング** | HALO AP=臨床グレード/HL7/LIS、HALO Link=RUO/研究/GraphQL で整理済み | 顧客要件ごとにLink/APの線引きを明確化 |
 | **Brain Atlas / AI画像解析** | sagittal対応・bounding box・複数動物処理の課題あり | 学術ニーズ×AI活用を5点に絞り商談資料化 |
-| **Ogura-san採用** | ex-Hamamatsu Photonics、20年超のKOLネットワーク保有。Day-one title・Steven可視化・Adam承認が未決 | Adamへ: Senior IC役割・事業的必然性・Japan信用獲得効果を明確化して承認取得 |
-| **Minori/Ando 人事再編** | MinoriはAPAC reseller支援20%振り分け案。AndoはApps Group配置方針 | EOR移管後にタイトル・職務定義整理。Adam/Haiying/Wangへの開示範囲を慎重に管理 |
-| **Visualix/LBS/Roche チャネル戦略** | Visualix=LBS補完の戦略的パートナー候補。Leica代理店整理中 | LBSへ: Visualixの定量的メリット・販売コミット・既存代理店差別化を提案 |
+| **Ogura-san採用** | Adam・Steven承認済み。年俸¥10M上限OK。要望への対応力確認済み | **6/10回答期限** → 受諾確認後Adamへ状況報告 |
+| **Minori PIP** | 6/2 10:00 PIP通知面談（G-P同席）。最終版ドキュメント作成済み（Drive保存） | 月曜朝: みさきさんへ確認メール + Teams招待送信 |
+| **Ando Apps Group移行** | 現時点未着手。来年確定予定 | 来年に向けてタイトル・職務定義整理 |
+| **Visualix パートナーシップ** | 実質的営業パートナーとして既に稼働中。東大・阪大との共同研究提案中。福岡先生と協議詰め中 | 新潟県央基幹病院への直接訪問・ヒアリング実施 |
+| **AetherAI競合対策（らくらくモード）** | 日野さんと共同開発中。ボタン1つで操作性大幅向上 | **6/6（来週中）完成・レビュー** |
+| **モデル病院（新潟県央基幹病院）** | 400床。福岡先生指名。代理店経由では返事なし | 牧野さんが直接現場の先生にコンタクト・ヒアリング |
+| **LBS/Danaherリスク管理** | ⚠️機密：Danaher傘下LBSへの吸収リスクあり | 今年いっぱいVisualix連携で独立維持。浜松ホトニクス軸にエコシステム強化 |
 | **録音→まとめ→資料化ワークフロー** | 出力形式固定済み | 録音来たら: ①文字起こし②200文字要約③スライド+3行コツ で一貫処理 |
 
 ### 未決事項（Pending Decisions）
-1. Ogura-san を Day 1 から Senior title にするか
-2. Ogura-san採用を Steven Hashagen へいつ可視化するか
-3. Minori の APAC reseller支援への正式移管範囲
-4. Minori課題を Wang へどこまで開示するか
-5. Ando の Apps Group への正式移管範囲
+1. ~~Ogura-san Day 1 Senior title~~ → ✅ Adam・Steven承認済み（6/10回答待ち）
+2. ~~Ogura-san Steven可視化~~ → ✅ Adam経由で共有済み
+3. ~~Minori APAC 20%振り分け~~ → ✅ 削除。PIPに移行（6/2通知）
+4. Minori課題を Wang へどこまで開示するか（CLO管轄）
+5. Ando の Apps Group への正式移管範囲（来年）
 6. HALO Link / HALO AP の RUO vs 臨床用途の顧客別表現方法
-7. Visualix を LBS チャネルに追加するための定量メリット設計
+7. Visualix との正式契約形態の確定（現在は実質稼働中）
 8. Roche スキャナー前提案件での Leica/Hamamatsu/科研費活用の現実性
 9. HALO Link perpetual/annual 混在のCRM運用方針
-10. 長期データベース化の中心ツール選定（Gemini/NotebookLM/ChatGPT/Claude）
+10. 新潟県央基幹病院への直接訪問タイミング確定
+
+### 直近To Do（2026-05-30 セッション記録）
+
+| 期限 | アクション |
+|---|---|
+| **月曜朝（6/2）** | みさきさんへメール送信（PIP最終版確認依頼） |
+| **月曜朝（6/2）** | Teams会議招待送信（Minori・G-P宛、ニュートラルタイトル） |
+| **月曜（6/2）10:00** | PIP通知面談（Minori・G-P同席） |
+| **月曜（6/2）** | Adamへ状況報告メール送信（Ogura-san件） |
+| **6/6（来週中）** | 日野さんとらくらくモード完成・レビュー |
+| **6/10まで** | Ogura-sanからの返答待ち → 受諾確認後Adam報告 |
+| **要調整** | 新潟県央基幹病院への直接訪問・ヒアリング実施 |
 
 ### 重要関係者
 
@@ -135,24 +151,41 @@ print_report(report)
 |---|---|---|
 | **Adam** | 上司・承認者 | Ogura-san採用・Japan strategy・人事タイトル・代理店戦略の最終承認者 |
 | **Steven Hashagen** | Indica Labs CEO | Ogura-san採用・Japan market strategyの上位承認対象 |
-| **Ogura-san** | 採用候補 / ex-Hamamatsu | KOLネットワーク×病理IT理解。once-in-a-career talent |
-| **Minori** | Japan team | コミュニケーション・役割逸脱に課題。APAC reseller支援検討中 |
-| **Ando** | 顧客対応 / Apps Group候補 | 顧客エンゲージメント・リカバリー力が高い。一次情報アクセス位置への配置推奨 |
-| **Wang** | 関係者 | Minori関連。情報開示範囲を慎重に管理 |
-| **Haiying** | APAC reseller支援 | Minori 20%稼働の受け皿候補 |
-| **Visualix** | 戦略的パートナー候補 | HALO Link+HALO APパイプライン創出・LBS補完 |
-| **Leica Biosystems / LBS** | 主要パートナー | HALO suite×スキャナー組み合わせ・代理店整理・annual推進 |
+| **Jonathon Bartlett** | Indica Labs CHRO | PIP承認・人事プロセスの上位承認者 |
+| **Ogura-san** | 採用候補 / ex-Hamamatsu | KOLネットワーク×病理IT理解×要望対応力。once-in-a-career talent。6/10回答期限 |
+| **Minori（田渕未里）** | Japan team / PIP対象 | 6/2 PIP通知。機密扱い。WangへのMinori情報開示は慎重に |
+| **Ando** | 顧客対応 / Apps Group候補 | 顧客エンゲージメント・リカバリー力が高い。来年Apps Group移行予定 |
+| **日野さん** | Indica Labs テクニカルエンジニア | らくらくモード開発担当。6/6完成目標 |
+| **Wang** | APAC商業統括（中国カントリーマネージャー） | Minori関連情報の開示範囲を慎重に管理 |
+| **Haiying** | APAC reseller支援 | 情報開示注意 |
+| **Misaki Yamane** | G-P HRスペシャリスト | PIP担当。ymisaki@g-p.com / nsuzuki@g-p.com |
+| **福岡先生** | 病理KOL / モデル病院キーパーソン | 新潟県央基幹病院への派遣オプション保持。東大・阪大共同研究提案中 |
+| **Visualix** | 実質的営業パートナー（稼働中） | AetherAI対抗・二次店展開・LBS傘下回避の中核 |
+| **Leica Biosystems / LBS** | ⚠️機密：Danaher傘下・吸収リスクあり | 日本では機能しない。独立維持戦略の観点から距離を保つ |
+| **AetherAI** | 主要競合 | 弱点：性能。武器：シンプルなUI。対抗：らくらくモード |
 | **Roche** | 連携/競合 | uPath・navify・DP200/600・胃HER2・ADCモジュール文脈 |
 | **藤井様** | 病院企画課 | 院長カンファレンスでHALO Link/AIの病院内メリット説明が必要 |
+
+### 日本市場エコシステム（モデル病院向け）
+
+| カテゴリ | 会社 |
+|---|---|
+| **スキャナーベンダー** | 浜松ホトニクス（中心軸）・フィリップス・ライカ |
+| **LISベンダー** | インテック・正晃テック・フィンガルリンク・ひろぎん |
+| **AIプラットフォーム** | HALO AP（Indica Labs） |
+| **戦略パートナー** | Visualix（営業・二次店展開） |
+| **ターゲット病院** | 新潟県央基幹病院（400床・福岡先生指名） |
 
 ### 繰り返しルール（必ず守ること）
 - **録音後の出力形式**: ①文字起こし → ②約200文字の一文要約 → ③スライドファイル形式 → 最後に3行でコツに気づける要点
 - **病院経営層向け**: 専門用語を抑え、ROI・標準化・時間短縮・診断品質・人員不足対策で説明
 - **HALO製品の整理**: HALO Link=研究/RUO/GraphQL/Study権限、HALO AP=臨床診断/HL7/FHIR/LIS/EMR
 - **スキャナー予算の説得**: WSIスキャナーはコモディティ化→HALO suiteを同じ予算に入れるアービトラージ論法
-- **メール文面**: 英日ともに丁寧・相手尊重・事業上の主張を明確に
+- **メール文面**: 英日ともに丁寧・相手尊重・事業上の主張を明確に（英文→日本語の順で必ず両方作成）
 - **採用・人事・代理店**: 感情論でなく事業価値・市場浸透・信頼獲得・売上貢献の論理で説明
 - **AIツール役割分担**: Claude Code=戦略・自動化・永続コンテキスト管理（本リポジトリ）
+- **LBS/Danaher情報**: 機密。社外・Wang/Haiyingへ開示不可
+- **AetherAI対抗軸**: 性能訴求 + らくらくモード（操作性）の2軸で差別化
 
 ---
 
