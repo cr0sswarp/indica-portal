@@ -30,9 +30,11 @@ TODAY = datetime.datetime.now(JST).strftime("%Y-%m-%d")
 
 # ── 調査論点（[[13_TIPS_T+MASC比較]] の深夜調査ブリーフと同期）──────────
 RESEARCH_QUESTIONS = """\
-1. Joan Vila（Joan Vila i Bosch）の Ekkono / Soccer Services Barcelona への初期関与の有無。
-   現状＝未確認。Ekkono 創始者は Carles Romagosa と David Hernández。
-   Vila の直接関与を示す一次ソースがあるか厳密に探す（なければ「未確認」と結論）。
+（前提・確認済み: エコノメソッドは Joan Vila・Carles Romagosa・David Hernández の3人で創設。
+  日本語ソース＝奈良クラブ／浜田満で一致。現英語版公式が2名なのはVila離脱後のため。）
+
+1. 上記「3人創設」を補強する一次ソースの追加収集（年・場所・各人の役割）。
+   特に英語圏ソースでVilaを3人目に含める記述があるか（または2名表記の理由の明示）。
 2. Joan Vila が久保建英を「見出した／育成した」具体的経緯。
    バルサキャンプ MVP 選出・Vila の役割を一次ソースで精密化する。
 3. 岡田武史 × Joan Vila の正式契約の一次ソース（契約年・範囲・岡田メソッドへの反映）。

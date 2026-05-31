@@ -20,7 +20,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 > **教訓ログ**:
 > - 佐野海舟の出身校を「鹿島学園」と誤記（過去所属の鹿島アントラーズと混同）→ 正しくは**米子北高校**。固有名詞は必ず検索で裏取りすること。
-> - 「T-MASC」と表記し定義を Technical/Mental/Athletic/Strategic/Creative と**捏造**→ 正しくは **T+MASC**（Ekkono＝エコノメソッドの実在スカウティング公式）で **Talent / Motor skills / Availability / Smartness / Commitment**。創始者も「ジョアン・ヴィラ」は誤りで、正しくは **Carles Romagosa・David Hernández**（Soccer Services Barcelona）。**もっともらしい略語の展開を勝手に埋めない**こと。専門メソッド・略語・人名は必ず一次ソースで確認する。
+> - 「T-MASC」と表記し定義を Technical/Mental/Athletic/Strategic/Creative と**捏造**→ 正しくは **T+MASC**（Ekkono＝エコノメソッドの実在スカウティング公式）で **Talent / Motor skills / Availability / Smartness / Commitment**。**もっともらしい略語の展開を勝手に埋めない**こと。
+> - **英語ソースのみで結論を出す誤り**: エコノメソッド創始者を「Romagosa・Hernández の2名」と断じ「ジョアン・ヴィラは創始者でない」と書いたが、**日本語一次ソース（奈良クラブ／浜田満）では創始者は3名で Joan Vila を含む**と判明（現英語版公式が2名なのはVila離脱後のため）。→ **日本関連・人物史は日本語の一次ソースも必ず当たる**こと。英語圏で情報が削除/更新されていても、立ち上げ期の現地ソースに残っていることがある。ユーザー提供のソースは必ず精査する。
 
 ---
 
