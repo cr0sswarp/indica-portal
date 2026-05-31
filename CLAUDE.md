@@ -101,6 +101,7 @@ print_report(report)
 | 毎日 7:00 JST | `daily-brief.yml` | Notion優先事項→HTML→メール送信 |
 | 毎日 3:03 JST | `daily-loop-stock.yml` | 株価予想→Notion保存 |
 | 毎週水 8:36 JST | `nakajima.yml` | メルマガ要約→PDF→Notion |
+| 毎週月 02:00 JST | `tmasc-research.yml` | T+MASC/TIPS/JoanVila史実をWeb調査→Obsidian保存 |
 
 ## ♻️ 推奨 /loop スキル（Claude Code セッション内）
 

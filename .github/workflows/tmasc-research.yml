@@ -1,0 +1,84 @@
+# ════════════════════════════════════════════════════════════════
+# tmasc-research — T+MASC 深夜自動調査
+# ════════════════════════════════════════════════════════════════
+#
+# 📌 目的:
+#   エコノメソッド T+MASC / アヤックス TIPS / Joan Vila 史実の未確認論点を
+#   Claude + Web Search で精査し、Obsidian Vault にレポートを出力する。
+#
+# 📌 必要な GitHub Secrets:
+#   - ANTHROPIC_API_KEY : Claude API キー（Web Search ツール利用可であること）
+#
+# 🕑 スケジュール:
+#   毎週月曜 02:00 JST（= 日曜 17:00 UTC）の深夜に自動実行。
+#   朝5時のメールチェック・7:00 daily-brief より前にレポートが揃う。
+#   ※ すぐ実行したい時は Actions タブ → 本ワークフロー → Run workflow（手動）。
+#   ※ 未確認論点が解消したら cron を停止 or 隔週に変更してよい。
+#
+# 📤 出力:
+#   obsidian/research/T+MASC_調査_YYYY-MM-DD.md（コミット・プッシュ）
+#
+# ════════════════════════════════════════════════════════════════
+
+name: "🌙 tmasc-research — T+MASC 深夜自動調査"
+
+on:
+  schedule:
+    # 毎週月曜 02:00 JST (= 日曜 17:00 UTC)
+    - cron: "0 17 * * 0"
+
+  workflow_dispatch:
+    inputs:
+      note:
+        description: "手動実行メモ（任意）"
+        required: false
+        default: "手動トリガー"
+
+jobs:
+  tmasc-research:
+    name: "T+MASC 深夜調査 → Obsidian"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "📥 リポジトリ取得"
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: "🐍 Python セットアップ"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: "📦 ライブラリインストール"
+        run: pip install anthropic
+
+      - name: "🔎 T+MASC 調査実行"
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/tmasc_research.py
+
+      - name: "🔧 Git 設定"
+        run: |
+          git config user.name  "VALIENTE COO Bot"
+          git config user.email "makino@indicalab.jp"
+
+      - name: "📤 変更をコミット・プッシュ"
+        run: |
+          git add obsidian/research/
+          if git diff --staged --quiet; then
+            echo "変更なし — スキップ"
+          else
+            git commit -m "research: T+MASC 深夜調査 $(TZ='Asia/Tokyo' date '+%Y-%m-%d %H:%M JST')"
+            git push origin ${{ github.ref_name }}
+            echo "✅ T+MASC 調査レポートを出力しました"
+          fi
+
+      - name: "📋 実行サマリー"
+        if: always()
+        run: |
+          echo "## 🌙 T+MASC 深夜調査完了" >> $GITHUB_STEP_SUMMARY
+          echo "- 実行時刻 (JST): $(TZ='Asia/Tokyo' date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
+          echo "- 出力: \`obsidian/research/\` フォルダ" >> $GITHUB_STEP_SUMMARY
+          echo "- 調査論点: [[13_TIPS_T+MASC比較]] の深夜調査ブリーフと同期" >> $GITHUB_STEP_SUMMARY
