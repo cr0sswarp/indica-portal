@@ -18,7 +18,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 一度誤った事実を出したら、**訂正を最優先し、何と混同したか原因を明示する。**
 - セカンドブレインに保存する情報は牧野氏の長期的な判断材料になるため、誤情報の混入は重大な損害とみなす。
 
-> **教訓ログ**: 佐野海舟の出身校を「鹿島学園」と誤記（過去所属の鹿島アントラーズと混同）→ 正しくは**米子北高校**。固有名詞は必ず検索で裏取りすること。
+> **教訓ログ**:
+> - 佐野海舟の出身校を「鹿島学園」と誤記（過去所属の鹿島アントラーズと混同）→ 正しくは**米子北高校**。固有名詞は必ず検索で裏取りすること。
+> - 「T-MASC」と表記し定義を Technical/Mental/Athletic/Strategic/Creative と**捏造**→ 正しくは **T+MASC**（Ekkono＝エコノメソッドの実在スカウティング公式）で **Talent / Motor skills / Availability / Smartness / Commitment**。創始者も「ジョアン・ヴィラ」は誤りで、正しくは **Carles Romagosa・David Hernández**（Soccer Services Barcelona）。**もっともらしい略語の展開を勝手に埋めない**こと。専門メソッド・略語・人名は必ず一次ソースで確認する。
 
 ---
 
