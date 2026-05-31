@@ -1,4 +1,4 @@
-// Daily Mission Control v4 — コンパクト・ゾーン色鮮明版
+// Daily Mission Control v5 — コンパクト・ゾーン色鮮明版・ポモドーロ30分
 
 export const command = `
 TIME=$(date '+%H:%M:%S')
@@ -10,7 +10,7 @@ if [ "$M" -eq 0 ] && [ "$S" -eq 0 ]; then
     0|4|5|9|21|22) afplay /System/Library/Sounds/Glass.aiff >/dev/null 2>&1 & ;;
   esac
 fi
-if [ "$S" -eq 0 ] && [ "$M" -ne 0 ] && [ $((M % 25)) -eq 0 ]; then
+if [ "$S" -eq 0 ] && [ $((M % 30)) -eq 0 ]; then
   afplay /System/Library/Sounds/Ping.aiff >/dev/null 2>&1 &
   open -a Clock >/dev/null 2>&1 &
 fi
@@ -60,10 +60,10 @@ export const render = ({ output }) => {
   const dayPct = Math.min(100, Math.max(0, Math.round((nowSec - 9*3600) / (12*3600) * 100)));
 
   // ポモドーロ
-  const pomSec = (m % 25) * 60 + s;
-  const pomPct = Math.round(pomSec / 1500 * 100);
-  const pomRemM = Math.floor((1500 - pomSec) / 60);
-  const pomRemS = (1500 - pomSec) % 60;
+  const pomSec = (m % 30) * 60 + s;
+  const pomPct = Math.round(pomSec / 1800 * 100);
+  const pomRemM = Math.floor((1800 - pomSec) / 60);
+  const pomRemS = (1800 - pomSec) % 60;
 
   const bar = (pct, color, opacity = 1) => (
     <div style={{ height: 3, background: "rgba(255,255,255,0.08)", borderRadius: 2, overflow: "hidden" }}>
