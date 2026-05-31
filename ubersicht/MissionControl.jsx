@@ -1,31 +1,19 @@
-// ============================================================
-// Daily Mission Control — Übersicht Widget v3
-// 変更点:
-//   - 全体サイズ半減（パディング・余白を圧縮）
-//   - 小さいラベル文字 → 現在ゾーンの色を継承（A案）
-//   - 区切り線・バー・パーセント表示もゾーン色に統一
-//   - ゾーンサウンド・25分タイマー継続
-// ============================================================
+// Daily Mission Control v4 — コンパクト・ゾーン色鮮明版
 
 export const command = `
 TIME=$(date '+%H:%M:%S')
 H=$((10#$(date '+%H')))
 M=$((10#$(date '+%M')))
 S=$((10#$(date '+%S')))
-
-# ゾーン切り替えサウンド（開始時刻の :00:00 に Glass を鳴らす）
 if [ "$M" -eq 0 ] && [ "$S" -eq 0 ]; then
   case "$H" in
     0|4|5|9|21|22) afplay /System/Library/Sounds/Glass.aiff >/dev/null 2>&1 & ;;
   esac
 fi
-
-# ポモドーロ 25分: :25:00 と :50:00 に Ping ＋ 時計アプリ起動
 if [ "$S" -eq 0 ] && [ "$M" -ne 0 ] && [ $((M % 25)) -eq 0 ]; then
   afplay /System/Library/Sounds/Ping.aiff >/dev/null 2>&1 &
   open -a Clock >/dev/null 2>&1 &
 fi
-
 echo "$TIME"
 `;
 
@@ -40,13 +28,14 @@ export const className = `
   user-select: none;
 `;
 
+// 明るい色に変更（視認性UP）
 const ZONES = [
-  { start: 0,  end: 4,  color: "#718096", label: "睡眠中",        icon: "🌙", body: "7h睡眠確保。脳と体を回復。デバイスをオフに。" },
-  { start: 4,  end: 5,  color: "#38a169", label: "朝ルーティン",  icon: "🏃", body: "起床→水→ストレッチ→外気→今日のインテンション設定。" },
-  { start: 5,  end: 9,  color: "#5a67d8", label: "集中ブロック",  icon: "⚡", body: "最重要タスク優先。通知OFF。25分ポモドーロで実行。" },
-  { start: 9,  end: 21, color: "#dd6b20", label: "アクティブデイ", icon: "🎯", body: "商談・会議・一問一答。外部対応この時間に集約。21時締切。" },
-  { start: 21, end: 22, color: "#2b6cb0", label: "翌日準備",      icon: "📋", body: "翌日ToDo確定→デジタルデトックス→入浴→読書。" },
-  { start: 22, end: 24, color: "#718096", label: "睡眠中",        icon: "🌙", body: "デバイスをオフ。良質な睡眠が翌日パフォーマンスを決める。" },
+  { start: 0,  end: 4,  color: "#94a3b8", label: "睡眠中",        icon: "🌙", body: "7h睡眠確保。脳と体を回復。デバイスをオフに。" },
+  { start: 4,  end: 5,  color: "#4ade80", label: "朝ルーティン",  icon: "🏃", body: "起床→水→ストレッチ→外気→今日のインテンション設定。" },
+  { start: 5,  end: 9,  color: "#818cf8", label: "集中ブロック",  icon: "⚡", body: "最重要タスク優先。通知OFF。25分ポモドーロで実行。" },
+  { start: 9,  end: 21, color: "#fb923c", label: "アクティブデイ", icon: "🎯", body: "商談・会議・一問一答。外部対応この時間に集約。21時締切。" },
+  { start: 21, end: 22, color: "#60a5fa", label: "翌日準備",      icon: "📋", body: "翌日ToDo確定→デジタルデトックス→入浴→読書。" },
+  { start: 22, end: 24, color: "#94a3b8", label: "睡眠中",        icon: "🌙", body: "デバイスをオフ。良質な睡眠が翌日パフォーマンスを決める。" },
 ];
 
 const pad = n => String(n).padStart(2, "0");
@@ -56,25 +45,9 @@ export const render = ({ output }) => {
   const time = output.trim();
   const [h, m, s] = time.split(":").map(Number);
   const zone = ZONES.find(z => h >= z.start && h < z.end) || ZONES[0];
+  const c = zone.color;
 
-  // ゾーン色を継承したラベルスタイル（A案）
-  const L = {
-    fontSize: 9,
-    color: zone.color,
-    letterSpacing: "0.12em",
-    margin: "0 0 2px",
-    textTransform: "uppercase",
-    fontWeight: 700,
-  };
-
-  // ゾーン色の薄い区切り線
-  const divider = {
-    borderTop: `0.5px solid ${zone.color}33`,
-    marginTop: 6,
-    paddingTop: 6,
-  };
-
-  // 21:00デッドライン残り
+  // デッドライン残り
   let secs = 21 * 3600 - (h * 3600 + m * 60 + s);
   if (secs < 0) secs += 86400;
   const dH = Math.floor(secs / 3600);
@@ -83,75 +56,70 @@ export const render = ({ output }) => {
   const urgent = dH < 2 && h >= 9 && h < 21;
 
   // アクティブデイ進捗
-  const dayStart = 9 * 3600, dayEnd = 21 * 3600;
   const nowSec = h * 3600 + m * 60 + s;
-  const dayPct = Math.min(100, Math.max(0, Math.round((nowSec - dayStart) / (dayEnd - dayStart) * 100)));
+  const dayPct = Math.min(100, Math.max(0, Math.round((nowSec - 9*3600) / (12*3600) * 100)));
 
-  // ポモドーロ 25分
+  // ポモドーロ
   const pomSec = (m % 25) * 60 + s;
   const pomPct = Math.round(pomSec / 1500 * 100);
   const pomRemM = Math.floor((1500 - pomSec) / 60);
   const pomRemS = (1500 - pomSec) % 60;
 
+  const bar = (pct, color, opacity = 1) => (
+    <div style={{ height: 3, background: "rgba(255,255,255,0.08)", borderRadius: 2, overflow: "hidden" }}>
+      <div style={{ height: "100%", width: `${pct}%`, background: color, borderRadius: 2, opacity }} />
+    </div>
+  );
+
   return (
     <div style={{
-      background: "rgba(8, 8, 18, 0.9)",
+      background: "rgba(6, 6, 16, 0.92)",
       backdropFilter: "blur(20px)",
       WebkitBackdropFilter: "blur(20px)",
-      borderRadius: 12,
-      padding: "10px 14px",
-      minWidth: 210,
-      border: `0.5px solid ${zone.color}44`,
-      boxShadow: `0 6px 24px rgba(0,0,0,0.5), 0 0 10px ${zone.color}18`,
+      borderRadius: 11,
+      padding: "7px 12px",
+      minWidth: 215,
+      border: `0.5px solid ${c}55`,
+      boxShadow: `0 4px 20px rgba(0,0,0,0.6), 0 0 14px ${c}22`,
     }}>
 
       {/* ヘッダー */}
-      <p style={{ ...L, margin: "0 0 5px" }}>DAILY MISSION CONTROL</p>
+      <p style={{ fontSize: 8, color: c, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", margin: "0 0 2px" }}>
+        DAILY MISSION CONTROL
+      </p>
 
-      {/* 現在時刻 */}
-      <p style={{ fontSize: 34, fontWeight: 200, color: "#fff", margin: 0, letterSpacing: "0.04em", fontVariantNumeric: "tabular-nums", lineHeight: 1 }}>
+      {/* 時刻（大） */}
+      <p style={{ fontSize: 30, fontWeight: 200, color: "#fff", margin: 0, letterSpacing: "0.04em", fontVariantNumeric: "tabular-nums", lineHeight: 1 }}>
         {time}
       </p>
 
-      {/* 現在のゾーン */}
-      <div style={divider}>
-        <p style={L}>現在のゾーン</p>
-        <p style={{ fontSize: 13, color: zone.color, fontWeight: 600, margin: 0 }}>{zone.icon} {zone.label}</p>
-      </div>
-
-      {/* 21:00デッドライン */}
-      <div style={divider}>
-        <p style={L}>21:00 DEADLINE</p>
-        <p style={{ fontSize: 24, fontWeight: 500, color: urgent ? "#fc5c5c" : "#fff", margin: 0, fontVariantNumeric: "tabular-nums", lineHeight: 1 }}>
-          {pad(dH)}:{pad(dM)}:{pad(dS)}
+      {/* ゾーン + デッドライン — 1行 */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginTop: 4, paddingTop: 4, borderTop: `0.5px solid ${c}30` }}>
+        <p style={{ fontSize: 12, color: c, fontWeight: 700, margin: 0 }}>{zone.icon} {zone.label}</p>
+        <p style={{ fontSize: 16, fontWeight: 600, color: urgent ? "#f87171" : "#fff", margin: 0, fontVariantNumeric: "tabular-nums" }}>
+          ▶ {pad(dH)}:{pad(dM)}:{pad(dS)}
         </p>
       </div>
 
-      {/* アクティブデイ進捗 */}
-      <div style={{ marginTop: 6 }}>
-        <p style={L}>アクティブデイ進捗</p>
-        <div style={{ height: 3, background: "rgba(255,255,255,0.1)", borderRadius: 2, overflow: "hidden" }}>
-          <div style={{ height: "100%", width: `${dayPct}%`, background: zone.color, borderRadius: 2 }} />
+      {/* 進捗バー2本 — 1ブロック */}
+      <div style={{ marginTop: 5, paddingTop: 4, borderTop: `0.5px solid ${c}22` }}>
+        {/* アクティブデイ */}
+        <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3 }}>
+          <p style={{ fontSize: 8, color: c, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", margin: 0, minWidth: 36 }}>DAY</p>
+          <div style={{ flex: 1 }}>{bar(dayPct, c)}</div>
+          <p style={{ fontSize: 9, color: c, fontWeight: 700, margin: 0, fontVariantNumeric: "tabular-nums", minWidth: 26, textAlign: "right" }}>{dayPct}%</p>
         </div>
-        <p style={{ fontSize: 10, fontWeight: 700, color: zone.color, margin: "2px 0 0", fontVariantNumeric: "tabular-nums" }}>
-          {dayPct}%
-        </p>
-      </div>
-
-      {/* ポモドーロ */}
-      <div style={divider}>
-        <p style={L}>ポモドーロ 25min</p>
-        <div style={{ height: 3, background: "rgba(255,255,255,0.1)", borderRadius: 2, overflow: "hidden" }}>
-          <div style={{ height: "100%", width: `${pomPct}%`, background: zone.color, borderRadius: 2, opacity: 0.65 }} />
+        {/* ポモドーロ */}
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <p style={{ fontSize: 8, color: c, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", margin: 0, minWidth: 36 }}>POM</p>
+          <div style={{ flex: 1 }}>{bar(pomPct, c, 0.7)}</div>
+          <p style={{ fontSize: 9, color: c, fontWeight: 700, margin: 0, fontVariantNumeric: "tabular-nums", minWidth: 26, textAlign: "right" }}>{pad(pomRemM)}:{pad(pomRemS)}</p>
         </div>
-        <p style={{ fontSize: 10, fontWeight: 700, color: zone.color, margin: "2px 0 0", fontVariantNumeric: "tabular-nums" }}>
-          次まで {pad(pomRemM)}:{pad(pomRemS)}
-        </p>
       </div>
 
-      {/* 本文（ゾーンミッション）— 最終行 */}
-      <div style={{ ...divider, borderTopColor: `${zone.color}1a` }}>
-        <p style={{ fontSize: 9, color: `${zone.color}cc`, margin: 0, lineHeight: 1.6, letterSpacing: "0.02em" }}>
+      {/* 本文 — 最終行 */}
+      <div style={{ marginTop: 4, paddingTop: 4, borderTop: `0.5px solid ${c}1a` }}>
+        <p style={{ fontSize: 10, color: c, fontWeight: 500, margin: 0, lineHeight: 1.45, letterSpacing: "0.01em" }}>
           {zone.body}
         </p>
       </div>
