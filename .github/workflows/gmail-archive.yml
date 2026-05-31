@@ -1,0 +1,23 @@
+name: Gmail Whitelist Archiver
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"  # 15分ごと（JST関係なくUTC）
+  workflow_dispatch:
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run archiver
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python scripts/gmail_archive.py
